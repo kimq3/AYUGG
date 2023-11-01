@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import App from "../App";
 import RankingMain from "../view/page/ranking/rankingMain";
+import Multi from "../view/page/multi/multiPage";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
       element:<RankingMain></RankingMain>
     },
     {
-      path:"/multi"
+      path:"/multi",
+      element:<Multi></Multi>
     },
     {
       path:"/challenger"
