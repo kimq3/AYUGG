@@ -61,7 +61,7 @@ function Multi() {
                 <button class="search" id="button" onClick={Filter}>검색</button>
             </div>
       </div>
-      <div></div>
+      <div>{MultiResultBox}</div>
     </div>
   );
 }
