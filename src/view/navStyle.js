@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import logo from '../view/image/logo/navbar-logo.png';
 import search from '../view/image/search-icon/search-icon-24.svg';
+import { Link } from "react-router-dom";
 
 export const NavBox = styled.div`
     display: flex;
     margin-top: -7px;
     margin-left: -8px;
     width: 100%;
-    height: 50px;
+    height: 70px;
     padding: 5px 10px;
     background-color: black;
     justify-content: space-between;
@@ -18,6 +19,33 @@ export const NavBoxButton = styled.div`
     align-items: center;
     justify-content: center;
     margin-left: 10px;
+`;
+
+export const ListBox = styled.div`
+    height:80%;
+    margin-left : 15px;
+    display: flex;
+    align-items: center;
+    border:0px solid;
+    border-bottom-width:2px;
+    &:hover{
+        border:0px solid;
+        border-color:#fff;
+        border-bottom-width:2px;
+    }
+    ${ props => {
+        if (props.pathname === props.url) {
+            return  'border-color:white';
+        } else {
+            return 'border-color:black';
+        }
+      }}
+`;
+
+export const ListStyle = styled(Link)`
+    color:#fff;
+    text-decoration :none;
+    font-size:24px;
 `;
 
 export const Logo = styled.img`

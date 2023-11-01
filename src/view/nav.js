@@ -1,18 +1,18 @@
-import { Link } from "react-router-dom";
-import { Logo, NavBox, NavBoxButton, NavBoxSearch, NavButton_S, Search, SearchButton, SearchIcon, SearchInput, SearchSelect } from './navStyle';
+import { useLocation } from 'react-router';
+import { Logo, NavBox, NavBoxButton, NavBoxSearch, Search, SearchButton, SearchIcon, SearchInput, SearchSelect, ListStyle, ListBox } from './navStyle'
+
 
 function Nav() {
     return (
         <NavBox>
             <NavBoxButton>
                 <Logo></Logo>
-                <NavButton name="홈" value="/"><Link to={'/'}></Link></NavButton>
-                <NavButton name="챔피언 분석" value="/champion"/>
-                <NavButton name="통계" value="/static"/>
-                <NavButton name="랭킹" value="/ranking"><Link to={'/ranking'}></Link></NavButton>
-                <NavButton name="멀티서치" value="/multi"/>
-                <NavButton name="챌린저매치" value="/challenger"/>
-                <NavButton name="대회일정" value="/event"/>
+                <LinkList url="/" name="홈" />
+                <LinkList url="/static" name="통계" />
+                <LinkList url="/ranking" name="랭킹" />
+                <LinkList url="/multi" name="멀티서치" />
+                <LinkList url="/challenger" name="챌린저" />
+                <LinkList url="/event" name="대회일정" />
             </NavBoxButton>
             <NavBoxSearch>
                 <Search>
@@ -29,19 +29,14 @@ function Nav() {
         </NavBox>
     );
 }
-
-
-
-function NavButton(props) {
-    
-  return (
-    <NavButton_S>{props.name}</NavButton_S>
-  );
-}
-  
+ 
 export default Nav;
 
-//test
-function test(){
-    return
+function LinkList(props) {
+    const { pathname } = useLocation();
+    return <>
+        <ListBox pathname={pathname} url={props.url}>
+            <ListStyle to={props.url}>{props.name}</ListStyle>
+        </ListBox>
+    </>
 }
