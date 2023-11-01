@@ -1,7 +1,7 @@
 import './multi.css';
 import Nav from "../../nav";
 
-function MultiPage() {
+function Multi() {
   return (
     <div>
         <Nav></Nav>
@@ -18,28 +18,22 @@ function MultiPage() {
             <br />
             <br />
             <div class="buttons">
-            <select name="country">
-                <option class="option" value="KR">KR</option>
-                <option class="option" value="NA">NA</option>
-            </select>
-            <button class="search" id="button">검색</button>
+                <select name="country">
+                    <option class="option" value="KR">KR</option>
+                    <option class="option" value="NA">NA</option>
+                </select>
+                <button class="search" id="button">검색</button>
             </div>
-        </div>      
-        <multiResultBox />
+      </div>
+      <MultiResultBox />
     </div>
   );
 }
 
-function multiResultBox(props) {
+function MultiResultBox(props) {
   return(
     <div />
   );
 }
 
-function matchBoxCreate() {
-  return (
-    <div class="contextBox" id="result" />
-  );
-}
-
-export default MultiPage;
+export default Multi;
