@@ -4,6 +4,10 @@ import {
 import App from "../App";
 import RankingMain from "../view/page/ranking/rankingMain";
 import Multi from "../view/page/multi/multiPage";
+import StaticMain from "../view/page/static/staticMain";
+import EventMain from "../view/page/event/eventMain";
+import ChampionMain from "../view/page/champion/championMain";
+import ChallengerMain from "../view/page/challenger/challengerMain";
 
 const router = createBrowserRouter([
     {
@@ -11,10 +15,12 @@ const router = createBrowserRouter([
       element: <App />,
     },
     {
-      path:"/champion"
+      path:"/champion",
+      element: <ChampionMain></ChampionMain>
     },
     {
-      path:"/static"
+      path:"/static",
+      element:<StaticMain></StaticMain>
     },
     {
       path:"/ranking",
@@ -25,10 +31,12 @@ const router = createBrowserRouter([
       element:<Multi></Multi>
     },
     {
-      path:"/challenger"
+      path:"/challenger",
+      element:<ChallengerMain></ChallengerMain>
     },
     {
-      path:"/event"
+      path:"/event",
+      element:<EventMain></EventMain>
     },
 ]);
 
