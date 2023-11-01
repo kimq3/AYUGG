@@ -10,8 +10,3 @@ function App() {
 }
 
 export default App;
-
-function test() {
-  console.log("이건 실험입니다.");
-  return;
-}
