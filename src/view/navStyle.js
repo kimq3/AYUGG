@@ -8,10 +8,17 @@ export const NavBox = styled.div`
     margin-top: -7px;
     margin-left: -8px;
     width: 100%;
-    height: 70px;
+    height: 62px;
     padding: 5px 10px;
     background-color: black;
     justify-content: space-between;
+`;
+
+export const ListStyle=styled(Link)`
+    color:#fff;
+    text-decoration :none;
+    font-size:24px;
+    
 `;
 
 export const NavBoxButton = styled.div`
@@ -42,12 +49,6 @@ export const ListBox = styled.div`
       }}
 `;
 
-export const ListStyle = styled(Link)`
-    color:#fff;
-    text-decoration :none;
-    font-size:24px;
-`;
-
 export const Logo = styled.img`
     margin-right : 10px;
     padding-top : 5px;
@@ -61,18 +62,7 @@ Logo.defaultProps = {
     src: logo,
   };
 
-export const NavButton_S = styled.button`
-    height: 60%;
-    font-size: 14px;
-    background-color: #000000;
-    color: #fff;
-    position: relative;
-    cursor: pointer;
-    padding: 0 15px;
-    margin: 0 10px;
-    border:none;
-    border-radius: 4px; 
-`;
+
 
 export const NavBoxSearch = styled.div`
     max-width:250px;
