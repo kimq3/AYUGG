@@ -1,41 +1,33 @@
 import './multi.css';
 import Nav from "../../nav";
-import { useState, useEffect } from 'react';
+import { useState, useReducer } from 'react';
 import Filter from './textareaFilter';
 import AddBox from './addBox';
-import GetData from './getData';
+
+// const reducer = (state, action) => {
+//   console.log(action.payload);
+//   switch (action.type) {
+//     case 'search':
+//       const nickname = Filter(action.payload.inputText);
+//       const newData = {
+//         id: Date.now(),
+//         nickname: nickname,
+//       };
+//       return {
+//         datas: [...state.datas, newData],
+//       };
+//     default:
+//       return state;
+//   }
+// }
+// const initialState = {
+//   datas: []
+// }
 
 function Multi() {
   const [inputText, setInputText] = useState('');
-  // const [outputText, setOutputText] = useState('');
-  const [divList, setDivList] = useState([]);
-
-  const handleInputChange = (e) => {
-    setInputText(Filter(e.target.value));
-  }
-
-  // const handleButtonClick = () => {
-  //   setOutputText(inputText);
-  // }
-  
-  useEffect(() => {
-    const newDataList = [];
-    newDataList = inputText.map((nickname) => {
-      return GetData(nickname);
-    });
-    setDivList(AddBox(newDataList));    
-  }, [outputText]);
-
-  const addDiv = () => {
-  };
-
-  // const MultiResultBox = () => {
-  //   var boxes = [];
-  //   for(let i in textList){
-  //     boxes.push(<div>{i}</div>)
-  //   }
-  //   return boxes;
-  // };
+  const [filterTetxtList, setFilterTetxtList] = useState([]);
+  // const [resultData, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div>
@@ -49,7 +41,9 @@ function Multi() {
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다."
-                class="search-text" value={inputText} onChange={handleInputChange} />
+                class="search-text" value={inputText} onChange={(e) => {
+                  setInputText(e.target.value);
+                }} />
             <br />
             <br />
             <div class="buttons">
@@ -57,11 +51,16 @@ function Multi() {
                     <option class="option" value="KR">KR</option>
                     <option class="option" value="NA">NA</option> 
                 </select>
-                <button class="search" id="button" onClick={handleButtonClick}>검색</button>
+                <button class="search" id="button" onClick={() => {
+                  setFilterTetxtList(Filter(inputText));
+                  // dispatch({type: 'search', payload:{inputText}});
+                }}>검색</button>
             </div>
       </div>
-      <div>
-        {/* 결과박스 전체 */}
+      <div class="contextBox">        
+        {filterTetxtList.map(data => {
+          return (<AddBox nickname={data}/>)
+        })}
       </div>
     </div>
   );

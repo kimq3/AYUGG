@@ -36,3 +36,7 @@
   padding: 5px 40px;
   cursor: pointer;
 }
+.contextBox {
+  display: flex;
+  justify-content: center;
+}

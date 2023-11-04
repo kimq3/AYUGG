@@ -1,6 +1,6 @@
 
 function Filter(text) {
-    let textList;
+    let textList = [];
     
     if (text.trim().length === 0) {
       alert("문자를 입력해주세요.");
@@ -22,7 +22,7 @@ function Filter(text) {
           .filter(Boolean);
       }
     }
-    console.log(textList);
+    return textList;
 };
 
 export default Filter;
