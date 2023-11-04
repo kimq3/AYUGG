@@ -1,46 +1,45 @@
 import './multi.css';
 import Nav from "../../nav";
-import { useRef } from 'react';
+import { useState, useEffect } from 'react';
+import Filter from './textareaFilter';
+import AddBox from './addBox';
+import GetData from './getData';
 
 function Multi() {
-  const ref = useRef(null);
-  let textList;
+  const [inputText, setInputText] = useState('');
+  // const [outputText, setOutputText] = useState('');
+  const [divList, setDivList] = useState([]);
 
-  const Filter = () => {
-    if (ref.current.value.trim().length === 0) {
-      alert("문자를 입력해주세요.");
-      return;
-    } else {
-      if (ref.current.value.includes("\n")) {
-        textList = ref.current.value.split("\n").filter(Boolean);
-        for (let index = 0; index < textList.length; index++) {
-          if (textList[index].includes("님이 방에 참가했습니다.")) {
-            textList[index] = textList[index]
-              .split("님이 방에 참가했습니다.")
-              .filter(Boolean);
-          }
-        }
-        textList = textList.flat();
-      } else {
-        textList = ref.current.value
-          .split("님이 방에 참가했습니다.")
-          .filter(Boolean);
-      }
-    }
-    console.log(textList);
+  const handleInputChange = (e) => {
+    setInputText(Filter(e.target.value));
+  }
+
+  // const handleButtonClick = () => {
+  //   setOutputText(inputText);
+  // }
+  
+  useEffect(() => {
+    const newDataList = [];
+    newDataList = inputText.map((nickname) => {
+      return GetData(nickname);
+    });
+    setDivList(AddBox(newDataList));    
+  }, [outputText]);
+
+  const addDiv = () => {
   };
 
-  const MultiResultBox = () => {
-    var boxes = [];
-    for(let i in textList){
-      boxes.push(<div>{i}</div>)
-    }
-    return boxes;
-  };
+  // const MultiResultBox = () => {
+  //   var boxes = [];
+  //   for(let i in textList){
+  //     boxes.push(<div>{i}</div>)
+  //   }
+  //   return boxes;
+  // };
 
   return (
     <div>
-        <Nav></Nav>
+        <Nav />
         <br />
         <div class="container">
             <textarea
@@ -50,7 +49,7 @@ function Multi() {
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다."
-                class="search-text" ref={ref} />
+                class="search-text" value={inputText} onChange={handleInputChange} />
             <br />
             <br />
             <div class="buttons">
@@ -58,10 +57,12 @@ function Multi() {
                     <option class="option" value="KR">KR</option>
                     <option class="option" value="NA">NA</option> 
                 </select>
-                <button class="search" id="button" onClick={Filter}>검색</button>
+                <button class="search" id="button" onClick={handleButtonClick}>검색</button>
             </div>
       </div>
-      <div>{MultiResultBox}</div>
+      <div>
+        {/* 결과박스 전체 */}
+      </div>
     </div>
   );
 }
