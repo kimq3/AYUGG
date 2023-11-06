@@ -1,5 +1,5 @@
-import './multi.css';
-import Nav from "../../nav";
+import 'view/page/multi/multi.css';
+import Nav from "view/nav";
 import { useRef } from 'react';
 
 function Multi() {
