@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { ListBox, ListStyle, Logo, NavBox, NavBoxButton, NavBoxSearch, Search, SearchButton, SearchIcon, SearchInput, SearchSelect } from './navStyle';
+import { ListBox, ListStyle, Logo, NavBox, NavBoxButton, NavBoxSearch, Search, SearchButton, SearchIcon, SearchInput, SearchSelect } from 'view/navStyle';
 
 function Nav() {
     return (
@@ -8,7 +8,7 @@ function Nav() {
                 <Link to="/"><Logo></Logo></Link>
                 <LinkList url="/" name="홈"/>
                 <LinkList url="/champion" name="챔피언분석"/> 
-                <LinkList url="/static" name="통계"/> 
+                <LinkList url="/statistics" name="통계"/> 
                 <LinkList url="/ranking" name="랭킹"/> 
                 <LinkList url="/multi" name="멀티서치"/>
                 <LinkList url="/challenger" name="챌린저매치"/>

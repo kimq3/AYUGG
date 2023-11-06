@@ -1,13 +1,13 @@
 import {
     createBrowserRouter,
 } from "react-router-dom";
-import App from "../App";
-import RankingMain from "../view/page/ranking/rankingMain";
-import Multi from "../view/page/multi/multiPage";
-import StaticMain from "../view/page/static/staticMain";
-import EventMain from "../view/page/event/eventMain";
-import ChampionMain from "../view/page/champion/championMain";
-import ChallengerMain from "../view/page/challenger/challengerMain";
+import App from "App";
+import RankingMain from "view/page/ranking/rankingMain";
+import Multi from "view/page/multi/multiPage";
+import EventMain from "view/page/event/eventMain";
+import ChampionMain from "view/page/champion/championMain";
+import ChallengerMain from "view/page/challenger/challengerMain";
+import StatisticsMain from "view/page/statistics/statisticsMain";
 
 const router = createBrowserRouter([
     {
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
       element: <ChampionMain></ChampionMain>
     },
     {
-      path:"/static",
-      element:<StaticMain></StaticMain>
+      path:"/statistics",
+      element:<StatisticsMain></StatisticsMain>
     },
     {
       path:"/ranking",
