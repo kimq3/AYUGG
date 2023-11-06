@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import logo from '../view/image/logo/navbar-logo.png';
-import search from '../view/image/search-icon/search-icon-24.svg';
+import logo from 'assets/images/logo/navbar-logo.png';
+import search from 'assets/images/search-icon/search-icon-24.svg';
 import { Link } from "react-router-dom";
 
 export const NavBox = styled.div`

@@ -1,28 +1,8 @@
-import './multi.css';
-import Nav from "../../nav";
+import 'view/page/multi/multi.css';
+import Nav from "view/nav";
 import { useState, useReducer } from 'react';
 import Filter from './textareaFilter';
 import AddBox from './addBox';
-
-// const reducer = (state, action) => {
-//   console.log(action.payload);
-//   switch (action.type) {
-//     case 'search':
-//       const nickname = Filter(action.payload.inputText);
-//       const newData = {
-//         id: Date.now(),
-//         nickname: nickname,
-//       };
-//       return {
-//         datas: [...state.datas, newData],
-//       };
-//     default:
-//       return state;
-//   }
-// }
-// const initialState = {
-//   datas: []
-// }
 
 function Multi() {
   const [inputText, setInputText] = useState('');
