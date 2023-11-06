@@ -36,9 +36,9 @@ function LinkList(props) {
     const {pathname}=useLocation();
     return (
         <>
-        <ListBox pathname={pathname} url={props.url}>
-            <ListStyle to={props.url}>{props.name}</ListStyle>
-        </ListBox>
+            <ListBox pathname={pathname} url={props.url}>
+                <ListStyle to={props.url}>{props.name}</ListStyle>
+            </ListBox>
         </>
     );
 }

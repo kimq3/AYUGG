@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import logo from '../../../image/logo/body-logo.png';
+// import logo from '@/image/logo/body-logo.png';
+import logo from 'asset/image/logo/body-logo.png';
+
 
 export const Logo = styled.img`
     width: 600px;
@@ -10,8 +12,3 @@ export const Logo = styled.img`
 Logo.defaultProps = {
     src: logo,
   };
-
-
-function test(){
-    return;
-}

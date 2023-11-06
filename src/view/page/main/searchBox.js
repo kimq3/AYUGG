@@ -1,4 +1,6 @@
-import search from '../../image/search-icon/search-icon-24.svg';
+// import search from '@/image/search-icon/search-icon-24.svg';
+// import search from 'asset/image/search-icon/search-icon-24.svg'
+import search from 'asset/image/search-icon/search-icon-24.svg'
 import { BodySearchBox, SearchBox, Box, Select, Input, Button, Img } from './mainStyle/searchBoxStyle';
 
 

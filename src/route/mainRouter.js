@@ -6,7 +6,7 @@ import RankingMain from "../view/page/ranking/rankingMain";
 import Multi from "../view/page/multi/multiPage";
 import StaticMain from "../view/page/static/staticMain";
 import EventMain from "../view/page/event/eventMain";
-import ChampionMain from "../view/page/champion/championMain";
+import ChampionMain from "../view/page/champions/champions";
 import ChallengerMain from "../view/page/challenger/challengerMain";
 
 const router = createBrowserRouter([
