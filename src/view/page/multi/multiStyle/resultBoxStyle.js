@@ -1,4 +1,6 @@
-.context {
+import styled from 'styled-components';
+
+export const ContainerDiv = styled.div`
     font-size: 14px;
     width: 180px;
     background: #626367;
@@ -10,20 +12,20 @@
     border-color: rgba(255, 255, 255, 0.6);
     border-style: solid;
     margin-right: 10px;
-}
-.tier-img{
+`;
+export const TierImg = styled.img`
     height: 30px;
     transform: scale(3);
-}
-.nickname{
+`;
+export const NicknameDiv = styled.div`
     padding-bottom: 2px;
     color: orange;
     font-size: 20px;
-}
-.tier-text{
+`;
+export const TierTextDiv = styled.div`
     padding-bottom: 2px;
-}
-.win-rate-graph {
+`;
+export const WinRateGraphDiv = styled.div`
     background: #5383E8;
     width: 130px;
     height: 20px;
@@ -31,33 +33,33 @@
     display: flex;
     justify-content: space-between;
     padding-left: 8px;
-}
-.win-rate-graph .bar{
+`;
+export const LossRateGraphDiv = styled.div`
     background: #E84057;
     height: 20px;
     text-align: right;
     padding-right: 7px;
-}
-.WLR-div{
+`;
+export const WLRDiv = styled.div`
     padding-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-.match-div{
+`;
+export const MatchDiv = styled.div`
     display: flex;
     margin-bottom: 2px;
-}
-.match-div-img{
+`;
+export const MatchChampImg = styled.div`
     width: 18px;
     height: 18px;
     padding-right: 22px;
-}
-.kda-box{
+`;
+export const KdaDiv = styled.div`
     width: 60px;
     border-radius: 2px;
     text-align: center;
-}
-.time-div {
+`;
+export const TimeDiv = styled.div`
     margin: auto 0 auto auto;
-}
+`;
