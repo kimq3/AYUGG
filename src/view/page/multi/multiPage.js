@@ -33,7 +33,7 @@ function Multi() {
     <div>
         <Nav />
         <br />
-        <div class="container">
+        <div className="container">
             <textarea
                 id="textarea"
                 placeholder="~~~~~~~~~~~~~ 님이 방에 참가했습니다.
@@ -41,23 +41,23 @@ function Multi() {
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다."
-                class="search-text" value={inputText} onChange={(e) => {
+                className="search-text" value={inputText} onChange={(e) => {
                   setInputText(e.target.value);
                 }} />
             <br />
             <br />
-            <div class="buttons">
+            <div className="buttons">
                 <select name="country">
-                    <option class="option" value="KR">KR</option>
-                    <option class="option" value="NA">NA</option> 
+                    <option className="option" value="KR">KR</option>
+                    <option className="option" value="NA">NA</option> 
                 </select>
-                <button class="search" id="button" onClick={() => {
+                <button className="search" id="button" onClick={() => {
                   setFilterTetxtList(Filter(inputText));
                   // dispatch({type: 'search', payload:{inputText}});
                 }}>검색</button>
             </div>
       </div>
-      <div class="contextBox">        
+      <div className="contextBox">        
         {filterTetxtList.map(data => {
           return (<AddBox nickname={data}/>)
         })}

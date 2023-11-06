@@ -1,4 +1,3 @@
-
 function Filter(text) {
     let textList = [];
     
