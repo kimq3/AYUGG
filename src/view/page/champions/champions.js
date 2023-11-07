@@ -20,11 +20,11 @@ function Champions(){
         </ChampionsBox>
 
         <ChampionsBox height="auto">
-          <ArticleBox width="">
+          <ArticleBox width="40%">
             <Input />
             <ChampionsImg></ChampionsImg>
           </ArticleBox>
-          <ArticleBox>dd</ArticleBox>
+          <ArticleBox width="auto">dd</ArticleBox>
         </ChampionsBox>
       </>
   );

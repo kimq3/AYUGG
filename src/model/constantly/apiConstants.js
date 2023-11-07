@@ -17,7 +17,7 @@ function VersionState() {
 export function ChampionApi() {
     const [champData, setChampData] = useState([]);
     let ver = VersionState();
-    let verUrl = "https://ddragon.leagueoflegends.com/cdn/"+ver + "/";
+    let verUrl = "https://ddragon.leagueoflegends.com/cdn/"+ ver + "/";
     useEffect(() => {
         if(ver !== ""){
             fetch(verUrl + "data/ko_KR/champion.json")
