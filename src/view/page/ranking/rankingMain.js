@@ -8,16 +8,11 @@ function RankingMain(){
     useEffect(()=>{
         getRanker()
         .then((data)=>{
-            data=data.slice(-100);
-            for(let i=0;i<data.length; i++){
-                let avg;
-                avg=Math.ceil((data[i].wins/(data[i].wins+data[i].losses))*100);
-                data[i]['percent']=avg;
-            }
             setUser(data);
             console.log('결과',data);
         });
     },[]);
+
 
     return (
         <div>
@@ -32,10 +27,11 @@ function RankingMain(){
                     <th>승리</th>
                     <th>패배</th>
                     <th>승률</th>
+                    <th>레벨</th>
                 </tr>
                 {user.map((info,index)=>{
                     return(
-                        <tr>
+                        <tr key={index}>
                             <td>{index+1}</td>
                             <td>{info.summonerName}</td>
                             <td>{info.tier}</td>
@@ -43,6 +39,7 @@ function RankingMain(){
                             <td>{info.wins}</td>
                             <td>{info.losses}</td>
                             <td>{info.percent}%</td>
+                            <td>{info.level}</td>
                         </tr>
                     );
                 })}
