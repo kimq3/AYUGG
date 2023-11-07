@@ -66,7 +66,7 @@ export function ChampionsImg(){
 export function ChampionsImgFull(){
   let champImgData = ChampionApi();
   let [dataList, setDataList] = useState([]);
-
+  console.log(champImgData);
   useEffect(()=>{
     let fullData = [];
     if(champImgData.length === 2) {
@@ -84,7 +84,7 @@ export function ChampionsImgFull(){
 
       setDataList(fullData);
     }
-  }, []);
+  }, [champImgData]);
 
   return (
     <ChampionsOlStyle>

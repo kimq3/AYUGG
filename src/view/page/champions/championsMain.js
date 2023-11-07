@@ -1,7 +1,7 @@
 import Nav from "view/nav";
 import Champions from "view/page/champions/champions";
 
-function ChampionMain(){
+function ChampionsMain(){
     return (
         <div>
             <Nav></Nav>
@@ -10,4 +10,4 @@ function ChampionMain(){
     );
 }
 
-export default ChampionMain;
+export default ChampionsMain;
