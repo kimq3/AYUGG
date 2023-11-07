@@ -17,7 +17,7 @@ function Nav() {
             <NavBoxSearch>
                 <Search>
                     <SearchSelect>
-                        <option value="KR" selected>KR</option>
+                        <option value="KR">KR</option>
                         <option value="NA">NA</option>
                     </SearchSelect>
                     <SearchInput></SearchInput>

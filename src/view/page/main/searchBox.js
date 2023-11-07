@@ -8,7 +8,7 @@ function Search() {
             <SearchBox>
                <Box>
                 <Select>
-                    <option value="KR" selected>KR</option>
+                    <option value="KR">KR</option>
                     <option value="NA">NA</option>
                 </Select>
                 <Input type='text'></Input>

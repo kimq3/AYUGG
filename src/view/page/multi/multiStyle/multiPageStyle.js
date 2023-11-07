@@ -5,7 +5,7 @@ export const ContainerDiv = styled.div`
   margin: 0 auto;
   width: 300px;
 `
-export const Textarea = styled.textarea`
+export const CustomTextarea = styled.textarea`
   background: #626367;
   color: white;
   font-size: 14px;

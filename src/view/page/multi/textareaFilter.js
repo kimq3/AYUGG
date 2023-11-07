@@ -3,7 +3,6 @@ function Filter(text) {
     
     if (text.trim().length === 0) {
       alert("문자를 입력해주세요.");
-      return;
     } else {
       if (text.includes("\n")) {
         textList = text.split("\n").filter(Boolean);
