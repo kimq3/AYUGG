@@ -1,17 +1,10 @@
 {
-<<<<<<< HEAD
-  "compilerOptions": {
-    "baseUrl": "src",
-    "paths": {
-        "image/*": ["asset/image/*"]
-      }
-  },
-  "include": ["src"]
-}
-=======
     "compilerOptions": {
       "baseUrl": "src"
     },
+    "paths": {
+      "image/*": ["asset/image/*"],
+      "main/*": ["view/page/main/*"]
+    },
     "includes": ["src"]
   }
->>>>>>> 3391b42ecfdf2eb933ceff1890c15d605afa0fd2

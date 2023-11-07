@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChampionsSelect, LineButton, ChampionInput, ResetButton } from "./championsStyle";
 import { Link, useLocation } from 'react-router-dom';
+import { ChampionApi } from "model/constantly/apiConstants";
 
 export function Option() {
   const tierList = ["Challenger", "Grandmaster", "Master", "Diamond", "Emerald", "Platinum", "Gold", "Silver", "Bronze", "Iron"];
@@ -52,3 +53,35 @@ export function Input(){
     </>
   );
 }
+
+export function ChampionsImg(){
+  
+  return (
+    <>
+      <ChampionsImgFull></ChampionsImgFull>
+    </>
+  );
+}
+
+export function ChampionsImgFull(){
+  let champImgData = ChampionApi();
+  
+  let dataList = [];
+
+  for(let i = 0; i<champImgData[0].length; i++){
+    let data = (
+    <li>
+      <img src={champImgData[0][i]} />
+      <a>{champImgData[1][i]}</a>
+    </li>)
+    console.log(data);
+    dataList.push(data);
+  }
+
+  return (
+    <ol>
+      {dataList}
+    </ol>
+  )
+  // return;
+ }

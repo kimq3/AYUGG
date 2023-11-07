@@ -1,12 +1,9 @@
-import Nav from "../../nav";
 import { ChampionsBox, WrappingBox, ArticleBox, } from "./championsStyle";
-import { Option, Line, Input } from "./championsComponents";
+import { Option, Line, Input, ChampionsImg } from "./championsComponents";
 
 function Champions(){
   return (
       <>
-        <Nav></Nav>
-
         <ChampionsBox height="50px">
           <WrappingBox>
             <Option />
@@ -25,7 +22,7 @@ function Champions(){
         <ChampionsBox height="auto">
           <ArticleBox width="">
             <Input />
-
+            <ChampionsImg></ChampionsImg>
           </ArticleBox>
           <ArticleBox>dd</ArticleBox>
         </ChampionsBox>

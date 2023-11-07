@@ -80,4 +80,9 @@ export const ResetButton = styled.button`
     border: none;
     font-size : 18px;
     font-weight : 700;
+    cursor:pointer;
+`;
+
+export const ChampionsImgStyle = styled.img`
+    width = 24;
 `;
