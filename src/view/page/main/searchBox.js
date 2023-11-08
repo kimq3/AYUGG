@@ -1,5 +1,5 @@
-import search from 'assets/images/search-icon/search-icon-24.svg';
-import { BodySearchBox, SearchBox, Box, Select, Input, Button, Img } from 'view/page/main/mainStyle/searchBoxStyle';
+import search from 'assets/images/search-icon/search-icon-24.svg'
+import { BodySearchBox, SearchBox, Box, Select, Input, Button, Img } from './mainStyle/searchBoxStyle';
 
 
 function Search() {

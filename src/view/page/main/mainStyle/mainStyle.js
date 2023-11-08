@@ -10,8 +10,3 @@ export const Logo = styled.img`
 Logo.defaultProps = {
     src: logo,
   };
-
-
-function test(){
-    return;
-}
