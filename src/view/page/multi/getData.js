@@ -1,4 +1,4 @@
-import { apiKey, NicknameUrl, IdUrl, MatchesUrl, MatchDataUrl } from "model/constantly/apiConstants";
+import { apiKey, nicknameUrl, idUrl, matchesUrl, matchDataUrl } from "model/constantly/apiConstants";
 import { useState, useEffect } from 'react';
 
 function GetMultiData() {
@@ -11,19 +11,19 @@ function GetMultiData() {
 
     for( let index = 0; index < nicknameList.length; index++)
     {
-        const [Data, setData] = useState({});
-        const addData = (data) => {
+        //const [Data, setData] = useState({});
+        /*const addData = (data) => {
             setData([...Data, data]);
-        }
-        let UserUrl = NicknameUrl + nicknameList[index] + "?api_key=" + apiKey;
+        }*/
+        let UserUrl = nicknameUrl + nicknameList[index] + "?api_key=" + apiKey;
 
         fetch(UserUrl)
         .then(response => response.json())
         .then(async(rawData) => {
-            let UidUrl = IdUrl + rawData.id + "?api_key=" + apiKey;
-            let MatchUrl = MatchesUrl + rawData.puuid + "/ids?count=5&api_key=" + apiKey;
-            addData({id: rawData.id});
-            addData({puuid: rawData.puuid});
+            let UidUrl = idUrl + rawData.id + "?api_key=" + apiKey;
+            let MatchUrl = matchesUrl + rawData.puuid + "/ids?count=5&api_key=" + apiKey;
+            //addData({id: rawData.id});
+            //addData({puuid: rawData.puuid});
 
             // let userData = await fetch(UidUrl)
             // .then((response1) => {
@@ -59,7 +59,7 @@ function GetMultiData() {
             // setLoading(false);
         });
         
-        console.log(Data);
+        
     }
 
     return { };
