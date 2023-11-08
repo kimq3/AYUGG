@@ -4,11 +4,11 @@ import Search from "view/page/main/searchBox";
 
 function Main(){
     return(
-        <div>
+        <>
             <Nav></Nav>
             <Logo></Logo>
             <Search></Search>
-        </div>
+        </>
     )
 }
 

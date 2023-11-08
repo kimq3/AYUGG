@@ -2,5 +2,9 @@
     "compilerOptions": {
       "baseUrl": "src"
     },
+    "paths": {
+      "image/*": ["asset/image/*"],
+      "main/*": ["view/page/main/*"]
+    },
     "includes": ["src"]
   }
