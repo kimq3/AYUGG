@@ -11,12 +11,12 @@ export async function getMatch(){
     const userInfo = await response2.json();
     const userPuuid = await userInfo.puuid;
 
-    const response3 = await fetch(matchId_url+userPuuid+matchId_url2+"&api_key="+api_key); //유저의 경기 20개 추출
+    const response3 = await fetch(matchId_url+userPuuid+matchId_url2+"&api_key="+api_key); //유저의 경기 10개 추출
     const matchList = await response3.json();
 
     var matchResultList=[];
 
-    for(let i=0; i<matchList.length; i++){
+    for(let i=0; i<matchList.length; i++){  //경기 10개의 결과를 response 
         const response4 = await fetch(matchResult_url+matchList[i]+"?api_key="+api_key);
         const matchResult= await response4.json();
         matchResultList.push(matchResult);

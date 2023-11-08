@@ -17,7 +17,7 @@ function Nav() {
             <NavBoxSearch>
                 <Search>
                     <SearchSelect>
-                        <option value="KR" selected>KR</option>
+                        <option value="KR">KR</option>
                         <option value="NA">NA</option>
                     </SearchSelect>
                     <SearchInput></SearchInput>
@@ -36,9 +36,9 @@ function LinkList(props) {
     const {pathname}=useLocation();
     return (
         <>
-        <ListBox pathname={pathname} url={props.url}>
-            <ListStyle to={props.url}>{props.name}</ListStyle>
-        </ListBox>
+            <ListBox pathname={pathname} url={props.url}>
+                <ListStyle to={props.url}>{props.name}</ListStyle>
+            </ListBox>
         </>
     );
 }

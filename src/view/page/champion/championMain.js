@@ -1,10 +1,11 @@
 import Nav from "view/nav";
+import Champions from "view/page/champions/champions";
 
 function ChampionMain(){
     return (
         <div>
             <Nav></Nav>
-            <div>챔피언 페이지입니다.</div>
+            <Champions></Champions>
         </div>
     );
 }
