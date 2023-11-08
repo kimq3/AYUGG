@@ -5,7 +5,7 @@ import App from "App";
 import RankingMain from "view/page/ranking/rankingMain";
 import Multi from "view/page/multi/multiPage";
 import EventMain from "view/page/event/eventMain";
-import ChampionMain from "view/page/champion/championMain";
+import ChampionsMain from "view/page/champions/championsMain";
 import ChallengerMain from "view/page/challenger/challengerMain";
 import StatisticsMain from "view/page/statistics/statisticsMain";
 
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     },
     {
       path:"/champion",
-      element: <ChampionMain></ChampionMain>
+      element: <ChampionsMain></ChampionsMain>
     },
     {
       path:"/statistics",
