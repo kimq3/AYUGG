@@ -1,8 +1,13 @@
 import { ContainerDiv, TierImg, NicknameDiv, TierTextDiv, WinRateGraphDiv, LossRateGraphDiv, WLRDiv} from 'view/page/multi/multiStyle/resultBoxStyle';
-import GetMultiData from 'view/page/multi/getData';
+import GetMultiData from 'view/page/multi/getMultiData';
 import AddMatchBox from 'view/page/multi/addMatchBox';
+import { useState, useEffect } from 'react';
 
 function AddBox(props) {
+    const [data, setData]=useState([]);
+    GetMultiData(props.nickname);
+ 
+
     return (
     <ContainerDiv>
         {/* 티어이미지 */}
@@ -22,7 +27,7 @@ function AddBox(props) {
             AddMatchBox()
         }
         {
-            GetMultiData()
+            // GetMultiData()
         }
     </ContainerDiv>);
 }

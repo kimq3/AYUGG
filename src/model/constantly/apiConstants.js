@@ -58,16 +58,16 @@ export const iconUrl = version + "profileicon.json";
 
 //티어api값이랑 png맵핑
 export const tierImgMapping = new Map([
-    ["NONE", "/images/tier-icons/provisional.png"],
-    ["IRON", "/images/tier-icons/emblem-iron.png"],
-    ["BRONZE", "/images/tier-icons/emblem-bronze.png"],
-    ["SILVER", "/images/tier-icons/emblem-silver.png"],
-    ["GOLD", "/images/tier-icons/emblem-gold.png"],
-    ["PLATINUM", "/images/tier-icons/emblem-platinum.png"],
-    ["DIAMOND", "/images/tier-icons/emblem-diamond.png"],
-    ["MASTER", "/images/tier-icons/emblem-master.png"],
-    ["GRANDMASTER", "/images/tier-icons/emblem-grandmaster.png"],
-    ["CHALLENGER", "/images/tier-icons/emblem-challenger.png"],
+    ["NONE", "/assets/images/tier-icons/provisional.png"],
+    ["IRON", "/assets/images/tier-icons/emblem-iron.png"],
+    ["BRONZE", "/assets/images/tier-icons/emblem-bronze.png"],
+    ["SILVER", "/assetsimages/tier-icons/emblem-silver.png"],
+    ["GOLD", "/assets/images/tier-icons/emblem-gold.png"],
+    ["PLATINUM", "/assets/images/tier-icons/emblem-platinum.png"],
+    ["DIAMOND", "/assets/images/tier-icons/emblem-diamond.png"],
+    ["MASTER", "/assets/images/tier-icons/emblem-master.png"],
+    ["GRANDMASTER", "/assets/images/tier-icons/emblem-grandmaster.png"],
+    ["CHALLENGER", "/assets/images/tier-icons/emblem-challenger.png"],
 ]);
 
 export const soloRankUrl="https://kr.api.riotgames.com/lol/league-exp/v4/entries/RANKED_SOLO_5x5/CHALLENGER/I"; //랭킹, 랭킹 상세페이지에서 사용(현재 챌린저 1~200위 까지 표출 가능)
