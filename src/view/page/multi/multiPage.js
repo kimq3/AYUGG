@@ -1,67 +1,47 @@
-import 'view/page/multi/multi.css';
+import { ContainerDiv, CustomTextarea, ButtonsDiv, CountrySelect, SearchButton, ResultDiv } from "view/page/multi/multiStyle/multiPageStyle";
 import Nav from "view/nav";
-import { useRef } from 'react';
+import { useState } from 'react';
+import Filter from 'view/page/multi/textareaFilter';
+import AddBox from 'view/page/multi/addBox';
 
 function Multi() {
-  const ref = useRef(null);
-  let textList;
-
-  const Filter = () => {
-    if (ref.current.value.trim().length === 0) {
-      alert("문자를 입력해주세요.");
-      return;
-    } else {
-      if (ref.current.value.includes("\n")) {
-        textList = ref.current.value.split("\n").filter(Boolean);
-        for (let index = 0; index < textList.length; index++) {
-          if (textList[index].includes("님이 방에 참가했습니다.")) {
-            textList[index] = textList[index]
-              .split("님이 방에 참가했습니다.")
-              .filter(Boolean);
-          }
-        }
-        textList = textList.flat();
-      } else {
-        textList = ref.current.value
-          .split("님이 방에 참가했습니다.")
-          .filter(Boolean);
-      }
-    }
-    console.log(textList);
-  };
-
-  const MultiResultBox = () => {
-    var boxes = [];
-    for(let i in textList){
-      boxes.push(<div>{i}</div>)
-    }
-    return boxes;
-  };
+  const [inputText, setInputText] = useState('');
+  const [filterTextList, setFilterTextList] = useState([]);
 
   return (
     <div>
-        <Nav></Nav>
-        <br />
-        <div class="container">
-            <textarea
-                id="textarea"
-                placeholder="~~~~~~~~~~~~~ 님이 방에 참가했습니다.
+      <Nav />
+      <br />
+      <ContainerDiv>
+          <CustomTextarea
+              id="textarea"
+              placeholder="~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다."
-                class="search-text" ref={ref} />
-            <br />
-            <br />
-            <div class="buttons">
-                <select name="country">
-                    <option class="option" value="KR">KR</option>
-                    <option class="option" value="NA">NA</option> 
-                </select>
-                <button class="search" id="button" onClick={Filter}>검색</button>
-            </div>
-      </div>
-      <div>{MultiResultBox}</div>
+            value={inputText} onChange={(e) => { setInputText(e.target.value); }}
+          />
+        <br />
+        <br />
+        <ButtonsDiv>
+          <CountrySelect>
+            <option value="KR">KR</option>
+            <option value="NA">NA</option> 
+          </CountrySelect>
+          <SearchButton onClick={() => {
+            setFilterTextList(Filter(inputText));
+          }}>검색</SearchButton>
+        </ButtonsDiv>
+      </ContainerDiv>
+      <br />
+      {
+        <ResultDiv>
+          {filterTextList.map(( data, index ) => {
+            return (<AddBox key={index} nickname={data}/>)
+          })}
+        </ResultDiv>
+      }
     </div>
   );
 }

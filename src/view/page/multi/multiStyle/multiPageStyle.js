@@ -1,9 +1,11 @@
-.container {
+import styled from 'styled-components';
+
+export const ContainerDiv = styled.div`
   text-align: center;
   margin: 0 auto;
   width: 300px;
-}
-.container .search-text {
+`
+export const CustomTextarea = styled.textarea`
   background: #626367;
   color: white;
   font-size: 14px;
@@ -12,22 +14,21 @@
   border-radius: 4px;
   resize: none;
   padding: 10px;
-}
-::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-.container .buttons {
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+`
+export const ButtonsDiv = styled.div`
   display: flex;
   justify-content: space-between;
-}
-.container .buttons select {
+`
+export const CountrySelect = styled.select`
   font-size: 14px;
   border-radius: 4px;
   padding: 5px 10px;
   cursor: pointer;
-}
-/* select-option 스타일 변경 */
-.container .buttons .search {
+`
+export const SearchButton = styled.button`
   font-size: 14px;
   background: orange;
   margin-right: -20px;
@@ -35,4 +36,8 @@
   border: none;
   padding: 5px 40px;
   cursor: pointer;
-}
+`
+export const ResultDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`
