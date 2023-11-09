@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 
 function AddBox(props) {
     const [data, setData]=useState([]);
+    
     GetMultiData(props.nickname);
- 
 
     return (
     <ContainerDiv>
