@@ -1,12 +1,27 @@
 import { ContainerDiv, CustomTextarea, ButtonsDiv, CountrySelect, SearchButton, ResultDiv } from "view/page/multi/multiStyle/multiPageStyle";
 import Nav from "view/nav";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Filter from 'view/page/multi/textareaFilter';
 import AddBox from 'view/page/multi/addBox';
+import GetMultiData from 'view/page/multi/getMultiData';
+
+
 
 function Multi() {
   const [inputText, setInputText] = useState('');
   const [filterTextList, setFilterTextList] = useState([]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    let dataList = [];
+    const getData = filterTextList.map(( data, index ) => {
+      dataList[index] = GetMultiData(data);
+    })
+    getData.filter(() => {
+      setData(dataList);
+      console.log(dataList);
+    });
+  },[filterTextList]);
 
   return (
     <div>
@@ -36,11 +51,13 @@ function Multi() {
       </ContainerDiv>
       <br />
       {
-        <ResultDiv>
-          {filterTextList.map(( data, index ) => {
-            return (<AddBox key={index} nickname={data}/>)
-          })}
-        </ResultDiv>
+        useEffect(()=>{
+          <ResultDiv>
+            {data.map(( data, index ) => {
+              return (<AddBox key={index} data={data}/>)
+            })}
+          </ResultDiv>
+        },[data])
       }
     </div>
   );
