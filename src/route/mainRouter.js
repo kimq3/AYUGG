@@ -8,6 +8,7 @@ import EventMain from "view/page/event/eventMain";
 import ChampionsMain from "view/page/champions/championsMain";
 import ChallengerMain from "view/page/challenger/challengerMain";
 import StatisticsMain from "view/page/statistics/statisticsMain";
+import ChampionsDetails from "view/page/champions/detail";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,12 @@ const router = createBrowserRouter([
     {
       path:"/event",
       element:<EventMain></EventMain>
+    },
+    {
+      path:"/details",  
+      // 위에 path는 parameter를 받아서 여기로 넘겨야함.
+      // 그래서 특정 챔피언의 정보를 갖고 올 수 있도록 해야함
+      element:<ChampionsDetails></ChampionsDetails>
     },
 ]);
 
