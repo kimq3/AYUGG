@@ -1,7 +1,12 @@
 {
   "data": {
     "id": "Garen",
+    "name": "가렌",
+    "tier": "EMERALD",
     "version": "13.11.1",
+    "winRate": "10%",
+    "pickRate": "20%",
+    "banRate": "30%",
     "rune": {
       "version1": {
         "mainTitle": "8000",
@@ -46,7 +51,39 @@
         "winRate": "55.27%"
       }
     },
-    "skill": {
+    "skill" : [
+      { 
+        "type" : "passive",
+        "id": "Garen_Passive.png",
+        "name": "인내심",
+        "key": "P"
+      },
+      {
+        "type" : "Q",
+        "id": "GarenQ.png",
+        "name": "결정타",
+        "key": "Q"
+      },
+      {
+        "type" : "W",
+        "id": "GarenW.png",
+        "name": "용기",
+        "key": "W"
+      },
+      {
+        "type" : "E",
+        "id": "GarenE.png",
+        "name": "심판",
+        "key": "E"
+      },
+      {
+        "type" : "R",
+        "id": "GarenR.png",
+        "name": "데마시아의 정의",
+        "key": "E"
+      }
+    ],
+    "skillTree": {
       "master": {
         "1": {
           "id": "GarenE.png",
