@@ -35,7 +35,6 @@ function Api() {
 
 export function BasicInfo(){
   const detailData = Api();
-  console.log(detailData);
   const version = detailData.version;
   const id = detailData.id;
   const name = detailData.name;

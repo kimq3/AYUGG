@@ -96,7 +96,7 @@ export const CounterStyle = styled.div`
   color: #fff;
   box-sizing: border-box;
   border-radius: 4px;
-  background-color: ${(props) => props.backColor};
+  background-color: ${(props) => props.back};
   text-align: center;
 `;
 

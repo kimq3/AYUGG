@@ -9,11 +9,11 @@ function ChampionsDetails() {
       <OutBoxStyle height="300px">
         <BasicInfo></BasicInfo>
         <CounterBoxStyle>
-          <CounterStyle backColor="rgb(49, 49, 79)">
+          <CounterStyle back="rgb(49, 49, 79)">
             <div>상대하기 쉬운 챔피언</div>
             <CounterOlTag win="true"></CounterOlTag>
           </CounterStyle>
-          <CounterStyle backColor="rgb(108, 65, 65)">
+          <CounterStyle back="rgb(108, 65, 65)">
             <div>상대하기 어려운 챔피언</div>
             <CounterOlTag win="false"></CounterOlTag>
           </CounterStyle>
