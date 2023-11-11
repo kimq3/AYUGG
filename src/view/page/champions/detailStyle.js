@@ -1,16 +1,5 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import styled from "styled-components";
-
-// const [info, setInfo] = useState([]);
-
-// useEffect(()=>{
-//   fetch("http://localhost:8100/garen")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     setInfo(data);
-//   });
-// }, [])
+import test from 'assets/images/reset-icon.svg';
 
 export const OutBox = styled.div`
   width: 900px;
@@ -26,6 +15,7 @@ export const OutBox = styled.div`
 
 export const BasicInfo = styled.div`
   padding: 10px;
+  margin: 0px 4px;
   width: 100%;
   height: 48%;
   box-sizing: border-box;
@@ -37,19 +27,43 @@ export const CounterBox = styled.div`
   width: 100%;
   height: 48%;
   box-sizing: border-box;
+  margin: 0px 4px;
   display: flex;
   justify-content: space-between;
+  align-content : space-around;
 `;
 
 export const Counter = styled.div`
   padding: 10px;
-  width: 45%;
+  width: 49.5%;
   height: 100%;
-  color: ${(props) => props.color};
+  color: #fff;
   box-sizing: border-box;
   border-radius: 4px;
   background-color: ${(props) => props.backColor};
   text-align: center;
+`;
+
+export const CounterOlStyle = styled.ol`
+  width: 100%;
+  height: 75%;
+  padding-left: 0px;
+  box-sizing : border-box;
+  margin: 9px 0px;
+  
+`;
+
+export const CounterLiStyle = styled.li`
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+export const CounterDivStyle = styled.div`
+width: 70px;
+height: 90px;
+color: #fff;
+overflow: hidden;
+text-align: center;
 `;
 
 export const CounterImg = styled.img`
@@ -58,4 +72,14 @@ export const CounterImg = styled.img`
   border-radius: 50%;
   display: block;
   margin: 7px auto;
+`;
+
+CounterImg.defaultProps = {
+  src: test,
+};
+
+export const CounterInfo = styled.div`
+  margin: ${(props) => props.margin}
+  font-size:  12px;
+  font-weight: 700;
 `;
