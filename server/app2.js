@@ -1,13 +1,10 @@
-import express, { json, urlencoded } from "express";
-import cors from "cors";
-import info from "../server/championData.json" assert { type: "json" };
-
+const express = require('express');
+const cors = require('cors');
 const app = express();
-app.use(json());
-app.use(urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-const data = info;
+// const data = info;
 const data2 = {
   data: {
     id: "Garen",
@@ -275,7 +272,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/garen", (req, res) => {
-  res.json({ data });
+  res.json({ data2 });
 });
 
 app.listen(8100, () => {
