@@ -1,5 +1,4 @@
 import { apiKey, nicknameUrl, idUrl, matchesUrl, matchDataUrl } from "model/constantly/apiConstants";
-import { useState } from 'react';
 
 export default async function GetMultiData(nickname) {
     let userUrl = nicknameUrl + nickname + "?api_key=" + apiKey;
@@ -45,6 +44,7 @@ export default async function GetMultiData(nickname) {
                 });
             }
         });
+        console.log(data);
         return data;
-    });    
+    })
 }

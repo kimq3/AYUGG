@@ -8,6 +8,7 @@ import EventMain from "view/page/event/eventMain";
 import ChampionMain from "view/page/champion/championMain";
 import ChallengerMain from "view/page/challenger/challengerMain";
 import StatisticsMain from "view/page/statistics/statisticsMain";
+import SearchPage from "view/page/search/searchPage";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
     {
       path:"/event",
       element:<EventMain></EventMain>
+    },
+    {
+      path:"/search",
+      element:<SearchPage></SearchPage>
     },
 ]);
 

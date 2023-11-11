@@ -16,10 +16,12 @@ function Multi() {
     let dataList = [];
     const getData = filterTextList.map(( data, index ) => {
       dataList[index] = GetMultiData(data);
+      console.log(dataList[index]);
     })
     getData.filter(() => {
       setData(dataList);
       console.log(dataList);
+      console.log(data);
     });
   },[filterTextList]);
 

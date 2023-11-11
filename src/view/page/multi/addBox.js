@@ -2,7 +2,7 @@ import { ContainerDiv, TierImg, NicknameDiv, TierTextDiv, WinRateGraphDiv, LossR
 import AddMatchBox from 'view/page/multi/addMatchBox';
 import { tierImgMapping } from 'model/constantly/apiConstants';
 
-function AddBox(props) {    
+function AddBox(props) {  
     return (
         <ContainerDiv>
             <TierImg src={tierImgMapping.get(props.data.tier)} />
