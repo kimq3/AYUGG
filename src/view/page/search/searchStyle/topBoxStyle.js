@@ -1,4 +1,12 @@
 import styled from 'styled-components';
+import more from 'assets/images/arrow-down-icon-original.svg';
+import example from 'assets/images/example.webp';
+
+export const ContainerDiv = styled.div`
+    text-align: center;
+    margin: 0 auto;
+    width: 1000px;
+`
 
 export const UserDiv = styled.div`
     display: flex;
@@ -8,6 +16,9 @@ export const PlayerIconImg = styled.img`
     width: 46px;
     height: 46px
 `
+PlayerIconImg.defaultProps = {
+    src: example,
+};
 export const FirstDiv = styled.div`
     display: flex;
     align-items: center;
@@ -37,7 +48,13 @@ export const TierNameDiv = styled.div`
 `
 export const TierImg = styled.img`
     margin-right: 10px;
+    width: 46px;
+    height: 46px;
+    transform: scale(1.5);
 `
+TierImg.defaultProps = {
+    src: example,
+};
 export const TierListUl = styled.ul`
     display: flex;
     flex-direction: row;
@@ -55,6 +72,7 @@ export const NowTierLi = styled.li`
 `
 export const LabelDiv = styled.div`
     display: flex;
+    align-items: center;
     cursor: pointer;
     width: 45.513px;
     justify-content: space-between;
@@ -78,12 +96,14 @@ export const MoreListUl = styled.ul`
 // export const MoreTierUlAction = styled.ul`
 //     display: initial;
 // `
-export const GraphBox = styled.div`
-    width: auto;
-    height: 100%;
-`
+// export const GraphBox = styled.div`
+//     width: auto;
+//     height: 100%;
+// `
 export const MoreImg = styled.img`
-    width: 46px;
-    height: 46px;
-    transform: scale(1.5);
+    width: 10px;
+    height: 10px;
 `
+MoreImg.defaultProps = {
+    src: more,
+};

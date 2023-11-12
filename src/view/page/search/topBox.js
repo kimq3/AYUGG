@@ -1,4 +1,4 @@
-import { UserDiv, FirstDiv, PlayerIconImg, NicknameSpan, SecondDiv, NowTierDiv, TierNameDiv, TierImg, TierListUl, NowTierLi, LabelDiv, OptionItemLi, MoreListUl, GraphBox, MoreImg } from "view/page/search/searchStyle/topBoxStyle.js";
+import { UserDiv, FirstDiv, PlayerIconImg, NicknameSpan, SecondDiv, TierDiv, NowTierDiv, TierNameDiv, TierImg, TierListUl, NowTierLi, LabelDiv, OptionItemLi, MoreListUl, GraphBox, MoreImg } from "view/page/search/searchStyle/topBoxStyle.js";
 
 function TopBox() {    
     return (
@@ -6,10 +6,10 @@ function TopBox() {
             <UserDiv>
                 <FirstDiv>
                     <NicknameSpan>Hide on bush</NicknameSpan>
-                    <PlayerIconImg src={"assets/images/example.webp"}/>
+                    <PlayerIconImg />
                 </FirstDiv>
                 <SecondDiv>
-                    {/* <TierDiv> */}<div>
+                    <TierDiv>
                         <NowTierDiv>
                             <TierImg />
                             {/* <TierTextDiv>
@@ -18,15 +18,15 @@ function TopBox() {
                                 <WinRateDiv />
                             </TierTextDiv> */}
                             <div>
-                                <div>TierNameDiv</div>
+                                <TierNameDiv>TierNameDiv</TierNameDiv>
                                 <div>TierPointDiv</div>
                                 <div>WinRateDiv</div>
                             </div>
                         </NowTierDiv>
                         <TierListUl>
                             <NowTierLi>
-                                <b>S22</b>
-                                <span id="session22">Gold 1</span>
+                                <b>S22 </b>
+                                <span>Gold 1</span>
                             </NowTierLi>
                             {/* <MoreTierLi> */}<li>
                                 {/* <SelectionDiv> */}<div>
@@ -47,10 +47,10 @@ function TopBox() {
                                 {/* </SelectionDiv> */}</div>
                             {/* </MoreTierLi> */}</li>
                         </TierListUl>
-                    {/* </TierDiv> */}</div>
+                    </TierDiv>
                     {/* <GraphDiv> */}<div>
                         {/* 시즌별? 시간별? 티어 그래프 */}
-                        <GraphBox />
+                        <img style={{width:"160px",height:"80px"}}/>
                     {/* </GraphDiv> */}</div>
                 </SecondDiv>
             </UserDiv>
