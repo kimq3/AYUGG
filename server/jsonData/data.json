@@ -1,0 +1,29 @@
+[
+    {
+        "champion":"카이사",
+        "matchcount": 5000,
+        "kda":3.79,
+        "wins":3300,
+        "loses":1700,
+        "cs":170,
+        "gold":10000
+    },
+    {
+        "champion":"사미라",
+        "matchcount": 4300,
+        "kda":2.00,
+        "wins":2200,
+        "loses":2100,
+        "cs":150,
+        "gold":9000
+    },
+    {
+        "champion":"미스포춘",
+        "matchcount": 3000,
+        "kda":3.12,
+        "wins":1800,
+        "loses":1200,
+        "cs":65,
+        "gold":11000
+    }
+]
