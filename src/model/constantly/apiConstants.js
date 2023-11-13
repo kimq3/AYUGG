@@ -2,43 +2,44 @@ import { useEffect, useState } from "react";
 
 
 function VersionState() {
-    const versionApi = "https://ddragon.leagueoflegends.com/api/versions.json";
-    const [version, setVersion] = useState("");
-    useEffect(() => {
-        fetch(versionApi)
-            .then(response => response.json())
-            .then(data => setVersion(data[0]));
-    },[]);
+  const versionApi = "https://ddragon.leagueoflegends.com/api/versions.json";
+  const [version, setVersion] = useState("");
+  useEffect(() => {
+    fetch(versionApi)
+      .then((response) => response.json())
+      .then((data) => setVersion(data[0]));
+  }, []);
 
-    return version;
+  return version;
 }
 
 export function ChampionApi() {
-    const [champData, setChampData] = useState([]);
-    let ver = VersionState();
-    let verUrl = "https://ddragon.leagueoflegends.com/cdn/"+ ver + "/";
-    useEffect(() => {
-        if(ver !== ""){
-            fetch(verUrl + "data/ko_KR/champion.json")
-            .then(response => response.json())
-            .then((data)=>{
-                let imgList = [];
-                let nameList = [];
-                const myData = [].concat(Object.values(data.data))
-                    .sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
-                    .map((index) => {
-                        imgList.push(verUrl + "img/champion/" + index.image.full);
-                        nameList.push(index.name);
-                    });
-                let dataList = [];
-                dataList.push(imgList);
-                dataList.push(nameList);
-                return setChampData(dataList);
-            })
-        }}
-    ,[ver]);
+  const [champData, setChampData] = useState([]);
+  let ver = VersionState();
+  let verUrl = "https://ddragon.leagueoflegends.com/cdn/" + ver + "/";
+  useEffect(() => {
+    if (ver !== "") {
+      fetch(verUrl + "data/ko_KR/champion.json")
+        .then((response) => response.json())
+        .then((data) => {
+          let imgList = [];
+          let nameList = [];
+          const myData = []
+            .concat(Object.values(data.data))
+            .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
+            .map((index) => {
+              imgList.push(verUrl + "img/champion/" + index.image.full);
+              nameList.push(index.name);
+            });
+          let dataList = [];
+          dataList.push(imgList);
+          dataList.push(nameList);
+          return setChampData(dataList);
+        });
+    }
+  }, [ver]);
 
-    return champData;
+  return champData;
 }
 
 export const apiKey = "RGAPI-6e1b716a-027f-4306-930b-458ee9fb0229";
