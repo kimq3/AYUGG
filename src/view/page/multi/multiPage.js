@@ -8,45 +8,42 @@ import GetMultiData from 'view/page/multi/getMultiData';
 function Multi() {
   const [inputText, setInputText] = useState('');
   const [filterTextList, setFilterTextList] = useState([]);
-  // const [data, setData] = useState([]);
+  const [finalDataList, setFinalDataList] = useState([]);
 
   useEffect(() => {
     let dataList = [];
-      filterTextList.map(( data, index ) => {
-        GetMultiData(data)
+    filterTextList.map((data, index) => {
+      GetMultiData(data)
         .then((data) => {
-          dataList[index] = data;
-          console.log(data);
+          dataList.push(data);
+          if (index === filterTextList.length - 1) {
+            setFinalDataList(dataList);
+          }
         });
-      })
+    });
 
-    // getData.filter(() => {
-    //   setData(dataList);
-    //   console.log(dataList);
-    //   console.log(data);
-    // });
-  },[filterTextList]);
+  }, [filterTextList]);
 
   return (
     <div>
       <Nav />
       <br />
       <ContainerDiv>
-          <CustomTextarea
-              id="textarea"
-              placeholder="~~~~~~~~~~~~~ 님이 방에 참가했습니다.
+        <CustomTextarea
+          id="textarea"
+          placeholder="~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다.
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다."
-            value={inputText} onChange={(e) => { setInputText(e.target.value); }}
-          />
+          value={inputText} onChange={(e) => { setInputText(e.target.value); }}
+        />
         <br />
         <br />
         <ButtonsDiv>
           <CountrySelect>
             <option value="KR">KR</option>
-            <option value="NA">NA</option> 
+            <option value="NA">NA</option>
           </CountrySelect>
           <SearchButton onClick={() => {
             setFilterTextList(Filter(inputText));
@@ -54,11 +51,14 @@ function Multi() {
         </ButtonsDiv>
       </ContainerDiv>
       <br />
-      <ResultDiv>
-        {/* {data.map(( data, index ) => {
-          return (<AddBox key={index} data={data}/>)
-        })} */}
-      </ResultDiv>
+      {useEffect(() => {
+        <ResultDiv>
+          {finalDataList.map((data, index) => {
+            console.log(finalDataList[0]);
+            return (<AddBox key={index} data={data} />);
+          })}
+        </ResultDiv>
+      }, [finalDataList])}
     </div>
   );
 }

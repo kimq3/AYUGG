@@ -44,7 +44,6 @@ export default async function GetMultiData(nickname) {
         });
       }
     });
-    console.log(data);
-    return data;
   })
+  return data;
 }
