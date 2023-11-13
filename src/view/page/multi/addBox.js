@@ -1,30 +1,24 @@
 import { ContainerDiv, TierImg, NicknameDiv, TierTextDiv, WinRateGraphDiv, LossRateGraphDiv, WLRDiv} from 'view/page/multi/multiStyle/resultBoxStyle';
-import GetMultiData from 'view/page/multi/getData';
 import AddMatchBox from 'view/page/multi/addMatchBox';
+import { tierImgMapping } from 'model/constantly/apiConstants';
 
-function AddBox(props) {
-    return (
+function AddBox(props) {  
+  return (
     <ContainerDiv>
-        {/* 티어이미지 */}
-        <TierImg/>
-        {/* 닉네임 가공된걸로 교체 */}
-        <NicknameDiv>{props.nickname}</NicknameDiv>
-        <TierTextDiv>GRANDMASTER I (839 LP)</TierTextDiv>
-        <WLRDiv>
-            <WinRateGraphDiv>267
-                <div />
-                {/* width = 패/(승+패)*130-7 px */}
-                <LossRateGraphDiv style={{width: "50px"}}>233</LossRateGraphDiv>
-            </WinRateGraphDiv>
-            <div>53%</div>
-        </WLRDiv>
-        {
-            AddMatchBox()
-        }
-        {
-            GetMultiData()
-        }
-    </ContainerDiv>);
+      <TierImg src={tierImgMapping.get(props.data.tier)} />
+      <NicknameDiv>{props.data.nickname}</NicknameDiv>
+      <TierTextDiv>{props.data.tierString}</TierTextDiv>
+      <WLRDiv>
+        <WinRateGraphDiv>{props.data.wins}
+          <div />
+          {/* width = 패/(승+패)*130-7 px */}
+          <LossRateGraphDiv style={{width: `${props.data.losses / (props.data.losses + props.data.wins) * 130 - 7}`}}>{props.data.losses}</LossRateGraphDiv>
+        </WinRateGraphDiv>
+        <div>{Math.round(props.data.wins / (props.data.losses + props.data.wins) * 100)}</div>
+      </WLRDiv>
+      <AddMatchBox value={props.data.matches} />
+    </ContainerDiv>
+  );
 }
 
 export default AddBox;

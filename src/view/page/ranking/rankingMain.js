@@ -9,7 +9,7 @@ function RankingMain(){
         getRanker()
         .then((data)=>{
             setUser(data);
-            console.log('결과',data);
+            // console.log('결과',data);
         });
     },[]);
 

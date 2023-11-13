@@ -1,21 +1,28 @@
 import { MatchDiv, MatchChampImg, KdaDiv, TimeDiv } from 'view/page/multi/multiStyle/resultBoxStyle';
 
-function AddMatchBox() {
-    let matchIdList = [1,2,3,4,5]
-    return (
-        <div>
-            {matchIdList.map((matchId, index) => (
-                <MatchDiv key={index}>
-                    <MatchChampImg />
-                    <KdaDiv style={ (matchIdList[0] === 1) ? {background: "#D5E3FF", color: "#4171D6"} : {background: "#FFD8D9", color: "#D31A45"}}>
-                        <div>0/0/0</div>
-                    </KdaDiv>
-                    {/* 분 시간 일로 계산 */}
-                    <TimeDiv>1시간전</TimeDiv>
-                </MatchDiv>
-            ))}
-        </div>
-    );
+function AddMatchBox(matches) {
+  const currentTime = new Date();
+  return (
+    <div>
+      {matches.map((data, index) => (
+        <MatchDiv key={index}>
+          <MatchChampImg />
+          <KdaDiv style={ (data[index].win) ? {background: "#D5E3FF", color: "#4171D6"} : {background: "#FFD8D9", color: "#D31A45"}}>
+              <div>{data[index].kda}</div>
+          </KdaDiv>
+          
+          <TimeDiv>
+          {
+            Math.floor((currentTime.getTime() - data[index].startTime) / 3600000) < 24
+            ? Math.floor((currentTime.getTime() - data[index].startTime) / 3600000) + "시간전"
+            : Math.floor((currentTime.getTime() - data[index].startTime) / 3600000 / 24) + "일전"
+              
+          }
+          </TimeDiv>
+        </MatchDiv>
+      ))}
+    </div>
+  );
 }
 
 export default AddMatchBox;
