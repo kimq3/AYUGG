@@ -41,7 +41,7 @@ export const NavBoxButton = styled(FlexBox)`
 
 export const ListBox = styled(FlexBox)`
   min-width: ${(props)=> props.width};
-  height: 80%;
+  height: 60%;
   margin-left: 15px;
   border: 0px solid;
   border-bottom-width: 2px;
