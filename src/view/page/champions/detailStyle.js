@@ -1,28 +1,33 @@
 import styled from "styled-components";
 // import test from 'assets/images/reset-icon.svg';
 
+const FlexBox = styled.div`
+  display: flex;
+  border-radius: 4px;
+`;
+
+const Border4px = styled.img`
+  border-radius: 4px;
+`;
+
 // 틀
-export const OutBoxStyle = styled.div`
+export const OutBoxStyle = styled(FlexBox)`
   width: 900px;
   height: ${(props) => props.height};
   margin: 30px auto;
   padding: 5px;
-  border-radius: 4px;
   background-color: rgb(90, 90, 90);
-  display: flex;
   flex-wrap: wrap;
   align-content: space-evenly;
 `;
 
 // 첫 번째 박스
 // - Basic 박스
-export const BasicInfoStyle = styled.div`
+export const BasicInfoStyle = styled(FlexBox)`
   padding: 0px 10px;
   width: 100%;
   height: 40%;
   box-sizing: border-box;
-  border-radius: 4px;
-  display: flex;
   justify-content: space-between;
   align-items: center;
 `;
@@ -37,27 +42,24 @@ export const BasicDivStyle = styled.div`
 `;
 
 // - > 대표 Img
-export const BasicImgStyle = styled.img`
+export const BasicImgStyle = styled(Border4px)`
   width: 100%;
   height: 100%;
-  border-radius: 4px;
 `;
 
 // - > 이름, 스킬
-export const NameSkillStyle = styled.div`
+export const NameSkillStyle = styled(FlexBox)`
   width: 100%;
   height: 50%;
-  display: flex;
   align-items: center;
   font-size: 20px;
   font-weight: 600;
   color: #fff;
 `;
 
-export const SkillImgStyle = styled.img`
+export const SkillImgStyle = styled(Border4px)`
   width: 32px;
   height: 32px;
-  border-radius: 4px;
   margin-right: 5px;  
 `;
 
@@ -79,12 +81,11 @@ export const RateStyle = styled.div`
 `;
 
 // - Counter 박스
-export const CounterBoxStyle = styled.div`
+export const CounterBoxStyle = styled(FlexBox)`
   width: 100%;
   height: 48%;
   box-sizing: border-box;
   margin: 0px 10px;
-  display: flex;
   justify-content: space-between;
   align-content: space-around;
 `;
@@ -121,17 +122,12 @@ export const CounterDivStyle = styled.div`
   text-align: center;
 `;
 
-export const CounterImgStyle = styled.img`
+export const CounterImgStyle = styled(Border4px)`
   width: 36px;
   height: 36px;
-  border-radius: 4px;
   display: block;
   margin: 7px auto;
 `;
-
-// CounterImg.defaultProps = {
-//   src: test,
-// };
 
 export const CounterInfoStyle = styled.div`
   margin: ${(props) => props.margin}

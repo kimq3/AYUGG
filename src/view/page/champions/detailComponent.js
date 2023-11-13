@@ -1,19 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import {
-  CounterImgStyle,
-  CounterInfoStyle,
-  CounterOlStyle,
-  CounterDivStyle,
-  CounterLiStyle,
-  BasicInfoStyle,
-  BasicDivStyle,
-  BasicImgStyle,
-  RateStyle,
-  RateBoxStyle,
-  NameSkillStyle,
-  SkillImgStyle,
-} from "./detailStyle";
+import * as ds from "./detailStyle";
 
 function Api() {
   const [info, setInfo] = useState([]);
@@ -43,25 +30,25 @@ export function BasicInfo(){
 
   return (
     <>
-      <BasicInfoStyle>
-        <BasicDivStyle width="100px">
-          <BasicImgStyle src={imgUrl} />
-        </BasicDivStyle>
-        <BasicDivStyle width="70%" margin="0 5px 0 5px">
-          <BasicDivStyle width="55%" display="block">
-            <NameSkillStyle>{name}</NameSkillStyle>
-            <NameSkillStyle>
+      <ds.BasicInfoStyle>
+        <ds.BasicDivStyle width="100px">
+          <ds.BasicImgStyle src={imgUrl} />
+        </ds.BasicDivStyle>
+        <ds.BasicDivStyle width="70%" margin="0 5px 0 5px">
+          <ds.BasicDivStyle width="55%" display="block">
+            <ds.NameSkillStyle>{name}</ds.NameSkillStyle>
+            <ds.NameSkillStyle>
               <SkillImg />
-            </NameSkillStyle>
-          </BasicDivStyle>
-          <BasicDivStyle width="auto">
+            </ds.NameSkillStyle>
+          </ds.BasicDivStyle>
+          <ds.BasicDivStyle width="auto">
             <RateDiv type="winRate"></RateDiv>
             <RateDiv type="pickRate"></RateDiv>
             <RateDiv type="banRate"></RateDiv>
-          </BasicDivStyle>
-        </BasicDivStyle>
-        <BasicDivStyle width="150px" /> {/* 빈 박스 */}
-      </BasicInfoStyle>
+          </ds.BasicDivStyle>
+        </ds.BasicDivStyle>
+        <ds.BasicDivStyle width="150px" /> {/* 빈 박스 */}
+      </ds.BasicInfoStyle>
     </>
   );
 }
@@ -77,7 +64,7 @@ function SkillImg() {
     skill && skill.map((s) => {
       let pUrl = "https://ddragon.leagueoflegends.com/cdn/" + version + "/img/passive/" + s.id;
       let sUrl = "https://ddragon.leagueoflegends.com/cdn/" + version + "/img/spell/" + s.id;
-      list.push(<SkillImgStyle key={i} src={s.type === "passive" ? pUrl :sUrl } />);
+      list.push(<ds.SkillImgStyle key={i} src={s.type === "passive" ? pUrl :sUrl } />);
       i++;
     });
   }
@@ -111,10 +98,10 @@ function RateDiv(props) {
 
   return (
     <>
-      <RateBoxStyle>
-        <RateStyle>{type}</RateStyle>
-        <RateStyle weight="700">{typeResult}</RateStyle>
-      </RateBoxStyle>
+      <ds.RateBoxStyle>
+        <ds.RateStyle>{type}</ds.RateStyle>
+        <ds.RateStyle weight="700">{typeResult}</ds.RateStyle>
+      </ds.RateBoxStyle>
     </>
   )
 }
@@ -122,9 +109,9 @@ function RateDiv(props) {
 export function CounterOlTag(props) {
   return (
     <>
-      <CounterOlStyle>
+      <ds.CounterOlStyle>
         <CounterLiTag win={props.win}></CounterLiTag>
-      </CounterOlStyle>
+      </ds.CounterOlStyle>
     </>
   );
 }
@@ -158,9 +145,9 @@ function CounterLiTag(props) {
 
   return (
     <>
-      <CounterLiStyle>
+      <ds.CounterLiStyle>
         { counterList }
-      </CounterLiStyle>
+      </ds.CounterLiStyle>
     </>
   );
 }
@@ -170,11 +157,11 @@ function CounterDiv(props) {
 
   return (
     <>
-      <CounterDivStyle>
-        <CounterImgStyle src={imgUrl}></CounterImgStyle>
-        <CounterInfoStyle margin="5px 0px;">{props.name}</CounterInfoStyle>
-        <CounterInfoStyle margin="0;">{props.rate}</CounterInfoStyle>
-      </CounterDivStyle>
+      <ds.CounterDivStyle>
+        <ds.CounterImgStyle src={imgUrl}></ds.CounterImgStyle>
+        <ds.CounterInfoStyle margin="5px 0px;">{props.name}</ds.CounterInfoStyle>
+        <ds.CounterInfoStyle margin="0;">{props.rate}</ds.CounterInfoStyle>
+      </ds.CounterDivStyle>
     </>
   );
 }

@@ -1,24 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import {
-  ListBox,
-  ListStyle,
-  Logo,
-  NavBox,
-  NavBoxButton,
-  NavBoxSearch,
-  Search,
-  SearchButton,
-  SearchIcon,
-  SearchInput,
-  SearchSelect,
-} from "view/navStyle";
+import * as ns from "view/navStyle";
 
 function Nav() {
   return (
-    <NavBox>
-      <NavBoxButton>
+    <ns.NavBox>
+      <ns.NavBoxButton>
         <Link to="/">
-          <Logo></Logo>
+          <ns.Logo></ns.Logo>
         </Link>
         <LinkList url="/" name="홈" />
         <LinkList url="/champion" name="챔피언분석" />
@@ -27,20 +15,20 @@ function Nav() {
         <LinkList url="/multi" name="멀티서치" />
         <LinkList url="/challenger" name="챌린저매치" />
         <LinkList url="/event" name="대회일정" />
-      </NavBoxButton>
-      <NavBoxSearch>
-        <Search>
-          <SearchSelect>
+      </ns.NavBoxButton>
+      <ns.NavBoxSearch>
+        <ns.Search>
+          <ns.SearchSelect>
             <option value="KR">KR</option>
             <option value="NA">NA</option>
-          </SearchSelect>
-          <SearchInput></SearchInput>
-          <SearchButton>
-            <SearchIcon></SearchIcon>
-          </SearchButton>
-        </Search>
-      </NavBoxSearch>
-    </NavBox>
+          </ns.SearchSelect>
+          <ns.SearchInput />
+          <ns.SearchButton>
+            <ns.SearchIcon></ns.SearchIcon>
+          </ns.SearchButton>
+        </ns.Search>
+      </ns.NavBoxSearch>
+    </ns.NavBox>
   );
 }
 
@@ -74,9 +62,9 @@ function LinkList(props) {
 
   return (
     <>
-      <ListBox width={width} pathname={pathname} url={props.url}>
-        <ListStyle to={props.url}>{props.name}</ListStyle>
-      </ListBox>
+      <ns.ListBox width={width} pathname={pathname} url={props.url}>
+        <ns.ListStyle to={props.url} pathname={pathname} url={props.url}>{props.name}</ns.ListStyle>
+      </ns.ListBox>
     </>
   );
 }
