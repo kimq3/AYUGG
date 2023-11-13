@@ -5,24 +5,26 @@ import Filter from 'view/page/multi/textareaFilter';
 import AddBox from 'view/page/multi/addBox';
 import GetMultiData from 'view/page/multi/getMultiData';
 
-
-
 function Multi() {
   const [inputText, setInputText] = useState('');
   const [filterTextList, setFilterTextList] = useState([]);
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
   useEffect(() => {
     let dataList = [];
-    const getData = filterTextList.map(( data, index ) => {
-      dataList[index] = GetMultiData(data);
-      console.log(dataList[index]);
-    })
-    getData.filter(() => {
-      setData(dataList);
-      console.log(dataList);
-      console.log(data);
-    });
+      filterTextList.map(( data, index ) => {
+        GetMultiData(data)
+        .then((data) => {
+          dataList[index] = data;
+          console.log(data);
+        });
+      })
+
+    // getData.filter(() => {
+    //   setData(dataList);
+    //   console.log(dataList);
+    //   console.log(data);
+    // });
   },[filterTextList]);
 
   return (
@@ -52,15 +54,11 @@ function Multi() {
         </ButtonsDiv>
       </ContainerDiv>
       <br />
-      {
-        useEffect(()=>{
-          <ResultDiv>
-            {data.map(( data, index ) => {
-              return (<AddBox key={index} data={data}/>)
-            })}
-          </ResultDiv>
-        },[data])
-      }
+      <ResultDiv>
+        {/* {data.map(( data, index ) => {
+          return (<AddBox key={index} data={data}/>)
+        })} */}
+      </ResultDiv>
     </div>
   );
 }
