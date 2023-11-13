@@ -6,7 +6,7 @@ function Api() {
   const [info, setInfo] = useState([]);
 
   async function fetchData() {
-    await fetch("http://localhost:8100/garen")
+    await fetch("http://localhost:8100/park/garen")
       .then((response) => response.json())
       .then((data) => {
         setInfo(data.champData.data);
