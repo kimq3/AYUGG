@@ -1,5 +1,6 @@
 import { UserDiv, FirstDiv, PlayerIconImg, NicknameSpan, SecondDiv, TierDiv, NowTierDiv, TierNameDiv, TierImg, TierListUl, NowTierLi, LabelDiv, OptionItemLi, MoreListUl, GraphBox, MoreImg } from "view/page/search/searchStyle/topBoxStyle.js";
 
+//버튼전까지의 UI구성
 function TopBox() {
   return (
     <div>

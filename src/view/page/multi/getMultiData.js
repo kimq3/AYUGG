@@ -1,5 +1,7 @@
 import { apiKey, nicknameUrl, idUrl, matchesUrl, matchDataUrl } from "model/constantly/apiConstants";
 
+// input: nickname 1개 output: 그 사람의 multisearch에 필요한 데이터
+// api를 통해 데이터를 가져온다
 export default async function GetMultiData(nickname) {
   let userUrl = nicknameUrl + nickname + "?api_key=" + apiKey;
   let data = {};

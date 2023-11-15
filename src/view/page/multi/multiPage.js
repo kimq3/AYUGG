@@ -10,18 +10,19 @@ function Multi() {
   const [filterTextList, setFilterTextList] = useState([]);
   const [finalDataList, setFinalDataList] = useState([]);
 
+  //리스트화된 nickList 변경시 최종데이터에 넣음
   useEffect(() => {
     let dataList = [];
     filterTextList.map((data, index) => {
       GetMultiData(data)
         .then((data) => {
-          dataList.push(data);
-          if (index === filterTextList.length - 1) {
+          dataList[index] = data;
+        }).then(() => {
+          if (index === filterTextList.length -1) {
             setFinalDataList(dataList);
           }
         });
     });
-
   }, [filterTextList]);
 
   return (
@@ -51,14 +52,14 @@ function Multi() {
         </ButtonsDiv>
       </ContainerDiv>
       <br />
-      {useEffect(() => {
-        <ResultDiv>
-          {finalDataList.map((data, index) => {
-            console.log(finalDataList[0]);
+      <ResultDiv>
+        {
+          finalDataList.map((data, index) => {
+            console.log(finalDataList);
             return (<AddBox key={index} data={data} />);
-          })}
-        </ResultDiv>
-      }, [finalDataList])}
+          })
+        }
+      </ResultDiv>
     </div>
   );
 }
