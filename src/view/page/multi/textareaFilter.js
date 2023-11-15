@@ -1,3 +1,4 @@
+// input: inputText 전체 output: 필요한부분만 분할하여 nickname을 리스트화
 function Filter(text) {
     let textList = [];
     

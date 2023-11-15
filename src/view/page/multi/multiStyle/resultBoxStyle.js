@@ -35,6 +35,7 @@ export const WinRateGraphDiv = styled.div`
   padding-left: 8px;
 `;
 export const LossRateGraphDiv = styled.div`
+  width: ${props=> props.data}px;
   background: #E84057;
   height: 20px;
   text-align: right;

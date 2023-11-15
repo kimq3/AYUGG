@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import more from 'assets/images/arrow-down-icon-original.svg';
 import example from 'assets/images/example.webp';
 
+//searchPage + topBox
 export const ContainerDiv = styled.div`
   text-align: center;
   margin: 0 auto;
