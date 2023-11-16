@@ -4,7 +4,7 @@ import { RefreshButton, RefreshButtonImg } from "view/page/search/searchStyle/re
 function Button() {
   return (
     <RefreshButton>
-      <RefreshButtonImg />
+      <RefreshButtonImg src={`${process.env.PUBLIC_URL}` + 'assets/images/reset-icon.svg'} />
     </RefreshButton>
   );
 }

@@ -6,7 +6,7 @@ function Nav() {
     <ns.NavBox>
       <ns.NavBoxButton>
         <Link to="/">
-          <ns.Logo></ns.Logo>
+          <ns.Logo src={`${process.env.PUBLIC_URL}` + 'assets/images/logo/navbar-logo.png'} />
         </Link>
         <LinkList url="/" name="홈" />
         <LinkList url="/champion" name="챔피언분석" />
@@ -24,7 +24,7 @@ function Nav() {
           </ns.SearchSelect>
           <ns.SearchInput />
           <ns.SearchButton>
-            <ns.SearchIcon></ns.SearchIcon>
+            <ns.SearchIcon src={`${process.env.PUBLIC_URL}` + 'assets/images/search-icon/search-icon-24.svg'} />
           </ns.SearchButton>
         </ns.Search>
       </ns.NavBoxSearch>
