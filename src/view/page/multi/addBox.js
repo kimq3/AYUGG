@@ -4,10 +4,10 @@ import { tierImgMapping } from 'model/constantly/apiConstants';
 
 // input: nickname 1개 output: 결과창 1개
 // 한사람의 multisearch의 결괄 나타낸다 
-function AddBox(props) {  
+function AddBox(props) {
   return (
     <ContainerDiv>
-      <TierImg src={tierImgMapping.get(props.data.tier)} />
+      <TierImg tier={props.data.tier} src={`${process.env.PUBLIC_URL}` + tierImgMapping.get(props.data.tier)} />
       <NicknameDiv>{props.data.nickname}</NicknameDiv>
       <TierTextDiv>{props.data.tierString}</TierTextDiv>
       <WLRDiv>

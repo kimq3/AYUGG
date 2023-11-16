@@ -9,7 +9,7 @@ function AddMatchBox(props) {
     <div>
       {props.value.map((data, index) => (
         <MatchDiv key={index}>
-          <MatchChampImg />
+          <MatchChampImg src={(GetChampImg(data.championName))}/>
           <KdaDiv style={ (data.win) ? {background: "#D5E3FF", color: "#4171D6"} : {background: "#FFD8D9", color: "#D31A45"}}>
               <div>{data.kda}</div>
           </KdaDiv>
@@ -25,6 +25,12 @@ function AddMatchBox(props) {
       ))}
     </div>
   );
+}
+
+function GetChampImg(championName) {
+  const version = "https://ddragon.leagueoflegends.com/cdn/13.22.1/img/champion/"
+  const champUrl = version + championName + ".png";
+  return champUrl;
 }
 
 export default AddMatchBox;

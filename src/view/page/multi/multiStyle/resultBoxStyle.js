@@ -15,7 +15,11 @@ export const ContainerDiv = styled.div`
 `;
 export const TierImg = styled.img`
   height: 30px;
-  transform: scale(3);
+  transform: ${props => (
+    (props.tier === "EMERALD")
+    ? 'scale(1.5);'
+    : 'scale(3);'
+  )}
 `;
 export const NicknameDiv = styled.div`
   padding-bottom: 2px;
@@ -35,7 +39,7 @@ export const WinRateGraphDiv = styled.div`
   padding-left: 8px;
 `;
 export const LossRateGraphDiv = styled.div`
-  width: ${props=> props.data}px;
+  width: ${props => props.data}px;
   background: #E84057;
   height: 20px;
   text-align: right;
@@ -51,7 +55,7 @@ export const MatchDiv = styled.div`
   display: flex;
   margin-bottom: 2px;
 `;
-export const MatchChampImg = styled.div`
+export const MatchChampImg = styled.img`
   width: 18px;
   height: 18px;
   padding-right: 22px;

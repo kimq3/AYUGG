@@ -1,4 +1,3 @@
-import search from 'assets/images/search-icon/search-icon-24.svg'
 import { BodySearchBox, SearchBox, Box, Select, Input, Button, Img } from './mainStyle/searchBoxStyle';
 
 
@@ -13,7 +12,7 @@ function Search() {
                 </Select>
                 <Input type='text'></Input>
                 <Button>
-                    <Img src={search} />
+                    <Img src={`${process.env.PUBLIC_URL}` + 'assets/images/search-icon/search-icon-24.svg'} />
                 </Button>
                </Box>
             </SearchBox>

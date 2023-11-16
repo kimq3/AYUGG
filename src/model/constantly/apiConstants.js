@@ -59,18 +59,19 @@ export const iconUrl = version + "profileicon.json";
 
 //티어api값이랑 png맵핑
 export const tierImgMapping = new Map([
-    ["NONE", "/assets/images/tier-icons/provisional.png"],
-    ["IRON", "/assets/images/tier-icons/emblem-iron.png"],
-    ["BRONZE", "/assets/images/tier-icons/emblem-bronze.png"],
-    ["SILVER", "/assetsimages/tier-icons/emblem-silver.png"],
-    ["GOLD", "/assets/images/tier-icons/emblem-gold.png"],
-    ["PLATINUM", "/assets/images/tier-icons/emblem-platinum.png"],
-    ["DIAMOND", "/assets/images/tier-icons/emblem-diamond.png"],
-    ["MASTER", "/assets/images/tier-icons/emblem-master.png"],
-    ["GRANDMASTER", "/assets/images/tier-icons/emblem-grandmaster.png"],
-    ["CHALLENGER", "/assets/images/tier-icons/emblem-challenger.png"],
+  ["NONE", "assets/images/tier-icons/provisional.png"],
+  ["IRON", "assets/images/tier-icons/emblem-iron.png"],
+  ["BRONZE", "assets/images/tier-icons/emblem-bronze.png"],
+  ["SILVER", "assetsimages/tier-icons/emblem-silver.png"],
+  ["GOLD", "assets/images/tier-icons/emblem-gold.png"],
+  ["PLATINUM", "assets/images/tier-icons/emblem-platinum.png"],
+  ["EMERALD", "assets/images/tier-icons/emblem-emerald.png"],
+  ["DIAMOND", "assets/images/tier-icons/emblem-diamond.png"],
+  ["MASTER", "assets/images/tier-icons/emblem-master.png"],
+  ["GRANDMASTER", "assets/images/tier-icons/emblem-grandmaster.png"],
+  ["CHALLENGER", "assets/images/tier-icons/emblem-challenger.png"],
 ]);
 
-export const soloRankUrl="https://kr.api.riotgames.com/lol/league-exp/v4/entries/RANKED_SOLO_5x5/CHALLENGER/I"; //랭킹, 랭킹 상세페이지에서 사용(현재 챌린저 1~200위 까지 표출 가능)
-export const matchIdUrl2="/ids?start=0&count=10";// match id 추출 api 뒷부분
+export const soloRankUrl = "https://kr.api.riotgames.com/lol/league-exp/v4/entries/RANKED_SOLO_5x5/CHALLENGER/I"; //랭킹, 랭킹 상세페이지에서 사용(현재 챌린저 1~200위 까지 표출 가능)
+export const matchIdUrl2 = "/ids?start=0&count=10";// match id 추출 api 뒷부분
 
