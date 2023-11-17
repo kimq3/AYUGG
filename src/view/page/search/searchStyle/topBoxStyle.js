@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import more from 'assets/images/arrow-down-icon-original.svg';
-import example from 'assets/images/example.webp';
 
+//searchPage + topBox
 export const ContainerDiv = styled.div`
   text-align: center;
   margin: 0 auto;
@@ -16,9 +15,6 @@ export const PlayerIconImg = styled.img`
   width: 46px;
   height: 46px
 `
-PlayerIconImg.defaultProps = {
-  src: example,
-};
 export const FirstDiv = styled.div`
   display: flex;
   align-items: center;
@@ -52,9 +48,6 @@ export const TierImg = styled.img`
   height: 46px;
   transform: scale(1.5);
 `
-TierImg.defaultProps = {
-  src: example,
-};
 export const TierListUl = styled.ul`
   display: flex;
   flex-direction: row;
@@ -104,6 +97,3 @@ export const MoreImg = styled.img`
   width: 10px;
   height: 10px;
 `
-MoreImg.defaultProps = {
-  src: more,
-};

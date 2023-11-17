@@ -6,7 +6,7 @@ function Main(){
     return(
         <>
             <Nav></Nav>
-            <Logo></Logo>
+            <Logo src={`${process.env.PUBLIC_URL}` + 'assets/images/logo/body-logo.png'} />
             <Search></Search>
         </>
     )

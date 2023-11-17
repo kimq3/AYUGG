@@ -1,17 +1,18 @@
 import { UserDiv, FirstDiv, PlayerIconImg, NicknameSpan, SecondDiv, TierDiv, NowTierDiv, TierNameDiv, TierImg, TierListUl, NowTierLi, LabelDiv, OptionItemLi, MoreListUl, GraphBox, MoreImg } from "view/page/search/searchStyle/topBoxStyle.js";
 
+//버튼전까지의 UI구성
 function TopBox() {
   return (
     <div>
       <UserDiv>
         <FirstDiv>
           <NicknameSpan>Hide on bush</NicknameSpan>
-          <PlayerIconImg />
+          <PlayerIconImg src={`${process.env.PUBLIC_URL}` + 'assets/images/example.webp'} />
         </FirstDiv>
         <SecondDiv>
           <TierDiv>
             <NowTierDiv>
-              <TierImg />
+              <TierImg src={`${process.env.PUBLIC_URL}` + 'assets/images/example.webp'} />
               {/* <TierTextDiv>
                 <TierNameDiv />
                 <TierPointDiv />
@@ -32,7 +33,7 @@ function TopBox() {
                 {/* <SelectionDiv> */}<div>
                   <LabelDiv>
                     <b>More</b>
-                    <MoreImg />
+                    <MoreImg src={`${process.env.PUBLIC_URL}` + 'assets/images/arrow-down-icon-original.svg'} />
                   </LabelDiv>
                   <MoreListUl>
                     <OptionItemLi>
