@@ -6,7 +6,7 @@ function ChampionsMain() {
   return (
     <div>
       <Nav></Nav>
-      <cs.ChampionsBox height="50px">
+      <cs.ChampionsBox $height="50px">
         <cs.WrappingBox>
           <cc.Option />
           <cc.Option />
@@ -20,12 +20,12 @@ function ChampionsMain() {
         </cs.WrappingBox>
       </cs.ChampionsBox>
 
-      <cs.ChampionsBox height="auto">
-        <cs.ArticleBox width="40%">
+      <cs.ChampionsBox $height="auto">
+        <cs.ArticleBox $width="40%">
           <cc.Input />
           <cc.ChampionsImg></cc.ChampionsImg>
         </cs.ArticleBox>
-        <cs.ArticleBox width="auto">dd</cs.ArticleBox>
+        <cs.ArticleBox $width="auto">dd</cs.ArticleBox>
       </cs.ChampionsBox>
     </div>
   );

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import * as ds from "./detailStyle";
 
-function Api() {
+function Api() { // 이거 apiConstant로 변경해야함.
   const [info, setInfo] = useState([]);
 
   async function fetchData() {
@@ -31,23 +31,23 @@ export function BasicInfo(){
   return (
     <>
       <ds.BasicInfoStyle>
-        <ds.BasicDivStyle width="100px">
+        <ds.BasicDivStyle $width="100px">
           <ds.BasicImgStyle src={imgUrl} />
         </ds.BasicDivStyle>
-        <ds.BasicDivStyle width="70%" margin="0 5px 0 5px">
-          <ds.BasicDivStyle width="55%" display="block">
+        <ds.BasicDivStyle $width="70%" $margin="0 5px 0 5px">
+          <ds.BasicDivStyle $width="55%" $display="block">
             <ds.NameSkillStyle>{name}</ds.NameSkillStyle>
             <ds.NameSkillStyle>
               <SkillImg />
             </ds.NameSkillStyle>
           </ds.BasicDivStyle>
-          <ds.BasicDivStyle width="auto">
+          <ds.BasicDivStyle $width="auto">
             <RateDiv type="winRate"></RateDiv>
             <RateDiv type="pickRate"></RateDiv>
             <RateDiv type="banRate"></RateDiv>
           </ds.BasicDivStyle>
         </ds.BasicDivStyle>
-        <ds.BasicDivStyle width="150px" /> {/* 빈 박스 */}
+        <ds.BasicDivStyle $width="150px" /> {/* 빈 박스 */}
       </ds.BasicInfoStyle>
     </>
   );
@@ -100,7 +100,7 @@ function RateDiv(props) {
     <>
       <ds.RateBoxStyle>
         <ds.RateStyle>{type}</ds.RateStyle>
-        <ds.RateStyle weight="700">{typeResult}</ds.RateStyle>
+        <ds.RateStyle $weight="700">{typeResult}</ds.RateStyle>
       </ds.RateBoxStyle>
     </>
   )
@@ -159,8 +159,8 @@ function CounterDiv(props) {
     <>
       <ds.CounterDivStyle>
         <ds.CounterImgStyle src={imgUrl}></ds.CounterImgStyle>
-        <ds.CounterInfoStyle margin="5px 0px;">{props.name}</ds.CounterInfoStyle>
-        <ds.CounterInfoStyle margin="0;">{props.rate}</ds.CounterInfoStyle>
+        <ds.CounterInfoStyle $margin="5px 0px;">{props.name}</ds.CounterInfoStyle>
+        <ds.CounterInfoStyle $margin="0;">{props.rate}</ds.CounterInfoStyle>
       </ds.CounterDivStyle>
     </>
   );

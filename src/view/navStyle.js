@@ -24,7 +24,7 @@ export const ListStyle = styled(Link)`
     color: #fff;
   }
   ${(props) => {
-    if (props.pathname === props.url) {
+    if (props.$pathname === props.$url) {
       return "color: white;";
     } else {
       return "color: rgba(255, 255, 255, 0.5);";
@@ -38,7 +38,7 @@ export const NavBoxButton = styled(FlexBox)`
 `;
 
 export const ListBox = styled(FlexBox)`
-  min-width: ${(props)=> props.width};
+  min-width: ${(props)=> props.$width};
   height: 60%;
   margin-left: 15px;
   border: 0px solid;
@@ -49,7 +49,7 @@ export const ListBox = styled(FlexBox)`
     border-bottom-width: 2px;
   }
   ${(props) => {
-    if (props.pathname === props.url) {
+    if (props.$pathname === props.$url) {
       return "border-color: white;";
     } else {
       return "border-color: black;";

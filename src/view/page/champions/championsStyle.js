@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const FlexBox = styled.div`
@@ -5,6 +6,13 @@ const FlexBox = styled.div`
   align-items: center;
   border-radius: 4px;
   justify-content: center;
+`;
+
+const LinkStyle = styled(Link)`
+  text-decoration: none;
+  &:visited {
+    color: black;
+  }
 `;
 
 export const ChampionsBox = styled(FlexBox)`
@@ -108,6 +116,10 @@ export const ListBox = styled(FlexBox)`
   height: 72px;
   display: inline-flex;
   margin: 5px 10px;
+`;
+
+export const ChampionLink = styled(LinkStyle)`
+
 `;
 
 export const ChampionsImgStyle = styled.img`

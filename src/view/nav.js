@@ -62,8 +62,8 @@ function LinkList(props) {
 
   return (
     <>
-      <ns.ListBox width={width} pathname={pathname} url={props.url}>
-        <ns.ListStyle to={props.url} pathname={pathname} url={props.url}>{props.name}</ns.ListStyle>
+      <ns.ListBox $width={width} $pathname={pathname} $url={props.url}>
+        <ns.ListStyle to={props.url} $pathname={pathname} $url={props.url}>{props.name}</ns.ListStyle>
       </ns.ListBox>
     </>
   );

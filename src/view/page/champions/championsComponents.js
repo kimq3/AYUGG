@@ -27,7 +27,7 @@ export  function Line(props) {
     <Link to={"/" + props.value}></Link>
   }
 
-  return <cs.LineButton pathname={pathname} line={props.value} onClick={lineClick}>
+  return <cs.LineButton $pathname={pathname} $line={props.value} onClick={lineClick}>
     {props.name}
   </cs.LineButton>
 }
@@ -66,16 +66,20 @@ export function ChampionsImg(){
 export function ChampionsImgFull(){
   let champImgData = ChampionApi();
   let [dataList, setDataList] = useState([]);
-  console.log(champImgData);
+  // console.log(champImgData);
   useEffect(()=>{
     let fullData = [];
-    if(champImgData.length === 2) {
+    if(champImgData.length === 3) {
       for(let i = 0; i<champImgData[0].length; i++){
         let data = (
-          <cs.ListBox>
+          <cs.ListBox key={i}>
             <li>
-              <cs.ChampionsImgStyle src={champImgData[0][i]} />
-              <cs.ChampionsSpanStyle>{champImgData[1][i]}</cs.ChampionsSpanStyle>
+              <cs.ChampionLink to="/details">
+                <cs.ChampionsImgStyle src={champImgData[0][i]} />
+              </cs.ChampionLink>
+              <cs.ChampionLink to="/details">
+                <cs.ChampionsSpanStyle>{champImgData[1][i]}</cs.ChampionsSpanStyle>
+              </cs.ChampionLink>
             </li>
           </cs.ListBox>
         )

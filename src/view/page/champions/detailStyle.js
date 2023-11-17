@@ -13,7 +13,7 @@ const Border4px = styled.img`
 // 틀
 export const OutBoxStyle = styled(FlexBox)`
   width: 900px;
-  height: ${(props) => props.height};
+  height: ${(props) => props.$height};
   margin: 30px auto;
   padding: 5px;
   background-color: rgb(90, 90, 90);
@@ -33,12 +33,12 @@ export const BasicInfoStyle = styled(FlexBox)`
 `;
 
 export const BasicDivStyle = styled.div`
-  width: ${(props) => props.width};
+  width: ${(props) => props.$width};
   height: 100px;
-  display: ${(props) => props.display ? props.display : "flex"};
+  display: ${(props) => props.$display ? props.$display : "flex"};
   box-sizing: border-box;
   align-items: center;
-  margin: ${(props) => props.margin};
+  margin: ${(props) => props.$margin};
 `;
 
 // - > 대표 Img
@@ -77,7 +77,7 @@ export const RateStyle = styled.div`
   align-items: center;
   font-size: 16px;
   color: #fff;
-  font-weight: ${(props) => props.weight};
+  font-weight: ${(props) => props.$weight};
 `;
 
 // - Counter 박스
@@ -97,7 +97,7 @@ export const CounterStyle = styled.div`
   color: #fff;
   box-sizing: border-box;
   border-radius: 4px;
-  background-color: ${(props) => props.back};
+  background-color: ${(props) => props.$back};
   text-align: center;
 `;
 
@@ -130,7 +130,7 @@ export const CounterImgStyle = styled(Border4px)`
 `;
 
 export const CounterInfoStyle = styled.div`
-  margin: ${(props) => props.margin}
+  margin: ${(props) => props.$margin}
   font-size:  12px;
   font-weight: 700;
   overflow:hidden;

@@ -24,16 +24,19 @@ export function ChampionApi() {
         .then((data) => {
           let imgList = [];
           let nameList = [];
+          let idList = [];
           const myData = []
             .concat(Object.values(data.data))
             .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
             .map((index) => {
               imgList.push(verUrl + "img/champion/" + index.image.full);
               nameList.push(index.name);
+              idList.push(index.id);
             });
           let dataList = [];
           dataList.push(imgList);
           dataList.push(nameList);
+          dataList.push(idList);
           return setChampData(dataList);
         });
     }
