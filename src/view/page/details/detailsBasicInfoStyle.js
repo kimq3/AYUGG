@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import test from 'assets/images/reset-icon.svg';
 
 const FlexBox = styled.div`
   display: flex;
@@ -135,5 +134,3 @@ export const CounterInfoStyle = styled.div`
   font-weight: 700;
   overflow:hidden;
 `;
-
-// 두 번째 박스

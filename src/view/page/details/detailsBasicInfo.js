@@ -1,7 +1,7 @@
-import * as ds from "./detailStyle";
+import * as ds from "./detailsBasicInfoStyle";
 import { ChampionDetailApi as Api } from "model/constantly/apiConstants";
 
-export function BasicInfo(){
+function BasicInfo(){
   const detailData = Api();
   const version = detailData.version;
   const id = detailData.id;
@@ -88,7 +88,7 @@ function RateDiv(props) {
   )
 }
 
-export function CounterOlTag(props) {
+function CounterOlTag(props) {
   return (
     <>
       <ds.CounterOlStyle>
@@ -144,6 +144,28 @@ function CounterDiv(props) {
         <ds.CounterInfoStyle $margin="5px 0px;">{props.name}</ds.CounterInfoStyle>
         <ds.CounterInfoStyle $margin="0;">{props.rate}</ds.CounterInfoStyle>
       </ds.CounterDivStyle>
+    </>
+  );
+}
+
+export default function DetailsBasicInfo() {
+  return (
+    <>
+      <ds.OutBoxStyle $height="300px">
+        <BasicInfo></BasicInfo>
+        <ds.CounterBoxStyle>
+          <ds.CounterStyle $back="rgb(49, 49, 79)">
+            <div>상대하기 쉬운 챔피언</div>
+            <CounterOlTag win="true"></CounterOlTag>
+          </ds.CounterStyle>
+          <ds.CounterStyle $back="rgb(108, 65, 65)">
+            <div>상대하기 어려운 챔피언</div>
+            <CounterOlTag win="false"></CounterOlTag>
+          </ds.CounterStyle>
+        </ds.CounterBoxStyle>
+      </ds.OutBoxStyle>
+      <ds.OutBoxStyle $height="500px"></ds.OutBoxStyle>
+      <ds.OutBoxStyle $height="300px"></ds.OutBoxStyle>
     </>
   );
 }
