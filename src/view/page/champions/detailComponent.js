@@ -1,24 +1,5 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import * as ds from "./detailStyle";
-
-function Api() { // 이거 apiConstant로 변경해야함.
-  const [info, setInfo] = useState([]);
-
-  async function fetchData() {
-    await fetch("http://localhost:8100/park/garen")
-      .then((response) => response.json())
-      .then((data) => {
-        setInfo(data.champData.data);
-      });
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  return info;
-}
+import { ChampionDetailApi as Api } from "model/constantly/apiConstants";
 
 export function BasicInfo(){
   const detailData = Api();
@@ -62,8 +43,9 @@ function SkillImg() {
   function SkillCheck(list){
     let i = 1;
     skill && skill.map((s) => {
-      let pUrl = "https://ddragon.leagueoflegends.com/cdn/" + version + "/img/passive/" + s.id;
-      let sUrl = "https://ddragon.leagueoflegends.com/cdn/" + version + "/img/spell/" + s.id;
+      let basicUrl = "https://ddragon.leagueoflegends.com/cdn/" + version;
+      let pUrl = basicUrl + "/img/passive/" + s.id;
+      let sUrl = basicUrl + "/img/spell/" + s.id;
       list.push(<ds.SkillImgStyle key={i} src={s.type === "passive" ? pUrl :sUrl } />);
       i++;
     });

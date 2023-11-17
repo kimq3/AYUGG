@@ -45,6 +45,24 @@ export function ChampionApi() {
   return champData;
 }
 
+export function ChampionDetailApi(){
+  const [info, setInfo] = useState([]);
+  
+    async function fetchData() {
+      await fetch("http://localhost:8100/park/garen")
+        .then((response) => response.json())
+        .then((data) => {
+          setInfo(data.champData.data);
+        });
+    }
+  
+    useEffect(() => {
+      fetchData();
+    }, []);
+  
+    return info;
+}
+
 export const apiKey = "RGAPI-6e1b716a-027f-4306-930b-458ee9fb0229";
 // NicknameUrl + encodedName[i] + "?api_key=" + apiKey (id, acountid puuid name profileIconId level)
 export const nicknameUrl = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
