@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import * as style from "./detailsStyle";
-import { ChampionDetailApi as Api } from "model/constantly/apiConstants";
+import { ChampionDetailApi as ChampApi, RuneApi } from "model/constantly/apiConstants";
 
-function BasicInfo(){
-  const detailData = Api();
+async function BasicInfo(){
+  const detailData = await ChampApi();
   const version = detailData.version;
   const id = detailData.id;
   const name = detailData.name;
@@ -18,14 +19,12 @@ function BasicInfo(){
         <style.BasicDivStyle $width="70%" $margin="0 5px 0 5px">
           <style.BasicDivStyle $width="55%" $display="block">
             <style.NameSkillStyle>{name}</style.NameSkillStyle>
-            <style.NameSkillStyle>
-              <SkillImg />
-            </style.NameSkillStyle>
+            <SkillImgAwait />
           </style.BasicDivStyle>
           <style.BasicDivStyle $width="auto">
-            <RateDiv type="winRate"></RateDiv>
-            <RateDiv type="pickRate"></RateDiv>
-            <RateDiv type="banRate"></RateDiv>
+            <RateDivAwait type="winRate"></RateDivAwait>
+            <RateDivAwait type="pickRate"></RateDivAwait>
+            <RateDivAwait type="banRate"></RateDivAwait>
           </style.BasicDivStyle>
         </style.BasicDivStyle>
         <style.BasicDivStyle $width="150px" /> {/* 빈 박스 */}
@@ -34,8 +33,8 @@ function BasicInfo(){
   );
 }
 
-function SkillImg() {
-  const detailData = Api();
+async function SkillImg() {
+  const detailData = await ChampApi();
   let version = detailData.version;
   let skill = detailData.skill;
   let skillImgList = [];
@@ -58,8 +57,26 @@ function SkillImg() {
   </>);
 }
 
-function RateDiv(props) {
-  const detailData = Api();
+function SkillImgAwait() {
+  const [skill, setSkill] = useState([]);
+
+  useEffect(() => {
+    SkillImg().then((data) => {
+      setSkill(data);
+    });
+  }, [])
+
+  return (
+    <>
+      <style.NameSkillStyle>
+        {skill}
+      </style.NameSkillStyle>
+    </>
+  );
+}
+
+async function RateDiv(props) {
+  const detailData = await ChampApi();
   let type;
   let typeResult;
 
@@ -88,18 +105,42 @@ function RateDiv(props) {
   )
 }
 
+function RateDivAwait(props) {
+  const [rate, setRate] = useState([]);
+
+  useEffect(() => {
+    RateDiv(props).then((data) => {
+      setRate(data);
+    });
+  }, [])
+
+  return (
+    <>
+      {rate}
+    </>
+  );
+}
+
 function CounterOlTag(props) {
+  const [li, setLi] = useState([]);
+
+  useEffect(() => {
+    CounterLiTag(props).then((data) => {
+      setLi(data);
+    });
+  }, [])
+
   return (
     <>
       <style.CounterOlStyle>
-        <CounterLiTag win={props.win}></CounterLiTag>
+        {li}
       </style.CounterOlStyle>
     </>
   );
 }
 
-function CounterLiTag(props) {
-  const detailData = Api();
+async function CounterLiTag(props) {
+  const detailData = await ChampApi();
   let counterList = [];
   
   function CounterCheck(list){
@@ -149,10 +190,18 @@ function CounterDiv(props) {
 }
 
 export default function DetailsBasicInfo() {
+  const [basicInfo, setBasicInfo] = useState([]);
+
+  useEffect(() => {
+    BasicInfo().then((data) => {
+      setBasicInfo(data);
+    });
+  }, [])
+
   return (
     <>
       <style.OutBoxStyle $height="300px">
-        <BasicInfo></BasicInfo>
+        {basicInfo}
         <style.CounterBoxStyle>
           <style.CounterStyle $back="rgb(49, 49, 79)">
             <div>상대하기 쉬운 챔피언</div>

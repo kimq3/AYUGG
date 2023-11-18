@@ -55,44 +55,44 @@ export function Input(){
 }
 
 export function ChampionsImg(){
-  
+  const [imgTag, setImgTag] = useState([]);
+
+  useEffect(() => {
+    ChampionsImgFull().then((data) => {
+      setImgTag(data);
+    });
+  }, [])
+
   return (
     <>
-      <ChampionsImgFull></ChampionsImgFull>
+      {imgTag}
     </>
   );
 }
 
-export function ChampionsImgFull(){
-  let champImgData = ChampionApi();
-  let [dataList, setDataList] = useState([]);
-  // console.log(champImgData);
-  useEffect(()=>{
-    let fullData = [];
-    if(champImgData.length === 3) {
-      for(let i = 0; i<champImgData[0].length; i++){
-        let data = (
-          <style.ListBox key={i}>
-            <li>
-              <style.ChampionLink to="/details">
-                <style.ChampionsImgStyle src={champImgData[0][i]} />
-              </style.ChampionLink>
-              <style.ChampionLink to="/details">
-                <style.ChampionsSpanStyle>{champImgData[1][i]}</style.ChampionsSpanStyle>
-              </style.ChampionLink>
-            </li>
-          </style.ListBox>
-        )
-        fullData.push(data);
-      }
+export async function ChampionsImgFull(){
+  let champImgData = await ChampionApi();
 
-      setDataList(fullData);
-    }
-  }, [champImgData]);
-
+  let fullData = [];
+  for(let i = 0; i<champImgData[0].length; i++){
+    let data = (
+      <style.ListBox key={i}>
+        <li>
+          <style.ChampionLink to="/details">
+            <style.ChampionsImgStyle src={champImgData[0][i]} />
+          </style.ChampionLink>
+          <style.ChampionLink to="/details">
+            <style.ChampionsSpanStyle>{champImgData[1][i]}</style.ChampionsSpanStyle>
+          </style.ChampionLink>
+        </li>
+      </style.ListBox>
+    )
+    fullData.push(data);
+  }
+  
   return (
     <style.ChampionsOlStyle>
-      {dataList}
+      {fullData}
     </style.ChampionsOlStyle>
   )
  }

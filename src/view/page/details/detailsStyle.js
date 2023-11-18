@@ -9,6 +9,13 @@ const Border4px = styled.img`
   border-radius: 4px;
 `;
 
+export const Center = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+`;
+
 // 틀
 export const OutBoxStyle = styled(FlexBox)`
   width: 900px;
@@ -174,8 +181,11 @@ export const NavRuneStyle = styled(RuneBox)`
   height: 50%;
   background-color: ${(props) => (props.$selected === "true" ? "none" : "rgb(90, 90, 90)")};
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ${(props) => {
-    if (props.$position === "first") {
+    if (props.$selected === "first") {
       return "border-top-left-radius: 4px;";
     } else {
       return "border-bottom-left-radius: 4px";
@@ -183,16 +193,56 @@ export const NavRuneStyle = styled(RuneBox)`
   }}
 `;
 
+export const NavRuneWrappingDivStyle = styled.div`
+  width: 100%;
+  height: auto;
+`;
+
 export const RuneTypeStyle = styled(FlexBox)`
   width: 100%;
   background-color: #fff;
 `;
 
-const RuneImg = styled.img`
-  border: 50%;
+// 이미지를 담은 박스
+const RuneImgBoxStyle = styled.div`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   border: 1px solid #fff;
+  background-color: black;
+  text-align: center;
 `;
 
-export const NavRuneImgStyle = styled(RuneImg)`
+// 룬 이미지 기본 스타일
+const RuneImgStyle = styled.img`
+  width: 24px;
+  height: 24px;
+  margin-top: 4px;
+  border-radius: 50%;
+`;
 
+export const NavRuneImgBoxStyle = styled(RuneImgBoxStyle)`
+  width: ${(props) => props.$size};
+  height: ${(props) => props.$size};
+`;
+
+export const NavRuneImgStyle = styled(RuneImgStyle)`
+  width: ${(props) => props.$size};
+  height: ${(props) => props.$size};
+`;
+
+const RuneRateDiv = styled.div`
+  width: 100%;
+  height: 32px;
+  font-size: 16px;
+  text-align: center;
+`;
+
+export const RuneRateBoxStyle = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const RuneRateDivStyle = styled(RuneRateDiv)`
+  color: black;
 `;

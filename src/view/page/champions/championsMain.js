@@ -1,6 +1,6 @@
 import Nav from "view/nav";
 import * as style from "./championsStyle";
-import * as components from "./championsComponents";
+import * as components from "./champions";
 
 function ChampionsMain() {
   return (
