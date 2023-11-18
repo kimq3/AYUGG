@@ -1,4 +1,4 @@
-import * as ds from "./detailsBasicInfoStyle";
+import * as style from "./detailsStyle";
 import { ChampionDetailApi as Api } from "model/constantly/apiConstants";
 
 function BasicInfo(){
@@ -11,25 +11,25 @@ function BasicInfo(){
 
   return (
     <>
-      <ds.BasicInfoStyle>
-        <ds.BasicDivStyle $width="100px">
-          <ds.BasicImgStyle src={imgUrl} />
-        </ds.BasicDivStyle>
-        <ds.BasicDivStyle $width="70%" $margin="0 5px 0 5px">
-          <ds.BasicDivStyle $width="55%" $display="block">
-            <ds.NameSkillStyle>{name}</ds.NameSkillStyle>
-            <ds.NameSkillStyle>
+      <style.BasicInfoStyle>
+        <style.BasicDivStyle $width="100px">
+          <style.BasicImgStyle src={imgUrl} />
+        </style.BasicDivStyle>
+        <style.BasicDivStyle $width="70%" $margin="0 5px 0 5px">
+          <style.BasicDivStyle $width="55%" $display="block">
+            <style.NameSkillStyle>{name}</style.NameSkillStyle>
+            <style.NameSkillStyle>
               <SkillImg />
-            </ds.NameSkillStyle>
-          </ds.BasicDivStyle>
-          <ds.BasicDivStyle $width="auto">
+            </style.NameSkillStyle>
+          </style.BasicDivStyle>
+          <style.BasicDivStyle $width="auto">
             <RateDiv type="winRate"></RateDiv>
             <RateDiv type="pickRate"></RateDiv>
             <RateDiv type="banRate"></RateDiv>
-          </ds.BasicDivStyle>
-        </ds.BasicDivStyle>
-        <ds.BasicDivStyle $width="150px" /> {/* 빈 박스 */}
-      </ds.BasicInfoStyle>
+          </style.BasicDivStyle>
+        </style.BasicDivStyle>
+        <style.BasicDivStyle $width="150px" /> {/* 빈 박스 */}
+      </style.BasicInfoStyle>
     </>
   );
 }
@@ -46,7 +46,7 @@ function SkillImg() {
       let basicUrl = "https://ddragon.leagueoflegends.com/cdn/" + version;
       let pUrl = basicUrl + "/img/passive/" + s.id;
       let sUrl = basicUrl + "/img/spell/" + s.id;
-      list.push(<ds.SkillImgStyle key={i} src={s.type === "passive" ? pUrl :sUrl } />);
+      list.push(<style.SkillImgStyle key={i} src={s.type === "passive" ? pUrl :sUrl } />);
       i++;
     });
   }
@@ -80,10 +80,10 @@ function RateDiv(props) {
 
   return (
     <>
-      <ds.RateBoxStyle>
-        <ds.RateStyle>{type}</ds.RateStyle>
-        <ds.RateStyle $weight="700">{typeResult}</ds.RateStyle>
-      </ds.RateBoxStyle>
+      <style.RateBoxStyle>
+        <style.RateStyle>{type}</style.RateStyle>
+        <style.RateStyle $weight="700">{typeResult}</style.RateStyle>
+      </style.RateBoxStyle>
     </>
   )
 }
@@ -91,9 +91,9 @@ function RateDiv(props) {
 function CounterOlTag(props) {
   return (
     <>
-      <ds.CounterOlStyle>
+      <style.CounterOlStyle>
         <CounterLiTag win={props.win}></CounterLiTag>
-      </ds.CounterOlStyle>
+      </style.CounterOlStyle>
     </>
   );
 }
@@ -127,9 +127,9 @@ function CounterLiTag(props) {
 
   return (
     <>
-      <ds.CounterLiStyle>
+      <style.CounterLiStyle>
         { counterList }
-      </ds.CounterLiStyle>
+      </style.CounterLiStyle>
     </>
   );
 }
@@ -139,11 +139,11 @@ function CounterDiv(props) {
 
   return (
     <>
-      <ds.CounterDivStyle>
-        <ds.CounterImgStyle src={imgUrl}></ds.CounterImgStyle>
-        <ds.CounterInfoStyle $margin="5px 0px;">{props.name}</ds.CounterInfoStyle>
-        <ds.CounterInfoStyle $margin="0;">{props.rate}</ds.CounterInfoStyle>
-      </ds.CounterDivStyle>
+      <style.CounterDivStyle>
+        <style.CounterImgStyle src={imgUrl}></style.CounterImgStyle>
+        <style.CounterInfoStyle $margin="5px 0px;">{props.name}</style.CounterInfoStyle>
+        <style.CounterInfoStyle $margin="0;">{props.rate}</style.CounterInfoStyle>
+      </style.CounterDivStyle>
     </>
   );
 }
@@ -151,21 +151,21 @@ function CounterDiv(props) {
 export default function DetailsBasicInfo() {
   return (
     <>
-      <ds.OutBoxStyle $height="300px">
+      <style.OutBoxStyle $height="300px">
         <BasicInfo></BasicInfo>
-        <ds.CounterBoxStyle>
-          <ds.CounterStyle $back="rgb(49, 49, 79)">
+        <style.CounterBoxStyle>
+          <style.CounterStyle $back="rgb(49, 49, 79)">
             <div>상대하기 쉬운 챔피언</div>
             <CounterOlTag win="true"></CounterOlTag>
-          </ds.CounterStyle>
-          <ds.CounterStyle $back="rgb(108, 65, 65)">
+          </style.CounterStyle>
+          <style.CounterStyle $back="rgb(108, 65, 65)">
             <div>상대하기 어려운 챔피언</div>
             <CounterOlTag win="false"></CounterOlTag>
-          </ds.CounterStyle>
-        </ds.CounterBoxStyle>
-      </ds.OutBoxStyle>
-      <ds.OutBoxStyle $height="500px"></ds.OutBoxStyle>
-      <ds.OutBoxStyle $height="300px"></ds.OutBoxStyle>
+          </style.CounterStyle>
+        </style.CounterBoxStyle>
+      </style.OutBoxStyle>
+      {/* <style.OutBoxStyle $height="500px"></style.OutBoxStyle> */}
+      {/* <style.OutBoxStyle $height="300px"></style.OutBoxStyle> */}
     </>
   );
 }

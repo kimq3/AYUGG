@@ -16,10 +16,10 @@ function VersionState() {
 export function ChampionApi() {
   const [champData, setChampData] = useState([]);
   let ver = VersionState();
-  let verUrl = "https://ddragon.leagueoflegends.com/cdn/" + ver + "/";
+  let verUrl = "https://ddragon.leagueoflegends.com/cdn/" + ver + "/data/ko_KR/champion.json";
   useEffect(() => {
     if (ver !== "") {
-      fetch(verUrl + "data/ko_KR/champion.json")
+      fetch(verUrl)
         .then((response) => response.json())
         .then((data) => {
           let imgList = [];
@@ -43,6 +43,23 @@ export function ChampionApi() {
   }, [ver]);
 
   return champData;
+}
+
+export function RuneApi() {
+  const [runeData, setRuneData] = useState([]);
+  let version = VersionState();
+  let runeUrl = "https://ddragon.leagueoflegends.com/cdn/" + version + "/data/ko_KR/runesReforged.json";
+  useEffect(() => {
+    if (version !== "") {
+      fetch(runeUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          setRuneData(data);
+        });
+    }
+  }, [version]);
+
+  return runeData;
 }
 
 export function ChampionDetailApi(){

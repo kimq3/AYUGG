@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import * as ns from "view/navStyle";
+import * as style from "view/navStyle";
 
 function Nav() {
   return (
-    <ns.NavBox>
-      <ns.NavBoxButton>
+    <style.NavBox>
+      <style.NavBoxButton>
         <Link to="/">
-          <ns.Logo src={`${process.env.PUBLIC_URL}` + 'assets/images/logo/navbar-logo.png'} />
+          <style.Logo src={`${process.env.PUBLIC_URL}` + 'assets/images/logo/navbar-logo.png'} />
         </Link>
         <LinkList url="/" name="홈" />
         <LinkList url="/champion" name="챔피언분석" />
@@ -15,20 +15,20 @@ function Nav() {
         <LinkList url="/multi" name="멀티서치" />
         <LinkList url="/challenger" name="챌린저매치" />
         <LinkList url="/event" name="대회일정" />
-      </ns.NavBoxButton>
-      <ns.NavBoxSearch>
-        <ns.Search>
-          <ns.SearchSelect>
+      </style.NavBoxButton>
+      <style.NavBoxSearch>
+        <style.Search>
+          <style.SearchSelect>
             <option value="KR">KR</option>
             <option value="NA">NA</option>
-          </ns.SearchSelect>
-          <ns.SearchInput />
-          <ns.SearchButton>
-            <ns.SearchIcon src={`${process.env.PUBLIC_URL}` + 'assets/images/search-icon/search-icon-24.svg'} />
-          </ns.SearchButton>
-        </ns.Search>
-      </ns.NavBoxSearch>
-    </ns.NavBox>
+          </style.SearchSelect>
+          <style.SearchInput />
+          <style.SearchButton>
+            <style.SearchIcon src={`${process.env.PUBLIC_URL}` + 'assets/images/search-icon/search-icon-24.svg'} />
+          </style.SearchButton>
+        </style.Search>
+      </style.NavBoxSearch>
+    </style.NavBox>
   );
 }
 
@@ -62,9 +62,9 @@ function LinkList(props) {
 
   return (
     <>
-      <ns.ListBox $width={width} $pathname={pathname} $url={props.url}>
-        <ns.ListStyle to={props.url} $pathname={pathname} $url={props.url}>{props.name}</ns.ListStyle>
-      </ns.ListBox>
+      <style.ListBox $width={width} $pathname={pathname} $url={props.url}>
+        <style.ListStyle to={props.url} $pathname={pathname} $url={props.url}>{props.name}</style.ListStyle>
+      </style.ListBox>
     </>
   );
 }

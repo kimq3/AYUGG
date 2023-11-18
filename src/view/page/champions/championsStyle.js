@@ -17,7 +17,7 @@ const LinkStyle = styled(Link)`
 
 export const ChampionsBox = styled(FlexBox)`
   width: 1000px;
-  height: ${(props) => props.height};
+  height: ${(props) => props.$height};
   margin: 50px auto;
   background-color: rgb(160, 160, 160);
   justify-content: space-between;
@@ -64,7 +64,7 @@ export const LineButton = styled(FlexBox)`
 `;
 
 export const ArticleBox = styled.div`
-  width: ${(props) => props.width};
+  width: ${(props) => props.$width};
   height: auto;
   box-sizing: border-box;
   margin: 15px 15px;
