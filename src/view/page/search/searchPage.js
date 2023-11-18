@@ -4,6 +4,7 @@ import TopBox from "view/page/search/topBox"
 import { ContainerDiv } from "view/page/search/searchStyle/topBoxStyle"
 import Button from "view/page/search/refreshButton"
 import GetSearchData from "view/page/search/getSearchData";
+import BottomBox from "./bottomBox";
 
 function SearchPage(){
   const [searchData, setSearchData] = useState([]);
@@ -22,6 +23,7 @@ function SearchPage(){
         <TopBox data={searchData}/>
         <Button />
         <br />
+        <BottomBox />
 
       </ContainerDiv>
       {/* <ContainerDiv>
