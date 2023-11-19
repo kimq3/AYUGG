@@ -23,14 +23,7 @@ function SearchPage(){
         <Button />
         <br />
         <BottomBox data={searchData}/>
-
       </ContainerDiv>
-      {/* <ContainerDiv>
-        <TopDiv />
-        <RefreshButton />
-        <br />
-        <BottomDiv />
-      <ContainerDiv/> */}
     </div>
   );
 }

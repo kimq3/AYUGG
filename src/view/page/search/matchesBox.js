@@ -1,22 +1,22 @@
 import * as match from "view/page/search/searchStyle/matchesBoxStyle";
-import GetQueueType from "view/page/search/filterData";
+import * as fd from "view/page/search/filterData";
 
 function MatchesBox(props) {
   return (
     <div>
-      <MatchBox data={props.data}/>
+      <MatchBox data={props.data} index={0}/>
     </div>
   );
 }
 function MatchBox(props) {
-  // console.log(props.data.matches[0]);
+  console.log(props.data,props.index);
   return (
     <div style={{position: 'relative'}}>
       <match.MatchDiv>
         <match.MatchFirstDiv>
-          <match.Font1Div>솔로랭크</match.Font1Div>
-          <match.Font2Div>12시간전</match.Font2Div>
-          <match.Font2Div>24:00</match.Font2Div>
+          <match.Font1Div>{fd.GetQueueType(props.data.matches[props.index].queueId)}</match.Font1Div>
+          <match.Font2Div>{fd.GetMatchDate(props.data.matches[props.index].gameStartTimestamp)}</match.Font2Div>
+          <match.Font2Div>{fd.GetMatchTime(props.data.matches[props.index].gameDuration)}</match.Font2Div>
         </match.MatchFirstDiv>
         <match.MatchSecondDiv>
           <match.ChampImg />

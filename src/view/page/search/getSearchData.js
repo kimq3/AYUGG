@@ -6,6 +6,7 @@ export default async function GetSearchData(nickname) {
   let userUrl = nicknameUrl + nickname + "?api_key=" + apiKey;
   let data = {};
   data.matches = [];
+  data.partinum = [];
   const matchNum = 2; // 매치갯수
 
   await fetch(userUrl)
@@ -36,8 +37,11 @@ export default async function GetSearchData(nickname) {
         await fetch(matchDataUrl1)  
         .then(response => response.json())
         .then((rawData) => {
+          data.matches[i] = rawData.info;
           for(let j = 0; j < 10; j++){
-            data.matches[i] = rawData.info;
+            if(data.nickname === rawData.info.participants[j].summonerName){
+              data.partinum[i] = j;
+            }
           }
         });
       }
