@@ -151,15 +151,14 @@ const RuneBox = styled.div`
   border-radius: 4px;
 `;
 
-export const RuneWrappingBox = styled.div`
+export const ArticleLeftBoxStyle = styled.div`
   width: ${(props) => props.$width};
-  height: 99%;
-  background-color: rgb(47, 47, 47);  
+  height: 99%; 
   border-radius: 4px;
   box-sizing: border-box;
 `;
 
-export const RuneArticleBox = styled(RuneBox)`
+export const RuneArticleBoxStyle = styled(RuneBox)`
   width: 100%;
   height: ${(props) => props.$height};
   margin-bottom: ${(props) => (props.$last ? "0px" : "7px")};
@@ -170,15 +169,31 @@ export const SubTitleBox = styled(FlexBox)`
   flex-direction: column;
   justify-content: center;
   padding-left: 40px;
+  padding-top: 5px;
   text-align: left;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
+`;
+
+export const RuneLeftNavBoxStyle = styled.div`
+  width: 20%;
+  height: 100%;
+`;
+
+export const RuneRightDetailBoxStyle = styled.div`
+  width: 80%;
+  height: 100%;
+`;
+
+export const RuneDetailStyle = styled.div`
+  width: 33%;
+  height: 100%;
 `;
 
 export const NavRuneStyle = styled(RuneBox)`
   border-left: ${(props) => (props.$selected === "true" ? "2px solid red" : "none")};
   border-radius: 0px;
-  width: 20%;
+  width: 100%;
   height: 50%;
   background-color: ${(props) => (props.$selected === "true" ? "none" : "rgb(90, 90, 90)")};
   box-sizing: border-box;

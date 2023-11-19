@@ -32,11 +32,11 @@ function GetRuneData(detailData, runeData) {
     }
     dataB.push(rateDataB);
 
-    dataA && dataA.map((index) => {
-      runeVer1.push(index);
+    dataA.map((index) => {
+      return runeVer1.push(index);
     })
-    dataB && dataB.map((index) => {
-      runeVer2.push(index);
+    dataB.map((index) => {
+      return runeVer2.push(index);
     })
     runeList.push(runeVer1);
     runeList.push(runeVer2);
@@ -50,7 +50,6 @@ function GetRuneData(detailData, runeData) {
       let lowSubRuneList = [];
       let subRune = [];
       let allRuneData = [];
-      // let rune1 = rawData.version1;
     
       runeData && runeData.map((index) => {
         if(String(index.id) === rune.mainTitle) {
@@ -108,12 +107,10 @@ async function NavRune(props) {
   let runeData = props === "ver1" ? getRune[0] : getRune[1];
   let rateData = runeData[2];
   let selected = props === "ver1" ? "true" : "false";
-  console.log(runeData);
   let mainRuneUrl = basicUrl + runeData[0][0];
   let subRuneUrl = basicUrl + runeData[1][0];
 
   return (
-    <>
       <style.NavRuneStyle $selected={selected}>
         <style.NavRuneWrappingDivStyle>
           <style.Center>
@@ -128,7 +125,6 @@ async function NavRune(props) {
             <RuneRateDiv rate={rateData.pickRate} value={rateData.pickValue} />
         </style.NavRuneWrappingDivStyle>
       </style.NavRuneStyle>
-    </>
   );
 }
 
@@ -143,7 +139,16 @@ function RuneRateDiv(props){
   )
 }
 
-export default function DetailsRuneInfo() {
+async function DetailRune() {
+  const detailData = await ChampApi();
+  const runeApiData = await RuneApi();
+
+
+
+  return;
+}
+
+function ArticleLeftBox() {
   const [navRuneV1, setNavRuneV1] = useState([]);
   const [navRuneV2, setNavRuneV2] = useState([]);
   useEffect(() => {
@@ -157,28 +162,38 @@ export default function DetailsRuneInfo() {
 
   return (
     <>
-      <style.OutBoxStyle $height="500px">
-        {/* 왼쪽 룬 박스 */}
-        <style.RuneWrappingBox $width="68%">
-          <style.RuneArticleBox $height="30px">
-            <style.SubTitleBox>추천 룬 세팅</style.SubTitleBox>
-          </style.RuneArticleBox>
-          <style.RuneArticleBox $height="60%">
+      <style.ArticleLeftBoxStyle $width="68%">
+        <style.RuneArticleBoxStyle $height="30px">
+          <style.SubTitleBox>추천 룬 세팅</style.SubTitleBox>
+        </style.RuneArticleBoxStyle>
+        <style.RuneArticleBoxStyle $height="60%">
+          <style.RuneLeftNavBoxStyle>
             {navRuneV1}
             {navRuneV2}
-          </style.RuneArticleBox>
-          <style.RuneArticleBox $height="30px">
-            <style.SubTitleBox>스킬 빌드</style.SubTitleBox>
-          </style.RuneArticleBox>
-          <style.RuneArticleBox
-            $height="calc( 40% - 81px )"
-            $last="true"
-          ></style.RuneArticleBox>
-        </style.RuneWrappingBox>
+          </style.RuneLeftNavBoxStyle>
+          <style.RuneRightDetailBoxStyle>
+            {/* 주룬 부룬 특성 */}
+          </style.RuneRightDetailBoxStyle>
+        </style.RuneArticleBoxStyle>
+        <style.RuneArticleBoxStyle $height="30px">
+          <style.SubTitleBox>스킬 빌드</style.SubTitleBox>
+        </style.RuneArticleBoxStyle>
+        <style.RuneArticleBoxStyle $height="calc( 40% - 81px )" $last="true"></style.RuneArticleBoxStyle>
+      </style.ArticleLeftBoxStyle>
+    </>
+  )
+}
+
+export default function DetailsRuneInfo() {
+
+  return (
+    <>
+      <style.OutBoxStyle $height="500px">
+          <ArticleLeftBox />
         {/* 오른쪽 스펠, 시작 아이템, 신발 - 선호도 */}
-        <style.RuneWrappingBox $width="30%">
+        <style.ArticleLeftBoxStyle $width="30%">
           <div></div>
-        </style.RuneWrappingBox>
+        </style.ArticleLeftBoxStyle>
       </style.OutBoxStyle>
     </>
   );

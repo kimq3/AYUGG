@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as style from "./detailsStyle";
-import { ChampionDetailApi as ChampApi, RuneApi } from "model/constantly/apiConstants";
+import { ChampionDetailApi as ChampApi } from "model/constantly/apiConstants";
 
 async function BasicInfo(){
   const detailData = await ChampApi();
