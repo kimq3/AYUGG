@@ -1,7 +1,6 @@
-import { ChampionDetailApi as Api, RuneApi } from "model/constantly/apiConstants";
+import { ChampionDetailApi as ChampApi, RuneApi } from "model/constantly/apiConstants";
 import * as style from "./detailsStyle";
 import { useEffect, useState } from "react";
-import Loading from "view/loading";
 
 function GetRuneData(detailData, runeData) {
   let runeVer1 = [];
@@ -100,43 +99,33 @@ function GetRuneData(detailData, runeData) {
   return runeList;
 }
 
-function NavRune(props) {
+async function NavRune(props) {
   const basicUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
-  // let runeData;
+  const detailData = await ChampApi();
+  const runeApiData = await RuneApi();
   
-  // const getData = async () => {
-  //   try {
-      // const runeApiData = RuneApi();
-  //     const detailData = Api();
-  //     runeData = GetRuneData(detailData, runeApiData);
-  //     return GetRuneData(detailData, runeApiData);
-  //   } catch (e) {
-  //     window.alert(e);
-  //   }
-  // }
-
-  // getData();
-  // console.log(runeData);
+  let getRune = GetRuneData(detailData, runeApiData);
+  let runeData = props === "ver1" ? getRune[0] : getRune[1];
+  let rateData = runeData[2];
+  let selected = props === "ver1" ? "true" : "false";
+  console.log(runeData);
+  let mainRuneUrl = basicUrl + runeData[0][0];
+  let subRuneUrl = basicUrl + runeData[1][0];
 
   return (
     <>
-      {/* {loading ? <Loading /> : null} */}
-      <style.NavRuneStyle $selected="true">
+      <style.NavRuneStyle $selected={selected}>
         <style.NavRuneWrappingDivStyle>
           <style.Center>
             <style.NavRuneImgBoxStyle $size="40px" $main="true">
-              <style.NavRuneImgStyle $size="32px" src="" />
+              <style.NavRuneImgStyle $size="32px" src={mainRuneUrl} />
             </style.NavRuneImgBoxStyle>
-            <style.NavRuneImgBoxStyle $size="36px">
-              <style.NavRuneImgStyle $size="28px" src="" />
+            <style.NavRuneImgBoxStyle $size="32px">
+              <style.NavRuneImgStyle $size="24px" src={subRuneUrl} />
             </style.NavRuneImgBoxStyle>
           </style.Center>
-            {/* {runeData &&
-              <RuneRateDiv rate={rateData.winRate} value={rateData.winValue} />
-            }
-            {runeData &&
-              <RuneRateDiv rate={rateData.pickRate} value={rateData.pickValue} />
-            } */}
+            <RuneRateDiv rate={rateData.winRate} value={rateData.winValue} /> 
+            <RuneRateDiv rate={rateData.pickRate} value={rateData.pickValue} />
         </style.NavRuneWrappingDivStyle>
       </style.NavRuneStyle>
     </>
@@ -147,7 +136,7 @@ function RuneRateDiv(props){
   return (
     <>
       <style.RuneRateBoxStyle>
-        <style.RuneRateDivStyle>{props.rate}</style.RuneRateDivStyle>
+        <style.RuneRateDivStyle $size="30%">{props.rate}</style.RuneRateDivStyle>
         <style.RuneRateDivStyle>{props.value}</style.RuneRateDivStyle>
       </style.RuneRateBoxStyle>
     </>
@@ -155,6 +144,16 @@ function RuneRateDiv(props){
 }
 
 export default function DetailsRuneInfo() {
+  const [navRuneV1, setNavRuneV1] = useState([]);
+  const [navRuneV2, setNavRuneV2] = useState([]);
+  useEffect(() => {
+    NavRune("ver1").then((data) => {
+      setNavRuneV1(data);
+    });
+    NavRune("ver2").then((data) => {
+      setNavRuneV2(data);
+    });
+  }, [])
 
   return (
     <>
@@ -165,7 +164,8 @@ export default function DetailsRuneInfo() {
             <style.SubTitleBox>추천 룬 세팅</style.SubTitleBox>
           </style.RuneArticleBox>
           <style.RuneArticleBox $height="60%">
-            <NavRune />
+            {navRuneV1}
+            {navRuneV2}
           </style.RuneArticleBox>
           <style.RuneArticleBox $height="30px">
             <style.SubTitleBox>스킬 빌드</style.SubTitleBox>

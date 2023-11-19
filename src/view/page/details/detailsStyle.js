@@ -14,6 +14,7 @@ export const Center = styled.div`
   justify-content: center;
   align-items: center;
   margin: 15px 0;
+  position: relative;
 `;
 
 // 틀
@@ -184,13 +185,12 @@ export const NavRuneStyle = styled(RuneBox)`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${(props) => {
-    if (props.$selected === "first") {
-      return "border-top-left-radius: 4px;";
-    } else {
-      return "border-bottom-left-radius: 4px";
-    }
-  }}
+  ${(props) => (
+    props.$selected === "true"
+     ? "border-top-left-radius: 4px;"
+     : "border-bottom-left-radius: 4px;"
+    )
+  }
 `;
 
 export const NavRuneWrappingDivStyle = styled.div`
@@ -224,6 +224,9 @@ const RuneImgStyle = styled.img`
 export const NavRuneImgBoxStyle = styled(RuneImgBoxStyle)`
   width: ${(props) => props.$size};
   height: ${(props) => props.$size};
+  position: ${(props) => props.$main ? "static;" : "absolute;"}
+  right: ${(props) => props.$main ? "" : "20px;"}
+  top: ${(props) => props.$main ? "" : "20px;"}
 `;
 
 export const NavRuneImgStyle = styled(RuneImgStyle)`
@@ -232,7 +235,7 @@ export const NavRuneImgStyle = styled(RuneImgStyle)`
 `;
 
 const RuneRateDiv = styled.div`
-  width: 100%;
+  width: 50%;
   height: 32px;
   font-size: 16px;
   text-align: center;
@@ -244,5 +247,7 @@ export const RuneRateBoxStyle = styled.div`
 `;
 
 export const RuneRateDivStyle = styled(RuneRateDiv)`
+  width: ${(props) => props.$size};
+  margin: 0 auto;
   color: black;
 `;
