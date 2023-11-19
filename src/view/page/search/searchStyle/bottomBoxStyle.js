@@ -15,7 +15,7 @@ export const MatchButton = styled.button`
     padding-left: 16px;
     content: "";
     position: absolute;
-    transform: scaleX(${ props => (props.isActive ? 1 : 0)});
+    transform: scaleX(${ props => (props.isclick === props.value ? 1 : 0)});
     width: 90px;
     height: 1px;
     background-color: #fff;

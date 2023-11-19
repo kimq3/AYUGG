@@ -12,7 +12,6 @@ function SearchPage(){
     GetSearchData("hideonbush")
     .then((data)=>{
       setSearchData(data);
-      console.log(data);
     })
   }, []);
 
@@ -23,7 +22,7 @@ function SearchPage(){
         <TopBox data={searchData}/>
         <Button />
         <br />
-        <BottomBox />
+        <BottomBox data={searchData}/>
 
       </ContainerDiv>
       {/* <ContainerDiv>

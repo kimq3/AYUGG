@@ -74,3 +74,35 @@ export const RightTextDiv = styled.div`
   margin: auto 0;
   align-items: center;
 `
+export const MiddleStatisticTable = styled.table`
+  width: 100%;
+  padding-inline: 20px;
+`
+export const MiddleStatisticTh = styled.th`
+  padding-left: 20px;
+  border: none;
+  background: none;
+  padding-bottom: 5px;
+`
+export const OrangeSpan = styled.span`
+  color: orange;
+  margin-right: 5px;
+`
+export const DetailSpan = styled.span`
+  font-size: 8px;
+  color: #626367;
+`
+export const MSChanpionImg = styled.img`
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+`
+export const GraphCover1 = styled.div`
+  display: flex;
+  justify-content: center;
+`
+export const GraphSample1 = styled.div`
+  width: 200px;
+  height: 200px;
+  background: green;
+`

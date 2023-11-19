@@ -4,10 +4,14 @@ import { useState } from "react";
 
 //버튼전까지의 UI구성
 function TopBox(props) {
-  const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const [isDropdownVisible, setDropdownVisible] = useState('false');
 
   const clickDropdown = () => {
-    setDropdownVisible(!isDropdownVisible);
+    if(isDropdownVisible === 'true'){
+      setDropdownVisible('false');
+    } else {
+      setDropdownVisible('true');
+    }
   };
   
   return (
@@ -38,7 +42,7 @@ function TopBox(props) {
                     <b>More</b>
                     <MoreImg src={`${process.env.PUBLIC_URL}` + 'assets/images/arrow-down-icon-original.svg'} />
                   </LabelDiv>
-                  <MoreListUl isVisible={isDropdownVisible}>
+                  <MoreListUl isvisible={isDropdownVisible}>
                     <OptionItemLi>
                       <b>S9</b>
                       <span>Gold 1</span>
