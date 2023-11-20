@@ -28,8 +28,10 @@ export const MatchButton = styled.button`
   }
 `
 export const MoreMatchButton = styled.button`
+  color: white;
+  background: #626367;
   width: 1000px;
   padding: 5px;
-  border: 2px solid #626367;
+  border: 4px solid #D3D3D3;
   cursor: pointer;
 `

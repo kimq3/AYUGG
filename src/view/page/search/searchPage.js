@@ -24,6 +24,7 @@ function SearchPage(){
         <br />
         <BottomBox data={searchData}/>
       </ContainerDiv>
+      <br />
     </div>
   );
 }
