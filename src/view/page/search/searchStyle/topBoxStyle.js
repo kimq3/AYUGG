@@ -46,7 +46,11 @@ export const TierImg = styled.img`
   margin-right: 10px;
   width: 46px;
   height: 46px;
-  transform: scale(1.5);
+  transform: ${props => (
+    (props.tier === "EMERALD")
+    ? 'scale(1.5);'
+    : 'scale(3);'
+  )}
 `
 export const TierListUl = styled.ul`
   display: flex;
@@ -56,6 +60,7 @@ export const TierListUl = styled.ul`
   color: white;
   padding-inline-start: 0px;
   max-height: 13.6px;
+  justify-content: flex-end;
 `
 export const NowTierLi = styled.li`
   background: #626367;
@@ -75,20 +80,20 @@ export const LabelDiv = styled.div`
   border-radius: 4px;
   padding: 0 5px;
 `
+export const MoreListUl = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  display: ${(props) => (props.isvisible === 'true' ? 'initial' : 'none')};;
+`
 export const OptionItemLi = styled.li`
+  display: flex;
+  justify-content: space-between;
   background: #626367;
   margin-right: 10px;
   border-radius: 4px;
   padding: 0 5px;
+  margin-top: 3px;
 `
-export const MoreListUl = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  display: none;
-`
-// export const MoreTierUlAction = styled.ul`
-//   display: initial;
-// `
 // export const GraphBox = styled.div`
 //   width: auto;
 //   height: 100%;
