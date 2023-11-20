@@ -15,11 +15,6 @@ app.listen(PORT, ()=>{
     console.log("server start.., address: http://localhost:"+PORT+"/");
 });
 
-app.get("/", (req, res) => {
-    res.send("/park/garen");
-    res.send("/kim/~");
-});
-
 app.use("/kim", appRouter);
 app.use("/park", app2Router);
 
