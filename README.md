@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# 리그오브레전드 전적,통계 사이트 AYUGG
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 챔피언 정보, 사용자 전적, 통계, 프로경기 일정 등을 볼 수 있는 홈페이지이다.
 
-## Available Scripts
+## 멤버소개
 
-In the project directory, you can run:
+- 김규섭(조장): 챔피언 통계 페이지, 유저랭킹 상세 페이지, 챌린저 매치 페이지, DB 구축, API 기능 구축
+- 강신혁: 소환사 전적 페이지, 멀티 서치 페이지
+- 박준완: 메인페이지, 챔피언 통계 페이지, 챔피언 상세 페이지, API 기능 구축
+- 이희준: 유저 랭킹 페이지, 대회 일정 페이지
+- 공통: Git 협업.
 
-### `npm start`
+## 개발 환경 (`23. 11. 20. 기준)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- `Node.js v18.16.0`
+- `NPM v9.5.1`
+- **Front-end** : React.js
+- **Back-end** : express (JS)
+- **DATABASE** : SQLite3 (Python)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 주요기능
 
-### `npm test`
+- Mock up 확인 → [이동하기](https://ovenapp.io/view/DkBV5wcJtmXETiCxL22WhWusXtOgwi71/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1.  메인화면 (기존) : 사용자 검색, 금주 로테이션 챔피언 안내 기능 페이지
+2.  챔피언 분석 (기존) : 챔피언에 대한 통계를 라인별로 확인이 가능한 페이지
+3.  챔피언 상세 (기존) : 특정 챔피언의 룬세팅, 아이템, 스펠 등을 안내하는 페이지
+4.  전적 페이지 (기존) : 특정 유저의 정보와 최근 진행한 게임을 확인할 수 있는 페이지
+5.  멀티 서치 (기존) : 닉네임을 입력하면(복수가능) 유저의 정보를 간단히 파악이 가능한 페이지
+6.  챔피언 통계 (신규) : 필터링에 따라 원하는 조건의 챔피언들의 통계를 볼 수 있는 페이지
+7.  유저 랭킹 페이지 (신규) : 솔로랭크, 자유랭크의 최상위 유저들을 간략히 파악할 수 있는 페이지
+8.  유저 랭킹 자세히보기 (신규) : 최상위 유저의 정보를 자세하게 파악 가능한 페이지
+9.  챌린저 매치 결과 (신규) : 최상위 유저의 랭크 경기들의 결과를 볼 수 있는 페이지
+10. 대회일정 페이지 (신규) : LCK 등의 대회 일정을 보여주는 페이지
