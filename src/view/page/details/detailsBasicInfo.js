@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import * as style from "./detailsStyle";
 import { ChampionDetailApi as ChampApi } from "model/constantly/apiConstants";
 
+const detailData = await ChampApi();
+const version = detailData.version;
+
 async function BasicInfo(){
-  const detailData = await ChampApi();
-  const version = detailData.version;
   const id = detailData.id;
   const name = detailData.name;
 
@@ -34,9 +35,7 @@ async function BasicInfo(){
 }
 
 async function SkillImg() {
-  const detailData = await ChampApi();
-  let version = detailData.version;
-  let skill = detailData.skill;
+  const skill = detailData.skill;
   let skillImgList = [];
   
   function SkillCheck(list){
@@ -45,8 +44,7 @@ async function SkillImg() {
       let basicUrl = "https://ddragon.leagueoflegends.com/cdn/" + version;
       let pUrl = basicUrl + "/img/passive/" + s.id;
       let sUrl = basicUrl + "/img/spell/" + s.id;
-      list.push(<style.SkillImgStyle key={i} src={s.type === "passive" ? pUrl :sUrl } />);
-      i++;
+      return list.push(<style.SkillImgStyle key={i++} src={s.type === "passive" ? pUrl :sUrl } />);
     });
   }
 
@@ -76,7 +74,6 @@ function SkillImgAwait() {
 }
 
 async function RateDiv(props) {
-  const detailData = await ChampApi();
   let type;
   let typeResult;
 
@@ -92,6 +89,10 @@ async function RateDiv(props) {
     case 'banRate' :
       type = "밴률";
       typeResult = detailData.banRate;
+      break;
+    default:
+      type = "";
+      typeResult = "";
       break;
   }
 
@@ -112,7 +113,7 @@ function RateDivAwait(props) {
     RateDiv(props).then((data) => {
       setRate(data);
     });
-  }, [])
+  }, [props])
 
   return (
     <>
@@ -121,14 +122,14 @@ function RateDivAwait(props) {
   );
 }
 
-function CounterOlTag(props) {
+function CounterOlTagAwait(props) {
   const [li, setLi] = useState([]);
 
   useEffect(() => {
     CounterLiTag(props).then((data) => {
       setLi(data);
     });
-  }, [])
+  }, [props])
 
   return (
     <>
@@ -140,27 +141,25 @@ function CounterOlTag(props) {
 }
 
 async function CounterLiTag(props) {
-  const detailData = await ChampApi();
   let counterList = [];
   
   function CounterCheck(list){
     let id = 1;
     let version = detailData.version;
     let counterData = detailData.counter;
-    counterData && counterData.map((d) => {
+    counterData.map((d) => {
       if (props.win === "true") {
         if (d.win === true) {
-          let divBox = ( <CounterDiv key={id} id={d.championId} name={d.championName} rate={d.winRate} img={d.championImg} version={version}></CounterDiv> );
-          list.push(divBox);
-          id++;
+          let divBox = ( <CounterDiv key={id++} id={d.championId} name={d.championName} rate={d.winRate} img={d.championImg} version={version}></CounterDiv> );
+          return list.push(divBox);
         }
       } else {
         if (d.win === false) {
-          let divBox = ( <CounterDiv key={id} id={d.championId} name={d.championName} rate={d.winRate} img={d.championImg} version={version}></CounterDiv> );
-          list.push(divBox);
-          id++;
+          let divBox = ( <CounterDiv key={id++} id={d.championId} name={d.championName} rate={d.winRate} img={d.championImg} version={version}></CounterDiv> );
+          return list.push(divBox);
         }
       }
+      return null;
     });
   }
 
@@ -176,7 +175,7 @@ async function CounterLiTag(props) {
 }
 
 function CounterDiv(props) {
-  let imgUrl = "https://ddragon.leagueoflegends.com/cdn/"+ props.version + "/img/champion/" + props.id + ".png";
+  const imgUrl = "https://ddragon.leagueoflegends.com/cdn/"+ props.version + "/img/champion/" + props.id + ".png";
 
   return (
     <>
@@ -189,7 +188,7 @@ function CounterDiv(props) {
   );
 }
 
-export default function DetailsBasicInfo() {
+export default function FirstArticle() {
   const [basicInfo, setBasicInfo] = useState([]);
 
   useEffect(() => {
@@ -205,11 +204,11 @@ export default function DetailsBasicInfo() {
         <style.CounterBoxStyle>
           <style.CounterStyle $back="rgb(49, 49, 79)">
             <div>상대하기 쉬운 챔피언</div>
-            <CounterOlTag win="true"></CounterOlTag>
+            <CounterOlTagAwait win="true"></CounterOlTagAwait>
           </style.CounterStyle>
           <style.CounterStyle $back="rgb(108, 65, 65)">
             <div>상대하기 어려운 챔피언</div>
-            <CounterOlTag win="false"></CounterOlTag>
+            <CounterOlTagAwait win="false"></CounterOlTagAwait>
           </style.CounterStyle>
         </style.CounterBoxStyle>
       </style.OutBoxStyle>

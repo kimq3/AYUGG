@@ -180,15 +180,23 @@ export const RuneLeftNavBoxStyle = styled.div`
   height: 100%;
 `;
 
-export const RuneRightDetailBoxStyle = styled.div`
+export const RuneRightDetailBoxStyle = styled(Center)`
   width: 80%;
   height: 100%;
+  margin: 0;
+  position: static;
 `;
 
-export const RuneDetailStyle = styled.div`
+export const RuneDetailMainTitleStyle = styled.div`
   width: 33%;
   height: 100%;
 `;
+
+export const RuneDetailSubTitleStyle = styled.div``;
+
+export const RuneDetailMenuStyle = styled.div``;
+
+export const RuneStatsStyle = styled.div``;
 
 export const NavRuneStyle = styled(RuneBox)`
   border-left: ${(props) => (props.$selected === "true" ? "2px solid red" : "none")};

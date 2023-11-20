@@ -2,6 +2,12 @@ import { ChampionDetailApi as ChampApi, RuneApi } from "model/constantly/apiCons
 import * as style from "./detailsStyle";
 import { useEffect, useState } from "react";
 
+const detailData = await ChampApi();
+const runeApiData = await RuneApi();
+const getRune = GetRuneData(detailData, runeApiData);
+const basicRuneImgUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
+
+// 룬 api에서 해당 챔피언에게 해당되는 룬만 정제해서 뱉어냄
 function GetRuneData(detailData, runeData) {
   let runeVer1 = [];
   let runeVer2 = [];
@@ -61,9 +67,9 @@ function GetRuneData(detailData, runeData) {
                 id: runeInfo.id,
                 icon: runeInfo.icon
               }
-              lowRune.push(data);
+              return lowRune.push(data);
             })
-            lowMainRuneList.push(lowRune);
+            return lowMainRuneList.push(lowRune);
           })
           mainRuneList.push(mainRune);
           mainRuneList.push(lowMainRuneList);
@@ -78,14 +84,17 @@ function GetRuneData(detailData, runeData) {
                 id: runeInfo.id,
                 icon: runeInfo.icon
               }
-              lowRune.push(data);
+              return lowRune.push(data);
             })
-            lowSubRuneList.push(lowRune);
+            return lowSubRuneList.push(lowRune);
           })
           subRuneList.push(subRune);
           subRuneList.push(lowSubRuneList);
         }
+
+        return null;
       })
+
       allRuneData.push(mainRuneList);
       allRuneData.push(subRuneList);
       
@@ -98,28 +107,21 @@ function GetRuneData(detailData, runeData) {
   return runeList;
 }
 
+// 룬 왼쪽에 대표적인 룬 2개를 보여주는 NavBar
 async function NavRune(props) {
-  const basicUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
-  const detailData = await ChampApi();
-  const runeApiData = await RuneApi();
   
-  let getRune = GetRuneData(detailData, runeApiData);
   let runeData = props === "ver1" ? getRune[0] : getRune[1];
   let rateData = runeData[2];
   let selected = props === "ver1" ? "true" : "false";
-  let mainRuneUrl = basicUrl + runeData[0][0];
-  let subRuneUrl = basicUrl + runeData[1][0];
+  let mainRuneUrl = basicRuneImgUrl + runeData[0][0];
+  let subRuneUrl = basicRuneImgUrl + runeData[1][0];
 
   return (
       <style.NavRuneStyle $selected={selected}>
         <style.NavRuneWrappingDivStyle>
           <style.Center>
-            <style.NavRuneImgBoxStyle $size="40px" $main="true">
-              <style.NavRuneImgStyle $size="32px" src={mainRuneUrl} />
-            </style.NavRuneImgBoxStyle>
-            <style.NavRuneImgBoxStyle $size="32px">
-              <style.NavRuneImgStyle $size="24px" src={subRuneUrl} />
-            </style.NavRuneImgBoxStyle>
+            <RuneImgTag bSize="40px" bMain="true" iSize="32px" iSrc={mainRuneUrl}></RuneImgTag>
+            <RuneImgTag bSize="32px" iSize="24px" iSrc={subRuneUrl}></RuneImgTag>
           </style.Center>
             <RuneRateDiv rate={rateData.winRate} value={rateData.winValue} /> 
             <RuneRateDiv rate={rateData.pickRate} value={rateData.pickValue} />
@@ -128,6 +130,21 @@ async function NavRune(props) {
   );
 }
 
+// 룬 이미지 공통태그
+function RuneImgTag(props) {
+  let boxSize = props.bSize;
+  let boxMain = props.bMain;
+  let imgSize = props.iSize;
+  let imgSrc = props.iSrc;
+
+  return (
+    <style.NavRuneImgBoxStyle $size={boxSize} $main={boxMain}>
+      <style.NavRuneImgStyle $size={imgSize} src={imgSrc} />
+    </style.NavRuneImgBoxStyle>
+  )
+}
+
+// NavRune에서 해당 룬의 비율
 function RuneRateDiv(props){
   return (
     <>
@@ -139,15 +156,25 @@ function RuneRateDiv(props){
   )
 }
 
+// NavRune에서 선택한 룬의 상세정보
 async function DetailRune() {
-  const detailData = await ChampApi();
-  const runeApiData = await RuneApi();
 
 
+  return(
+    <>
+    {/* 룬 종류 - 정밀, 마법, 지배 ... */}
+      <style.RuneDetailMainTitleStyle>
 
-  return;
+      </style.RuneDetailMainTitleStyle>
+      {/* 해당 룬의 특성? - 집공, 치속, 기발 ... */}
+      <div></div>
+      {/* 특성의 특성 - 침착, 강인함, 최후의 일격 ... */}
+      <div></div>
+    </>
+  );
 }
 
+// 비동기 api를 담아낸 코드를 useState로 받아와서 react-child로 받아내는 함수
 function ArticleLeftBox() {
   const [navRuneV1, setNavRuneV1] = useState([]);
   const [navRuneV2, setNavRuneV2] = useState([]);
@@ -184,7 +211,8 @@ function ArticleLeftBox() {
   )
 }
 
-export default function DetailsRuneInfo() {
+// detailsMain.js에 뱉어내는 
+export default function SecondArticle() {
 
   return (
     <>

@@ -1,6 +1,6 @@
 import Nav from "view/nav";
-import DetailsBasicInfo from "./detailsBasicInfo";
-import DetailsRuneInfo from "./detailsRune";
+import FirstArticle from "./detailsBasicInfo";
+import SecondArticle from "./detailsRune";
 import { ChampionApi } from "model/constantly/apiConstants";
 
 function ChampionsDetails() {
@@ -8,8 +8,8 @@ function ChampionsDetails() {
   return (
     <>
       <Nav />
-      <DetailsBasicInfo />
-      <DetailsRuneInfo />
+      <FirstArticle />
+      <SecondArticle />
     </>
   );
 }
