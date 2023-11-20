@@ -27,3 +27,9 @@ export const MatchButton = styled.button`
     transform: scaleX(1);
   }
 `
+export const MoreMatchButton = styled.button`
+  width: 1000px;
+  padding: 5px;
+  border: 2px solid #626367;
+  cursor: pointer;
+`

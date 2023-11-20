@@ -1,10 +1,12 @@
 import * as dmb from "view/page/search/searchStyle/detailMatchBoxStyle";
+import { useEffect, useState } from "react";
 
 function DetailMatchBox() {
   return (
     <div>
-      <MatchLabel></MatchLabel>
-      <MatchDetailTableBox></MatchDetailTableBox>
+      <MatchLabel />
+      <MatchDetailTableBox color={'blue'} />
+      <MatchDetailTableBox color={'red'} />
     </div>
   );
 }
@@ -44,7 +46,7 @@ function MatchLabel() {
         <dmb.GoldImg src={`${process.env.PUBLIC_URL}` + `assets/images/yellow-coin-icon-original.svg`} />
         <dmb.Font1Span>00.0K</dmb.Font1Span></dmb.MatchLabelSpan>
       <dmb.MatchLabelSpan>
-      <dmb.svgImg>
+        <dmb.svgImg>
           <dmb.svgPath d={towerPath} win={false} />
         </dmb.svgImg>
         <dmb.Font1Span>0</dmb.Font1Span>
@@ -60,12 +62,24 @@ function MatchLabel() {
       <dmb.MatchLabelSpan>
         <dmb.Font1Span>레드팀</dmb.Font1Span>
         <dmb.WinRedLabelSpan win={false} >패배</dmb.WinRedLabelSpan>
-        </dmb.MatchLabelSpan>
+      </dmb.MatchLabelSpan>
     </dmb.MatchLabel>
   );
 }
 
-function MatchDetailTableBox() {
+function MatchDetailTableBox(props) {
+  const [teamString, setTeamString] = useState('');
+  const [backgroundColor, setBackgroundColor] = useState('');
+
+  useEffect(() => {
+    if (props.color === 'blue') {
+      setTeamString('블루팀');
+      setBackgroundColor('#2f436e');
+    } else {
+      setTeamString('레드팀');
+      setBackgroundColor('#703c47');
+    }
+  }, [])
   return (
     <dmb.MatchDetailTable>
       <colgroup>
@@ -77,37 +91,71 @@ function MatchDetailTableBox() {
         <col width={"30%"} />
       </colgroup>
       <dmb.MatchDetailTableLabel>
-        <th>블루팀</th>
+        <th>{teamString}</th>
         <th>딜량</th>
         <th>KDA</th>
         <th>CS</th>
         <th>와드</th>
         <th>아이템</th>
       </dmb.MatchDetailTableLabel>
-      <dmb.BlueTr>
-        <dmb.BlueTd>
-          <dmb.IconDiv>
-            <dmb.ChampIconSpan>
-              <dmb.ChampImg />
-              <dmb.LevelDiv>00</dmb.LevelDiv>
-            </dmb.ChampIconSpan>
-            <span>
+      {
+        [0, 1, 2, 3, 4].map(function () {
+          return (<dmb.TableTr backgroundColor={backgroundColor} >
+            <dmb.TableTd>
+              <dmb.IconDiv>
+                <dmb.ChampIconSpan>
+                  <dmb.ChampImg />
+                  <dmb.LevelDiv>00</dmb.LevelDiv>
+                </dmb.ChampIconSpan>
+                <span>
+                  <div>
+                    <dmb.Spell1Img />
+                    <dmb.Spell2Img />
+                  </div>
+                  <div>
+                    <dmb.Perk1Img />
+                    <dmb.Perk2Img />
+                  </div>
+                </span>
+              </dmb.IconDiv>
+              <dmb.NickTierDiv>
+                <div>Hide on bush</div>
+                <dmb.Font3Div>GOLD 1</dmb.Font3Div>
+              </dmb.NickTierDiv>
+            </dmb.TableTd>
+            <td>
+              <div>0000</div>
               <div>
-                <dmb.Spell1Img />
-                <dmb.Spell2Img />
+                <dmb.DamageGraphDiv>
+                  <dmb.RedBarDiv style={{ width: '10px' }} />
+                </dmb.DamageGraphDiv>
               </div>
-              <div>
-                <dmb.Perk1Img />
-                <dmb.Perk2Img />
-              </div>
-            </span>
-          </dmb.IconDiv>
-          <dmb.NickTierDiv>
-            <div>겨울좋앙</div>
-            <dmb.Font3Div>GOLD 1</dmb.Font3Div>
-          </dmb.NickTierDiv>
-        </dmb.BlueTd>
-      </dmb.BlueTr>
+            </td>
+            <td>
+              <div>0/0/0</div>
+              <dmb.Font3Div>{'(0.0)'}</dmb.Font3Div>
+            </td>
+            <td>
+              <div>00</div>
+              <dmb.Font3Div>{'(0.0)'}</dmb.Font3Div>
+            </td>
+            <td>
+              <div>00</div>
+              <dmb.Font3Div>{'(0/0)'}</dmb.Font3Div>
+            </td>
+            <td>
+              <dmb.ItemImg />
+              <dmb.ItemImg />
+              <dmb.ItemImg />
+              <dmb.ItemImg />
+              <dmb.ItemImg />
+              <dmb.WardImg />
+            </td>
+            {/*  */}
+          </dmb.TableTr>);
+        })
+      }
+
     </dmb.MatchDetailTable>
   );
 }

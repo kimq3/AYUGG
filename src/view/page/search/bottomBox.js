@@ -1,4 +1,4 @@
-import { MatchButtons, MatchButton } from "view/page/search/searchStyle/bottomBoxStyle.js";
+import { MatchButtons, MatchButton, MoreMatchButton } from "view/page/search/searchStyle/bottomBoxStyle.js";
 import { useState } from "react";
 import StatisticBox from "view/page/search/statisticBox"
 import MatchesBox from "view/page/search/matchesBox"
@@ -26,6 +26,7 @@ function BottomBox(props) {
       <MatchesBox data={props.data}/>
       <DetailMatchBox></DetailMatchBox>
       {/* 더보기 버튼? */}
+      <MoreMatchButton>MORE +</MoreMatchButton>
     </div>
   );
 }
