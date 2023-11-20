@@ -14,9 +14,9 @@ function MatchBox(props) {
     <div style={{position: 'relative'}}>
       <match.MatchDiv>
         <match.MatchFirstDiv>
-          <match.Font1Div>{fd.GetQueueType(props.data.matches[props.index].queueId)}</match.Font1Div>
+          {/* <match.Font1Div>{fd.GetQueueType(props.data.matches[props.index].queueId)}</match.Font1Div>
           <match.Font2Div>{fd.GetMatchDate(props.data.matches[props.index].gameStartTimestamp)}</match.Font2Div>
-          <match.Font2Div>{fd.GetMatchTime(props.data.matches[props.index].gameDuration)}</match.Font2Div>
+          <match.Font2Div>{fd.GetMatchTime(props.data.matches[props.index].gameDuration)}</match.Font2Div> */}
         </match.MatchFirstDiv>
         <match.MatchSecondDiv>
           <match.ChampImg />

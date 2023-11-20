@@ -2,6 +2,7 @@ import { MatchButtons, MatchButton } from "view/page/search/searchStyle/bottomBo
 import { useState } from "react";
 import StatisticBox from "view/page/search/statisticBox"
 import MatchesBox from "view/page/search/matchesBox"
+import DetailMatchBox from "view/page/search/detailMatchBox";
 
 function BottomBox(props) {
   const [selectedButton, setSelectedButton] = useState('whole');
@@ -23,6 +24,7 @@ function BottomBox(props) {
       <br />
       <br />
       <MatchesBox data={props.data}/>
+      <DetailMatchBox></DetailMatchBox>
       {/* 더보기 버튼? */}
     </div>
   );
