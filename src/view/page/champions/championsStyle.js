@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const FlexBox = styled.div`
@@ -7,9 +8,16 @@ const FlexBox = styled.div`
   justify-content: center;
 `;
 
+const LinkStyle = styled(Link)`
+  text-decoration: none;
+  &:visited {
+    color: black;
+  }
+`;
+
 export const ChampionsBox = styled(FlexBox)`
   width: 1000px;
-  height: ${(props) => props.height};
+  height: ${(props) => props.$height};
   margin: 50px auto;
   background-color: rgb(160, 160, 160);
   justify-content: space-between;
@@ -56,7 +64,7 @@ export const LineButton = styled(FlexBox)`
 `;
 
 export const ArticleBox = styled.div`
-  width: ${(props) => props.width};
+  width: ${(props) => props.$width};
   height: auto;
   box-sizing: border-box;
   margin: 15px 15px;
@@ -108,6 +116,10 @@ export const ListBox = styled(FlexBox)`
   height: 72px;
   display: inline-flex;
   margin: 5px 10px;
+`;
+
+export const ChampionLink = styled(LinkStyle)`
+
 `;
 
 export const ChampionsImgStyle = styled.img`

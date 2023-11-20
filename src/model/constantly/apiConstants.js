@@ -1,45 +1,56 @@
-import { useEffect, useState } from "react";
-
-
-function VersionState() {
+const VersionState = async () => {
   const versionApi = "https://ddragon.leagueoflegends.com/api/versions.json";
-  const [version, setVersion] = useState("");
-  useEffect(() => {
-    fetch(versionApi)
-      .then((response) => response.json())
-      .then((data) => setVersion(data[0]));
-  }, []);
+  
+  const response = await fetch(versionApi);
+  const resJson = await response.json();
+  
+  return resJson[0];
+};
 
-  return version;
+export async function ChampionApi() {
+  const ver = await VersionState();
+  const verUrl = "https://ddragon.leagueoflegends.com/cdn/" + ver;
+
+  const championDataUrl = "https://ddragon.leagueoflegends.com/cdn/" + ver + "/data/ko_KR/champion.json";
+  const response = await fetch(championDataUrl);
+  const resJson = await response.json();
+
+  let imgList = [];
+  let nameList = [];
+  let idList = [];
+  
+  Object.values(resJson.data).sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
+  .map((index) => {
+    imgList.push(verUrl + "/img/champion/" + index.image.full);
+    nameList.push(index.name);
+    idList.push(index.id);
+  });
+
+  let dataList = [];
+  dataList.push(imgList);
+  dataList.push(nameList);
+  dataList.push(idList);
+
+  return dataList;
 }
 
-export function ChampionApi() {
-  const [champData, setChampData] = useState([]);
-  let ver = VersionState();
-  let verUrl = "https://ddragon.leagueoflegends.com/cdn/" + ver + "/";
-  useEffect(() => {
-    if (ver !== "") {
-      fetch(verUrl + "data/ko_KR/champion.json")
-        .then((response) => response.json())
-        .then((data) => {
-          let imgList = [];
-          let nameList = [];
-          const myData = []
-            .concat(Object.values(data.data))
-            .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
-            .map((index) => {
-              imgList.push(verUrl + "img/champion/" + index.image.full);
-              nameList.push(index.name);
-            });
-          let dataList = [];
-          dataList.push(imgList);
-          dataList.push(nameList);
-          return setChampData(dataList);
-        });
-    }
-  }, [ver]);
+export async function RuneApi() {
+  const ver = await VersionState();
 
-  return champData;
+  const runeUrl = "https://ddragon.leagueoflegends.com/cdn/" + ver + "/data/ko_KR/runesReforged.json";
+  const response = await fetch(runeUrl);
+  const resJson = await response.json();
+
+  return resJson;
+}
+
+export async function ChampionDetailApi(){
+  const dataUrl = "http://localhost:8100/park/garen";
+
+  const response = await fetch(dataUrl);
+  const resJson = await response.json();
+  
+  return resJson.champData.data;
 }
 
 export const apiKey = "RGAPI-6e1b716a-027f-4306-930b-458ee9fb0229";

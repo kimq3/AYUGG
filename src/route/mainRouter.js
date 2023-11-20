@@ -9,7 +9,7 @@ import ChampionsMain from "view/page/champions/championsMain";
 import ChallengerMain from "view/page/challenger/challengerMain";
 import StatisticsMain from "view/page/statistics/statisticsMain";
 import SearchPage from "view/page/search/searchPage";
-import ChampionsDetails from "view/page/champions/detail";
+import ChampionsDetails from "view/page/details/detailsMain";
 
 const router = createBrowserRouter([
     {
