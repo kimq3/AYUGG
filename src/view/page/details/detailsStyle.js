@@ -162,6 +162,7 @@ export const RuneArticleBoxStyle = styled(RuneBox)`
   width: 100%;
   height: ${(props) => props.$height};
   margin-bottom: ${(props) => (props.$last ? "0px" : "7px")};
+  display: ${(props) => (props.$display ? props.$display : "block")};
 `;
 
 // - > Nav 룬
@@ -175,28 +176,48 @@ export const SubTitleBox = styled(FlexBox)`
   font-weight: 700;
 `;
 
+export const NavButtonStyle = styled.button`
+  width: 25%;
+  height: 100%;
+  cursor: pointer;
+  padding: 0px;
+  border: none;
+  background-color: transparent;
+`;
+
 export const RuneLeftNavBoxStyle = styled.div`
-  width: 20%;
+  width: 100%;
   height: 100%;
 `;
 
 export const RuneRightDetailBoxStyle = styled(Center)`
-  width: 80%;
+  width: 100%;
   height: 100%;
   margin: 0;
   position: static;
+  display: ${(props) => (props.$switch === "on" ? "none" : "flex")};
 `;
 
-export const RuneDetailMainTitleStyle = styled.div`
-  width: 33%;
+export const RuneDetailBoxStyle = styled.div`
+  width: 32%;
   height: 100%;
 `;
 
-export const RuneDetailSubTitleStyle = styled.div``;
+export const RuneDetailMainTitleStyle = styled(Center)`
+  width: 100%;
+`;
 
-export const RuneDetailMenuStyle = styled.div``;
+export const RuneDetailSubTitleStyle = styled(Center)`
+  width: 100%;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  padding: 10px 3px;
+`;
 
-export const RuneStatsStyle = styled.div``;
+export const RuneStatsStyle = styled(Center)`
+  width: 100%;
+  justify-content: space-evenly;
+`;
 
 export const NavRuneStyle = styled(RuneBox)`
   border-left: ${(props) => (props.$selected === "true" ? "2px solid red" : "none")};
@@ -248,13 +269,21 @@ export const NavRuneImgBoxStyle = styled(RuneImgBoxStyle)`
   width: ${(props) => props.$size};
   height: ${(props) => props.$size};
   position: ${(props) => props.$main ? "static;" : "absolute;"}
-  right: ${(props) => props.$main ? "" : "20px;"}
-  top: ${(props) => props.$main ? "" : "20px;"}
+  right: ${(props) => props.$main ? "0px" : "20px;"};
+  top: ${(props) => props.$main ? "0px" : "20px;"}; 
+  opacity: ${(props) => props.$selected === "true" ? "1" : "0.3"};
+  filter: ${(props) => props.$selected === "true" ? "grayscale(0)" : "grayscale(1)"};
+  background-color: ${(props) => props.$isNull === "true" ? "transparent" : "black"};
+  border-color: ${(props) => props.$isNull === "true" ? "transparent" : "#fff"};
 `;
+// opacity: 0.3;
+  // filter: grayscale(1);
 
 export const NavRuneImgStyle = styled(RuneImgStyle)`
   width: ${(props) => props.$size};
   height: ${(props) => props.$size};
+  opacity: ${(props) => props.$selected === "true" ? "1" : "0.3"};
+  filter: ${(props) => props.$selected === "true" ? "grayscale(0)" : "grayscale(1)"};
 `;
 
 const RuneRateDiv = styled.div`
