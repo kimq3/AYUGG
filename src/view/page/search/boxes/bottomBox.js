@@ -1,8 +1,8 @@
 import { MatchButtons, MatchButton, MoreMatchButton } from "view/page/search/searchStyle/bottomBoxStyle.js";
 import { useState } from "react";
-import StatisticBox from "view/page/search/statisticBox"
-import MatchesBox from "view/page/search/matchesBox"
-import DetailMatchBox from "view/page/search/detailMatchBox";
+import StatisticBox from "view/page/search/boxes/statisticBox"
+import MatchesBox from "view/page/search/boxes/matchesBox"
+import DetailMatchBox from "view/page/search/boxes/detailMatchBox";
 
 function BottomBox(props) {
   const [selectedButton, setSelectedButton] = useState('whole');

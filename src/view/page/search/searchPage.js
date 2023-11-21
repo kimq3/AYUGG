@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import Nav from "view/nav";
-import TopBox from "view/page/search/topBox"
+import TopBox from "view/page/search/boxes/topBox"
 import { ContainerDiv } from "view/page/search/searchStyle/topBoxStyle"
-import Button from "view/page/search/refreshButton"
+import Button from "view/page/search/boxes/refreshButton"
 import GetSearchData from "view/page/search/getSearchData";
-import BottomBox from "./bottomBox";
+import BottomBox from "./boxes/bottomBox";
 
 function SearchPage(){
   const [searchData, setSearchData] = useState([]);
