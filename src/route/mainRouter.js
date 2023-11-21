@@ -2,7 +2,6 @@ import {
     createBrowserRouter,
 } from "react-router-dom";
 import App from "App";
-import RankingMain from "view/page/ranking/rankingMain";
 import Multi from "view/page/multi/multiPage";
 import EventMain from "view/page/event/eventMain";
 import ChampionsMain from "view/page/champions/championsMain";
@@ -10,6 +9,7 @@ import ChallengerMain from "view/page/challenger/challengerMain";
 import StatisticsMain from "view/page/statistics/statisticsMain";
 import SearchPage from "view/page/search/searchPage";
 import ChampionsDetails from "view/page/details/detailsMain";
+import RankingDetail from "view/page/ranking/rankingDetail";
 
 const router = createBrowserRouter([
     {
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     },
     {
       path:"/ranking",
-      element:<RankingMain></RankingMain>
+      element:<RankingDetail></RankingDetail>
     },
     {
       path:"/multi",
