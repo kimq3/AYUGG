@@ -94,10 +94,10 @@ export const OptionItemLi = styled.li`
   padding: 0 5px;
   margin-top: 3px;
 `
-// export const GraphBox = styled.div`
-//   width: auto;
-//   height: 100%;
-// `
+export const GraphBox = styled.div`
+  width: auto;
+  height: 100%;
+`
 export const MoreImg = styled.img`
   width: 10px;
   height: 10px;
