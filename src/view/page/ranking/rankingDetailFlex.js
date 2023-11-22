@@ -4,11 +4,11 @@ import Nav from "view/nav";
 import * as style from "view/page/ranking/rankingstyle";
 import ProgressBar from "./progressBar";
 
-function RankingDetail(){
+function RankingDetailFlex(){
     const [user, setUser]=useState([]);
 
     useEffect(()=>{
-        getRanker('solo')
+        getRanker('flex')
         .then((data)=>{
             setUser(data);
             // console.log('결과',data);
@@ -54,4 +54,4 @@ function RankingDetail(){
     );
 }
 
-export default RankingDetail;
+export default RankingDetailFlex;

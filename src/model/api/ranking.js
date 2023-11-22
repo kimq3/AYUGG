@@ -1,7 +1,13 @@
-import { apiKey, soloRankUrl, nicknameUrl } from "model/constantly/apiConstants";
+import { apiKey, soloRankUrl, nicknameUrl, flexRankUrl } from "model/constantly/apiConstants";
 
-export async function getRanker(){
-    const response = await fetch(soloRankUrl+"?api_key="+apiKey);
+export async function getRanker(mode){
+    let response;
+    if(mode==='solo'){
+        response = await fetch(soloRankUrl+"?api_key="+apiKey);
+    }
+    else if(mode==='flex'){
+        response = await fetch(flexRankUrl+"?api_key="+apiKey);
+    }
     const data1 = await response.json();
     const data2 = await data1.slice(0,20); //건당 205명의 유저가 나오기에 20명으로 추출
 

@@ -53,7 +53,7 @@ export async function ChampionDetailApi(){
   return resJson.champData.data;
 }
 
-export const apiKey = "RGAPI-d7f2268a-7c6a-4551-b4bd-092cb9d35f94";
+export const apiKey = "RGAPI-6e1b716a-027f-4306-930b-458ee9fb0229";
 // NicknameUrl + encodedName[i] + "?api_key=" + apiKey (id, acountid puuid name profileIconId level)
 export const nicknameUrl = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
 // IdUrl + id + "?api_key=" + apiKey (티어,개인랭 승패 name) 
@@ -84,5 +84,6 @@ export const tierImgMapping = new Map([
 ]);
 
 export const soloRankUrl = "https://kr.api.riotgames.com/lol/league-exp/v4/entries/RANKED_SOLO_5x5/CHALLENGER/I"; //랭킹, 랭킹 상세페이지에서 사용(현재 챌린저 1~200위 까지 표출 가능)
+export const flexRankUrl = "https://kr.api.riotgames.com/lol/league-exp/v4/entries/RANKED_FLEX_SR/CHALLENGER/I";
 export const matchIdUrl2 = "/ids?start=0&count=10";// match id 추출 api 뒷부분
 
