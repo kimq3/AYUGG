@@ -1,12 +1,14 @@
 import * as sb from "view/page/search/searchStyle/statisticBoxStyle";
+import DoughnutChart from "../charts/doughnut";
+import RadarCharactChart from "../charts/radar";
 
 function StatisticBox() {
   return (
     <sb.StatisticTable>
       <colgroup>
-        <col width={"250px"} />
+        <col width={"255px"} />
         <col width={"500px"} />
-        <col width={"250px"} />
+        <col width={"245px"} />
       </colgroup>
       <tbody>
         <tr>
@@ -18,7 +20,7 @@ function StatisticBox() {
           <sb.InfoContentTh>
             <sb.InfoCover>
               <sb.GraphCover>
-                <sb.GraphSample />
+                <DoughnutChart />
                 <sb.InnerTextDiv>
                   <div style={{ fontSize: "16px" }}>50%</div>
                   <div style={{ fontSize: "10px" }}>10승 10패</div>
@@ -36,7 +38,7 @@ function StatisticBox() {
           </sb.MostContentTh>
           <sb.PlayStyleContentTh>
             <sb.GraphCover1>              
-              <sb.GraphSample1 />
+              <RadarCharactChart />
             </sb.GraphCover1>
           </sb.PlayStyleContentTh>
         </tr>

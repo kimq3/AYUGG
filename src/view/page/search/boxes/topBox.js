@@ -1,19 +1,20 @@
 import { UserDiv, FirstDiv, PlayerIconImg, NicknameSpan, SecondDiv, TierDiv, NowTierDiv, TierNameDiv, TierImg, TierListUl, NowTierLi, LabelDiv, OptionItemLi, MoreListUl, GraphBox, MoreImg } from "view/page/search/searchStyle/topBoxStyle.js";
 import { tierImgMapping } from 'model/constantly/apiConstants';
 import { useState } from "react";
+import LineTierChart from "../charts/lineTier";
 
 //버튼전까지의 UI구성
 function TopBox(props) {
   const [isDropdownVisible, setDropdownVisible] = useState('false');
 
   const clickDropdown = () => {
-    if(isDropdownVisible === 'true'){
+    if (isDropdownVisible === 'true') {
       setDropdownVisible('false');
     } else {
       setDropdownVisible('true');
     }
   };
-  
+
   return (
     <div>
       <UserDiv>
@@ -52,14 +53,13 @@ function TopBox(props) {
                       <span>Gold 1</span>
                     </OptionItemLi>
                   </MoreListUl>
-                  {/* </SelectionDiv> */}</div>
-                {/* </MoreTierLi> */}</li>
+                </div>
+              </li>
             </TierListUl>
           </TierDiv>
-          {/* <GraphDiv> */}<div>
-            {/* 시즌별? 시간별? 티어 그래프 */}
-            <img style={{ width: "160px", height: "80px" }} />
-            {/* </GraphDiv> */}</div>
+          <GraphBox>
+            <LineTierChart></LineTierChart>
+          </GraphBox>
         </SecondDiv>
       </UserDiv>
     </div>
