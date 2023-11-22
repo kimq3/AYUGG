@@ -1,5 +1,6 @@
 import * as match from "view/page/search/searchStyle/matchesBoxStyle";
 import * as fd from "view/page/search/filterData";
+import { useState, useEffect } from "react";
 
 function MatchesBox(props) {
   return (
@@ -9,14 +10,15 @@ function MatchesBox(props) {
   );
 }
 function MatchBox(props) {
-  console.log(props.data,props.index);
+  console.log(props.data.matches[props.index],props.data.partinum[props.index]);
+
   return (
     <div style={{position: 'relative'}}>
       <match.MatchDiv>
         <match.MatchFirstDiv>
-          {/* <match.Font1Div>{fd.GetQueueType(props.data.matches[props.index].queueId)}</match.Font1Div>
-          <match.Font2Div>{fd.GetMatchDate(props.data.matches[props.index].gameStartTimestamp)}</match.Font2Div>
-          <match.Font2Div>{fd.GetMatchTime(props.data.matches[props.index].gameDuration)}</match.Font2Div> */}
+          <match.Font1Div>{fd.GetQueueType(props.data.matches[0].queueId)}</match.Font1Div>
+          <match.Font2Div>{fd.GetMatchDate(props.data.matches[0].gameStartTimestamp)}</match.Font2Div>
+          <match.Font2Div>{fd.GetMatchTime(props.data.matches[0].gameDuration)}</match.Font2Div>
         </match.MatchFirstDiv>
         <match.MatchSecondDiv>
           <match.ChampImg />

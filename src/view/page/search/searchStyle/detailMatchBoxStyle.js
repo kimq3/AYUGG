@@ -57,7 +57,7 @@ export const MatchDetailTableLabel = styled.tr`
   border-bottom: 2px solid rgb(98, 99, 103);
 `
 export const TableTr = styled.tr`
-  background: ${ props => (props.backgroundColor)};
+  background: ${ props => (props.$backgroundColor)};
 `
 export const TableTd = styled.td`
   display: flex;

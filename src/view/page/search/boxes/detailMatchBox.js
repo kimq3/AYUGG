@@ -100,7 +100,7 @@ function MatchDetailTableBox(props) {
       </dmb.MatchDetailTableLabel>
       {
         [0, 1, 2, 3, 4].map(function () {
-          return (<dmb.TableTr backgroundColor={backgroundColor} >
+          return (<dmb.TableTr $backgroundColor={backgroundColor} >
             <dmb.TableTd>
               <dmb.IconDiv>
                 <dmb.ChampIconSpan>

@@ -24,9 +24,9 @@ function SearchPage(){
         dispatch(fetchDataFailure(error.message));
       }
     }
-    fetchData().then(()=>{
-      console.log(data);
-      // setdataSet(data.payload);
+    fetchData().then((data)=>{
+      // console.log(data);
+      setdataSet(data.payload);
     })
   }, []);
 
