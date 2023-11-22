@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 
 const detailData = await ChampApi();
 const runeApiData = await RuneApi();
+const version = detailData.version;
 const getRune = GetRuneData(detailData, runeApiData);
-const basicRuneImgUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
-
-
-
+const urlStart = "https://ddragon.leagueoflegends.com/cdn/";
+const basicRuneImgUrl = urlStart + "img/";
+const basicSkillImgUrl = urlStart + version + "/img/spell/";
+const basicSpellImgUrl = urlStart + version + "/img/item/";
+// ★ 룬 ★ -----------------------------------------
 // 룬 api에서 해당 챔피언에게 해당되는 룬만 정제해서 뱉어냄
 function GetRuneData(detailData, runeData) {
   let runeVer1 = [];
@@ -114,7 +116,7 @@ async function NavRune(props) {
   let ver = props.ver
   let runeData = ver === "ver1" ? getRune[0] : getRune[1];
   let rateData = runeData[2];
-  let selected = ver === "ver1" ? "true" : "false";
+  let selected = props.selected;
   let mainRuneUrl = basicRuneImgUrl + runeData[0][0];
   let subRuneUrl = basicRuneImgUrl + runeData[1][0];
 
@@ -193,7 +195,7 @@ function DetailRune(props) {
 
   return(
     <>
-      <style.RuneRightDetailBoxStyle $switch={props.switch}>    
+      <style.RuneRightDetailBoxStyle>    
         {first}
         {second}
         {third}
@@ -329,58 +331,235 @@ async function DetailRuneDiv(props) {
     </style.RuneDetailBoxStyle>
   )
 }
+// ★ 룬 ★ -----------------------------------------
+
+
+// ♣ 스킬 ♣ -----------------------------------------
+async function Skill() {
+  const skillTree = detailData.skillTree;
+  const skillMaster = skillTree.master;
+  const skillOrder = skillTree.order;
+
+  // 스킬 마스터리
+  let arrow = `${process.env.PUBLIC_URL}` + 'assets/images/arrow-icon-24' + '.svg';
+  let masterList = [];
+
+  skillMaster.map((index) => {
+    let src = basicSkillImgUrl + index.id;
+    let size = "32px";
+    let key = index.key;
+    let seq = index.seq;
+    let boxId = "box" + seq;
+    let arrowId = "arrow" + seq;
+
+    let arrowImg = <style.SkillImgStyle key={arrowId} $size={size} src={arrow} />
+    
+    let data = (
+      <style.SkillBoxStyle key={boxId} $size={size}>
+        <style.SkillImgStyle $size={size} src={src} />
+        <style.SkillKeyStyle>{key}</style.SkillKeyStyle>
+      </style.SkillBoxStyle>
+    )
+    masterList.push(data);
+
+    return seq === '3' ? null : masterList.push(arrowImg);
+  })
+  // ▲▲▲▲▲▲▲▲▲▲ 스킬 마스터리
+
+  // 스킬 순서
+  let q = 0; let w = 0; let e = 0; let r = 0;
+
+  skillOrder.map((index) => {
+    switch (index){
+      case 'Q' :
+        q++;
+        break;
+      case 'W' :
+        w++;
+        break;
+      case 'E' :
+        e++;
+        break;
+      default:
+        r++;
+        break;
+    }  
+    return;
+  })
+  let max = q > w ? (q > e ? q : (e > w ? e : w)) : ( w > e ? w : (e > q ? e : q));
+  
+  let seqKey = 1;
+  let masterCount = 0;
+  let masterSkill = skillMaster[0].key;
+  let masterSeqList = [];
+
+  skillOrder.map((index) => {
+    masterCount = masterSkill === index ? (masterCount+1) : masterCount;
+    let maxCount = masterCount === max && masterSkill === index ? "max" : null;
+
+    let data = OrderBox(index, seqKey, maxCount, masterSkill)
+    seqKey++
+    return masterSeqList.push(data);
+  })
+
+  function OrderBox(index, key, max, masterSkill){
+    let master = index === masterSkill ? "true" : "false";
+    let data = (
+        <style.OrderBoxStyle key={key}>
+          <style.OrderSeqStyle $max={max}>{key}</style.OrderSeqStyle>
+          <style.OrderSkillStyle $max={max} $master={master}>{index}</style.OrderSkillStyle>
+        </style.OrderBoxStyle>
+    )
+    return data;
+  }
+  // ▲▲▲▲▲▲▲▲▲▲ 스킬 순서
+
+  return (
+    <>
+      <style.SkillWrappingBox>
+        <style.SkillMasterBoxStyle>
+          {masterList}
+        </style.SkillMasterBoxStyle>
+        <style.SkillMasterBoxStyle>
+          {masterSeqList}
+        </style.SkillMasterBoxStyle>
+      </style.SkillWrappingBox>
+    </>
+  )
+}
+// ♣ 스킬 ♣ -----------------------------------------
+
 
 // 비동기 api를 담아낸 코드를 useState로 받아와서 react-child로 받아내는 함수
 function ArticleLeftBox() {
+  const [detailRune, setDetailRune] = useState();
   const [navRuneV1, setNavRuneV1] = useState([]);
   const [navRuneV2, setNavRuneV2] = useState([]);
-  const [switchV1, setSwitchV1] = useState("on");
-  const [switchV2, setSwitchV2] = useState("off");
+  const [skill, setSkill] = useState();
+  
+  let detailV1 = <DetailRune ver="ver1" />;
+  let detailV2 = <DetailRune ver="ver2" />;
+
+  let v1Props = {
+    ver: "ver1",
+    selected: "true"
+  }
+  let v2Props = {
+    ver: "ver2",
+    selected: "false"
+  }
 
   useEffect(() => {
-    const navRuneV1Props = {
-      ver: "ver1"
-    }
-    const navRuneV2Props = {
-      ver: "ver2"
-    }
-    NavRune(navRuneV1Props).then((data) => {
+    NavRune(v1Props).then((data) => {
       setNavRuneV1(data);
     });
-    NavRune(navRuneV2Props).then((data) => {
+    NavRune(v2Props).then((data) => {
       setNavRuneV2(data);
+    });
+    setDetailRune(detailV1);
+    
+    Skill().then((data) => {
+      setSkill(data);
     });
   }, [])
 
   function ClickEvent() {
-    switchV1 === "on" ? setSwitchV1("off") : setSwitchV1("on");
-    switchV2 === "on" ? setSwitchV2("off") : setSwitchV2("on");
-    return;
+    if(detailRune.props.ver === "ver1") {
+      v1Props.selected = "false";
+      v2Props.selected = "true";
+      setDetailRune(detailV2);
+    } else {
+      v1Props.selected = "true";
+      v2Props.selected = "false";
+      setDetailRune(detailV1);
+    }
+
+    NavRune(v1Props).then((data) => {
+      setNavRuneV1(data);
+    });
+    NavRune(v2Props).then((data) => {
+      setNavRuneV2(data);
+    });
   }
 
   return (
     <>
-      <style.ArticleLeftBoxStyle $width="68%">
+      <style.ArticleBoxStyle $width="68%">
         <style.RuneArticleBoxStyle $height="30px">
           <style.SubTitleBox>추천 룬 세팅</style.SubTitleBox>
         </style.RuneArticleBoxStyle>
-        <style.RuneArticleBoxStyle $height="60%" $display="flex">
+        <style.RuneArticleBoxStyle $height="70%" $display="flex">
           <style.NavButtonStyle onClick={ClickEvent}>
             <style.RuneLeftNavBoxStyle>
               {navRuneV1}
               {navRuneV2}
             </style.RuneLeftNavBoxStyle>
           </style.NavButtonStyle> 
-          <DetailRune ver="ver1" switch={switchV1} />
-          <DetailRune ver="ver2" switch={switchV2} />
+          {detailRune}
         </style.RuneArticleBoxStyle>
         <style.RuneArticleBoxStyle $height="30px">
           <style.SubTitleBox>스킬 빌드</style.SubTitleBox>
         </style.RuneArticleBoxStyle>
-        <style.RuneArticleBoxStyle $height="calc( 40% - 81px )" $last="true"></style.RuneArticleBoxStyle>
-      </style.ArticleLeftBoxStyle>
+        <style.RuneArticleBoxStyle $height="calc( 30% - 81px )" $last="true">
+          {skill}
+        </style.RuneArticleBoxStyle>
+      </style.ArticleBoxStyle>
     </>
   )
+}
+
+function ArticleRightBox() {
+
+  return (
+    <style.ArticleBoxStyle $width="30%">
+      <ItemDivTitle fav="spell" />
+      {/* <ItemDivTitle fav="start" />
+      <ItemDivTitle fav="shoes" />
+      <ItemDivTitle /> */}
+    </style.ArticleBoxStyle>
+  )
+}
+
+function ItemDivTitle(props) {
+  const [item, setItem] = useState();
+  useEffect(() => {
+    ItemDivData().then((data) => {
+      setItem(data);
+    });
+  }, [])
+
+  let fav;
+  switch (props.fav){
+    case 'spell' :
+      fav = "스펠 선호도";
+      break;
+    case 'start' :
+      fav = "시작 아이템";
+      break;
+    case 'shoes' :
+      fav = "신발 선호도";
+      break;
+    default:
+      fav = "";
+      break;
+  }  
+
+  let data = props.fav ? (
+    <style.ItemDivStyle>
+      <style.ItemTitleDivStyle>
+        <style.ItemTitleStyle $seq="1" $size="50%" $backColor = "rgb(55, 55, 55)">{fav}</style.ItemTitleStyle>
+        {item}
+        <style.ItemTitleStyle $seq="2" $size="25%" $backColor = "rgb(96, 96, 240)">픽률</style.ItemTitleStyle>
+        <style.ItemTitleStyle $seq="3" $size="25%" $backColor = "rgb(255, 26, 26)">승률</style.ItemTitleStyle>
+      </style.ItemTitleDivStyle>
+    </style.ItemDivStyle>
+  ) : <style.ItemDivStyle />
+
+  return data;
+}
+
+async function ItemDivData() {
+  console.log(detailData);
 }
 
 // detailsMain.js에 뱉어내는 
@@ -389,11 +568,8 @@ export default function SecondArticle() {
   return (
     <>
       <style.OutBoxStyle $height="500px">
-          <ArticleLeftBox />
-        {/* 오른쪽 스펠, 시작 아이템, 신발 - 선호도 */}
-        <style.ArticleLeftBoxStyle $width="30%">
-          <div></div>
-        </style.ArticleLeftBoxStyle>
+        <ArticleLeftBox />
+        <ArticleRightBox />
       </style.OutBoxStyle>
     </>
   );

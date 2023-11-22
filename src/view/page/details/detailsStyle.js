@@ -66,8 +66,8 @@ export const NameSkillStyle = styled(FlexBox)`
 `;
 
 export const SkillImgStyle = styled(Border4px)`
-  width: 32px;
-  height: 32px;
+  width: ${(props) => props.$size};
+  height: ${(props) => props.$size};
   margin-right: 5px;
 `;
 
@@ -151,11 +151,14 @@ const RuneBox = styled.div`
   border-radius: 4px;
 `;
 
-export const ArticleLeftBoxStyle = styled.div`
+export const ArticleBoxStyle = styled.div`
   width: ${(props) => props.$width};
   height: 99%; 
   border-radius: 4px;
   box-sizing: border-box;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-content: space-between;
 `;
 
 export const RuneArticleBoxStyle = styled(RuneBox)`
@@ -195,12 +198,13 @@ export const RuneRightDetailBoxStyle = styled(Center)`
   height: 100%;
   margin: 0;
   position: static;
-  display: ${(props) => (props.$switch === "on" ? "none" : "flex")};
 `;
 
 export const RuneDetailBoxStyle = styled.div`
   width: 32%;
   height: 100%;
+  padding-top: 5%;
+  box-sizing: border-box;
 `;
 
 export const RuneDetailMainTitleStyle = styled(Center)`
@@ -229,12 +233,6 @@ export const NavRuneStyle = styled(RuneBox)`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${(props) => (
-    props.$selected === "true"
-     ? "border-top-left-radius: 4px;"
-     : "border-bottom-left-radius: 4px;"
-    )
-  }
 `;
 
 export const NavRuneWrappingDivStyle = styled.div`
@@ -303,3 +301,101 @@ export const RuneRateDivStyle = styled(RuneRateDiv)`
   margin: 0 auto;
   color: black;
 `;
+
+// 스킬 담은 박스
+export const SkillWrappingBox = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: center;
+`;
+
+export const SkillMasterBoxStyle = styled.div`
+  width: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 20px;
+`;
+
+export const SkillBoxStyle = styled.div`
+  width: ${(props) => props.$size};
+  height: ${(props) => props.$size};
+  position: relative;
+`;
+
+export const SkillKeyStyle = styled.span`
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
+
+export const OrderBoxStyle = styled.div`
+  width: 24px;
+  height: 90%;
+`;
+
+const BasicOrderBox = styled.div`
+  width: 90%;
+  height: 100%;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 5%;
+  text-align: center;
+  padding: 3px 0px;
+`;
+
+export const OrderSeqStyle = styled(BasicOrderBox)`
+  height: auto;
+  background-color: ${(props) => props.$max === "max" ? "rgb(70, 185, 170)" : "#fff"};
+  color: ${(props) => props.$max === "max" ? "#fff" : "black"};
+  border-color: rgb(70, 185, 170);
+`;
+
+export const OrderSkillStyle = styled(BasicOrderBox)`
+  height: auto;
+  background-color: ${(props) => props.$max === "max"
+   ? "rgb(70, 185, 170)" : (props.$master === "true" ? "rgb(138, 217, 232)" : "rgb(202, 215, 226)")};
+  color: ${(props) => props.$max === "max" ? "#fff" : "black"};
+  border-color: transparent;
+`;
+
+// 아이템
+export const ItemDivStyle = styled.div`
+  width: 100%;
+  height: 24%;
+  border-radius: 4px;
+  background-color: rgb(200, 200, 200);
+`; 
+
+export const ItemTitleDivStyle = styled.div`
+  width: 100%;
+  height: 33%;
+  border-radius: 4px;
+  background-color: white;
+  display: flex;
+`;
+
+export const ItemTitleStyle = styled.div`
+  width: ${(props) => props.$size};
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: ${(props) => props.$backColor};
+  border-top-left-radius: ${(props) => props.$seq === "1" ? "4px" : "0px"};
+  border-top-right-radius: ${(props) => props.$seq === "3" ? "4px" : "0px"};
+  color: #fff;
+  text-align: center;
+`;
+
+// export const Favorite = styled.div`
+//   width: 
+// `;

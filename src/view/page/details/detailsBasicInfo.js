@@ -44,7 +44,7 @@ async function SkillImg() {
       let basicUrl = "https://ddragon.leagueoflegends.com/cdn/" + version;
       let pUrl = basicUrl + "/img/passive/" + s.id;
       let sUrl = basicUrl + "/img/spell/" + s.id;
-      return list.push(<style.SkillImgStyle key={i++} src={s.type === "passive" ? pUrl :sUrl } />);
+      return list.push(<style.SkillImgStyle key={i++} $size="32px" src={s.type === "passive" ? pUrl :sUrl } />);
     });
   }
 
