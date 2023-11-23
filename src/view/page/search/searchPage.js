@@ -7,11 +7,12 @@ import Button from "view/page/search/boxes/refreshButton"
 import GetSearchData from "view/page/search/getSearchData";
 import BottomBox from "view/page/search/boxes/bottomBox";
 import { fetchDataRequest, fetchDataSuccess, fetchDataFailure } from "reduxTest/action";
+import { store } from 'reduxTest/store';
 
 function SearchPage(){
-  let { data, loading, error } = useSelector((state) => state.data);
+  const { data, loading, error } = useSelector((state) => state.data);
   const dispatch = useDispatch();
-  const [ dataSet, setdataSet] = useState({});
+  // const [ dataSet, setdataSet] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,16 +20,17 @@ function SearchPage(){
       try {
         const data = await GetSearchData("hideonbush");
         console.log(fetchDataSuccess(data));
-        return dispatch(fetchDataSuccess(data));
+        dispatch(fetchDataSuccess(data));
       } catch (error) {
         dispatch(fetchDataFailure(error.message));
       }
     }
-    fetchData().then((data)=>{
-      // console.log(data);
-      setdataSet(data.payload);
+    fetchData().then(()=>{
+      console.log(store.getState());
+      console.log(data);
+      // setdataSet(data.payload);
     })
-  }, []);
+  }, [dispatch]);
 
   // if (loading) {
   //   return <p>Loading...</p>;
@@ -41,12 +43,12 @@ function SearchPage(){
   return (
     <div>
       <Nav></Nav>
-      <ContainerDiv>
+      {/* <ContainerDiv>
         <TopBox data={dataSet} />
         <Button />
         <br />
         <BottomBox data={dataSet} />
-      </ContainerDiv>
+      </ContainerDiv> */}
       <br />
     </div>
   );

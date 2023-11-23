@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import dataReducer from 'reduxTest/dataSlice.js';
+import dataReducer from 'reduxTest/dataSlice';
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     data: dataReducer,
   },
 });
-
-export default store;
