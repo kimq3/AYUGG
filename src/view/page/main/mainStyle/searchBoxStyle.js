@@ -39,6 +39,9 @@ export const Input = styled.input`
     height:30px;
     width:80%;
     border-radius : 4px;
+    &:focus {
+    outline: none;
+  }
 `;
 
 export const Button = styled.button`

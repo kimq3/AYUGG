@@ -77,7 +77,7 @@ async function DetailItem(props) {
   function LegendItem(ver) {
     let itemData = ver === 1 ? detailData.legend1 : detailData.legend2;
     let legendImg = basicItemImgUrl + itemData.id + ".png";
-    console.log(itemData);
+    
     return(
       <style.ItemBoxStyle $seq={ver}>
         <style.ItemWrappingBoxStyle $state="legend">
@@ -131,8 +131,6 @@ export default function ThirdArticle() {
       setDetailItem(data);
     })
   }, [])
-
-  console.log(detailItem);
 
   function ClickEvent() {
     if(version === 1) {

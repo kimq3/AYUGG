@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as style from "./championsStyle";
+import * as style from "./champsStyle";
 import { Link, useLocation } from 'react-router-dom';
 import { ChampionApi } from "model/constantly/apiConstants";
 
@@ -23,17 +23,14 @@ export function Option() {
 
 export  function Line(props) {
   const { pathname } = useLocation();
-  const lineClick = () => {
-    <Link to={"/" + props.value}></Link>
-  }
 
-  return <style.LineButton $pathname={pathname} $line={props.value} onClick={lineClick}>
-    {props.name}
+  return <style.LineButton $pathname={pathname} $line={props.value}>
+    <style.ChampionLink to={"/" + props.value}>{props.name}</style.ChampionLink>
   </style.LineButton>
 }
 
 export function Input(){
-  const [inputText, setInputText] = useState("수정 필요 / placeholer");
+  const [inputText, setInputText] = useState();
   const onChangeInput = e => {
     setInputText(e.target.value);
   };
