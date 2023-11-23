@@ -212,8 +212,6 @@ export default function FirstArticle() {
           </style.CounterStyle>
         </style.CounterBoxStyle>
       </style.OutBoxStyle>
-      {/* <style.OutBoxStyle $height="500px"></style.OutBoxStyle> */}
-      {/* <style.OutBoxStyle $height="300px"></style.OutBoxStyle> */}
     </>
   );
 }

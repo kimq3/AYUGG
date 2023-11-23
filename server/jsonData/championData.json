@@ -3,7 +3,7 @@
     "id": "Garen",
     "name": "가렌",
     "tier": "EMERALD",
-    "version": "13.11.1",
+    "version": "13.22.1",
     "winRate": "10%",
     "pickRate": "20%",
     "banRate": "30%",
@@ -121,11 +121,11 @@
     },
     "spell": {
       "version1": {
-        "spell1": {
+        "type1": {
           "id": "SummonerDot",
           "name": "점화"
         },
-        "spell2": {
+        "type2": {
           "id": "SummonerFlash",
           "name": "점멸"
         },
@@ -133,11 +133,11 @@
         "winRate": "51.20%"
       },
       "version2": {
-        "spell1": {
+        "type1": {
           "id": "SummonerTeleport",
           "name": "순간이동"
         },
-        "spell2": {
+        "type2": {
           "id": "SummonerFlash",
           "name": "점멸"
         },
@@ -147,11 +147,11 @@
     },
     "startItem": {
       "version1": {
-        "item1": {
+        "type1": {
           "id": "1054",
           "name": "도란의 방패"
         },
-        "item2": {
+        "type2": {
           "id": "2003",
           "name": "체력 물약"
         },
@@ -159,11 +159,11 @@
         "winRate": "50.68%"
       },
       "version2": {
-        "item1": {
+        "type1": {
           "id": "1055",
           "name": "도란의 검"
         },
-        "item2": {
+        "type2": {
           "id": "2003",
           "name": "체력 물약"
         },

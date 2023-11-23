@@ -9,7 +9,9 @@ const getRune = GetRuneData(detailData, runeApiData);
 const urlStart = "https://ddragon.leagueoflegends.com/cdn/";
 const basicRuneImgUrl = urlStart + "img/";
 const basicSkillImgUrl = urlStart + version + "/img/spell/";
-const basicSpellImgUrl = urlStart + version + "/img/item/";
+const basicItemImgUrl = urlStart + version + "/img/item/";
+const basicSpellImgUrl = urlStart + version + "/img/spell/";
+
 // ★ 룬 ★ -----------------------------------------
 // 룬 api에서 해당 챔피언에게 해당되는 룬만 정제해서 뱉어냄
 function GetRuneData(detailData, runeData) {
@@ -124,8 +126,8 @@ async function NavRune(props) {
       <style.NavRuneStyle $selected={selected}>
         <style.NavRuneWrappingDivStyle>
           <style.Center>
-            <RuneImgTag bSize="40px" bMain="true" iSize="32px" iSrc={mainRuneUrl} selected="true"></RuneImgTag>
-            <RuneImgTag bSize="32px" iSize="24px" iSrc={subRuneUrl} selected="true"></RuneImgTag>
+            <RuneImgTag bSize="40px" bMain="true" iSize="32px" iSrc={mainRuneUrl} selected={selected} />
+            <RuneImgTag bSize="32px" iSize="24px" iSrc={subRuneUrl} selected={selected} />
           </style.Center>
             <RuneRateDiv rate={rateData.winRate} value={rateData.winValue} /> 
             <RuneRateDiv rate={rateData.pickRate} value={rateData.pickValue} />
@@ -513,20 +515,21 @@ function ArticleRightBox() {
   return (
     <style.ArticleBoxStyle $width="30%">
       <ItemDivTitle fav="spell" />
-      {/* <ItemDivTitle fav="start" />
+      <ItemDivTitle fav="start" />
       <ItemDivTitle fav="shoes" />
-      <ItemDivTitle /> */}
+      <ItemDivTitle />
     </style.ArticleBoxStyle>
   )
 }
 
 function ItemDivTitle(props) {
-  const [item, setItem] = useState();
+  const [favImg, setFavImg] = useState();
+
   useEffect(() => {
-    ItemDivData().then((data) => {
-      setItem(data);
+    ItemDivData(props).then((data) => {
+      setFavImg(data);
     });
-  }, [])
+  }, [props])
 
   let fav;
   switch (props.fav){
@@ -545,21 +548,77 @@ function ItemDivTitle(props) {
   }  
 
   let data = props.fav ? (
-    <style.ItemDivStyle>
-      <style.ItemTitleDivStyle>
-        <style.ItemTitleStyle $seq="1" $size="50%" $backColor = "rgb(55, 55, 55)">{fav}</style.ItemTitleStyle>
-        {item}
-        <style.ItemTitleStyle $seq="2" $size="25%" $backColor = "rgb(96, 96, 240)">픽률</style.ItemTitleStyle>
-        <style.ItemTitleStyle $seq="3" $size="25%" $backColor = "rgb(255, 26, 26)">승률</style.ItemTitleStyle>
-      </style.ItemTitleDivStyle>
-    </style.ItemDivStyle>
-  ) : <style.ItemDivStyle />
+    <style.FavDivStyle>
+      <style.FavTitleDivStyle>
+        <style.FavTitleStyle $seq="1" $size="50%" $backColor = "rgb(55, 55, 55)">{fav}</style.FavTitleStyle>
+        <style.FavTitleStyle $seq="2" $size="25%" $backColor = "rgb(96, 96, 240)">픽률</style.FavTitleStyle>
+        <style.FavTitleStyle $seq="3" $size="25%" $backColor = "rgb(255, 26, 26)">승률</style.FavTitleStyle>
+      </style.FavTitleDivStyle>
+      {favImg}
+    </style.FavDivStyle>
+  ) : <style.FavDivStyle /> // 박스는 4개가 깔끔한데 정보값은 3개라 일단 비워둠
 
   return data;
 }
 
-async function ItemDivData() {
-  console.log(detailData);
+async function ItemDivData(props) {
+  let fav;
+  let url;
+
+  switch (props.fav){
+    case 'spell' :
+      fav = detailData.spell;
+      url = basicSpellImgUrl;
+      break;
+    case 'start' :
+      fav = detailData.startItem;
+      url = basicItemImgUrl;
+      break;
+    case 'shoes' :
+      fav = detailData.shoes;
+      url = basicItemImgUrl;
+      break;
+    default:
+      fav = null;
+      break;
+  } 
+  let ver1 = fav !== null && fav.version1;
+  let ver2 = fav !== null && fav.version2;
+  let other = fav !== null && props.fav !== 'shoes' ? true : false;
+  let data1 = fav !== null && getImg(ver1);
+  let data2 = fav !== null && getImg(ver2);
+
+  function getImg(ver) {
+    let src1 = other ? url + ver.type1.id + ".png" : url + ver.id + ".png";
+    let src2 = other ? url + ver.type2.id + ".png" : null;
+    let data = other ? (
+      <style.FavImgBoxStyle>
+        <style.FavImgStyle src={src1} />
+        <style.FavImgStyle src={src2} />
+      </style.FavImgBoxStyle>
+    ) : (
+      <style.FavImgBoxStyle>
+        <style.FavImgStyle src={src1} />
+      </style.FavImgBoxStyle>
+    );
+
+    return (
+      <style.FavVerBoxStyle>
+        <style.FavVerDataStyle $size="50%">
+          {data}
+        </style.FavVerDataStyle>
+        <style.FavVerDataStyle $size="25%">{ver.pickRate}</style.FavVerDataStyle>
+        <style.FavVerDataStyle $size="25%">{ver.winRate}</style.FavVerDataStyle>
+      </style.FavVerBoxStyle>
+    )
+  }
+
+  return (
+    <style.FavDataDivStyle>
+      {data1}
+      {data2}
+    </style.FavDataDivStyle>
+  )
 }
 
 // detailsMain.js에 뱉어내는 

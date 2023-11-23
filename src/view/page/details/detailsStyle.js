@@ -5,7 +5,7 @@ const FlexBox = styled.div`
   border-radius: 4px;
 `;
 
-const Border4px = styled.img`
+const Border4pxImg = styled.img`
   border-radius: 4px;
 `;
 
@@ -50,7 +50,7 @@ export const BasicDivStyle = styled.div`
 `;
 
 // - > 대표 Img
-export const BasicImgStyle = styled(Border4px)`
+export const BasicImgStyle = styled(Border4pxImg)`
   width: 100%;
   height: 100%;
 `;
@@ -65,7 +65,7 @@ export const NameSkillStyle = styled(FlexBox)`
   color: #fff;
 `;
 
-export const SkillImgStyle = styled(Border4px)`
+export const SkillImgStyle = styled(Border4pxImg)`
   width: ${(props) => props.$size};
   height: ${(props) => props.$size};
   margin-right: 5px;
@@ -130,7 +130,7 @@ export const CounterDivStyle = styled.div`
   text-align: center;
 `;
 
-export const CounterImgStyle = styled(Border4px)`
+export const CounterImgStyle = styled(Border4pxImg)`
   width: 36px;
   height: 36px;
   display: block;
@@ -269,18 +269,16 @@ export const NavRuneImgBoxStyle = styled(RuneImgBoxStyle)`
   position: ${(props) => props.$main ? "static;" : "absolute;"}
   right: ${(props) => props.$main ? "0px" : "20px;"};
   top: ${(props) => props.$main ? "0px" : "20px;"}; 
-  opacity: ${(props) => props.$selected === "true" ? "1" : "0.3"};
+  opacity: ${(props) => props.$selected === "true" ? "1" : "0.5"};
   filter: ${(props) => props.$selected === "true" ? "grayscale(0)" : "grayscale(1)"};
   background-color: ${(props) => props.$isNull === "true" ? "transparent" : "black"};
   border-color: ${(props) => props.$isNull === "true" ? "transparent" : "#fff"};
 `;
-// opacity: 0.3;
-  // filter: grayscale(1);
 
 export const NavRuneImgStyle = styled(RuneImgStyle)`
   width: ${(props) => props.$size};
   height: ${(props) => props.$size};
-  opacity: ${(props) => props.$selected === "true" ? "1" : "0.3"};
+  opacity: ${(props) => props.$selected === "true" ? "1" : "0.5"};
   filter: ${(props) => props.$selected === "true" ? "grayscale(0)" : "grayscale(1)"};
 `;
 
@@ -367,23 +365,26 @@ export const OrderSkillStyle = styled(BasicOrderBox)`
   border-color: transparent;
 `;
 
-// 아이템
-export const ItemDivStyle = styled.div`
+// 선호하는 아이템
+export const FavDivStyle = styled.div`
   width: 100%;
   height: 24%;
   border-radius: 4px;
   background-color: rgb(200, 200, 200);
 `; 
 
-export const ItemTitleDivStyle = styled.div`
+const BasicFavDiv = styled.div`
   width: 100%;
-  height: 33%;
   border-radius: 4px;
-  background-color: white;
   display: flex;
 `;
 
-export const ItemTitleStyle = styled.div`
+export const FavTitleDivStyle = styled(BasicFavDiv)`
+  height: 30%;
+  font-size: 12px;
+`;
+
+export const FavTitleStyle = styled.div`
   width: ${(props) => props.$size};
   height: 100%;
   display: flex;
@@ -393,9 +394,229 @@ export const ItemTitleStyle = styled.div`
   border-top-left-radius: ${(props) => props.$seq === "1" ? "4px" : "0px"};
   border-top-right-radius: ${(props) => props.$seq === "3" ? "4px" : "0px"};
   color: #fff;
-  text-align: center;
+  text-align: ${(props) => props.$seq === "1" ? "left" : "center"};
+  padding-left: ${(props) => props.$seq === "1" ? "15px" : "0px"};
+  box-sizing: ${(props) => props.$seq === "1" ? "border-box" : "content-box"};
 `;
 
-// export const Favorite = styled.div`
-//   width: 
-// `;
+export const FavDataDivStyle = styled(BasicFavDiv)`
+  height: 70%;
+  background-color: white;
+  display: block;
+  background-color: rgb(200, 200, 200);
+`;
+
+export const FavVerBoxStyle = styled.div`
+  width: 100%;
+  height: 50%;
+  display: flex;
+  aling-items: center;
+  justify-content: center;
+  border-radius: 4px;
+`;
+
+export const FavVerDataStyle = styled.div`
+  width: ${(props) => props.$size};
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: black;
+`;
+
+export const FavImgBoxStyle = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+export const FavImgStyle = styled(Border4pxImg)`
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+`;
+
+export const ImgNameStyle = styled.div`
+  width: auto;
+  height: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 10px;
+`;
+
+// 아이템
+const Border4pxDiv = styled.div`
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const ItemTitleBoxStyle = styled(Border4pxDiv)`
+  width: 100%;
+  height: 10%;
+  background-color: rgb(200, 200, 200);
+  margin-bottom: 5px;
+`;
+
+export const ItemTitleStyle = styled(Border4pxDiv)`
+  padding-left: 40px;
+  padding-top: 5px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 700;
+`;
+
+export const ItemOutBoxStyle = styled.div`
+  width: 100%;
+  height: 88%;
+  border-radius: 4px;
+  background-color: rgb(200, 200, 200);
+`;
+
+export const ItemNavBoxStyle = styled(Border4pxDiv)`
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const ItemNavStyle = styled(Border4pxDiv)`
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  border-top: 1px solid rgb(255, 255, 115);
+  background-color: ${(props) => props.$selected === "true" ? "rgb(200, 200, 200)" : "rgb(55, 55, 55);"};
+  border-top: ${(props) => props.$selected === "true" ? "2px solid rgb(255, 255, 115)" : "0px"};
+  opacity: ${(props) => props.$selected === "true" ? "1" : "0.5"};
+  filter: ${(props) => props.$selected === "true" ? "grayscale(0)" : "grayscale(1)"};
+  flex-direction: row;
+`;
+
+const BasicItemImg = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  margin: 0 auto;
+`;
+
+export const ItemNavButtonStyle = styled.button`
+  width: 100%;
+  height: 100%;
+  border: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0px;
+`;
+
+export const ItemNavImgBoxStyle = styled(Border4pxDiv)`
+  width: 10%;
+  height: 100%;
+`;
+
+export const ItemNavImgStyle = styled(BasicItemImg)`
+  border: 2px solid rgb(255, 255, 115);
+`;
+
+export const ItemNavNameBoxStyle = styled(Border4pxDiv)`
+  width: 90%;
+  padding-left: 10px;
+  box-sizing: border-box;
+`;
+
+export const ItemNavNameStyle = styled.div`
+  font-size: 16px;
+  font-weight: 700;
+  margin: auto 0px;
+`;
+
+export const MiddleWrappingBox = styled.div`
+  display: flex;
+  width: 100%;
+  height: 10%;
+`;
+
+export const MiddleTitleDivStyle = styled.div`
+  width: 50%;
+  height: 100%;
+  background-color: rgb(90, 90, 90);
+  display: flex;
+  border-right: ${(props) => props.$seq === "1" ? "1px solid rgb(200, 200, 200)" : "0px"};
+`;
+
+export const MiddleTitleStyle = styled.div`
+  width: ${(props) => props.$size};
+  height: 100%;
+  font-size: 12px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DetailItemBoxStyle = styled.div`
+  width: 100%;
+  height: 65%;
+  background-color: white;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  display: ${(props) => (props.$display === "true" ? "flex" : "none")};
+`;
+
+const BasicItemDivBox = styled.div`
+  width: 50%;
+  height: 100%;
+`;
+
+const BasicItem = styled.div`
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ItemArticleBoxStyle = styled(BasicItemDivBox)`
+  border-right: ${(props) => props.$position === "left" ? "1px solid rgb(200, 200, 200)" : "0px"};
+`;
+
+export const ItemBoxStyle = styled(BasicItem)`
+  width: 100%;
+  border-bottom: ${(props) => props.$seq === 1 ? "1px solid rgb(200, 200, 200)" : "0px"};
+`;
+
+export const ItemWrappingBoxStyle = styled.div`
+  width: 60%;
+  height: 100%;
+  text-align: center;
+  padding-top: 5%;
+  box-sizing: border-box;
+  display: ${(props) => props.$state === "legend" ? "flex" : "block"};
+`;
+
+export const ItemImgStyle = styled(BasicItemImg)`
+  border: ${(props) => props.$state === "m"  ? "2px solid rgb(255, 255, 115)" : "0px"};
+  border-radius: 50%;
+  margin-right: 10px;
+`;
+
+export const ItemRateBoxStyle = styled.div`
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ItemNameStyle = styled.div`
+  width: 70%;
+  height: 100%;
+  text-align: left;
+  font-size: 16px;
+  padding-top: 5px;
+  padding-left: 10px;
+  box-sizing: border-box;
+`;
