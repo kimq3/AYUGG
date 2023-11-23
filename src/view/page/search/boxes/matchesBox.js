@@ -1,24 +1,25 @@
 import * as match from "view/page/search/searchStyle/matchesBoxStyle";
 import * as fd from "view/page/search/filterData";
-import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
-function MatchesBox(props) {
+function MatchesBox() {
+
   return (
     <div>
-      <MatchBox data={props.data} index={0}/>
+      <MatchBox />
     </div>
   );
 }
-function MatchBox(props) {
-  console.log(props.data.matches[props.index],props.data.partinum[props.index]);
+function MatchBox() {
+  const { data, loading, error } = useSelector((state) => state.data);
 
   return (
     <div style={{position: 'relative'}}>
-      <match.MatchDiv>
+      {data && <match.MatchDiv>{console.log(data)}
         <match.MatchFirstDiv>
-          <match.Font1Div>{fd.GetQueueType(props.data.matches[0].queueId)}</match.Font1Div>
-          <match.Font2Div>{fd.GetMatchDate(props.data.matches[0].gameStartTimestamp)}</match.Font2Div>
-          <match.Font2Div>{fd.GetMatchTime(props.data.matches[0].gameDuration)}</match.Font2Div>
+          <match.Font1Div>{fd.GetQueueType(data.matches[0].queueId)}</match.Font1Div>
+          <match.Font2Div>{fd.GetMatchDate(data.matches[0].gameStartTimestamp)}</match.Font2Div>
+          <match.Font2Div>{fd.GetMatchTime(data.matches[0].gameDuration)}</match.Font2Div>
         </match.MatchFirstDiv>
         <match.MatchSecondDiv>
           <match.ChampImg />
@@ -99,7 +100,7 @@ function MatchBox(props) {
           </match.PartiListUl>
         </match.MatchFifthDiv>
         <div />
-      </match.MatchDiv>
+      </match.MatchDiv>}
       <match.OpenDiv>
         <match.OpenImg src={`${process.env.PUBLIC_URL}` + 'assets/images/down-arrow.svg'}/>
       </match.OpenDiv>

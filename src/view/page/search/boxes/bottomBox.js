@@ -4,7 +4,7 @@ import StatisticBox from "view/page/search/boxes/statisticBox"
 import MatchesBox from "view/page/search/boxes/matchesBox"
 import DetailMatchBox from "view/page/search/boxes/detailMatchBox";
 
-function BottomBox(props) {
+function BottomBox() {
   const [selectedButton, setSelectedButton] = useState('whole');
 
   const handleButtonClick = (buttonName) => {
@@ -23,7 +23,7 @@ function BottomBox(props) {
       <StatisticBox />
       <br />
       <br />
-      <MatchesBox data={props.data}/>
+      <MatchesBox />
       <DetailMatchBox></DetailMatchBox>
       {/* 더보기 버튼? */}
       <MoreMatchButton>MORE +</MoreMatchButton>

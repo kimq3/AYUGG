@@ -2,9 +2,11 @@ import { UserDiv, FirstDiv, PlayerIconImg, NicknameSpan, SecondDiv, TierDiv, Now
 import { tierImgMapping } from 'model/constantly/apiConstants';
 import { useState } from "react";
 import LineTierChart from "../charts/lineTier";
+import { useSelector } from "react-redux";
 
 //버튼전까지의 UI구성
-function TopBox(props) {
+function TopBox() {
+  const { data, loading, error } = useSelector((state) => state.data);
   const [isDropdownVisible, setDropdownVisible] = useState('false');
 
   const clickDropdown = () => {
@@ -17,25 +19,25 @@ function TopBox(props) {
 
   return (
     <div>
-      <UserDiv>
+      {data&&<UserDiv>
         <FirstDiv>
-          <NicknameSpan>{props.data.nickname}</NicknameSpan>
-          <PlayerIconImg src={GetPlayerIconImg(props.data.profileIconId)} />
+          <NicknameSpan>{data.nickname}</NicknameSpan>
+          <PlayerIconImg src={GetPlayerIconImg(data.profileIconId)} />
         </FirstDiv>
         <SecondDiv>
           <TierDiv>
             <NowTierDiv>
-              <TierImg src={`${process.env.PUBLIC_URL}` + tierImgMapping.get(props.data.tier)} />
+              <TierImg src={`${process.env.PUBLIC_URL}` + tierImgMapping.get(data.tier)} />
               <div>
-                <TierNameDiv>{props.data.tier} {props.data.rank}</TierNameDiv>
-                <div>{props.data.leaguePoints}</div>
-                <div>승률 {Math.round(props.data.wins / (props.data.wins + props.data.losses) * 100)}% {'('}{props.data.wins}승 {props.data.losses}{'패)'}</div>
+                <TierNameDiv>{data.tier} {data.rank}</TierNameDiv>
+                <div>{data.leaguePoints} LP</div>
+                <div>승률 {Math.round(data.wins / (data.wins + data.losses) * 100)}% {'('}{data.wins}승 {data.losses}{'패)'}</div>
               </div>
             </NowTierDiv>
             <TierListUl>
               <NowTierLi>
                 <b>S22  </b>
-                <span>{props.data.tier} {props.data.rank}</span>
+                <span>{data.tier} {data.rank}</span>
               </NowTierLi>
               {/* <MoreTierLi> */}<li>
                 {/* <SelectionDiv> */}<div>
@@ -61,7 +63,7 @@ function TopBox(props) {
             <LineTierChart></LineTierChart>
           </GraphBox>
         </SecondDiv>
-      </UserDiv>
+      </UserDiv>}
     </div>
   );
 }

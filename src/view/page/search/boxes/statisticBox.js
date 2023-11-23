@@ -3,6 +3,7 @@ import DoughnutChart from "../charts/doughnut";
 import RadarCharactChart from "../charts/radar";
 
 function StatisticBox() {
+
   return (
     <sb.StatisticTable>
       <colgroup>

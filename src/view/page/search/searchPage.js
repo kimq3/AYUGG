@@ -1,35 +1,23 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from "react";
+import { useDispatch } from 'react-redux';
 import Nav from "view/nav";
 import TopBox from "view/page/search/boxes/topBox"
 import { ContainerDiv } from "view/page/search/searchStyle/topBoxStyle"
 import Button from "view/page/search/boxes/refreshButton"
 import GetSearchData from "view/page/search/getSearchData";
 import BottomBox from "view/page/search/boxes/bottomBox";
-import { fetchDataRequest, fetchDataSuccess, fetchDataFailure } from "reduxTest/action";
-import { store } from 'reduxTest/store';
+import { fetchDataRequest, fetchDataSuccess, fetchDataFailure } from "reduxTest/dataSlice";
 
 function SearchPage(){
-  const { data, loading, error } = useSelector((state) => state.data);
   const dispatch = useDispatch();
-  // const [ dataSet, setdataSet] = useState({});
 
   useEffect(() => {
-    const fetchData = async () => {
-      dispatch(fetchDataRequest());
-      try {
-        const data = await GetSearchData("hideonbush");
-        console.log(fetchDataSuccess(data));
-        dispatch(fetchDataSuccess(data));
-      } catch (error) {
-        dispatch(fetchDataFailure(error.message));
-      }
-    }
-    fetchData().then(()=>{
-      console.log(store.getState());
-      console.log(data);
-      // setdataSet(data.payload);
-    })
+    fetchDataRequest();
+    GetSearchData("hideonbush").then((res) => {
+      dispatch(fetchDataSuccess(res));
+    }).catch((err) => {
+      dispatch(fetchDataFailure(err));
+    });
   }, [dispatch]);
 
   // if (loading) {
@@ -43,12 +31,12 @@ function SearchPage(){
   return (
     <div>
       <Nav></Nav>
-      {/* <ContainerDiv>
-        <TopBox data={dataSet} />
+      <ContainerDiv>
+        <TopBox />
         <Button />
         <br />
-        <BottomBox data={dataSet} />
-      </ContainerDiv> */}
+        <BottomBox />
+      </ContainerDiv>
       <br />
     </div>
   );
