@@ -16,11 +16,20 @@ function SearchPage(){
   // const [ dataSet, setdataSet] = useState({});
 
   useEffect(() => {
-    GetSearchData("hideonbush").then((res) => {
-      dispatch(fetchDataSuccess(res));
-    }).catch((err) => {
-      dispatch(fetchDataFailure(err));
-    });
+    const fetchData = async () => {
+      // dispatch(fetchDataRequest());
+      try {
+        const _data= await GetSearchData("hideonbush");
+        dispatch(fetchDataSuccess(_data));
+      } catch (error) {
+        dispatch(fetchDataFailure(error.message));
+      }
+    }
+    fetchData().then(()=>{
+      // console.log(store.getState());
+      console.log(data);
+      // setdataSet(data.payload);
+    })
   }, [dispatch]);
 
   // if (loading) {
@@ -34,7 +43,6 @@ function SearchPage(){
   return (
     <div>
       <Nav></Nav>
-      {JSON.stringify(data)}
       {/* <ContainerDiv>
         <TopBox data={dataSet} />
         <Button />
