@@ -24,7 +24,7 @@ function BottomBox() {
       <br />
       <br />
       <MatchesBox />
-      <DetailMatchBox></DetailMatchBox>
+      <DetailMatchBox />
       {/* 더보기 버튼? */}
       <MoreMatchButton>MORE +</MoreMatchButton>
     </div>

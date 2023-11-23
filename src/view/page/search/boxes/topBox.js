@@ -30,7 +30,7 @@ function TopBox() {
               <TierImg src={`${process.env.PUBLIC_URL}` + tierImgMapping.get(data.tier)} />
               <div>
                 <TierNameDiv>{data.tier} {data.rank}</TierNameDiv>
-                <div>{data.leaguePoints} LP</div>
+                <div>{data.leaguePoints}LP</div>
                 <div>승률 {Math.round(data.wins / (data.wins + data.losses) * 100)}% {'('}{data.wins}승 {data.losses}{'패)'}</div>
               </div>
             </NowTierDiv>

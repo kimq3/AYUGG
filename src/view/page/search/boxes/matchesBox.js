@@ -1,6 +1,8 @@
 import * as match from "view/page/search/searchStyle/matchesBoxStyle";
 import * as fd from "view/page/search/filterData";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { runeUrl, spellUrl } from "model/constantly/apiConstants";
 
 function MatchesBox() {
 
@@ -12,26 +14,44 @@ function MatchesBox() {
 }
 function MatchBox() {
   const { data, loading, error } = useSelector((state) => state.data);
+  const matchesIndex = 0;
+  const [spellInfo, setSpellInfo] = useState({});
+  const [runeInfo, setRuneInfo] = useState({});
+
+  useEffect(() => {
+    fetch(spellUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        setSpellInfo(data.data);
+      });
+  }, []);
+  useEffect(() => {
+    fetch(runeUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        setRuneInfo(data);
+      });
+  }, []);
 
   return (
-    <div style={{position: 'relative'}}>
-      {data && <match.MatchDiv>{console.log(data)}
+    <div style={{ position: 'relative' }}>
+      {data && <match.MatchDiv>{console.log(fd.GetMainRuneImg(runeInfo, JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[0].style), JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[0].selections[0].perk)))}
         <match.MatchFirstDiv>
-          <match.Font1Div>{fd.GetQueueType(data.matches[0].queueId)}</match.Font1Div>
-          <match.Font2Div>{fd.GetMatchDate(data.matches[0].gameStartTimestamp)}</match.Font2Div>
-          <match.Font2Div>{fd.GetMatchTime(data.matches[0].gameDuration)}</match.Font2Div>
+          <match.Font1Div>{fd.GetQueueType(data.matches[matchesIndex].queueId)}</match.Font1Div>
+          <match.Font2Div>{fd.GetMatchDate(data.matches[matchesIndex].gameStartTimestamp)}</match.Font2Div>
+          <match.Font2Div>{fd.GetMatchTime(data.matches[matchesIndex].gameDuration)}</match.Font2Div>
         </match.MatchFirstDiv>
         <match.MatchSecondDiv>
-          <match.ChampImg />
+          <match.ChampImg src={fd.GetChampImg(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].championName)} />
           <span>
-            <div>
-              <match.Spell1Img />
-              <match.Spell2Img />
-            </div>
-            <div>
-              <match.Perk1Img />
+            {spellInfo && <div>
+              <match.Spell1Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].summoner1Id))} />
+              <match.Spell2Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].summoner2Id))} />
+            </div>}
+            {runeInfo && <div>
+              <match.Perk1Img src={"https://ddragon.leagueoflegends.com/cdn/img/" + fd.GetMainRuneImg(runeInfo, JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[0].style), JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[0].selections[0].perk))} />
               <match.Perk2Img />
-            </div>
+            </div>}
           </span>
         </match.MatchSecondDiv>
         <div>
@@ -102,7 +122,7 @@ function MatchBox() {
         <div />
       </match.MatchDiv>}
       <match.OpenDiv>
-        <match.OpenImg src={`${process.env.PUBLIC_URL}` + 'assets/images/down-arrow.svg'}/>
+        <match.OpenImg src={`${process.env.PUBLIC_URL}` + 'assets/images/down-arrow.svg'} />
       </match.OpenDiv>
     </div>
   );

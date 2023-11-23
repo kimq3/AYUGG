@@ -67,6 +67,8 @@ export const matchDataUrl = "https://asia.api.riotgames.com/lol/match/v5/matches
 export const version = "https://ddragon.leagueoflegends.com/cdn/13.21.1/data/ko_KR/";
 export const championUrl = version + "champion.json";
 export const iconUrl = version + "profileicon.json";
+export const spellUrl = version + "summoner.json";
+export const runeUrl = version + "runesReforged.json";
 
 //티어api값이랑 png맵핑
 export const tierImgMapping = new Map([
