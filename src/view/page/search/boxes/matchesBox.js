@@ -35,7 +35,7 @@ function MatchBox() {
 
   return (
     <div style={{ position: 'relative' }}>
-      {data && <match.MatchDiv>{console.log(fd.GetMainRuneImg(runeInfo, JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[0].style), JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[0].selections[0].perk)))}
+      {data && <match.MatchDiv>{console.log(data.matches[matchesIndex])}
         <match.MatchFirstDiv>
           <match.Font1Div>{fd.GetQueueType(data.matches[matchesIndex].queueId)}</match.Font1Div>
           <match.Font2Div>{fd.GetMatchDate(data.matches[matchesIndex].gameStartTimestamp)}</match.Font2Div>
@@ -49,74 +49,55 @@ function MatchBox() {
               <match.Spell2Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].summoner2Id))} />
             </div>}
             {runeInfo && <div>
-              <match.Perk1Img src={"https://ddragon.leagueoflegends.com/cdn/img/" + fd.GetMainRuneImg(runeInfo, JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[0].style), JSON.stringify(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[0].selections[0].perk))} />
-              <match.Perk2Img />
+              <match.Perk1Img src={fd.GetMainRuneImg(runeInfo, data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[0].style, data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[0].selections[0].perk)} />
+              <match.Perk2Img src={fd.GetSubRuneImg(runeInfo, data.matches[matchesIndex].participants[data.partinum[matchesIndex]].perks.styles[1].style)} />
             </div>}
           </span>
         </match.MatchSecondDiv>
         <div>
-          <match.Font1Div>0/10/7</match.Font1Div>
-          <match.Font2Div>0.7</match.Font2Div>
+          <match.Font1Div>{data.matches[matchesIndex].participants[data.partinum[matchesIndex]].kills}/{data.matches[matchesIndex].participants[data.partinum[matchesIndex]].deaths}/{data.matches[matchesIndex].participants[data.partinum[matchesIndex]].assists}</match.Font1Div>
+          <match.Font2Div>{data.matches[matchesIndex].participants[data.partinum[matchesIndex]].deaths === 0
+            ? "Perfect"
+            : ((data.matches[matchesIndex].participants[data.partinum[matchesIndex]].kills + data.matches[matchesIndex].participants[data.partinum[matchesIndex]].assists) / data.matches[matchesIndex].participants[data.partinum[matchesIndex]].deaths).toFixed(2)}</match.Font2Div>
         </div>
         <div>
           <match.KillRateCsDiv>
-            <match.Font2Span1>킬관여 43%</match.Font2Span1>
-            <match.Font2Span2>CS 203</match.Font2Span2>
+            <match.Font2Span1>킬관여 {data.matches[matchesIndex].participants[data.partinum[matchesIndex]].teamId === 100
+              ? Math.floor((data.matches[matchesIndex].participants[data.partinum[matchesIndex]].kills + data.matches[matchesIndex].participants[data.partinum[matchesIndex]].assists) / data.matches[matchesIndex].teams[0].objectives.champion.kills * 100)
+              : Math.floor((data.matches[matchesIndex].participants[data.partinum[matchesIndex]].kills + data.matches[matchesIndex].participants[data.partinum[matchesIndex]].assists) / data.matches[matchesIndex].teams[1].objectives.champion.kills * 100)
+            }%</match.Font2Span1>
+            <match.Font2Span2>CS {data.matches[matchesIndex].participants[data.partinum[matchesIndex]].totalMinionsKilled + data.matches[matchesIndex].participants[data.partinum[matchesIndex]].neutralMinionsKilled}</match.Font2Span2>
           </match.KillRateCsDiv>
           <span>
-            <match.Item0Img />
-            <match.Item1Img />
-            <match.Item2Img />
-            <match.Item3Img />
-            <match.Item4Img />
-            <match.Item5Img />
-            <match.Item6Img />
+            <match.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].item0)} />
+            <match.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].item1)} />
+            <match.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].item2)} />
+            <match.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].item3)} />
+            <match.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].item4)} />
+            <match.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].item5)} />
+            <match.Item6Img src={fd.GetItemImg(data.matches[matchesIndex].participants[data.partinum[matchesIndex]].item6)} />
           </span>
         </div>
         <match.MatchFifthDiv>
           <match.PartiListUl>
-            <li>
-              <match.PartiImg />
-              <span>겨울좋앙</span>
-            </li>
-            <li>
-              <match.PartiImg />
-              <span>겨울좋앙</span>
-            </li>
-            <li>
-              <match.PartiImg />
-              <span>겨울좋앙</span>
-            </li>
-            <li>
-              <match.PartiImg />
-              <span>겨울좋앙</span>
-            </li>
-            <li>
-              <match.PartiImg />
-              <span>겨울좋앙</span>
-            </li>
+            {[0, 1, 2, 3, 4].map((num) => {
+              return (
+                <li key={num}>
+                  <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
+                  <span>{data.matches[matchesIndex].participants[num].summonerName}</span>
+                </li>
+              )
+            })}
           </match.PartiListUl>
           <match.PartiListUl>
-            <li>
-              <match.PartiImg />
-              <span>겨울좋앙</span>
-            </li>
-            <li>
-              <match.PartiImg />
-              <span>겨울좋앙</span>
-            </li>
-            <li>
-              <match.PartiImg />
-              <span>겨울좋앙</span>
-            </li>
-            <li>
-              <match.PartiImg />
-              <span>겨울좋앙</span>
-            </li>
-            <li>
-              <match.PartiImg />
-              <span>겨울좋앙</span>
-            </li>
+            {[5, 6, 7, 8, 9].map((num) => {
+              return (
+                <li key={num}>
+                  <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
+                  <span>{data.matches[matchesIndex].participants[num].summonerName}</span>
+                </li>
+              )
+            })}
           </match.PartiListUl>
         </match.MatchFifthDiv>
         <div />

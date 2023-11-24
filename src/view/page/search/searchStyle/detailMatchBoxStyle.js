@@ -111,6 +111,7 @@ export const Perk1Img = styled.img`
 export const Perk2Img = styled.img`
   width: 20px;
   height: 20px;
+  transform: scale(0.9);
 `
 export const NickTierDiv = styled.div`
   margin: auto;

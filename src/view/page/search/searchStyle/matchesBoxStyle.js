@@ -47,6 +47,7 @@ export const Perk1Img = styled.img`
 export const Perk2Img = styled.img`
   width: 20px;
   height: 20px;
+  transform: scale(0.9);
 `
 export const KillRateCsDiv = styled.div`
   padding-bottom: 5px;
@@ -60,32 +61,7 @@ export const Font2Span2 = styled.span`
   font-size: 10px;
   padding-left: 10px;
 `
-export const Item0Img = styled.img`
-  width: 20px;
-  height: 20px;
-  padding-right: 4px;
-`
-export const Item1Img = styled.img`
-  width: 20px;
-  height: 20px;
-  padding-right: 4px;
-`
-export const Item2Img = styled.img`
-  width: 20px;
-  height: 20px;
-  padding-right: 4px;
-`
-export const Item3Img = styled.img`
-  width: 20px;
-  height: 20px;
-  padding-right: 4px;
-`
-export const Item4Img = styled.img`
-  width: 20px;
-  height: 20px;
-  padding-right: 4px;
-`
-export const Item5Img = styled.img`
+export const ItemImg = styled.img`
   width: 20px;
   height: 20px;
   padding-right: 4px;

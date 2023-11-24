@@ -37,14 +37,43 @@ export function GetSpellImg(spellInfo, summonerId) {
 }
 export function GetMainRuneImg(runeInfo, value1, value2) {
   for (let a = 0; a < runeInfo.length; a++) {
-    if (runeInfo[a].id == value1) {
+    if (runeInfo[a].id === value1) {
       for (let b = 0; b < runeInfo[a].slots[0].runes.length; b++) {
-        if (runeInfo[a].slots[0].runes[b].id == value2) {
-          return  + runeInfo[a].slots[0].runes[b].icon;
+        if (runeInfo[a].slots[0].runes[b].id === value2) {
+          return "https://ddragon.leagueoflegends.com/cdn/img/" + runeInfo[a].slots[0].runes[b].icon;
         }
       }
       return null;
     }
   }
   return null;
+}
+export function GetSubRuneImg(runeInfo, value) {
+  for (let a = 0; a < runeInfo.length; a++) {
+    if (runeInfo[a].id === value) {
+      return "https://ddragon.leagueoflegends.com/cdn/img/" + runeInfo[a].icon;
+    }
+  }
+  return null;
+}
+export function GetItemImg(item) {
+  if (item == 0) {
+     return `${process.env.PUBLIC_URL}` + "assets/images/item-none.jpg";
+  } else {
+    return version + "img/item/" + item + ".png";
+  }
+}
+export function GetMostDamage(data, match) {
+  let mostDamage =
+    data.matches[match].participants[0].totalDamageDealtToChampions;
+  for (let i = 1; i < 10; i++) {
+    if (
+      mostDamage <
+      data.matches[match].participants[i].totalDamageDealtToChampions
+    ) {
+      mostDamage =
+        data.matches[match].participants[i].totalDamageDealtToChampions;
+    }
+  }
+  return Number(mostDamage);
 }
