@@ -21,7 +21,7 @@ function RankingDetail(){
             <Nav></Nav>
             
             <style.Table>
-                <style.TopTr>
+                <style.MainTr>
                     <style.Th>순위</style.Th>
                     <style.NameTh>닉네임</style.NameTh>
                     <style.Th>티어</style.Th>
@@ -29,13 +29,13 @@ function RankingDetail(){
                     <style.Th>리그포인트</style.Th>
                     <style.Th>승률</style.Th>
                     <style.Th></style.Th>
-                </style.TopTr>
+                </style.MainTr>
                 {user.map((info,index)=>{
                     return(
                         <style.MainTr key={index}>
                             <style.Td>{index+1}</style.Td>
                             <style.TdName>
-                                <style.IconImage src="http://ddragon.leagueoflegends.com/cdn/10.18.1/img/profileicon/1.png"></style.IconImage>
+                                <style.IconImage src={`http://ddragon.leagueoflegends.com/cdn/13.23.1/img/profileicon/${info.icon}.png`}></style.IconImage>
                                 <style.NameSpan>{info.summonerName}</style.NameSpan>
                             </style.TdName>
                             <style.Td>{info.tier}</style.Td>

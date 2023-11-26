@@ -43,12 +43,10 @@ export const TdPercent=styled(Td)`
     text-align: left;
 `;
 
-export const TopTr=styled.tr`
-    background-color: #fff;
-`;
 
 export const MainTr=styled.tr`
     border-bottom: 1px solid #dddddd;
+    color: white;
 `;
 
 

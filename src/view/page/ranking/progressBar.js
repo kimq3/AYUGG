@@ -9,6 +9,7 @@ function ProgressBar({progress, win, lose}) {
         width: '100%',
         backgroundColor: '#E64638',
         textAlign: 'right',
+        border: '2px solid #dddddd'
     };
      
     const Childdiv = {
@@ -20,7 +21,7 @@ function ProgressBar({progress, win, lose}) {
      
     const progresstext = {
         padding: 5,
-        color: 'black',
+        color: 'white',
     };
        
     return (
