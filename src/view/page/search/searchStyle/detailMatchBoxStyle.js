@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const CoverDetailMatchBox = styled.div`
+  display: ${(props) => (props.isvisible === 'true' ? 'initial' : 'none')};
+`
+
 export const MatchLabel = styled.div`
   background: #626367;
   color: white;

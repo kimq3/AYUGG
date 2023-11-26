@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 //버튼전까지의 UI구성
 function TopBox() {
-  const { data, loading, error } = useSelector((state) => state.data);
+  const { data } = useSelector((state) => state.data);
   const [isDropdownVisible, setDropdownVisible] = useState('false');
 
   const clickDropdown = () => {
@@ -39,8 +39,8 @@ function TopBox() {
                 <b>S22  </b>
                 <span>{data.tier} {data.rank}</span>
               </NowTierLi>
-              {/* <MoreTierLi> */}<li>
-                {/* <SelectionDiv> */}<div>
+              <li>
+                <div>
                   <LabelDiv onClick={clickDropdown}>
                     <b>More</b>
                     <MoreImg src={`${process.env.PUBLIC_URL}` + 'assets/images/arrow-down-icon-original.svg'} />

@@ -2,7 +2,6 @@ import { MatchButtons, MatchButton, MoreMatchButton } from "view/page/search/sea
 import { useState } from "react";
 import StatisticBox from "view/page/search/boxes/statisticBox"
 import MatchesBox from "view/page/search/boxes/matchesBox"
-import DetailMatchBox from "view/page/search/boxes/detailMatchBox";
 
 function BottomBox() {
   const [selectedButton, setSelectedButton] = useState('whole');
@@ -24,8 +23,6 @@ function BottomBox() {
       <br />
       <br />
       <MatchesBox />
-      <DetailMatchBox />
-      {/* 더보기 버튼? */}
       <MoreMatchButton>MORE +</MoreMatchButton>
     </div>
   );
