@@ -8,15 +8,15 @@ import DetailMatchBox from "view/page/search/boxes/detailMatchBox";
 function MatchesBox() {
   return (
     <div>
-      {[0, 1].map((num) => {
-        return <MatchBox key={num} />
+      {[0,1].map((num) => {
+        return <MatchBox key={num} value={num}/>
       })}
     </div>
   );
 }
 function MatchBox(props) {
   const { data } = useSelector((state) => state.data);
-  const matchesIndex = 0;
+  const matchesIndex = props.value;
   const [spellInfo, setSpellInfo] = useState({});
   const [runeInfo, setRuneInfo] = useState({});
   const [isDropdownVisible, setDropdownVisible] = useState('false');
@@ -35,8 +35,6 @@ function MatchBox(props) {
       .then((data) => {
         setSpellInfo(data.data);
       });
-  }, []);
-  useEffect(() => {
     fetch(runeUrl)
       .then((response) => response.json())
       .then((data) => {
@@ -118,7 +116,7 @@ function MatchBox(props) {
           <match.OpenImg src={`${process.env.PUBLIC_URL}` + 'assets/images/down-arrow.svg'} />
         </match.OpenDiv>
       </div>
-      <DetailMatchBox isvisible={isDropdownVisible} />
+      <DetailMatchBox isvisible={isDropdownVisible} key={matchesIndex}/>
     </div>
   );
 }

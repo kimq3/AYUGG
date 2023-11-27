@@ -54,6 +54,7 @@ export async function ChampionDetailApi(){
 }
 
 export const apiKey = "RGAPI-d7f2268a-7c6a-4551-b4bd-092cb9d35f94";
+export const apiKey1 = "RGAPI-519086f6-cfab-400b-af5f-1c440039db9e";
 // NicknameUrl + encodedName[i] + "?api_key=" + apiKey (id, acountid puuid name profileIconId level)
 export const nicknameUrl = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
 // IdUrl + id + "?api_key=" + apiKey (티어,개인랭 승패 name) 

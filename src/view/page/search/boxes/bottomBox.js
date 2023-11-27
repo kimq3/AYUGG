@@ -14,8 +14,7 @@ function BottomBox() {
     <div>
       <MatchButtons>
         <MatchButton value={selectedButton} isclick={'whole'} onClick={() => handleButtonClick('whole')} >전체</MatchButton>
-        <MatchButton value={selectedButton} isclick={'solo'} onClick={() => handleButtonClick('solo')} >솔로랭크</MatchButton>
-        <MatchButton value={selectedButton} isclick={'team'} onClick={() => handleButtonClick('team')} >자유랭크</MatchButton>
+        <MatchButton value={selectedButton} isclick={'rank'} onClick={() => handleButtonClick('rank')} >랭크</MatchButton>
         <MatchButton value={selectedButton} isclick={'normal'} onClick={() => handleButtonClick('normal')} >일반</MatchButton>
       </MatchButtons>
       <br />

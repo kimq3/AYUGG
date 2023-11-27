@@ -6,24 +6,25 @@ import { runeUrl, spellUrl } from "model/constantly/apiConstants";
 import GetTierList from "view/page/search/getTier";
 
 function DetailMatchBox(props) {
-  const { data } = useSelector((state) => state.data);
-  const matchesIndex = 0;
-  const [tierList, setTierList] = useState([]);
+  //parti의tier+rank
+  // const { data } = useSelector((state) => state.data);
+  // const matchesIndex = 0;
+  // const [tierList, setTierList] = useState([]);
 
-  useEffect(() => {
-    {
-      data &&
-      GetTierList(data, matchesIndex).then((_data)=>{
-        setTierList(_data);
-      });
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   {
+  //     data &&
+  //     GetTierList(data, matchesIndex).then((_data)=>{
+  //       setTierList(_data);
+  //     });
+  //   }
+  // }, [data]);
 
   return (
     <dmb.CoverDetailMatchBox isvisible={props.isvisible}>
       <MatchLabel />
-      <MatchDetailBlueTableBox tierList={tierList} />
-      <MatchDetailRedTableBox tierList={tierList} />
+      <MatchDetailBlueTableBox />
+      <MatchDetailRedTableBox />
     </dmb.CoverDetailMatchBox>
   );
 }
@@ -169,7 +170,7 @@ function MatchDetailBlueTableBox(props) {
               </dmb.IconDiv>
               <dmb.NickTierDiv>
                 <div>{data.matches[matchesIndex].participants[num].summonerName}</div>
-                <dmb.Font3Div>{props.tierList[num]}</dmb.Font3Div>
+                {/* <dmb.Font3Div>{props.tierList[num]}</dmb.Font3Div> */}
               </dmb.NickTierDiv>
             </dmb.TableTd>
             <td>
@@ -270,7 +271,7 @@ function MatchDetailRedTableBox(props) {
               </dmb.IconDiv>
               <dmb.NickTierDiv>
                 <div>{data.matches[matchesIndex].participants[num].summonerName}</div>
-                <dmb.Font3Div>{props.tierList[num]}</dmb.Font3Div>
+                {/* <dmb.Font3Div>{props.tierList[num]}</dmb.Font3Div> */}
               </dmb.NickTierDiv>
             </dmb.TableTd>
             <td>
