@@ -1,22 +1,72 @@
-import { getChampion } from "model/api/statistics";
+import { getChampion, postChampion } from "model/api/statistics";
 import { useEffect } from "react";
 import { useState } from "react";
 import Nav from "view/nav";
+import { lineButtons, tierButtons } from "./filterData";
 
 function StatisticsMain(){
     const [cham, setCham]=useState([]);
+    const [line, setLine]=useState('all');
+    const [tier, setTier]=useState('plattinum');
 
     useEffect(()=>{
         getChampion()
         .then((data)=>{
             setCham(data);
-            console.log('결과', data)
         })
-    },[])
+    },[]);
+
+    useEffect(()=>{
+        postChampion(tier,line)
+        .then((data)=>{
+            setCham(data);
+            console.log(data);
+        });
+    },[line]);
+
+    useEffect(()=>{
+        postChampion(tier,line)
+        .then((data)=>{
+            setCham(data);
+            console.log('티어',data);
+        });
+    },[tier]);
+
+
+    function handleLine(e){
+        setLine(e.target.value);  
+    }
+
+    function handleTier(e){
+        setTier(e.target.value);
+        
+    }
 
     return (
         <div>
             <Nav></Nav>
+            <div>
+                {tierButtons.map((info, index)=>{
+                    return(
+                        <>
+                            <button key={index} value={info.value} onClick={handleTier}>
+                                {info.name}
+                            </button>
+                        </>
+                    );
+                })}
+            </div>
+            <div>
+                {lineButtons.map((info, index)=>{
+                    return(
+                        <>
+                            <button key={index} value={info.value} onClick={handleLine}>
+                                {info.name}
+                            </button>
+                        </>
+                    );
+                })}
+            </div>
             <table>
                 <tr>
                     <th>순위</th>
@@ -40,7 +90,7 @@ function StatisticsMain(){
                             <td>{info.picks}</td>
                             <td>{info.banned}</td>
                             <td>{info.cs}</td>
-                            <td>{info.gold}</td>
+                            <td>{info.gold}G</td>
                         </tr>
                     );
                 })}
