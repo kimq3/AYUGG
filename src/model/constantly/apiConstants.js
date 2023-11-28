@@ -55,6 +55,7 @@ export async function ChampionDetailApi(champId){
 }
 
 export const apiKey = "RGAPI-d7f2268a-7c6a-4551-b4bd-092cb9d35f94";
+export const apiKey1 = "RGAPI-519086f6-cfab-400b-af5f-1c440039db9e";
 // NicknameUrl + encodedName[i] + "?api_key=" + apiKey (id, acountid puuid name profileIconId level)
 export const nicknameUrl = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
 // IdUrl + id + "?api_key=" + apiKey (티어,개인랭 승패 name) 
@@ -68,6 +69,8 @@ export const matchDataUrl = "https://asia.api.riotgames.com/lol/match/v5/matches
 export const version = "https://ddragon.leagueoflegends.com/cdn/13.21.1/data/ko_KR/";
 export const championUrl = version + "champion.json";
 export const iconUrl = version + "profileicon.json";
+export const spellUrl = version + "summoner.json";
+export const runeUrl = version + "runesReforged.json";
 
 //티어api값이랑 png맵핑
 export const tierImgMapping = new Map([

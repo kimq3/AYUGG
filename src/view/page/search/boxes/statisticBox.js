@@ -1,47 +1,54 @@
 import * as sb from "view/page/search/searchStyle/statisticBoxStyle";
+import DoughnutChart from "../charts/doughnut";
+import RadarCharactChart from "../charts/radar";
+import { useSelector } from "react-redux";
 
 function StatisticBox() {
+  const { data } = useSelector((state) => state.data);
+
   return (
-    <sb.StatisticTable>
-      <colgroup>
-        <col width={"250px"} />
-        <col width={"500px"} />
-        <col width={"250px"} />
-      </colgroup>
-      <tbody>
-        <tr>
-          <sb.InfoTh>정보</sb.InfoTh>
-          <sb.MostTh>모스트 챔피언</sb.MostTh>
-          <sb.PlayStyleTh>플레이 스타일</sb.PlayStyleTh>
-        </tr>
-        <tr>
-          <sb.InfoContentTh>
-            <sb.InfoCover>
-              <sb.GraphCover>
-                <sb.GraphSample />
-                <sb.InnerTextDiv>
-                  <div style={{ fontSize: "16px" }}>50%</div>
-                  <div style={{ fontSize: "10px" }}>10승 10패</div>
-                </sb.InnerTextDiv>
-              </sb.GraphCover>
-              <sb.RightTextDiv>
-                <div style={{ color: "orange" }}>KDA 3.72</div>
-                <div style={{ color: "#626367", fontSize: "8px" }}>7.3/5.1/11.9</div>
-                <div style={{ color: "orange" }}>킬관여 51%</div>
-              </sb.RightTextDiv>
-            </sb.InfoCover>
-          </sb.InfoContentTh>
-          <sb.MostContentTh>
-            <MiddleStatisticTable />
-          </sb.MostContentTh>
-          <sb.PlayStyleContentTh>
-            <sb.GraphCover1>              
-              <sb.GraphSample1 />
-            </sb.GraphCover1>
-          </sb.PlayStyleContentTh>
-        </tr>
-      </tbody>
-    </sb.StatisticTable>
+    <div>
+      {data && <sb.StatisticTable>
+        <colgroup>
+          <col width={"255px"} />
+          <col width={"500px"} />
+          <col width={"245px"} />
+        </colgroup>
+        <tbody>
+          <tr>
+            <sb.InfoTh>정보</sb.InfoTh>
+            <sb.MostTh>모스트 챔피언</sb.MostTh>
+            <sb.PlayStyleTh>플레이 스타일</sb.PlayStyleTh>
+          </tr>
+          <tr>
+            <sb.InfoContentTh>
+              <sb.InfoCover>
+                <sb.GraphCover>
+                  <DoughnutChart />
+                  <sb.InnerTextDiv>
+                    <div style={{ fontSize: "16px" }}>{Math.round(data.wins / (data.wins + data.losses) * 100)}%</div>
+                    <div style={{ fontSize: "10px" }}>{data.wins}승 {data.losses}패</div>
+                  </sb.InnerTextDiv>
+                </sb.GraphCover>
+                <sb.RightTextDiv>
+                  <div style={{ color: "orange" }}>KDA 3.72</div>
+                  <div style={{ color: "#626367", fontSize: "8px" }}>7.3/5.1/11.9</div>
+                  <div style={{ color: "orange" }}>킬관여 51%</div>
+                </sb.RightTextDiv>
+              </sb.InfoCover>
+            </sb.InfoContentTh>
+            <sb.MostContentTh>
+              <MiddleStatisticTable />
+            </sb.MostContentTh>
+            <sb.PlayStyleContentTh>
+              <sb.GraphCover1>
+                <RadarCharactChart />
+              </sb.GraphCover1>
+            </sb.PlayStyleContentTh>
+          </tr>
+        </tbody>
+      </sb.StatisticTable>}
+    </div>
   );
 }
 function MiddleStatisticTable() {
@@ -121,7 +128,7 @@ function MiddleStatisticTable() {
             <sb.DetailSpan>7전</sb.DetailSpan>
           </td>
         </tr>
-        
+
       </tbody>
     </sb.MiddleStatisticTable>
   )

@@ -83,7 +83,7 @@ export const LabelDiv = styled.div`
 export const MoreListUl = styled.ul`
   list-style-type: none;
   padding: 0;
-  display: ${(props) => (props.isvisible === 'true' ? 'initial' : 'none')};;
+  display: ${(props) => (props.isvisible === 'true' ? 'initial' : 'none')};
 `
 export const OptionItemLi = styled.li`
   display: flex;
@@ -94,10 +94,10 @@ export const OptionItemLi = styled.li`
   padding: 0 5px;
   margin-top: 3px;
 `
-// export const GraphBox = styled.div`
-//   width: auto;
-//   height: 100%;
-// `
+export const GraphBox = styled.div`
+  width: auto;
+  height: 100%;
+`
 export const MoreImg = styled.img`
   width: 10px;
   height: 10px;

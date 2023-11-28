@@ -49,17 +49,12 @@ export const InfoCover = styled.div`
 `
 export const GraphCover = styled.div`
   position: relative;
-  width: 150px;
-  height: 150px;
-`
-export const GraphSample = styled.div`
-  background: green;
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
 `
 export const InnerTextDiv = styled.div`
   position: absolute;
-  top: 0px;
+  top: -3px;
   left: 0px;
   display: flex;
   flex-direction: column;
@@ -73,6 +68,7 @@ export const RightTextDiv = styled.div`
   flex-direction: column;
   margin: auto 0;
   align-items: center;
+  
 `
 export const MiddleStatisticTable = styled.table`
   width: 100%;
@@ -100,9 +96,6 @@ export const MSChanpionImg = styled.img`
 export const GraphCover1 = styled.div`
   display: flex;
   justify-content: center;
-`
-export const GraphSample1 = styled.div`
-  width: 200px;
-  height: 200px;
-  background: green;
+  margin-top: 10px;
+  margin-bottom: -5px;
 `

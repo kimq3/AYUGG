@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const CoverDetailMatchBox = styled.div`
+  display: ${(props) => (props.isvisible === 'true' ? 'initial' : 'none')};
+`
+
 export const MatchLabel = styled.div`
   background: #626367;
   color: white;
@@ -56,10 +60,10 @@ export const MatchDetailTableLabel = styled.tr`
   background: rgb(57, 58, 60);
   border-bottom: 2px solid rgb(98, 99, 103);
 `
-export const BlueTr = styled.tr`
-  background: #2f436e;
+export const TableTr = styled.tr`
+  background: ${ props => (props.$backgroundColor)};
 `
-export const BlueTd = styled.td`
+export const TableTd = styled.td`
   display: flex;
   flex-direction: row;
 `
@@ -111,6 +115,7 @@ export const Perk1Img = styled.img`
 export const Perk2Img = styled.img`
   width: 20px;
   height: 20px;
+  transform: scale(0.9);
 `
 export const NickTierDiv = styled.div`
   margin: auto;
@@ -122,4 +127,28 @@ export const NickTierDiv = styled.div`
 export const Font3Div = styled.div`
   color: rgb(200, 200, 200);
   font-size: 12px;
+`
+export const DamageGraphDiv = styled.div`
+  background: #31313c;
+  width: 60px;
+  height: 9px;
+  margin: 0 auto;
+  margin-top: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+`
+export const RedBarDiv = styled.div`
+  background: #e84057;
+  height: 9px;
+`
+export const ItemImg = styled.img`
+  width: 25px;
+  height: 25px;
+  padding-right: 5px;
+  padding-top: 4px;
+`
+export const WardImg = styled.img`
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  padding-top: 4px;
 `
