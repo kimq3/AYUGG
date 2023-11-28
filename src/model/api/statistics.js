@@ -19,7 +19,7 @@ export async function postChampion(tier, line){
                 line: line,
             }
         }),
-    }).catch(error=>console.log('fetch에러사항: ',error));
+    }).catch(error=>console.log('fetch에러사항:',error));
     const data = await response.json();
     return await data;
 }
