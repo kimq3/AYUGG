@@ -11,7 +11,6 @@ function RankingDetail(){
         getRanker('solo')
         .then((data)=>{
             setUser(data);
-            // console.log('결과',data);
         });
     },[]);
 

@@ -10,6 +10,8 @@ import StatisticsMain from "view/page/statistics/statisticsMain";
 import SearchPage from "view/page/search/searchPage";
 import ChampionsDetails from "view/page/details/detailsMain";
 import RankingDetail from "view/page/ranking/rankingDetailSolo";
+import RankingMain from "view/page/ranking/rankingMain";
+import RankingDetailFlex from "view/page/ranking/rankingDetailFlex";
 
 const router = createBrowserRouter([
     {
@@ -26,7 +28,15 @@ const router = createBrowserRouter([
     },
     {
       path:"/ranking",
+      element:<RankingMain></RankingMain>
+    },
+    {
+      path:"/ranking/solo",
       element:<RankingDetail></RankingDetail>
+    },
+    {
+      path:"/ranking/flex",
+      element:<RankingDetailFlex></RankingDetailFlex>
     },
     {
       path:"/multi",

@@ -21,7 +21,7 @@ function RankingDetailFlex(){
             <Nav></Nav>
             
             <style.Table>
-                <style.TopTr>
+                <style.MainTr>
                     <style.Th>순위</style.Th>
                     <style.NameTh>닉네임</style.NameTh>
                     <style.Th>티어</style.Th>
@@ -29,7 +29,7 @@ function RankingDetailFlex(){
                     <style.Th>리그포인트</style.Th>
                     <style.Th>승률</style.Th>
                     <style.Th></style.Th>
-                </style.TopTr>
+                </style.MainTr>
                 {user.map((info,index)=>{
                     return(
                         <style.MainTr key={index}>
