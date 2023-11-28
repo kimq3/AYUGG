@@ -83,7 +83,7 @@ export const LabelDiv = styled.div`
 export const MoreListUl = styled.ul`
   list-style-type: none;
   padding: 0;
-  display: ${(props) => (props.isvisible === 'true' ? 'initial' : 'none')};;
+  display: ${(props) => (props.isvisible === 'true' ? 'initial' : 'none')};
 `
 export const OptionItemLi = styled.li`
   display: flex;
