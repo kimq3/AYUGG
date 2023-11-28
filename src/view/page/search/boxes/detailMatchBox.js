@@ -6,6 +6,7 @@ import { runeUrl, spellUrl } from "model/constantly/apiConstants";
 import GetTierList from "view/page/search/getTier";
 
 function DetailMatchBox(props) {
+  
   //parti의tier+rank
   // const { data } = useSelector((state) => state.data);
   // const matchesIndex = 0;
