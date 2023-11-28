@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import * as style from "./champsStyle";
-import { Link, useLocation } from 'react-router-dom';
-import { ChampionApi } from "model/constantly/apiConstants";
+import { useLocation } from 'react-router-dom';
+import { ChampionDetailApi as ChampDetailApi, ChampionApi } from "model/constantly/apiConstants";
+
+const detailData = await ChampDetailApi();
+const champImgData = await ChampionApi();
 
 export function Option() {
   const tierList = ["Challenger", "Grandmaster", "Master", "Diamond", "Emerald", "Platinum", "Gold", "Silver", "Bronze", "Iron"];
@@ -68,17 +71,16 @@ export function ChampionsImg(){
 }
 
 export async function ChampionsImgFull(){
-  let champImgData = await ChampionApi();
 
   let fullData = [];
   for(let i = 0; i<champImgData[0].length; i++){
     let data = (
       <style.ListBox key={i}>
         <li>
-          <style.ChampionLink to="/details">
+          <style.ChampionLink to={"/details?id=" + champImgData[3][i]}>
             <style.ChampionsImgStyle src={champImgData[0][i]} />
           </style.ChampionLink>
-          <style.ChampionLink to="/details">
+          <style.ChampionLink to={"/details?id=" + champImgData[3][i]}>
             <style.ChampionsSpanStyle>{champImgData[1][i]}</style.ChampionsSpanStyle>
           </style.ChampionLink>
         </li>

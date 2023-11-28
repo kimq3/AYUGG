@@ -44,8 +44,9 @@ export async function RuneApi() {
   return resJson;
 }
 
-export async function ChampionDetailApi(){
+export async function ChampionDetailApi(champId){
   const dataUrl = "http://localhost:8100/park/garen";
+  // const dataUrl = "http://localhost:8100/park/" + champId;
 
   const response = await fetch(dataUrl);
   const resJson = await response.json();
