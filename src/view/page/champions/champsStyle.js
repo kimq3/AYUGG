@@ -10,6 +10,7 @@ const FlexBox = styled.div`
 
 const LinkStyle = styled(Link)`
   text-decoration: none;
+  color: black;
   &:visited {
     color: black;
   }
@@ -47,28 +48,21 @@ export const LineButton = styled(FlexBox)`
   border: 1px solid #fff;
   border-radius: 4px;
   margin-right: 15px;
-  font-size: 18px;
+  font-size: 16px;
+  background-color: ${(props) => props.pathname === props.line ? "rgb(66, 66, 253)" : "#fff"}
+  color: ${(props) => props.pathname === props.line ? "#fff" : "black"}
   &:hover {
     background-color: rgb(66, 66, 253);
     color: #fff;
   }
-  ${(props) => {
-    if (props.pathname === props.line) {
-      let select = "background-color:rgb(66, 66, 253); color:#fff;";
-      return select;
-    } else {
-      let select = "background-color:#fff; color:black;";
-      return select;
-    }
-  }}
 `;
 
 export const ArticleBox = styled.div`
   width: ${(props) => props.$width};
   height: auto;
   box-sizing: border-box;
-  margin: 15px 15px;
-  background-color: #fff;
+  margin: ${(props) => props.$seq === "1" ? " 10px 10px" : "10px 10px 10px 0px"};
+  background-color: rgb(240, 240, 240);
   border-radius: 4px;
 `;
 
@@ -87,8 +81,12 @@ export const ChampionsInput = styled.input`
   border: none;
   margin: 15px 5px;
   padding: 0 5px;
+  background-color: rgb(240, 240, 240);
   &:active {
     border: none;
+  }
+  &:focus {
+    outline: none;
   }
 `;
 
@@ -138,4 +136,25 @@ export const ChampionsSpanStyle = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+`;
+
+export const RankingTitleBox = styled.div`
+  display: flex;
+  width: 100%;
+  height: 2794px;
+  border-radius: 4px;
+`;
+
+export const RankingTitle = styled.div`
+  width: ${(props) => props.$width};
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(220, 220, 220);
+  color: rgb(100, 100, 100);
+  font-size: 16px;
+  border-top-left-radius: ${(props) => props.$seq === 'start' ? "4px" : "0px"};
+  border-top-right-radius: ${(props) => props.$seq === 'end' ? "4px" : "0px"};
+  border-bottom: 1px solid grey;
 `;
