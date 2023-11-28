@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const CoverDetailMatchBox = styled.div`
+  display: ${(props) => (props.isvisible === 'true' ? 'initial' : 'none')};
+`
+
 export const MatchLabel = styled.div`
   background: #626367;
   color: white;
@@ -57,7 +61,7 @@ export const MatchDetailTableLabel = styled.tr`
   border-bottom: 2px solid rgb(98, 99, 103);
 `
 export const TableTr = styled.tr`
-  background: ${ props => (props.backgroundColor)};
+  background: ${ props => (props.$backgroundColor)};
 `
 export const TableTd = styled.td`
   display: flex;
@@ -111,6 +115,7 @@ export const Perk1Img = styled.img`
 export const Perk2Img = styled.img`
   width: 20px;
   height: 20px;
+  transform: scale(0.9);
 `
 export const NickTierDiv = styled.div`
   margin: auto;

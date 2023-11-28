@@ -2,9 +2,8 @@ import { MatchButtons, MatchButton, MoreMatchButton } from "view/page/search/sea
 import { useState } from "react";
 import StatisticBox from "view/page/search/boxes/statisticBox"
 import MatchesBox from "view/page/search/boxes/matchesBox"
-import DetailMatchBox from "view/page/search/boxes/detailMatchBox";
 
-function BottomBox(props) {
+function BottomBox() {
   const [selectedButton, setSelectedButton] = useState('whole');
 
   const handleButtonClick = (buttonName) => {
@@ -15,17 +14,14 @@ function BottomBox(props) {
     <div>
       <MatchButtons>
         <MatchButton value={selectedButton} isclick={'whole'} onClick={() => handleButtonClick('whole')} >전체</MatchButton>
-        <MatchButton value={selectedButton} isclick={'solo'} onClick={() => handleButtonClick('solo')} >솔로랭크</MatchButton>
-        <MatchButton value={selectedButton} isclick={'team'} onClick={() => handleButtonClick('team')} >자유랭크</MatchButton>
+        <MatchButton value={selectedButton} isclick={'rank'} onClick={() => handleButtonClick('rank')} >랭크</MatchButton>
         <MatchButton value={selectedButton} isclick={'normal'} onClick={() => handleButtonClick('normal')} >일반</MatchButton>
       </MatchButtons>
       <br />
       <StatisticBox />
       <br />
       <br />
-      <MatchesBox data={props.data}/>
-      <DetailMatchBox></DetailMatchBox>
-      {/* 더보기 버튼? */}
+      <MatchesBox />
       <MoreMatchButton>MORE +</MoreMatchButton>
     </div>
   );

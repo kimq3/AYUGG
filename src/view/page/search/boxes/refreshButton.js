@@ -4,6 +4,7 @@ import { RefreshButton, RefreshButtonImg } from "view/page/search/searchStyle/re
 function Button() {
   const handleRefresh = () => {
     window.location.reload();
+    // window.location.href = window.location.search;
   };
 
   return (
