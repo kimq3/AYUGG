@@ -3,7 +3,7 @@
     "id": "Garen",
     "name": "가렌",
     "tier": "EMERALD",
-    "version": "13.11.1",
+    "version": "13.22.1",
     "winRate": "10%",
     "pickRate": "20%",
     "banRate": "30%",
@@ -84,45 +84,48 @@
       }
     ],
     "skillTree": {
-      "master": {
-        "1": {
+      "master": [
+        { 
+          "seq" : "1",
           "id": "GarenE.png",
           "name": "심판",
           "key": "E"
         },
-        "2": {
+        { 
+          "seq" : "2",
           "id": "GarenQ.png",
           "name": "결정타",
           "key": "Q"
         },
-        "3": {
+        { 
+          "seq" : "3",
           "id": "GarenW.png",
           "name": "용기",
           "key": "W"
         }
-      },
-      "order": {
-        "1": "Q",
-        "2": "E",
-        "3": "W",
-        "4": "E",
-        "5": "E",
-        "6": "R",
-        "7": "E",
-        "8": "Q",
-        "9": "E",
-        "10": "Q",
-        "11": "R",
-        "12": "Q"
-      }
+      ],
+      "order": [
+        "Q",
+        "E",
+        "W",
+        "E",
+        "E",
+        "R",
+        "E",
+        "Q",
+        "E",
+        "Q",
+        "R",
+        "Q"
+      ]
     },
     "spell": {
       "version1": {
-        "spell1": {
+        "type1": {
           "id": "SummonerDot",
           "name": "점화"
         },
-        "spell2": {
+        "type2": {
           "id": "SummonerFlash",
           "name": "점멸"
         },
@@ -130,11 +133,11 @@
         "winRate": "51.20%"
       },
       "version2": {
-        "spell1": {
+        "type1": {
           "id": "SummonerTeleport",
           "name": "순간이동"
         },
-        "spell2": {
+        "type2": {
           "id": "SummonerFlash",
           "name": "점멸"
         },
@@ -144,11 +147,11 @@
     },
     "startItem": {
       "version1": {
-        "item1": {
+        "type1": {
           "id": "1054",
           "name": "도란의 방패"
         },
-        "item2": {
+        "type2": {
           "id": "2003",
           "name": "체력 물약"
         },
@@ -156,11 +159,11 @@
         "winRate": "50.68%"
       },
       "version2": {
-        "item1": {
+        "type1": {
           "id": "1055",
           "name": "도란의 검"
         },
-        "item2": {
+        "type2": {
           "id": "2003",
           "name": "체력 물약"
         },

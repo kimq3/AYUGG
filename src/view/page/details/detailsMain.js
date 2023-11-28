@@ -1,15 +1,17 @@
 import Nav from "view/nav";
-import DetailsBasicInfo from "./detailsBasicInfo";
-import DetailsRuneInfo from "./detailsRune";
+import FirstArticle from "./detailsBasicInfo";
+import SecondArticle from "./detailsRune";
 import { ChampionApi } from "model/constantly/apiConstants";
+import ThirdArticle from "./detailsItem";
 
 function ChampionsDetails() {
   ChampionApi();
   return (
     <>
       <Nav />
-      <DetailsBasicInfo />
-      <DetailsRuneInfo />
+      <FirstArticle />
+      <SecondArticle />
+      <ThirdArticle />
     </>
   );
 }

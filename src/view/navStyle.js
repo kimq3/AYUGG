@@ -95,6 +95,9 @@ export const SearchInput = styled.input`
   font-size: 20px;
   width: 60%;
   border: none;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const SearchButton = styled.button`

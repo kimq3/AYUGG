@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import * as style from "./championsStyle";
-import { Link, useLocation } from 'react-router-dom';
-import { ChampionApi } from "model/constantly/apiConstants";
+import * as style from "./champsStyle";
+import { useLocation } from 'react-router-dom';
+import { ChampionDetailApi as ChampDetailApi, ChampionApi } from "model/constantly/apiConstants";
+
+const detailData = await ChampDetailApi();
+const champImgData = await ChampionApi();
 
 export function Option() {
   const tierList = ["Challenger", "Grandmaster", "Master", "Diamond", "Emerald", "Platinum", "Gold", "Silver", "Bronze", "Iron"];
@@ -23,17 +26,14 @@ export function Option() {
 
 export  function Line(props) {
   const { pathname } = useLocation();
-  const lineClick = () => {
-    <Link to={"/" + props.value}></Link>
-  }
 
-  return <style.LineButton $pathname={pathname} $line={props.value} onClick={lineClick}>
-    {props.name}
+  return <style.LineButton $pathname={pathname} $line={props.value}>
+    <style.ChampionLink to={"/" + props.value}>{props.name}</style.ChampionLink>
   </style.LineButton>
 }
 
 export function Input(){
-  const [inputText, setInputText] = useState("수정 필요 / placeholer");
+  const [inputText, setInputText] = useState();
   const onChangeInput = e => {
     setInputText(e.target.value);
   };
@@ -71,17 +71,16 @@ export function ChampionsImg(){
 }
 
 export async function ChampionsImgFull(){
-  let champImgData = await ChampionApi();
 
   let fullData = [];
   for(let i = 0; i<champImgData[0].length; i++){
     let data = (
       <style.ListBox key={i}>
         <li>
-          <style.ChampionLink to="/details">
+          <style.ChampionLink to={"/details?id=" + champImgData[3][i]}>
             <style.ChampionsImgStyle src={champImgData[0][i]} />
           </style.ChampionLink>
-          <style.ChampionLink to="/details">
+          <style.ChampionLink to={"/details?id=" + champImgData[3][i]}>
             <style.ChampionsSpanStyle>{champImgData[1][i]}</style.ChampionsSpanStyle>
           </style.ChampionLink>
         </li>
