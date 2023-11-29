@@ -9,7 +9,7 @@ function Button() {
 
   return (
     <RefreshButton>
-      <RefreshButtonImg onClick={handleRefresh} src={`${process.env.PUBLIC_URL}` + 'assets/images/reset-icon.svg'} />
+      <RefreshButtonImg onClick={handleRefresh} src={`${process.env.PUBLIC_URL}` + '/assets/images/reset-icon.svg'} />
     </RefreshButton>
   );
 }

@@ -1,6 +1,11 @@
 const version = "https://ddragon.leagueoflegends.com/cdn/13.22.1/";
 const imgUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
 
+export function GetPlayerIconImg(profileIconId) {
+  const version = "https://ddragon.leagueoflegends.com/cdn/13.22.1/img/profileicon/"
+  const champUrl = version + profileIconId + ".png";
+  return champUrl;
+}
 export function GetQueueType(queueNum) {
   let returnString = "";
   if (queueNum === 420) {

@@ -6,7 +6,7 @@ function Nav() {
     <style.NavBox>
       <style.NavBoxButton>
         <Link to="/">
-          <style.Logo src={`${process.env.PUBLIC_URL}` + 'assets/images/logo/navbar-logo.png'} />
+          <style.Logo src={`${process.env.PUBLIC_URL}` + '/assets/images/logo/navbar-logo.png'} />
         </Link>
         <LinkList url="/" name="홈" />
         <LinkList url="/champion" name="챔피언분석" />
@@ -24,7 +24,7 @@ function Nav() {
           </style.SearchSelect>
           <style.SearchInput />
           <style.SearchButton>
-            <style.SearchIcon src={`${process.env.PUBLIC_URL}` + 'assets/images/search-icon/search-icon-24.svg'} />
+            <style.SearchIcon src={`${process.env.PUBLIC_URL}` + '/assets/images/search-icon/search-icon-24.svg'} />
           </style.SearchButton>
         </style.Search>
       </style.NavBoxSearch>
