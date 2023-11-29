@@ -22,7 +22,6 @@ function BottomBox() {
     newList.push(newList.length);
 
     GetMatchData(data.matchList[newList.length-1],data.nickname).then((_data) => {
-      console.log(_data);
       const newData = JSON.parse(JSON.stringify(data));
       newData.matches[newList.length-1] = _data.match;
       newData.partinum[newList.length-1] = _data.partinum;
@@ -32,14 +31,6 @@ function BottomBox() {
       setMatchList(newList);
     })
   };
-
-  // useEffect(() => {
-  //   if (!isMounted.current) {
-  //     GetMatchData(data.matchList[matchList.length-1], matchList.length-1).then((_data) => {
-  //       console.log(_data);
-  //     })
-  //   }
-  // }, [matchList]);
 
   return (
     <div>
