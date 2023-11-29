@@ -1,4 +1,4 @@
-import * as sb from "view/page/search/searchStyle/statisticBoxStyle";
+import * as sb from "../searchStyle/statisticBoxStyle";
 import DoughnutChart from "../charts/doughnut";
 import RadarCharactChart from "../charts/radar";
 import { useSelector } from "react-redux";

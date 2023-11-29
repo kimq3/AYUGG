@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import Nav from "view/nav";
-import TopBox from "view/page/search/boxes/topBox"
-import { ContainerDiv } from "view/page/search/searchStyle/topBoxStyle"
-import Button from "view/page/search/boxes/refreshButton"
-import GetSearchData from "view/page/search/getSearchData";
-import BottomBox from "view/page/search/boxes/bottomBox";
+import TopBox from "./boxes/topBox";
+import { BlankDiv, ContainerDiv } from "./searchStyle/topBoxStyle";
+import Button from "./boxes/refreshButton"
+import GetSearchData from "./dataHandling/api/getSearchData";
+import BottomBox from "./boxes/bottomBox";
 import { fetchDataRequest, fetchDataSuccess, fetchDataFailure } from "reduxTest/dataSlice";
 
 function SearchPage(){
@@ -34,10 +34,10 @@ function SearchPage(){
       <ContainerDiv>
         <TopBox />
         <Button />
-        <br />
+        <BlankDiv />
         <BottomBox />
       </ContainerDiv>
-      <br />
+      <BlankDiv />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { RefreshButton, RefreshButtonImg } from "view/page/search/searchStyle/refreshButtonStyle";
+import { RefreshButton, RefreshButtonImg } from "../searchStyle/refreshButtonStyle";
 
 //refresh버튼
 function Button() {

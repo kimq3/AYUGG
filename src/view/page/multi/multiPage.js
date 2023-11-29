@@ -1,9 +1,9 @@
-import { ContainerDiv, CustomTextarea, ButtonsDiv, CountrySelect, SearchButton, ResultDiv } from "view/page/multi/multiStyle/multiPageStyle";
+import { ContainerDiv, CustomTextarea, ButtonsDiv, CountrySelect, SearchButton, ResultDiv, BlankDiv } from "./multiStyle/multiPageStyle";
 import Nav from "view/nav";
 import { useState, useEffect } from 'react';
-import Filter from 'view/page/multi/textareaFilter';
-import AddBox from 'view/page/multi/addBox';
-import GetMultiData from 'view/page/multi/getMultiData';
+import Filter from './dataHandling/textareaFilter';
+import AddBox from './addBox';
+import GetMultiData from './dataHandling/api/getMultiData';
 
 function Multi() {
   const [inputText, setInputText] = useState('');
@@ -28,7 +28,7 @@ function Multi() {
   return (
     <div>
       <Nav />
-      <br />
+      <BlankDiv />
       <ContainerDiv>
         <CustomTextarea
           id="textarea"
@@ -39,8 +39,8 @@ function Multi() {
 ~~~~~~~~~~~~~ 님이 방에 참가했습니다."
           value={inputText} onChange={(e) => { setInputText(e.target.value); }}
         />
-        <br />
-        <br />
+        <BlankDiv />
+        <BlankDiv />
         <ButtonsDiv>
           <CountrySelect>
             <option value="KR">KR</option>
@@ -51,7 +51,7 @@ function Multi() {
           }}>검색</SearchButton>
         </ButtonsDiv>
       </ContainerDiv>
-      <br />
+      <BlankDiv />
       <ResultDiv>
         {
           finalDataList.map((data, index) => {

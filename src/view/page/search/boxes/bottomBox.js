@@ -1,13 +1,21 @@
-import { MatchButtons, MatchButton, MoreMatchButton } from "view/page/search/searchStyle/bottomBoxStyle.js";
+import { MatchButtons, MatchButton, MoreMatchButton } from "../searchStyle/bottomBoxStyle.js";
 import { useState } from "react";
-import StatisticBox from "view/page/search/boxes/statisticBox"
-import MatchesBox from "view/page/search/boxes/matchesBox"
+import StatisticBox from "../boxes/statisticBox";
+import MatchesBox from "../boxes/matchesBox";
+import { BlankDiv } from "../searchStyle/topBoxStyle";
 
 function BottomBox() {
   const [selectedButton, setSelectedButton] = useState('whole');
+  const [matchList, setMatchList] = useState([0,1]);
 
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
+  };
+
+  const handleMoreButtonClick = () => {
+    const newList = [...matchList];
+    newList.push(newList.length);
+    setMatchList(newList);
   };
 
   return (
@@ -17,12 +25,12 @@ function BottomBox() {
         <MatchButton value={selectedButton} isclick={'rank'} onClick={() => handleButtonClick('rank')} >랭크</MatchButton>
         <MatchButton value={selectedButton} isclick={'normal'} onClick={() => handleButtonClick('normal')} >일반</MatchButton>
       </MatchButtons>
-      <br />
+      <BlankDiv />
       <StatisticBox />
-      <br />
-      <br />
-      <MatchesBox />
-      <MoreMatchButton>MORE +</MoreMatchButton>
+      <BlankDiv />
+      <BlankDiv />
+      <MatchesBox list={matchList} />
+      <MoreMatchButton onClick={handleMoreButtonClick}>MORE +</MoreMatchButton>
     </div>
   );
 }

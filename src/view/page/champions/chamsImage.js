@@ -77,10 +77,10 @@ export async function ChampionsImgFull(){
     let data = (
       <style.ListBox key={i}>
         <li>
-          <style.ChampionLink to={"/details?id=" + champImgData[3][i]}>
+          <style.ChampionLink to={"/details"}>
             <style.ChampionsImgStyle src={champImgData[0][i]} />
           </style.ChampionLink>
-          <style.ChampionLink to={"/details?id=" + champImgData[3][i]}>
+          <style.ChampionLink to={"/details"}>
             <style.ChampionsSpanStyle>{champImgData[1][i]}</style.ChampionsSpanStyle>
           </style.ChampionLink>
         </li>

@@ -1,14 +1,14 @@
-import * as match from "view/page/search/searchStyle/matchesBoxStyle";
-import * as fd from "view/page/search/filterData";
+import * as match from "../searchStyle/matchesBoxStyle";
+import * as fd from "../dataHandling/filterData";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { runeUrl, spellUrl } from "model/constantly/apiConstants";
-import DetailMatchBox from "view/page/search/boxes/detailMatchBox";
+import DetailMatchBox from "../boxes/detailMatchBox";
 
-function MatchesBox() {
+function MatchesBox(props) {
   return (
-    <div>
-      {[0,1].map((num) => {
+    <div>{console.log(props.list)}
+      {props.list.map((num) => {
         return <MatchBox key={num} value={num}/>
       })}
     </div>
@@ -116,7 +116,7 @@ function MatchBox(props) {
           <match.OpenImg src={`${process.env.PUBLIC_URL}` + 'assets/images/down-arrow.svg'} />
         </match.OpenDiv>
       </div>
-      <DetailMatchBox isvisible={isDropdownVisible} key={matchesIndex}/>
+      <DetailMatchBox isvisible={isDropdownVisible} index={matchesIndex}/>
     </div>
   );
 }

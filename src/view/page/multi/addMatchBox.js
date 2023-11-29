@@ -1,4 +1,4 @@
-import { MatchDiv, MatchChampImg, KdaDiv, TimeDiv } from 'view/page/multi/multiStyle/resultBoxStyle';
+import { MatchDiv, MatchChampImg, KdaDiv, TimeDiv } from './multiStyle/resultBoxStyle';
 
 // input: matchList output: 결과창안의 match 5개
 // 1개의 결과창 안의 5개의 match결괄 나타낸다
