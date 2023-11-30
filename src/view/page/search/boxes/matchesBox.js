@@ -51,7 +51,7 @@ function MatchBox(props) {
   return (
     <div>
       <div style={{ position: 'relative' }}>
-        {data && <match.MatchDiv>
+        {data && <match.MatchDiv win={data.matches[matchesIndex].participants[data.partinum[matchesIndex]].win}>
           <match.MatchFirstDiv>
             <match.Font1Div>{fd.GetQueueType(data.matches[matchesIndex].queueId)}</match.Font1Div>
             <match.Font2Div>{fd.GetMatchDate(data.matches[matchesIndex].gameStartTimestamp)}</match.Font2Div>

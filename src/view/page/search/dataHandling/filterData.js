@@ -34,6 +34,10 @@ export function GetMatchTime(gameDuration) {
   return textContent;
 }
 export function GetChampImg(championName) {
+  if(championName === "FiddleSticks"){
+    const champUrl = version + "img/champion/" + "Fiddlesticks" + ".png";
+    return champUrl;
+  }
   const champUrl = version + "img/champion/" + championName + ".png";
   return champUrl;
 }
