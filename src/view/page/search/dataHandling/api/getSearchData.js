@@ -54,6 +54,6 @@ export default async function GetSearchData(nickname) {
     console.log(data);
     return data;
   } catch (error) {
-    throw new Error('Error fetching data:', error);
+    throw new Error(error);
   }
 }

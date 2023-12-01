@@ -6,7 +6,7 @@ export const MatchDiv = styled.div`
   align-items: center;
   margin-bottom: 30px;
   height: 104px;
-  background-color: ${ props => (props.win ? `rgba(0, 0, 255, 0.3)` : `rgba(255, 0, 0, 0.3)`)};
+  background-color: ${ props => props.time < 180 ? `rgba(0, 0, 0, 0.3)` : (props.win ? `rgba(0, 0, 255, 0.3)` : `rgba(255, 0, 0, 0.3)`)};
 `;
 export const MatchFirstDiv = styled.div`
   text-align: center;

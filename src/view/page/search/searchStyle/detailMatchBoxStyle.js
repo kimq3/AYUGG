@@ -21,12 +21,12 @@ export const MatchLabelSpan = styled.span`
 export const WinBlueLabelSpan = styled.span`
   font-size: 20px;
   padding-right: 10px;
-  color: ${ props => (props.win ? `rgba(0, 0, 255, 0.7)` : `rgba(255, 0, 0, 0.7)`)}; 
+  color: ${ props => props.time < 180 ? `rgba(0, 0, 0, 0.7)` : (props.win ? `rgba(0, 0, 255, 0.7)` : `rgba(255, 0, 0, 0.7)`)}; 
 `;
 export const WinRedLabelSpan = styled.span`
   font-size: 20px;
   padding-left: 10px;
-  color: ${ props => (props.win ? `rgba(0, 0, 255, 0.7)` : `rgba(255, 0, 0, 0.7)`)}; 
+  color: ${ props => props.time < 180 ? `rgba(0, 0, 0, 0.7)` : (props.win ? `rgba(0, 0, 255, 0.7)` : `rgba(255, 0, 0, 0.7)`)}; 
 `;
 export const Font1Span = styled.span`
   font-size: 14px;

@@ -40,6 +40,6 @@ export default async function GetQueueData(nickname, puuid, queue) {
       });
     return data;
   } catch (error) {
-    throw new Error('Error fetching data:', error);
+    throw new Error(error);
   }
 }

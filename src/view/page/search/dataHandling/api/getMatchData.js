@@ -19,6 +19,6 @@ export default async function GetMatchData(matchId,nickname) {
       });
     return data;
   } catch (error) {
-    throw new Error('Error fetching data:', error);
+    throw new Error(error);
   }
 }

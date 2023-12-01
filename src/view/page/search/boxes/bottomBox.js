@@ -17,9 +17,9 @@ function BottomBox() {
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
     setMatchList([0, 1]);
+    
     if (buttonName === 'solo') {
       GetQueueData(data.nickname, data.puuid, 420).then((_data) => {
-        console.log(_data);
         const newData = JSON.parse(JSON.stringify(data));
         newData.matchList = _data.matchList;
         newData.matches = _data.matches;
@@ -27,10 +27,12 @@ function BottomBox() {
         return newData;
       }).then((_newData) => {
         dispatch(fetchDataSuccess(_newData));
+      }).catch(()=>{
+        alert("매치 데이터가 존재하지 않습니다.");
+        return;
       });
     } else if (buttonName === 'team') {
       GetQueueData(data.nickname, data.puuid, 440).then((_data) => {
-        console.log(_data);
         const newData = JSON.parse(JSON.stringify(data));
         newData.matchList = _data.matchList;
         newData.matches = _data.matches;
@@ -38,10 +40,12 @@ function BottomBox() {
         return newData;
       }).then((_newData) => {
         dispatch(fetchDataSuccess(_newData));
+      }).catch(()=>{
+        alert("매치 데이터가 존재하지 않습니다.");
+        return;
       });
     } else if (buttonName === 'normal') {
       GetQueueData(data.nickname, data.puuid, 490).then((_data) => {
-        console.log(_data);
         const newData = JSON.parse(JSON.stringify(data));
         newData.matchList = _data.matchList;
         newData.matches = _data.matches;
@@ -49,6 +53,9 @@ function BottomBox() {
         return newData;
       }).then((_newData) => {
         dispatch(fetchDataSuccess(_newData));
+      }).catch(()=>{
+        alert("매치 데이터가 존재하지 않습니다.");
+        return;
       });
     }
 
@@ -66,6 +73,9 @@ function BottomBox() {
     }).then((_newData) => {
       dispatch(fetchDataSuccess(_newData));
       setMatchList(newList);
+    }).catch(()=>{
+      alert("더 이상의 매치를 불러올수 없습니다.");
+      return;
     });
   };
 

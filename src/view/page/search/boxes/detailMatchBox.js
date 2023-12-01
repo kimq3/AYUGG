@@ -26,8 +26,8 @@ function MatchLabel(props) {
     <div>
       {data && <dmb.MatchLabel>
         <dmb.MatchLabelSpan>
-          <dmb.WinBlueLabelSpan win={data.matches[matchesIndex].teams[0].win} >{
-            data.matches[matchesIndex].teams[0].win ? "승리" : "패배"
+          <dmb.WinBlueLabelSpan time={data.matches[matchesIndex].gameDuration} win={data.matches[matchesIndex].teams[0].win} >{
+            data.matches[matchesIndex].gameDuration < 180 ? "다시하기" : (data.matches[matchesIndex].teams[0].win ? "승리" : "패배")
           }</dmb.WinBlueLabelSpan>
           <dmb.Font1Span>블루팀</dmb.Font1Span>
         </dmb.MatchLabelSpan>
@@ -88,8 +88,8 @@ function MatchLabel(props) {
         </dmb.MatchLabelSpan>
         <dmb.MatchLabelSpan>
           <dmb.Font1Span>레드팀</dmb.Font1Span>
-          <dmb.WinRedLabelSpan win={data.matches[matchesIndex].teams[1].win} >{
-            data.matches[matchesIndex].teams[1].win ? "승리" : "패배"
+          <dmb.WinRedLabelSpan time={data.matches[matchesIndex].gameDuration} win={data.matches[matchesIndex].teams[1].win} >{
+            data.matches[matchesIndex].gameDuration < 180 ? "다시하기" : (data.matches[matchesIndex].teams[1].win ? "승리" : "패배")
           }</dmb.WinRedLabelSpan>
         </dmb.MatchLabelSpan>
       </dmb.MatchLabel>}

@@ -15,6 +15,6 @@ export default async function GetTierList(data, matchesIndex) {
     }
     return res;
   } catch (error) {
-    throw new Error('Error fetching data:', error);
+    throw new Error(error);
   }
 }
