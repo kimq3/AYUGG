@@ -78,6 +78,7 @@ export const MatchFifthDiv = styled.div`
   text-align: left;
 `;
 export const PartiListUl = styled.ul`
+  padding-left: 20px;
   list-style: none;
 `;
 export const PartiImg = styled.img`

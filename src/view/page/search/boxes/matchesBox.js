@@ -100,7 +100,7 @@ function MatchBox(props) {
                 return (
                   <li key={num}>
                     <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                    <span>{data.matches[matchesIndex].participants[num].summonerName}</span>
+                    <sapn>{data.matches[matchesIndex].participants[num].summonerName}</sapn>
                   </li>
                 )
               })}

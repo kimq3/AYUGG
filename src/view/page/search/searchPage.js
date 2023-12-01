@@ -13,7 +13,7 @@ function SearchPage(){
 
   useEffect(() => {
     fetchDataRequest();
-    GetSearchData("hideonbush").then((res) => {
+    GetSearchData("읽씹맨").then((res) => {
       dispatch(fetchDataSuccess(res));
     }).catch((err) => {
       dispatch(fetchDataFailure(err));

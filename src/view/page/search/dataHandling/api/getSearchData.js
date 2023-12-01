@@ -15,10 +15,11 @@ export default async function GetSearchData(nickname) {
       .then(response => response.json())
       .then(async (rawData) => {
         let uidUrl = idUrl + rawData.id + "?api_key=" + apiKey;
-        let matchUrl = matchesUrl + rawData.puuid + "/ids?count=" + "20" + "&api_key=" + apiKey;
+        let matchUrl = matchesUrl + rawData.puuid + "/ids?count=20&api_key=" + apiKey;
 
         data.nickname = rawData.name;
         data.profileIconId = rawData.profileIconId;
+        data.puuid = rawData.puuid;
 
         await fetch(uidUrl)
           .then(response => response.json())
