@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import GetMatchData from "../dataHandling/api/getMatchData.js";
 import { fetchDataSuccess } from "reduxTest/dataSlice.js";
 import GetQueueData from "../dataHandling/api/getQueueData.js";
+import GetStatisticData from "../dataHandling/statisticData.js";
 
 function BottomBox() {
   const [selectedButton, setSelectedButton] = useState('whole');
@@ -17,7 +18,7 @@ function BottomBox() {
   const handleButtonClick = (buttonName) => {
     setSelectedButton(buttonName);
     setMatchList([0, 1]);
-    
+
     if (buttonName === 'solo') {
       GetQueueData(data.nickname, data.puuid, 420).then((_data) => {
         const newData = JSON.parse(JSON.stringify(data));
@@ -27,7 +28,7 @@ function BottomBox() {
         return newData;
       }).then((_newData) => {
         dispatch(fetchDataSuccess(_newData));
-      }).catch(()=>{
+      }).catch(() => {
         alert("매치 데이터가 존재하지 않습니다.");
         return;
       });
@@ -40,7 +41,7 @@ function BottomBox() {
         return newData;
       }).then((_newData) => {
         dispatch(fetchDataSuccess(_newData));
-      }).catch(()=>{
+      }).catch(() => {
         alert("매치 데이터가 존재하지 않습니다.");
         return;
       });
@@ -53,7 +54,7 @@ function BottomBox() {
         return newData;
       }).then((_newData) => {
         dispatch(fetchDataSuccess(_newData));
-      }).catch(()=>{
+      }).catch(() => {
         alert("매치 데이터가 존재하지 않습니다.");
         return;
       });
@@ -73,7 +74,7 @@ function BottomBox() {
     }).then((_newData) => {
       dispatch(fetchDataSuccess(_newData));
       setMatchList(newList);
-    }).catch(()=>{
+    }).catch(() => {
       alert("더 이상의 매치를 불러올수 없습니다.");
       return;
     });
@@ -88,7 +89,7 @@ function BottomBox() {
         <MatchButton value={selectedButton} isclick={'normal'} onClick={() => handleButtonClick('normal')} >일반</MatchButton>
       </MatchButtons>
       <BlankDiv />
-      <StatisticBox />
+      {data && <StatisticBox data={GetStatisticData(data)} />}
       <BlankDiv />
       <BlankDiv />
       {matchList && <MatchesBox list={matchList} />}

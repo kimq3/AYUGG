@@ -84,3 +84,9 @@ export function GetMostDamage(data, match) {
   }
   return Number(mostDamage);
 }
+
+export function GetKoreaName(data, championName) {
+  if (data.hasOwnProperty(championName)) {
+    return data[championName].name;
+  }
+}
