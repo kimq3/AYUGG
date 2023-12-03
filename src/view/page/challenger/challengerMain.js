@@ -1,11 +1,13 @@
 import { getMatch } from "model/api/challengerMatch";
 import { useEffect, useState } from "react";
 import Nav from "view/nav";
+import TotalFrame from "./card/totalFrame";
+
 
 function ChallengerMain(){
 
-    const [result, setResult]=useState([]);
-
+    //const [result, setResult]=useState([]);
+/*
     useEffect(()=>{
         getMatch()
         .then((data)=>{
@@ -13,11 +15,12 @@ function ChallengerMain(){
             console.log('매치결과',data);
         });
     },[]);
+*/
     
     return (
         <div>
             <Nav></Nav>
-            <div>챌린저 매치 페이지입니다.</div>
+            <TotalFrame></TotalFrame>
         </div>
     );
 }
