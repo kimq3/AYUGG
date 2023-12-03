@@ -46,7 +46,7 @@ function StatisticBox(props) {
             </sb.MostContentTh>
             <sb.PlayStyleContentTh>
               <sb.GraphCover1>
-                <RadarCharactChart data={ChangeRadarChartData(props.data)}/>{console.log(props.data.third)}
+                <RadarCharactChart data={ChangeRadarChartData(props.data)}/>
               </sb.GraphCover1>
             </sb.PlayStyleContentTh>
           </tr>

@@ -1,7 +1,23 @@
 import { Link, useLocation } from "react-router-dom";
 import * as style from "view/navStyle";
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 function Nav() {
+  let navigate = useNavigate();
+  const [inputText, setInputText] = useState('');
+  const location = useLocation();
+
+  const searchButtonClick = () => {
+    console.log(location);
+    if (location.pathname === '/search') {
+      navigate('/search', { state: { nickname: inputText } });
+      window.location.reload();
+    } else {
+      navigate('/search', { state: { nickname: inputText } });
+    }
+  };
+
   return (
     <style.NavBox>
       <style.NavBoxButton>
@@ -22,8 +38,8 @@ function Nav() {
             <option value="KR">KR</option>
             <option value="NA">NA</option>
           </style.SearchSelect>
-          <style.SearchInput />
-          <style.SearchButton>
+          <style.SearchInput value={inputText} onChange={(e) => { setInputText(e.target.value); }} />
+          <style.SearchButton onClick={searchButtonClick} >
             <style.SearchIcon src={`${process.env.PUBLIC_URL}` + '/assets/images/search-icon/search-icon-24.svg'} />
           </style.SearchButton>
         </style.Search>
@@ -36,26 +52,26 @@ function LinkList(props) {
   const { pathname } = useLocation();
   let width;
 
-  switch (props.name){
-    case '홈' :
+  switch (props.name) {
+    case '홈':
       width = "20px";
       break;
-    case '통계' :
+    case '통계':
       width = "40px";
       break;
-    case '랭킹' :
+    case '랭킹':
       width = "40px";
       break;
-    case '멀티서치' :
+    case '멀티서치':
       width = "80px";
       break;
-    case '대회일정' :
+    case '대회일정':
       width = "80px";
       break;
-    case '챔피언분석' :
+    case '챔피언분석':
       width = "100px";
       break;
-    case '챌린저매치' :
+    case '챌린저매치':
       width = "100px";
       break;
   }
