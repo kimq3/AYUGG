@@ -9,7 +9,12 @@ export default async function GetQueueData(nickname, puuid, queue) {
     data.matches = [];
     data.partinum = [];
     const matchNum = 2; // 매치갯수
-    let matchUrl = matchesUrl + puuid + "/ids?queue=" + queue + "&count=20&api_key=" + apiKey;
+    let matchUrl = "";
+    if (queue === 10000) {
+      matchUrl = matchesUrl + puuid + "/ids?count=20&api_key=" + apiKey;
+    } else {
+      matchUrl = matchesUrl + puuid + "/ids?queue=" + queue + "&count=20&api_key=" + apiKey;
+    }
 
     await fetch(matchUrl)
       .then(response => response.json())

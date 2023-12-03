@@ -9,6 +9,7 @@ export default function GetStatisticData(data) {
   resData.first.teamkills = 0;
   resData.second = [];
   resData.secondTotal = {};
+  resData.third = [0,0,0,0,0]; //가한 피해량, 받은 피해량, 분당 골드량, 시야점수, 스킬 명중률
   let index = 0;
   let secondList = [];
   resData.totalMatch = 0;
@@ -41,6 +42,12 @@ export default function GetStatisticData(data) {
       secondData.win = 0;
     }
     secondList.push(secondData);
+      
+    resData.third[0] += element.participants[data.partinum[index]].challenges.teamDamagePercentage;
+    resData.third[1] += element.participants[data.partinum[index]].challenges.damageTakenOnTeamPercentage;
+    resData.third[2] += element.participants[data.partinum[index]].challenges.goldPerMinute;
+    resData.third[3] += element.participants[data.partinum[index]].challenges.visionScorePerMinute;
+    resData.third[4] += element.participants[data.partinum[index]].challenges.skillshotsHit / (element.participants[data.partinum[index]].challenges.skillshotsHit + element.participants[data.partinum[index]].challenges.skillshotsDodged);
 
     index++;
   });

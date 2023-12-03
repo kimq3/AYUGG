@@ -4,6 +4,7 @@ import RadarCharactChart from "../charts/radar";
 import { GetChampImg, GetKoreaName } from "../dataHandling/filterData";
 import { useEffect, useState } from "react";
 import { championUrl } from "model/constantly/apiConstants";
+import { ChangeDoughnutChartData, ChangeRadarChartData } from "../dataHandling/changeChartData";
 
 function StatisticBox(props) {
   return (
@@ -24,7 +25,7 @@ function StatisticBox(props) {
             <sb.InfoContentTh>
               <sb.InfoCover>
                 <sb.GraphCover>
-                  <DoughnutChart />
+                  <DoughnutChart data={ChangeDoughnutChartData(props.data)}/>
                   <sb.InnerTextDiv>
                     <div style={{ fontSize: "16px" }}>{Math.round(props.data.first.wins / (props.data.first.wins + props.data.first.losses) * 100)}%</div>
                     <div style={{ fontSize: "10px" }}>{props.data.first.wins}승 {props.data.first.losses}패</div>
@@ -45,7 +46,7 @@ function StatisticBox(props) {
             </sb.MostContentTh>
             <sb.PlayStyleContentTh>
               <sb.GraphCover1>
-                <RadarCharactChart />
+                <RadarCharactChart data={ChangeRadarChartData(props.data)}/>{console.log(props.data.third)}
               </sb.GraphCover1>
             </sb.PlayStyleContentTh>
           </tr>

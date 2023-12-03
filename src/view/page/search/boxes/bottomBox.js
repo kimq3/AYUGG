@@ -19,7 +19,20 @@ function BottomBox() {
     setSelectedButton(buttonName);
     setMatchList([0, 1]);
 
-    if (buttonName === 'solo') {
+    if (buttonName === 'whole') {
+      GetQueueData(data.nickname, data.puuid, 10000).then((_data) => {
+        const newData = JSON.parse(JSON.stringify(data));
+        newData.matchList = _data.matchList;
+        newData.matches = _data.matches;
+        newData.partinum = _data.partinum;
+        return newData;
+      }).then((_newData) => {
+        dispatch(fetchDataSuccess(_newData));
+      }).catch(() => {
+        alert("매치 데이터가 존재하지 않습니다.");
+        return;
+      })
+    } else if (buttonName === 'solo') {
       GetQueueData(data.nickname, data.puuid, 420).then((_data) => {
         const newData = JSON.parse(JSON.stringify(data));
         newData.matchList = _data.matchList;
