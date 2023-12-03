@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
-
 chromeOptions = Options()
 chromeOptions.add_experimental_option("detach", True) 
 
@@ -15,5 +14,3 @@ def TierCrawl(championRank):
     championNameXpath = '//*[@id="content-header"]/div[1]/div/div[1]/div[2]/div[1]/div/ul[1]/li[변수]/div'
     championNameTag = championNameXpath.format(championRank)
     championName = driver.find_element(By.XPATH, championNameTag).text
-
-

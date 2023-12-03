@@ -10,9 +10,11 @@ export default class RadarCharactChart extends PureComponent {
   }
   
   componentDidUpdate(prevProps) {
-    if (prevProps.data !== this.props.data) {
-      this.setState({ data: this.props.data });
-    }
+    setTimeout(() => {
+      if (prevProps.data !== this.props.data) {
+        this.setState({ data: this.props.data });
+      }
+    }, 500);
   }
 
   render() {
