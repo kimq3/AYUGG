@@ -32,4 +32,12 @@ export const losespan=styled.span`
    font-weight: bold;
 `;
 
+export const Detaildiv=styled.div`
+   font-weight: bold;
+   &:hover {
+      cursor: pointer;
+      color:red;
+   }
+`;
+
 
