@@ -6,7 +6,7 @@ import { BlankDiv, ContainerDiv } from "./searchStyle/topBoxStyle";
 import Button from "./boxes/refreshButton"
 import GetSearchData from "./dataHandling/api/getSearchData";
 import BottomBox from "./boxes/bottomBox";
-import { fetchDataRequest, fetchDataSuccess, fetchDataFailure } from "reduxTest/dataSlice";
+import { fetchDataRequest, fetchDataSuccess, fetchDataFailure } from "redux/dataSlice";
 
 function SearchPage(){
   const dispatch = useDispatch();

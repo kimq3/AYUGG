@@ -5,7 +5,7 @@ import MatchesBox from "../boxes/matchesBox";
 import { BlankDiv } from "../searchStyle/topBoxStyle";
 import { useDispatch, useSelector } from "react-redux";
 import GetMatchData from "../dataHandling/api/getMatchData.js";
-import { fetchDataSuccess } from "reduxTest/dataSlice.js";
+import { fetchDataSuccess } from "redux/dataSlice.js";
 import GetQueueData from "../dataHandling/api/getQueueData.js";
 import GetStatisticData from "../dataHandling/statisticData.js";
 
