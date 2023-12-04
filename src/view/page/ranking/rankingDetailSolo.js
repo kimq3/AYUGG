@@ -2,7 +2,7 @@ import { getRanker } from "model/api/ranking";
 import { useEffect, useState } from "react";
 import Nav from "view/nav";
 import * as style from "view/page/ranking/rankingstyle";
-import ProgressBar from "./progressBar";
+import ProgressBar from "view/page/ranking/progressBar";
 
 function RankingDetail(){
     const [user, setUser]=useState([]);

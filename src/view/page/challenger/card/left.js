@@ -1,0 +1,77 @@
+import * as style from "view/page/challenger/style/leftStyle";
+
+function LeftScreen(){
+    return (
+        <style.Maindiv>
+            <style.UL>
+                <style.LI>
+                    <style.ItemMain>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                    </style.ItemMain>
+                    <style.Nickspan>닉네임입니다.</style.Nickspan>
+                    <style.Imgdiv></style.Imgdiv>
+                </style.LI>
+                <style.LI>
+                    <style.ItemMain>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                    </style.ItemMain>                    
+                    <style.Nickspan>닉네임입니다.</style.Nickspan>
+                    <style.Imgdiv></style.Imgdiv>
+                </style.LI>
+                <style.LI>
+                    <style.ItemMain>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                    </style.ItemMain>                    
+                    <style.Nickspan>닉네임입니다.</style.Nickspan>
+                    <style.Imgdiv></style.Imgdiv>
+                </style.LI>
+                <style.LI>
+                    <style.ItemMain>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                    </style.ItemMain>
+                    <style.Nickspan>닉네임입니다.</style.Nickspan>
+                    <style.Imgdiv></style.Imgdiv>
+                </style.LI>
+                <style.LI>
+                    <style.ItemMain>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                        <style.Itemdiv></style.Itemdiv>
+                    </style.ItemMain>                    
+                    <style.Nickspan>닉네임입니다.</style.Nickspan>
+                    <style.Imgdiv></style.Imgdiv>
+                </style.LI>
+            </style.UL>
+        </style.Maindiv>    
+    );
+}
+
+export default LeftScreen;
