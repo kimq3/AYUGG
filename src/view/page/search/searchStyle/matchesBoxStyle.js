@@ -86,6 +86,13 @@ export const PartiImg = styled.img`
   height: 12px;
   padding-right: 5px;
 `;
+export const PartiName = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 80px;
+  display: block;
+`;
 export const OpenDiv = styled.div`
   display: flex;
   cursor: pointer;

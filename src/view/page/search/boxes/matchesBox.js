@@ -98,9 +98,9 @@ function MatchBox(props) {
             <match.PartiListUl>
               {[0, 1, 2, 3, 4].map((num) => {
                 return (
-                  <li key={num}>
+                  <li style={{display: 'flex'}} key={num}>
                     <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                    <sapn>{data.matches[matchesIndex].participants[num].summonerName}</sapn>
+                    <match.PartiName>{data.matches[matchesIndex].participants[num].summonerName}</match.PartiName>
                   </li>
                 )
               })}
@@ -108,9 +108,9 @@ function MatchBox(props) {
             <match.PartiListUl>
               {[5, 6, 7, 8, 9].map((num) => {
                 return (
-                  <li key={num}>
+                  <li style={{display: 'flex'}} key={num}>
                     <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                    <span>{data.matches[matchesIndex].participants[num].summonerName}</span>
+                    <match.PartiName>{data.matches[matchesIndex].participants[num].summonerName}</match.PartiName>
                   </li>
                 )
               })}

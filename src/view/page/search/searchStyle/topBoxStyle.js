@@ -75,7 +75,7 @@ export const LabelDiv = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  width: 45.513px;
+  width: 90px;
   justify-content: space-between;
   background: #626367;
   margin-right: 10px;
@@ -89,8 +89,9 @@ export const MoreListUl = styled.ul`
   display: ${(props) => (props.isvisible === 'true' ? 'initial' : 'none')};
 `;
 export const OptionItemLi = styled.li`
+  width: 90px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background: #626367;
   margin-right: 10px;
   border-radius: 4px;
