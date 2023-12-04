@@ -1,18 +1,30 @@
 import React, { PureComponent } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
 
-const _data = [
-  { name: 'wins', value: 10 },
-  { name: 'losses', value: 10 },
-];
-const COLORS = ["#0000ff", "#626367"];
-
 class DoughnutChart extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: this.props.data,
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    setTimeout(() => {
+      if (prevProps.data !== this.props.data) {
+        this.setState({ data: this.props.data });
+      }
+    }, 500);
+
+  }
+
   render() {
+    const { data } = this.state;
+    const COLORS = ["#0000ff", "#626367"];
     return (
-      <PieChart width={160} height={160} onMouseEnter={this.onPieEnter}>
+      <PieChart width={160} height={160}>
         <Pie
-          data={_data}
+          data={data}
           stroke="none"
           startAngle={90}
           endAngle={-270}
@@ -20,7 +32,7 @@ class DoughnutChart extends PureComponent {
           outerRadius={70}
           dataKey="value"
         >
-          {_data.map((entry, index) => (
+          {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>

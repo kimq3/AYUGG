@@ -1,5 +1,5 @@
-import { ContainerDiv, TierImg, NicknameDiv, TierTextDiv, WinRateGraphDiv, LossRateGraphDiv, WLRDiv} from 'view/page/multi/multiStyle/resultBoxStyle';
-import AddMatchBox from 'view/page/multi/addMatchBox';
+import { ContainerDiv, TierImg, NicknameDiv, TierTextDiv, WinRateGraphDiv, LossRateGraphDiv, WLRDiv} from './multiStyle/resultBoxStyle';
+import AddMatchBox from './addMatchBox';
 import { tierImgMapping } from 'model/constantly/apiConstants';
 
 // input: nickname 1개 output: 결과창 1개
