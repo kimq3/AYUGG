@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MatchButtons = styled.div`
   text-align: left;
-`
+`;
 export const MatchButton = styled.button`
   width: 110px;
   color: white;
@@ -26,7 +26,7 @@ export const MatchButton = styled.button`
   &:focus:after {
     transform: scaleX(1);
   }
-`
+`;
 export const MoreMatchButton = styled.button`
   color: white;
   background: #626367;
@@ -34,4 +34,4 @@ export const MoreMatchButton = styled.button`
   padding: 5px;
   border: 4px solid #D3D3D3;
   cursor: pointer;
-`
+`;

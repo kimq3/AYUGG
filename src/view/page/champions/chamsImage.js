@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as style from "./champsStyle";
+import * as styled from "./champsStyle";
 import { useLocation } from 'react-router-dom';
 import { ChampionDetailApi as ChampDetailApi, ChampionApi } from "model/constantly/apiConstants";
 
@@ -14,22 +14,22 @@ export function Option() {
   };
 
   return <>
-    <style.ChampionsSelect onChange={tierChangeHandle} value={tierSelected}>
+    <styled.ChampionsSelect onChange={tierChangeHandle} value={tierSelected}>
       {tierList.map((item) => (
         <option value={item} key={item}>
           {item}
         </option>
       ))}
-    </style.ChampionsSelect>
+    </styled.ChampionsSelect>
   </>;
 }
 
 export  function Line(props) {
   const { pathname } = useLocation();
 
-  return <style.LineButton $pathname={pathname} $line={props.value}>
-    <style.ChampionLink to={"/" + props.value}>{props.name}</style.ChampionLink>
-  </style.LineButton>
+  return <styled.LineButton $pathname={pathname} $line={props.value}>
+    <styled.ChampionLink to={"/" + props.value}>{props.name}</styled.ChampionLink>
+  </styled.LineButton>
 }
 
 export function Input(){
@@ -42,15 +42,15 @@ export function Input(){
   };
 
   return (
-    <style.ChampionsInputBox>
-      <style.ChampionsInput
+    <styled.ChampionsInputBox>
+      <styled.ChampionsInput
         type="text"
         value={inputText}
         placeholder="챔피언 검색 (가렌, 갱플랭크 ...)"
         onChange={onChangeInput}
       />
-      <style.ResetButton onClick={onReset}>X</style.ResetButton>
-    </style.ChampionsInputBox>
+      <styled.ResetButton onClick={onReset}>X</styled.ResetButton>
+    </styled.ChampionsInputBox>
   );
 }
 
@@ -75,23 +75,23 @@ export async function ChampionsImgFull(){
   let fullData = [];
   for(let i = 0; i<champImgData[0].length; i++){
     let data = (
-      <style.ListBox key={i}>
+      <styled.ListBox key={i}>
         <li>
-          <style.ChampionLink to="/details">
-            <style.ChampionsImgStyle src={champImgData[0][i]} />
-          </style.ChampionLink>
-          <style.ChampionLink to="/details">
-            <style.ChampionsSpanStyle>{champImgData[1][i]}</style.ChampionsSpanStyle>
-          </style.ChampionLink>
+          <styled.ChampionLink to="/details">
+            <styled.ChampionsImgStyle src={champImgData[0][i]} />
+          </styled.ChampionLink>
+          <styled.ChampionLink to="/details">
+            <styled.ChampionsSpanStyle>{champImgData[1][i]}</styled.ChampionsSpanStyle>
+          </styled.ChampionLink>
         </li>
-      </style.ListBox>
+      </styled.ListBox>
     )
     fullData.push(data);
   }
   
   return (
-    <style.ChampionsOlStyle>
+    <styled.ChampionsOlStyle>
       {fullData}
-    </style.ChampionsOlStyle>
+    </styled.ChampionsOlStyle>
   )
  }

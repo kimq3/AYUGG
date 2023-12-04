@@ -1,4 +1,4 @@
-import { RefreshButton, RefreshButtonImg } from "view/page/search/searchStyle/refreshButtonStyle";
+import { RefreshButton, RefreshButtonImg } from "../searchStyle/refreshButtonStyle";
 
 //refresh버튼
 function Button() {
@@ -9,7 +9,7 @@ function Button() {
 
   return (
     <RefreshButton>
-      <RefreshButtonImg onClick={handleRefresh} src={`${process.env.PUBLIC_URL}` + 'assets/images/reset-icon.svg'} />
+      <RefreshButtonImg onClick={handleRefresh} src={`${process.env.PUBLIC_URL}` + '/assets/images/reset-icon.svg'} />
     </RefreshButton>
   );
 }

@@ -44,6 +44,25 @@ export async function RuneApi() {
   return resJson;
 }
 
+export async function ChampionLineStats() {
+  const dataUrl = "http://localhost:8100/park/getData";
+
+  const response = await fetch(dataUrl);
+  const resJson = await response.json();
+
+  return resJson.champData.data;
+}
+
+export async function ChampionDetailDataApi() {
+  const dataUrl = "http://localhost:8100/park/getData2";
+  // const dataUrl = "http://localhost:8100/park/" + champId;
+
+  const response = await fetch(dataUrl);
+  const resJson = await response.json();
+  
+  return resJson[0];
+}
+
 export async function ChampionDetailApi(champId){
   const dataUrl = "http://localhost:8100/park/garen";
   // const dataUrl = "http://localhost:8100/park/" + champId;
@@ -55,7 +74,7 @@ export async function ChampionDetailApi(champId){
 }
 
 export const apiKey = "RGAPI-d7f2268a-7c6a-4551-b4bd-092cb9d35f94";
-export const apiKey1 = "RGAPI-519086f6-cfab-400b-af5f-1c440039db9e";
+export const apiKey1 = "RGAPI-d74a8161-2e24-4f5d-9d13-58fff80dac26";
 // NicknameUrl + encodedName[i] + "?api_key=" + apiKey (id, acountid puuid name profileIconId level)
 export const nicknameUrl = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
 // IdUrl + id + "?api_key=" + apiKey (티어,개인랭 승패 name) 

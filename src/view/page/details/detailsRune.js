@@ -341,7 +341,7 @@ async function Skill() {
   const skillTree = detailData.skillTree;
   const skillMaster = skillTree.master;
   const skillOrder = skillTree.order;
-
+  
   // 스킬 마스터리
   let arrow = `${process.env.PUBLIC_URL}` + 'assets/images/arrow-icon-24' + '.svg';
   let masterList = [];

@@ -91,7 +91,6 @@ export const ChampionsInput = styled.input`
 `;
 
 export const ResetButton = styled.button`
-  background-color: #fff;
   border: none;
   font-size: 18px;
   font-weight: 700;

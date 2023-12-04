@@ -1,15 +1,16 @@
-import * as match from "view/page/search/searchStyle/matchesBoxStyle";
-import * as fd from "view/page/search/filterData";
+import * as match from "../searchStyle/matchesBoxStyle";
+import * as fd from "../dataHandling/filterData";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { runeUrl, spellUrl } from "model/constantly/apiConstants";
-import DetailMatchBox from "view/page/search/boxes/detailMatchBox";
+import DetailMatchBox from "../boxes/detailMatchBox";
+import GetTierList from "../dataHandling/api/getTier";
 
-function MatchesBox() {
+function MatchesBox(props) {
   return (
     <div>
-      {[0,1].map((num) => {
-        return <MatchBox key={num} value={num}/>
+      {props.list.map((num) => {
+        return <MatchBox key={num} value={num} />
       })}
     </div>
   );
@@ -21,10 +22,15 @@ function MatchBox(props) {
   const [runeInfo, setRuneInfo] = useState({});
   const [isDropdownVisible, setDropdownVisible] = useState('false');
 
+  const [tierList, setTierList] = useState([]);
+
   const clickDropdown = () => {
     if (isDropdownVisible === 'true') {
       setDropdownVisible('false');
     } else {
+      GetTierList(data, matchesIndex).then((_data) => {
+        setTierList(_data);
+      });
       setDropdownVisible('true');
     }
   };
@@ -45,7 +51,7 @@ function MatchBox(props) {
   return (
     <div>
       <div style={{ position: 'relative' }}>
-        {data && <match.MatchDiv>
+        {data && <match.MatchDiv  time={data.matches[matchesIndex].gameDuration} win={data.matches[matchesIndex].participants[data.partinum[matchesIndex]].win}>
           <match.MatchFirstDiv>
             <match.Font1Div>{fd.GetQueueType(data.matches[matchesIndex].queueId)}</match.Font1Div>
             <match.Font2Div>{fd.GetMatchDate(data.matches[matchesIndex].gameStartTimestamp)}</match.Font2Div>
@@ -94,7 +100,7 @@ function MatchBox(props) {
                 return (
                   <li key={num}>
                     <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                    <span>{data.matches[matchesIndex].participants[num].summonerName}</span>
+                    <sapn>{data.matches[matchesIndex].participants[num].summonerName}</sapn>
                   </li>
                 )
               })}
@@ -116,7 +122,7 @@ function MatchBox(props) {
           <match.OpenImg src={`${process.env.PUBLIC_URL}` + 'assets/images/down-arrow.svg'} />
         </match.OpenDiv>
       </div>
-      <DetailMatchBox isvisible={isDropdownVisible} key={matchesIndex}/>
+      <DetailMatchBox isvisible={isDropdownVisible} index={matchesIndex} tierList={tierList} />
     </div>
   );
 }
