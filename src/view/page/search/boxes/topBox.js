@@ -1,8 +1,9 @@
-import { UserDiv, FirstDiv, PlayerIconImg, NicknameSpan, SecondDiv, TierDiv, NowTierDiv, TierNameDiv, TierImg, TierListUl, NowTierLi, LabelDiv, OptionItemLi, MoreListUl, GraphBox, MoreImg } from "view/page/search/searchStyle/topBoxStyle.js";
+import { UserDiv, FirstDiv, PlayerIconImg, NicknameSpan, SecondDiv, TierDiv, NowTierDiv, TierNameDiv, TierImg, TierListUl, NowTierLi, LabelDiv, OptionItemLi, MoreListUl, GraphBox, MoreImg } from "../searchStyle/topBoxStyle";
 import { tierImgMapping } from 'model/constantly/apiConstants';
 import { useState } from "react";
 import LineTierChart from "../charts/lineTier";
 import { useSelector } from "react-redux";
+import { GetPlayerIconImg } from "../dataHandling/filterData";
 
 //버튼전까지의 UI구성
 function TopBox() {
@@ -27,7 +28,7 @@ function TopBox() {
         <SecondDiv>
           <TierDiv>
             <NowTierDiv>
-              <TierImg src={`${process.env.PUBLIC_URL}` + tierImgMapping.get(data.tier)} />
+              <TierImg src={`${process.env.PUBLIC_URL}/` + tierImgMapping.get(data.tier)} />
               <div>
                 <TierNameDiv>{data.tier} {data.rank}</TierNameDiv>
                 <div>{data.leaguePoints}LP</div>
@@ -36,14 +37,14 @@ function TopBox() {
             </NowTierDiv>
             <TierListUl>
               <NowTierLi>
-                <b>S22  </b>
+                <b>S23  </b>
                 <span>{data.tier} {data.rank}</span>
               </NowTierLi>
               <li>
                 <div>
                   <LabelDiv onClick={clickDropdown}>
                     <b>More</b>
-                    <MoreImg src={`${process.env.PUBLIC_URL}` + 'assets/images/arrow-down-icon-original.svg'} />
+                    <MoreImg src={`${process.env.PUBLIC_URL}` + '/assets/images/arrow-down-icon-original.svg'} />
                   </LabelDiv>
                   <MoreListUl isvisible={isDropdownVisible}>
                     <OptionItemLi>
@@ -66,13 +67,6 @@ function TopBox() {
       </UserDiv>}
     </div>
   );
-}
-
-
-function GetPlayerIconImg(profileIconId) {
-  const version = "https://ddragon.leagueoflegends.com/cdn/13.22.1/img/profileicon/"
-  const champUrl = version + profileIconId + ".png";
-  return champUrl;
 }
 
 export default TopBox;

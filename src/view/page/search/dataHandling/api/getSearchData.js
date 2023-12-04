@@ -6,6 +6,7 @@ export default async function GetSearchData(nickname) {
   try {
     let userUrl = nicknameUrl + nickname + "?api_key=" + apiKey;
     let data = {};
+    data.matchList = [];
     data.matches = [];
     data.partinum = [];
     const matchNum = 2; // 매치갯수
@@ -14,10 +15,11 @@ export default async function GetSearchData(nickname) {
       .then(response => response.json())
       .then(async (rawData) => {
         let uidUrl = idUrl + rawData.id + "?api_key=" + apiKey;
-        let matchUrl = matchesUrl + rawData.puuid + "/ids?count=" + matchNum + "&api_key=" + apiKey;
+        let matchUrl = matchesUrl + rawData.puuid + "/ids?count=20&api_key=" + apiKey;
 
         data.nickname = rawData.name;
         data.profileIconId = rawData.profileIconId;
+        data.puuid = rawData.puuid;
 
         await fetch(uidUrl)
           .then(response => response.json())
@@ -33,6 +35,7 @@ export default async function GetSearchData(nickname) {
         await fetch(matchUrl)
           .then(response => response.json())
           .then(async (rawData) => {
+            data.matchList = rawData;
             for (let i = 0; i < matchNum; i++) {
               let matchDataUrl1 = matchDataUrl + rawData[i] + "?api_key=" + apiKey;
               await fetch(matchDataUrl1)
@@ -48,8 +51,9 @@ export default async function GetSearchData(nickname) {
             }
           });
       })
+    console.log(data);
     return data;
   } catch (error) {
-    throw new Error('Error fetching data:', error);
+    throw new Error(error);
   }
 }

@@ -23,5 +23,5 @@ const dataSlice = createSlice({
   },
 });
 
-export const { fetchDataRequest, fetchDataSuccess, fetchDataFailure } = dataSlice.actions;
+export const { fetchDataRequest, fetchDataSuccess, fetchDataFailure, fetchDataUpdate } = dataSlice.actions;
 export default dataSlice.reducer;

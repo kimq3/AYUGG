@@ -1,12 +1,19 @@
 const version = "https://ddragon.leagueoflegends.com/cdn/13.22.1/";
 const imgUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
 
+export function GetPlayerIconImg(profileIconId) {
+  const version = "https://ddragon.leagueoflegends.com/cdn/13.22.1/img/profileicon/"
+  const champUrl = version + profileIconId + ".png";
+  return champUrl;
+}
 export function GetQueueType(queueNum) {
   let returnString = "";
   if (queueNum === 420) {
     returnString = "솔로 랭크";
-  } else if (queueNum === 430) {
+  } else if (queueNum === 430 ) {
     returnString = "일반 게임";
+  }else if (queueNum === 490) {
+    returnString = "빠른 대전";
   } else if (queueNum === 440) {
     returnString = "자유 랭크";
   } else {
@@ -29,6 +36,10 @@ export function GetMatchTime(gameDuration) {
   return textContent;
 }
 export function GetChampImg(championName) {
+  if(championName === "FiddleSticks"){
+    const champUrl = version + "img/champion/" + "Fiddlesticks" + ".png";
+    return champUrl;
+  }
   const champUrl = version + "img/champion/" + championName + ".png";
   return champUrl;
 }
@@ -72,4 +83,10 @@ export function GetMostDamage(data, match) {
     }
   }
   return Number(mostDamage);
+}
+
+export function GetKoreaName(data, championName) {
+  if (data.hasOwnProperty(championName)) {
+    return data[championName].name;
+  }
 }
