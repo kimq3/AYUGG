@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
 import * as style from "./detailsStyle";
-import { ChampionDetailApi as ChampApi } from "model/constantly/apiConstants";
+import { ChampionDetailApi as ChampApi, ChampionDetailDataApi as detailDataApi } from "model/constantly/apiConstants";
 
 const detailData = await ChampApi();
+const dddd = await detailDataApi();
 const version = detailData.version;
 
 async function BasicInfo(){
   const id = detailData.id;
-  const name = detailData.name;
+  // const name = detailData.name;
+  console.log("실험")
+  console.log(dddd)
 
-  let imgUrl = "https://ddragon.leagueoflegends.com/cdn/"+ version + "/img/champion/" + id + ".png";
-
+  // let imgUrl = "https://ddragon.leagueoflegends.com/cdn/"+ version + "/img/champion/" + id + ".png";
+  let imgUrl = dddd.champImg;
+  const name = dddd.champName;
+  
   return (
     <>
       <style.BasicInfoStyle>
@@ -35,21 +40,13 @@ async function BasicInfo(){
 }
 
 async function SkillImg() {
-  const skill = detailData.skill;
-  let skillImgList = [];
+  let skillData = JSON.parse(dddd.champSkill);
   
-  function SkillCheck(list){
-    let i = 1;
-    skill && skill.map((s) => {
-      let basicUrl = "https://ddragon.leagueoflegends.com/cdn/" + version;
-      let pUrl = basicUrl + "/img/passive/" + s.id;
-      let sUrl = basicUrl + "/img/spell/" + s.id;
-      return list.push(<style.SkillImgStyle key={i++} $size="32px" src={s.type === "passive" ? pUrl :sUrl } />);
-    });
-  }
-
-  SkillCheck(skillImgList);
-
+  let i = 1;
+  let skillImgList =  Object.values(skillData).map((index) => {
+    return <style.SkillImgStyle key={i++} $size="32px" src={index} />
+  })
+  
   return (<>
     {skillImgList}
   </>);
@@ -181,7 +178,7 @@ function CounterDiv(props) {
     <>
       <style.CounterDivStyle>
         <style.CounterImgStyle src={imgUrl}></style.CounterImgStyle>
-        <style.CounterInfoStyle $margin="5px 0px;">{props.name}</style.CounterInfoStyle>
+        <style.CounterInfoStyle $margin="5px 0px;"></style.CounterInfoStyle>
         <style.CounterInfoStyle $margin="0;">{props.rate}</style.CounterInfoStyle>
       </style.CounterDivStyle>
     </>
