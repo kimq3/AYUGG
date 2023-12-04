@@ -44,6 +44,25 @@ export async function RuneApi() {
   return resJson;
 }
 
+export async function ChampionLineStats() {
+  const dataUrl = "http://localhost:8100/park/getData";
+
+  const response = await fetch(dataUrl);
+  const resJson = await response.json();
+
+  return resJson.champData.data;
+}
+
+export async function ChampionDetailDataApi() {
+  const dataUrl = "http://localhost:8100/park/getData2";
+  // const dataUrl = "http://localhost:8100/park/" + champId;
+
+  const response = await fetch(dataUrl);
+  const resJson = await response.json();
+  
+  return resJson[0];
+}
+
 export async function ChampionDetailApi(champId){
   const dataUrl = "http://localhost:8100/park/garen";
   // const dataUrl = "http://localhost:8100/park/" + champId;

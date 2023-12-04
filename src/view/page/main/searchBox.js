@@ -1,5 +1,5 @@
 import { BodySearchBox, SearchBox, Box, Select, Input, Button, Img } from './mainStyle/searchBoxStyle';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 function Search() {
@@ -14,7 +14,7 @@ function Search() {
                 </Select>
                 <Input type='text' onChange={(e) => { setInputText(e.target.value); }} />
                 <Button>
-                    <Img src={`${process.env.PUBLIC_URL}` + 'assets/images/search-icon/search-icon-24.svg'} />
+                    <Img src='/assets/images/search-icon/search-icon-24.svg' />
                 </Button>
                </Box>
             </SearchBox>
