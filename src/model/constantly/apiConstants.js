@@ -1,4 +1,4 @@
-const VersionState = async () => {
+export const VersionState = async () => {
   const versionApi = "https://ddragon.leagueoflegends.com/api/versions.json";
   
   const response = await fetch(versionApi);

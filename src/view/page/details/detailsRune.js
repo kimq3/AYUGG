@@ -1,139 +1,79 @@
-import { ChampionDetailApi as ChampApi, RuneApi } from "model/constantly/apiConstants";
-import * as style from "./detailsStyle";
-import { useEffect, useState } from "react";
+import { RuneApi, ChampionDetailDataApi as ChampDetailApi } from "model/constantly/apiConstants";
+import * as styled from "./detailsStyle";
+import { useEffect, useMemo, useState } from "react";
 
-const detailData = await ChampApi();
-const runeApiData = await RuneApi();
-const version = detailData.version;
-const getRune = GetRuneData(detailData, runeApiData);
 const urlStart = "https://ddragon.leagueoflegends.com/cdn/";
 const basicRuneImgUrl = urlStart + "img/";
-const basicSkillImgUrl = urlStart + version + "/img/spell/";
-const basicItemImgUrl = urlStart + version + "/img/item/";
-const basicSpellImgUrl = urlStart + version + "/img/spell/";
+const detailData = await ChampDetailApi();
+const runeApiData = await RuneApi();
 
 // ★ 룬 ★ -----------------------------------------
 // 룬 api에서 해당 챔피언에게 해당되는 룬만 정제해서 뱉어냄
-function GetRuneData(detailData, runeData) {
-  let runeVer1 = [];
-  let runeVer2 = [];
-  let runeList = [];
+function GetRuneData(detail, runeData, version) {
+  const ver = version === '1' ? detail.version1 : detail.version2
+  let data;
+  let mainTitle;
+  let subTitle;
+  let mainId;
+  let mainLine1;
+  let mainLine2;
+  let mainLine3;
+  let subLine1;
+  let subLine2;
 
-  try {
-    let rawData = detailData.rune;
+  for(let i = 0; i < runeData.length; i++){
+    if(runeData[i].id.toString() === ver.mainTitle){
+      mainTitle = basicRuneImgUrl + runeData[i].icon;
+      let slots = runeData[i].slots;
 
-    if (rawData !== undefined) {
-    const runeVersion1 = rawData.version1;
-    const runeVersion2 = rawData.version2;
-
-    let dataA = ExtractData(runeVersion1);
-    let rateDataA = {
-      winRate: "승률",
-      winValue: runeVersion1.winRate,
-      pickRate: "픽률",
-      pickValue: runeVersion1.pickRate
-    }
-    dataA.push(rateDataA);
-
-    let dataB = ExtractData(runeVersion2, rawData);
-    let rateDataB = {
-      winRate: "승률",
-      winValue: runeVersion2.winRate,
-      pickRate: "픽률",
-      pickValue: runeVersion2.pickRate
-    }
-    dataB.push(rateDataB);
-
-    dataA.map((index) => {
-      return runeVer1.push(index);
-    })
-    dataB.map((index) => {
-      return runeVer2.push(index);
-    })
-    runeList.push(runeVer1);
-    runeList.push(runeVer2);
-    }
-
-    function ExtractData (rune, rawData) {
-      let mainRuneList = [];
-      let lowMainRuneList = [];
-      let mainRune = [];
-      let subRuneList = [];
-      let lowSubRuneList = [];
-      let subRune = [];
-      let allRuneData = [];
-    
-      runeData && runeData.map((index) => {
-        if(String(index.id) === rune.mainTitle) {
-          mainRune.push(index.icon);
-          index.slots.map((items) => {
-            let lowRune = [];
-            items.runes.map((runeInfo) => {
-              let data = {
-                id: runeInfo.id,
-                icon: runeInfo.icon
-              }
-              return lowRune.push(data);
-            })
-            return lowMainRuneList.push(lowRune);
-          })
-          mainRuneList.push(mainRune);
-          mainRuneList.push(lowMainRuneList);
+      for(let j = 0; j < slots.length; j++){
+        let slotsRunes = slots[j].runes;
+        
+        for(let k = 0; k < slotsRunes.length; k++){
+          let runeId = slotsRunes[k].id.toString();
+          let icon = basicRuneImgUrl + slotsRunes[k].icon
+          if(runeId === ver.mainRune.id) { mainId = icon }
+          if(runeId === ver.mainRune.line1) { mainLine1 = icon }
+          if(runeId === ver.mainRune.line2) { mainLine2 = icon }
+          if(runeId === ver.mainRune.line3) { mainLine3 = icon }
         }
-    
-        if(String(index.id) === rune.subTitle) {
-          subRune.push(index.icon);
-          index.slots.map((items) => {
-            let lowRune = [];
-            items.runes.map((runeInfo) => {
-              let data = {
-                id: runeInfo.id,
-                icon: runeInfo.icon
-              }
-              return lowRune.push(data);
-            })
-            return lowSubRuneList.push(lowRune);
-          })
-          subRuneList.push(subRune);
-          subRuneList.push(lowSubRuneList);
-        }
-
-        return null;
-      })
-
-      allRuneData.push(mainRuneList);
-      allRuneData.push(subRuneList);
-      
-      return allRuneData;
+      }
     }
-  } catch (error) {
-    window.alert(error);
+    if(runeData[i].id.toString() === ver.subTitle){
+      subTitle = basicRuneImgUrl + runeData[i].icon;
+      let slots = runeData[i].slots;
+
+      for(let j = 0; j < slots.length; j++){
+        let slotsRunes = slots[j].runes;
+        
+        for(let k = 0; k < slotsRunes.length; k++){
+          let runeId = slotsRunes[k].id.toString();
+          let icon = basicRuneImgUrl + slotsRunes[k].icon
+          if(runeId === ver.subRune.line1) { subLine1 = icon }
+          if(runeId === ver.subRune.line2) { subLine2 = icon }
+        }
+      }
+    }
   }
 
-  return runeList;
-}
+  data = {
+    "mainTitle" : mainTitle,
+    "subTitle" : subTitle,
+    "winRate" : ver.winRate,
+    "pickRate" : ver.pickRate.split('\n')[0],
+    "mainRune" : {
+      "id" : mainId,
+      "line1" : mainLine1,
+      "line2" : mainLine2,
+      "line3" : mainLine3,
+    },
+    "subRune" : {
+      "line1" : subLine1,
+      "line2" : subLine2,
+    }
+  }
 
-// 룬 왼쪽에 대표적인 룬 2개를 보여주는 NavBar
-async function NavRune(props) {
-  let ver = props.ver
-  let runeData = ver === "ver1" ? getRune[0] : getRune[1];
-  let rateData = runeData[2];
-  let selected = props.selected;
-  let mainRuneUrl = basicRuneImgUrl + runeData[0][0];
-  let subRuneUrl = basicRuneImgUrl + runeData[1][0];
-
-  return (
-      <style.NavRuneStyle $selected={selected}>
-        <style.NavRuneWrappingDivStyle>
-          <style.Center>
-            <RuneImgTag bSize="40px" bMain="true" iSize="32px" iSrc={mainRuneUrl} selected={selected} />
-            <RuneImgTag bSize="32px" iSize="24px" iSrc={subRuneUrl} selected={selected} />
-          </style.Center>
-            <RuneRateDiv rate={rateData.winRate} value={rateData.winValue} /> 
-            <RuneRateDiv rate={rateData.pickRate} value={rateData.pickValue} />
-        </style.NavRuneWrappingDivStyle>
-      </style.NavRuneStyle>
-  );
+  return data;
 }
 
 // 룬 이미지 공통태그
@@ -146,148 +86,202 @@ function RuneImgTag(props) {
   const isNull = props.isNull;
 
   return (
-    <style.NavRuneImgBoxStyle $size={boxSize} $main={boxMain} $selected={selected} $isNull={isNull}>
-      <style.NavRuneImgStyle $size={imgSize} src={imgSrc} $selected={selected}/>
-    </style.NavRuneImgBoxStyle>
+    <styled.NavRuneImgBoxStyle $size={boxSize} $main={boxMain} $selected={selected} $isNull={isNull}>
+      <styled.NavRuneImgStyle $size={imgSize} src={imgSrc} $selected={selected}/>
+    </styled.NavRuneImgBoxStyle>
   )
+}
+
+// 룬 왼쪽에 대표적인 룬 2개를 보여주는 NavBar
+async function NavRune(props) {
+  let getRune = GetRuneData(JSON.parse(detailData.rune), runeApiData, props.ver);
+  let selected = props.selected;
+
+  return (
+      <styled.NavRuneStyle $selected={selected}>
+        <styled.NavRuneWrappingDivStyle>
+          <styled.Center>
+            <RuneImgTag bSize="40px" bMain="true" iSize="32px" iSrc={getRune.mainTitle} selected={selected} />
+            <RuneImgTag bSize="32px" iSize="24px" iSrc={getRune.subTitle} selected={selected} />
+          </styled.Center>
+            <RuneRateDiv rate="승률" value={getRune.winRate} /> 
+            <RuneRateDiv rate="픽률" value={getRune.pickRate} />
+        </styled.NavRuneWrappingDivStyle>
+      </styled.NavRuneStyle>
+  );
 }
 
 // NavRune에서 해당 룬의 비율
 function RuneRateDiv(props){
   return (
     <>
-      <style.RuneRateBoxStyle>
-        <style.RuneRateDivStyle $size="30%">{props.rate}</style.RuneRateDivStyle>
-        <style.RuneRateDivStyle>{props.value}</style.RuneRateDivStyle>
-      </style.RuneRateBoxStyle>
+      <styled.RuneRateBoxStyle>
+        <styled.RuneRateDivStyle $size="30%">{props.rate}</styled.RuneRateDivStyle>
+        <styled.RuneRateDivStyle>{props.value}</styled.RuneRateDivStyle>
+      </styled.RuneRateBoxStyle>
     </>
   )
 }
 
-// NavRune에서 선택한 룬의 상세정보
-function DetailRune(props) {
-  const [first, setFirst] = useState([]);
-  const [second, setSecond] = useState([]);
-  const [third, setThird] = useState([]);
-  const ver = props.ver;
-  
-  useEffect(() => {
-    const firstProps = {
-      ver: ver,
-      type: "first"
-    };
-    const secondProps = {
-      ver: ver,
-      type: "second"
-    };
-    const thirdProps = {
-      ver: ver,
-      type: "third"
-    };
-    DetailRuneDiv(firstProps).then((data) => {
-      setFirst(data);
-    });
-    DetailRuneDiv(secondProps).then((data) => {
-      setSecond(data);
-    });
-    DetailRuneDiv(thirdProps).then((data) => {
-      setThird(data);
-    });
-  }, [ver])
+async function DetailRuneFirstBox(props) {
+  let getRune = GetRuneData(JSON.parse(detailData.rune), runeApiData, props.ver);
+  let selected = "true"
+  let runeIdList = [];
+  let line1List = [];
+  let line2List = [];
+  let line3List = [];
 
-  return(
+  const ver = props.ver === '1' ? JSON.parse(detailData.rune).version1 : JSON.parse(detailData.rune).version2
+
+  for(let i = 0; i < runeApiData.length; i++){
+    if(runeApiData[i].id.toString() === ver.mainTitle){
+      let slots = runeApiData[i].slots;
+
+      for(let j = 0; j < slots.length; j++){
+        let slotsRunes = slots[j].runes;
+        
+        for(let k = 0; k < slotsRunes.length; k++){
+          let runeId = slotsRunes[k].id.toString();
+          let icon = basicRuneImgUrl + slotsRunes[k].icon
+          let boxSize = "32px"
+          let imgSize = "32px"
+          switch (j){
+            case 0 :
+              if(runeId === ver.mainRune.id) {              
+                runeIdList.push(<RuneImgTag key={runeId} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={getRune.mainRune.id} selected={selected} />)
+              } else {
+                runeIdList.push(<RuneImgTag key={runeId} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={icon} selected="" />)
+              }
+              break;
+            case 1 :
+              if(runeId === ver.mainRune.line1) { 
+                line1List.push(<RuneImgTag key={runeId} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={getRune.mainRune.line1} selected={selected} />)
+              } else {
+                line1List.push(<RuneImgTag key={runeId} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={icon} selected="" />)
+              }
+              break;
+            case 2 :
+              if(runeId === ver.mainRune.line2) { 
+                line2List.push(<RuneImgTag key={runeId} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={getRune.mainRune.line2} selected={selected} />)
+              } else {
+                line2List.push(<RuneImgTag key={runeId} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={icon} selected="" />)
+              }
+              break;
+            case 3 :
+              if(runeId === ver.mainRune.line3) { 
+                line3List.push(<RuneImgTag key={k+15} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={getRune.mainRune.line3} selected={selected} />)
+              } else {
+                line3List.push(<RuneImgTag key={k+15} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={icon} selected="" />)
+              }
+              break;
+            default :
+              break;
+          }
+        }
+      }
+    }
+  }
+
+  return (
     <>
-      <style.RuneRightDetailBoxStyle>    
-        {first}
-        {second}
-        {third}
-      </style.RuneRightDetailBoxStyle>
+      <styled.DetailRuneBoxStyle>
+        <styled.RuneTitleBoxStyle>
+          <RuneImgTag bSize="40px" bMain="true" iSize="32px" iSrc={getRune.mainTitle} selected={selected} />
+        </styled.RuneTitleBoxStyle>
+        <styled.RuneIdBoxStyle> {runeIdList} </styled.RuneIdBoxStyle>
+        <styled.RuneLineBoxStyle>
+          <styled.LineBox> {line1List} </styled.LineBox>
+          <styled.LineBox> {line2List} </styled.LineBox>
+          <styled.LineBox> {line3List} </styled.LineBox>
+        </styled.RuneLineBoxStyle>
+      </styled.DetailRuneBoxStyle>
     </>
-  );
+  )
 }
 
-async function DetailRuneDiv(props) {
-  const ver = props.ver;
-  const runeApiData = ver === "ver1" ? getRune[0] : getRune[1];
-  const mainRuneApiData = props.type === "first" ? runeApiData[0] : (props.type === "second" ? runeApiData[1] : null);
-  const mainRuneUrl = props.type === "third" ? null : basicRuneImgUrl + mainRuneApiData[0];
-  const subRuneApiData = props.type === "third" ? null : mainRuneApiData[1];
-  
-  const runeVerData = ver === "ver1" ? detailData.rune.version1 : detailData.rune.version2;
-  const statsData = runeVerData.stats;
-  const selectedData = props.type === "first" ? runeVerData.mainRune : (props.type === "second" ? runeVerData.subRune : runeVerData.stats)
-  const dataLength = Object.keys(selectedData).length;
+async function DetailRuneSecondBox(props) {
+  let getRune = GetRuneData(JSON.parse(detailData.rune), runeApiData, props.ver);
+  let selected = "true"
 
-  const noLine = false;
-  const line = true;
+  let line1List = [];
+  let line2List = [];
+  let line3List = [];
 
-  const subRune = props.type === "first"
-   ? Line(subRuneApiData[0], selectedData.id, noLine)
-   : (props.type === "second"
-    ? (<RuneImgTag bSize="36px" bMain="true" iSize="28px" iSrc={mainRuneUrl} selected="true" />)
-    : (<RuneImgTag bSize="42px" bMain="true" iSize="34px" isNull="true" />));
-  
-  function PerkImg(id) {
-    let data = {
-      id: id,
-      icon: `${process.env.PUBLIC_URL}` + 'assets/images/perk/' + id + '.png'
+  const ver = props.ver === '1' ? JSON.parse(detailData.rune).version1 : JSON.parse(detailData.rune).version2
+  for(let i = 0; i < runeApiData.length; i++){
+    if(runeApiData[i].id.toString() === ver.subTitle){
+      let slots = runeApiData[i].slots;
+      let lineImg = getRune.subRune.line1;
+      for(let j = 0; j < slots.length; j++){
+        let slotsRunes = slots[j].runes;
+        
+        for(let k = 0; k < slotsRunes.length; k++){
+          let runeId = slotsRunes[k].id.toString();
+          let icon = basicRuneImgUrl + slotsRunes[k].icon
+          let boxSize = "32px"
+          let imgSize = "32px"
+          
+          switch (j){
+            case 0 :
+              break;
+            case 1 :
+              if(runeId === ver.subRune.line1 || runeId === ver.subRune.line2) { 
+                line1List.push(<RuneImgTag key={runeId} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={lineImg} selected={selected} />)
+                lineImg=getRune.subRune.line2;
+              } else {
+                line1List.push(<RuneImgTag key={runeId} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={icon} selected="" />)
+              }
+              break;
+            case 2 :
+              if(runeId === ver.subRune.line1 || runeId === ver.subRune.line2) { 
+                line2List.push(<RuneImgTag key={runeId} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={lineImg} selected={selected} />)
+                lineImg=getRune.subRune.line2;
+              } else {
+                line2List.push(<RuneImgTag key={runeId} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={icon} selected="" />)
+              }
+              break;
+            case 3 :
+              if(runeId === ver.subRune.line1 || runeId === ver.subRune.line2) { 
+                line3List.push(<RuneImgTag key={k+15} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={lineImg} selected={selected} />)
+              } else {
+                line3List.push(<RuneImgTag key={k+15} bSize={boxSize} bMain="true" iSize={imgSize} iSrc={icon} selected="" />)
+              }
+              break;
+            default :
+              break;
+          }
+        }
+      }
     }
-    return data;
   }
 
-  const perk1 = Perk(PerkImg(5008), PerkImg(5005), PerkImg(5007), statsData.line1);
-  const perk2 = Perk(PerkImg(5008), PerkImg(5002), PerkImg(5003), statsData.line2);
-  const perk3 = Perk(PerkImg(5001), PerkImg(5002), PerkImg(5003), statsData.line3);
+  return (
+    <>
+      <styled.DetailRuneBoxStyle>
+        <styled.RuneTitleBoxStyle />
+        <styled.RuneIdBoxStyle>
+          <RuneImgTag bSize="32px" bMain="true" iSize="28px" iSrc={getRune.subTitle} selected={selected} />
+        </styled.RuneIdBoxStyle>
+        <styled.RuneLineBoxStyle>
+          <styled.LineBox> {line1List} </styled.LineBox>
+          <styled.LineBox> {line2List} </styled.LineBox>
+          <styled.LineBox> {line3List} </styled.LineBox>
+        </styled.RuneLineBoxStyle>
+      </styled.DetailRuneBoxStyle>
+    </>
+  )
+}
 
-  function LineId(id, index, id2) {
-    return dataLength === 2
-      ? Line(subRuneApiData[index], id, line, id2)
-      : Line(subRuneApiData[index], id, line);
+function PerkImg(id) {
+  let data = {
+    id: id,
+    icon: 'assets/images/perk/' + id + '.png'
   }
+  return data;
+}
 
-  const line1 = props.type === "third"
-    ? perk1
-    : (dataLength === 2
-        ? LineId(selectedData.line1, 1, selectedData.line2)
-        : LineId(selectedData.line1, 1));
-  const line2 = props.type === "third"
-  ? perk2
-  : (dataLength === 2 
-    ? LineId(selectedData.line1, 2, selectedData.line2) 
-    : LineId(selectedData.line2, 2));
-  const line3 =props.type === "third"
-  ? perk3
-  : (dataLength === 2
-      ? LineId(selectedData.line1, 3, selectedData.line2)
-      : LineId(selectedData.line3, 3));
-
-  function Line(rune, id, line, id2) {
-    let i = 0;
-    let imgList = [];
-    rune.map((index) => {
-      let imgUrl = basicRuneImgUrl + index.icon
-      let data;
-      if(line === false){       
-        if(id2 ? index.id.toString() === id || index.id.toString() === id2 : index.id.toString() === id){
-          data = <RuneImgTag key={i} bSize="36px" bMain="true" iSize="28px" iSrc={imgUrl} selected="true" />
-        } 
-        else {
-          data = <RuneImgTag key={i} bSize="36px" bMain="true" iSize="28px" iSrc={imgUrl} selected="false" />
-        }
-      }
-      else {
-        if(id2 ? index.id.toString() === id || index.id.toString() === id2 : index.id.toString() === id){
-          data = <style.NavRuneImgStyle key={i} $size="32px" src={imgUrl} $selected="true"/>
-        }
-        else {
-          data = <style.NavRuneImgStyle key={i} $size="32px" src={imgUrl} $selected="false"/>
-        }
-      }
-      i++;
-      return imgList.push(data);
-    })
-    return imgList;
-  }
+async function DetailRuneThirdBox(props) {
+  const statsData = props.ver === '1' ? JSON.parse(detailData.rune).version1.stats : JSON.parse(detailData.rune).version2.stats
 
   function Perk(img1, img2, img3, id) {
     let imgData = [];
@@ -306,73 +300,59 @@ async function DetailRuneDiv(props) {
     return dataList;
   }
 
-  const firstBox = props.type === "first"
-   ? <RuneImgTag bSize="40px" bMain="true" iSize="32px" iSrc={mainRuneUrl} selected="true" />
-   : <RuneImgTag bSize="40px" bMain="true" iSize="32px" isNull="true" />
+  const perk1 = Perk(PerkImg(5008), PerkImg(5005), PerkImg(5007), statsData.line1);
+  const perk2 = Perk(PerkImg(5008), PerkImg(5002), PerkImg(5003), statsData.line2);
+  const perk3 = Perk(PerkImg(5001), PerkImg(5002), PerkImg(5003), statsData.line3);
 
   return (
-    <style.RuneDetailBoxStyle>
-      {/* 룬 종류 - 정밀, 마법, 지배 ... */}
-      <style.RuneDetailMainTitleStyle>
-        {firstBox}
-      </style.RuneDetailMainTitleStyle>
-      {/* 해당 룬의 특성? - 집공, 치속, 기발 ... */}
-      <style.RuneDetailSubTitleStyle>
-        {subRune}
-      </style.RuneDetailSubTitleStyle>
-      {/* 특성의 특성 - 침착, 강인함, 최후의 일격 ... */}
-      <style.RuneStatsStyle>
-        {line1}
-      </style.RuneStatsStyle>
-      <style.RuneStatsStyle>
-        {line2}
-      </style.RuneStatsStyle>
-      <style.RuneStatsStyle>
-        {line3}
-      </style.RuneStatsStyle>
-    </style.RuneDetailBoxStyle>
+    <>
+      <styled.DetailRuneBoxStyle>
+        <styled.RuneTitleBoxStyle />
+        <styled.RuneIdBoxStyle />
+        <styled.RuneLineBoxStyle>
+          <styled.LineBox> {perk1} </styled.LineBox>
+          <styled.LineBox> {perk2} </styled.LineBox>
+          <styled.LineBox> {perk3} </styled.LineBox>
+        </styled.RuneLineBoxStyle>
+      </styled.DetailRuneBoxStyle>
+    </>
   )
 }
-// ★ 룬 ★ -----------------------------------------
 
 
 // ♣ 스킬 ♣ -----------------------------------------
 async function Skill() {
-  const skillTree = detailData.skillTree;
-  const skillMaster = skillTree.master;
-  const skillOrder = skillTree.order;
+  const skillMaster = JSON.parse(detailData.master);
+  const skillSeq = JSON.parse(detailData.skillSeq).skillSeqList;
   
   // 스킬 마스터리
-  let arrow = `${process.env.PUBLIC_URL}` + 'assets/images/arrow-icon-24' + '.svg';
+  const arrow = 'assets/images/arrow-icon-24.svg';
+  // const arrowImg = <styled.SkillImgStyle $size="32px" src={arrow} />
   let masterList = [];
 
-  skillMaster.map((index) => {
-    let src = basicSkillImgUrl + index.id;
+  function master(key, src) {
     let size = "32px";
-    let key = index.key;
-    let seq = index.seq;
-    let boxId = "box" + seq;
-    let arrowId = "arrow" + seq;
-
-    let arrowImg = <style.SkillImgStyle key={arrowId} $size={size} src={arrow} />
-    
     let data = (
-      <style.SkillBoxStyle key={boxId} $size={size}>
-        <style.SkillImgStyle $size={size} src={src} />
-        <style.SkillKeyStyle>{key}</style.SkillKeyStyle>
-      </style.SkillBoxStyle>
+      <styled.SkillBoxStyle key={key} $size={size}>
+        <styled.SkillImgStyle $size={size} src={src} />
+        <styled.SkillKeyStyle>{key}</styled.SkillKeyStyle>
+      </styled.SkillBoxStyle>
     )
-    masterList.push(data);
+    return data;
+  }
 
-    return seq === '3' ? null : masterList.push(arrowImg);
-  })
-  // ▲▲▲▲▲▲▲▲▲▲ 스킬 마스터리
+  masterList.push(master(skillMaster.masterA.key, skillMaster.masterA.src));
+  masterList.push(<styled.SkillImgStyle key={0} $size="32px" src={arrow} />);
+  masterList.push(master(skillMaster.masterB.key, skillMaster.masterB.src));
+  masterList.push(<styled.SkillImgStyle key={1} $size="32px" src={arrow} />);
+  masterList.push(master(skillMaster.masterC.key, skillMaster.masterC.src));
+  
 
   // 스킬 순서
-  let q = 0; let w = 0; let e = 0; let r = 0;
+  let q = 0; let w = 0; let e = 0;
 
-  skillOrder.map((index) => {
-    switch (index){
+  for(let i = 0; i < skillSeq.length; i++) {
+    switch (skillSeq[i]){
       case 'Q' :
         q++;
         break;
@@ -383,49 +363,39 @@ async function Skill() {
         e++;
         break;
       default:
-        r++;
         break;
-    }  
-    return;
-  })
+    } 
+  }
+
   let max = q > w ? (q > e ? q : (e > w ? e : w)) : ( w > e ? w : (e > q ? e : q));
   
-  let seqKey = 1;
-  let masterCount = 0;
-  let masterSkill = skillMaster[0].key;
+  let masterSkill = skillMaster.masterA.key;
   let masterSeqList = [];
+  let count = 0;
+  for(let i = 0; i < skillSeq.length; i++) {
+    let master = skillSeq[i] === masterSkill ? "true" : "false";
+    count = skillSeq[i] === masterSkill ? count + 1 : (count === max ? count + 1 : count);
+    let maxCount = count === max ? "true" : "false";
 
-  skillOrder.map((index) => {
-    masterCount = masterSkill === index ? (masterCount+1) : masterCount;
-    let maxCount = masterCount === max && masterSkill === index ? "max" : null;
-
-    let data = OrderBox(index, seqKey, maxCount, masterSkill)
-    seqKey++
-    return masterSeqList.push(data);
-  })
-
-  function OrderBox(index, key, max, masterSkill){
-    let master = index === masterSkill ? "true" : "false";
     let data = (
-        <style.OrderBoxStyle key={key}>
-          <style.OrderSeqStyle $max={max}>{key}</style.OrderSeqStyle>
-          <style.OrderSkillStyle $max={max} $master={master}>{index}</style.OrderSkillStyle>
-        </style.OrderBoxStyle>
-    )
-    return data;
+      <styled.OrderBoxStyle key={i}>
+        <styled.OrderSeqStyle $max={maxCount}>{i+1}</styled.OrderSeqStyle>
+        <styled.OrderSkillStyle $max={maxCount} $master={master}>{skillSeq[i]}</styled.OrderSkillStyle>
+      </styled.OrderBoxStyle>
+    );
+    masterSeqList.push(data);
   }
-  // ▲▲▲▲▲▲▲▲▲▲ 스킬 순서
 
   return (
     <>
-      <style.SkillWrappingBox>
-        <style.SkillMasterBoxStyle>
+      <styled.SkillWrappingBox>
+        <styled.SkillMasterBoxStyle>
           {masterList}
-        </style.SkillMasterBoxStyle>
-        <style.SkillMasterBoxStyle>
+        </styled.SkillMasterBoxStyle>
+        <styled.SkillMasterBoxStyle>
           {masterSeqList}
-        </style.SkillMasterBoxStyle>
-      </style.SkillWrappingBox>
+        </styled.SkillMasterBoxStyle>
+      </styled.SkillWrappingBox>
     </>
   )
 }
@@ -434,46 +404,90 @@ async function Skill() {
 
 // 비동기 api를 담아낸 코드를 useState로 받아와서 react-child로 받아내는 함수
 function ArticleLeftBox() {
-  const [detailRune, setDetailRune] = useState();
+  const [detailRuneFirst, setDetailRuneFirst] = useState();
+  const [detailRuneSecond, setDetailRuneSecond] = useState();
+  const [detailRuneThird, setDetailRuneThird] = useState();
   const [navRuneV1, setNavRuneV1] = useState([]);
   const [navRuneV2, setNavRuneV2] = useState([]);
   const [skill, setSkill] = useState();
-  
-  let detailV1 = <DetailRune ver="ver1" />;
-  let detailV2 = <DetailRune ver="ver2" />;
 
-  let v1Props = {
-    ver: "ver1",
-    selected: "true"
-  }
-  let v2Props = {
-    ver: "ver2",
-    selected: "false"
-  }
+  let v1Props = useMemo(() => {
+    return {
+      ver: "1",
+      selected: "true"
+    };
+  }, []);
+
+  let v2Props = useMemo(() => {
+    return {
+      ver: "2",
+      selected: "false"
+    };
+  }, []);
+
+  let detailProps = useMemo(() => {
+    return {
+      ver: "1",
+    }
+  }, [])
 
   useEffect(() => {
     NavRune(v1Props).then((data) => {
       setNavRuneV1(data);
     });
+
     NavRune(v2Props).then((data) => {
       setNavRuneV2(data);
     });
-    setDetailRune(detailV1);
     
+    DetailRuneFirstBox(detailProps).then((data) => {
+      setDetailRuneFirst(data);
+    })
+
+    DetailRuneSecondBox(detailProps).then((data) => {
+      setDetailRuneSecond(data);
+    })
+
+    DetailRuneThirdBox(detailProps).then((data) => {
+      setDetailRuneThird(data);
+    })
+
     Skill().then((data) => {
       setSkill(data);
     });
-  }, [])
+  }, [v1Props, v2Props, detailProps])
 
   function ClickEvent() {
-    if(detailRune.props.ver === "ver1") {
+    if(detailProps.ver === "1") {
       v1Props.selected = "false";
       v2Props.selected = "true";
-      setDetailRune(detailV2);
+      detailProps.ver = "2"
+      DetailRuneFirstBox(detailProps).then((data) => {
+        setDetailRuneFirst(data);
+      })
+  
+      DetailRuneSecondBox(detailProps).then((data) => {
+        setDetailRuneSecond(data);
+      })
+  
+      DetailRuneThirdBox(detailProps).then((data) => {
+        setDetailRuneThird(data);
+      })
     } else {
       v1Props.selected = "true";
       v2Props.selected = "false";
-      setDetailRune(detailV1);
+      detailProps.ver = "1"
+      DetailRuneFirstBox(detailProps).then((data) => {
+        setDetailRuneFirst(data);
+      })
+  
+      DetailRuneSecondBox(detailProps).then((data) => {
+        setDetailRuneSecond(data);
+      })
+  
+      DetailRuneThirdBox(detailProps).then((data) => {
+        setDetailRuneThird(data);
+      })
     }
 
     NavRune(v1Props).then((data) => {
@@ -486,26 +500,34 @@ function ArticleLeftBox() {
 
   return (
     <>
-      <style.ArticleBoxStyle $width="68%">
-        <style.RuneArticleBoxStyle $height="30px">
-          <style.SubTitleBox>추천 룬 세팅</style.SubTitleBox>
-        </style.RuneArticleBoxStyle>
-        <style.RuneArticleBoxStyle $height="70%" $display="flex">
-          <style.NavButtonStyle onClick={ClickEvent}>
-            <style.RuneLeftNavBoxStyle>
+      <styled.ArticleBoxStyle $width="68%">
+        <styled.RuneArticleBoxStyle $height="30px">
+          <styled.SubTitleBox>추천 룬 세팅</styled.SubTitleBox>
+        </styled.RuneArticleBoxStyle>
+        
+        <styled.RuneArticleBoxStyle $height="70%" $display="flex">
+          <styled.NavButtonStyle onClick={ClickEvent}>
+            <styled.RuneLeftNavBoxStyle>
               {navRuneV1}
               {navRuneV2}
-            </style.RuneLeftNavBoxStyle>
-          </style.NavButtonStyle> 
-          {detailRune}
-        </style.RuneArticleBoxStyle>
-        <style.RuneArticleBoxStyle $height="30px">
-          <style.SubTitleBox>스킬 빌드</style.SubTitleBox>
-        </style.RuneArticleBoxStyle>
-        <style.RuneArticleBoxStyle $height="calc( 30% - 81px )" $last="true">
+            </styled.RuneLeftNavBoxStyle>
+          </styled.NavButtonStyle>
+
+          <styled.DetailRuneWrappingBoxStyle>
+            {detailRuneFirst}
+            {detailRuneSecond}
+            {detailRuneThird}
+          </styled.DetailRuneWrappingBoxStyle>
+        </styled.RuneArticleBoxStyle>
+
+        <styled.RuneArticleBoxStyle $height="30px">
+          <styled.SubTitleBox>스킬 빌드</styled.SubTitleBox>
+        </styled.RuneArticleBoxStyle>
+
+        <styled.RuneArticleBoxStyle $height="calc( 30% - 81px )" $last="true">
           {skill}
-        </style.RuneArticleBoxStyle>
-      </style.ArticleBoxStyle>
+        </styled.RuneArticleBoxStyle>
+      </styled.ArticleBoxStyle>
     </>
   )
 }
@@ -513,12 +535,12 @@ function ArticleLeftBox() {
 function ArticleRightBox() {
 
   return (
-    <style.ArticleBoxStyle $width="30%">
+    <styled.ArticleBoxStyle $width="30%">
       <ItemDivTitle fav="spell" />
       <ItemDivTitle fav="start" />
       <ItemDivTitle fav="shoes" />
       <ItemDivTitle />
-    </style.ArticleBoxStyle>
+    </styled.ArticleBoxStyle>
   )
 }
 
@@ -548,88 +570,102 @@ function ItemDivTitle(props) {
   }  
 
   let data = props.fav ? (
-    <style.FavDivStyle>
-      <style.FavTitleDivStyle>
-        <style.FavTitleStyle $seq="1" $size="50%" $backColor = "rgb(55, 55, 55)">{fav}</style.FavTitleStyle>
-        <style.FavTitleStyle $seq="2" $size="25%" $backColor = "rgb(96, 96, 240)">픽률</style.FavTitleStyle>
-        <style.FavTitleStyle $seq="3" $size="25%" $backColor = "rgb(255, 26, 26)">승률</style.FavTitleStyle>
-      </style.FavTitleDivStyle>
+    <styled.FavDivStyle>
+      <styled.FavTitleDivStyle>
+        <styled.FavTitleStyle $seq="1" $size="50%" $backColor = "rgb(55, 55, 55)">{fav}</styled.FavTitleStyle>
+        <styled.FavTitleStyle $seq="2" $size="25%" $backColor = "rgb(96, 96, 240)">픽률</styled.FavTitleStyle>
+        <styled.FavTitleStyle $seq="3" $size="25%" $backColor = "rgb(255, 26, 26)">승률</styled.FavTitleStyle>
+      </styled.FavTitleDivStyle>
       {favImg}
-    </style.FavDivStyle>
-  ) : <style.FavDivStyle /> // 박스는 4개가 깔끔한데 정보값은 3개라 일단 비워둠
+    </styled.FavDivStyle>
+  ) : <styled.FavDivStyle /> // 박스는 4개가 깔끔한데 정보값은 3개라 일단 비워둠
 
   return data;
 }
 
 async function ItemDivData(props) {
   let fav;
-  let url;
+  let ver1;
+  let ver2;
+  let dataVer1;
+  let dataVer2;
+
+  function imgData(ver) {
+    return (
+      <>
+        <styled.FavImgBoxStyle>
+          <styled.FavImgStyle src={ver.img1} />
+          <styled.FavImgStyle src={ver.img2} />
+        </styled.FavImgBoxStyle>
+      </>
+    )
+  }
+
+  function getTag(data, ver) {
+    return (
+      <styled.FavVerBoxStyle>
+        <styled.FavVerDataStyle $size="50%">
+          {data}
+        </styled.FavVerDataStyle>
+        <styled.FavVerDataStyle $size="25%">{ver.pickRate}</styled.FavVerDataStyle>
+        <styled.FavVerDataStyle $size="25%">{ver.pickRate}</styled.FavVerDataStyle>
+      </styled.FavVerBoxStyle>
+    )
+  }
 
   switch (props.fav){
     case 'spell' :
-      fav = detailData.spell;
-      url = basicSpellImgUrl;
+      fav = JSON.parse(detailData.spell);
+      ver1 = fav.version1;
+      ver2 = fav.version2;
+      dataVer1 =getTag(imgData(ver1), ver1);
+      dataVer2 =getTag(imgData(ver2), ver2);
       break;
     case 'start' :
-      fav = detailData.startItem;
-      url = basicItemImgUrl;
+      fav = JSON.parse(detailData.startItem);
+      ver1 = fav.version1;
+      ver2 = fav.version2;
+      dataVer1 =getTag(imgData(ver1), ver1);
+      dataVer2 =getTag(imgData(ver2), ver2);
       break;
     case 'shoes' :
-      fav = detailData.shoes;
-      url = basicItemImgUrl;
+      fav = JSON.parse(detailData.shoes);
+      ver1 = fav.version1;
+      ver2 = fav.version2;
+      let data1 = (<>
+        <styled.FavImgBoxStyle>
+          <styled.FavImgStyle src={ver1.img} />
+        </styled.FavImgBoxStyle>
+      </>)
+      let data2 = (<>
+        <styled.FavImgBoxStyle>
+          <styled.FavImgStyle src={ver2.img} />
+        </styled.FavImgBoxStyle>
+      </>)
+      dataVer1 =getTag(data1, ver1);
+      dataVer2 =getTag(data2, ver2);
       break;
     default:
       fav = null;
       break;
-  } 
-  let ver1 = fav !== null && fav.version1;
-  let ver2 = fav !== null && fav.version2;
-  let other = fav !== null && props.fav !== 'shoes' ? true : false;
-  let data1 = fav !== null && getImg(ver1);
-  let data2 = fav !== null && getImg(ver2);
-
-  function getImg(ver) {
-    let src1 = other ? url + ver.type1.id + ".png" : url + ver.id + ".png";
-    let src2 = other ? url + ver.type2.id + ".png" : null;
-    let data = other ? (
-      <style.FavImgBoxStyle>
-        <style.FavImgStyle src={src1} />
-        <style.FavImgStyle src={src2} />
-      </style.FavImgBoxStyle>
-    ) : (
-      <style.FavImgBoxStyle>
-        <style.FavImgStyle src={src1} />
-      </style.FavImgBoxStyle>
-    );
-
-    return (
-      <style.FavVerBoxStyle>
-        <style.FavVerDataStyle $size="50%">
-          {data}
-        </style.FavVerDataStyle>
-        <style.FavVerDataStyle $size="25%">{ver.pickRate}</style.FavVerDataStyle>
-        <style.FavVerDataStyle $size="25%">{ver.winRate}</style.FavVerDataStyle>
-      </style.FavVerBoxStyle>
-    )
   }
 
   return (
-    <style.FavDataDivStyle>
-      {data1}
-      {data2}
-    </style.FavDataDivStyle>
+    <styled.FavDataDivStyle>
+      {dataVer1}
+      {dataVer2}
+    </styled.FavDataDivStyle>
   )
 }
 
 // detailsMain.js에 뱉어내는 
 export default function SecondArticle() {
-
   return (
     <>
-      <style.OutBoxStyle $height="500px">
+      <styled.OutBoxStyle $height="500px">
         <ArticleLeftBox />
         <ArticleRightBox />
-      </style.OutBoxStyle>
+      </styled.OutBoxStyle>
     </>
   );
 }
