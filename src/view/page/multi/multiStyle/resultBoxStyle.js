@@ -15,10 +15,12 @@ export const ContainerDiv = styled.div`
 `;
 export const TierImg = styled.img`
   height: 30px;
-  transform: ${props => (
+  ${props => (
     (props.tier === "EMERALD")
-    ? 'scale(1.5);'
-    : 'scale(3);'
+    ? 'transform: scale(1.5);'
+    : props.tier === "NONE"
+      ? 'transform: scale(1.8); margin-top: -10px;'
+      : 'transform: scale(3);'
   )}
 `;
 export const NicknameDiv = styled.div`

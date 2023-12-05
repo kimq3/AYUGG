@@ -21,6 +21,10 @@ function Multi() {
           if (index === filterTextList.length -1) {
             setFinalDataList(dataList);
           }
+        }).catch(() => {
+          setTimeout(() => {
+            alert('정확한 정보를 입력해주세요');
+          }, 500);
         });
     });
   }, [filterTextList]);

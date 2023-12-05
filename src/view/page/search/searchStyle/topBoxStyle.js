@@ -49,10 +49,12 @@ export const TierImg = styled.img`
   margin-right: 10px;
   width: 46px;
   height: 46px;
-  transform: ${props => (
+  ${props => (
     (props.tier === "EMERALD")
-    ? 'scale(1.5);'
-    : 'scale(3);'
+    ? 'transform: scale(1.5);'
+    : props.tier === "NONE"
+      ? 'transform: scale(1.8); margin-top: -10px;'
+      : 'transform: scale(3);'
   )}
 `;
 export const TierListUl = styled.ul`

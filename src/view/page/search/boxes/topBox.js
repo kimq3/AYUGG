@@ -4,7 +4,7 @@ import { useState } from "react";
 import LineTierChart from "../charts/lineTier";
 import { useSelector } from "react-redux";
 import { GetPlayerIconImg } from "../dataHandling/filterData";
-import { ChartCrawlingData, FilterCrawlingData }from "../dataHandling/crawkingDataToList";
+import { ChartCrawlingData, FilterCrawlingData } from "../dataHandling/crawkingDataToList";
 
 //버튼전까지의 UI구성
 function TopBox() {
@@ -29,43 +29,77 @@ function TopBox() {
           <NicknameSpan>{data.nickname}</NicknameSpan>
           <PlayerIconImg src={GetPlayerIconImg(data.profileIconId)} />
         </FirstDiv>
-        <SecondDiv>
-          <TierDiv>
-            <NowTierDiv>
-              <TierImg src={`${process.env.PUBLIC_URL}/` + tierImgMapping.get(data.tier)} />
-              <div>
-                <TierNameDiv>{data.tier} {data.rank}</TierNameDiv>
-                <div>{data.leaguePoints}LP</div>
-                <div>승률 {Math.round(data.wins / (data.wins + data.losses) * 100)}% {'('}{data.wins}승 {data.losses}{'패)'}</div>
-              </div>
-            </NowTierDiv>
-            <TierListUl>
-              <NowTierLi>
-                <b>S23  </b>
-                <span>{data.tier} {data.rank}</span>
-              </NowTierLi>
-              <li>
+        {data.tier === 'NONE'
+          ? <SecondDiv>
+            <TierDiv>
+              <NowTierDiv>
+                <TierImg src={`${process.env.PUBLIC_URL}/` + tierImgMapping.get(data.tier)} tier={data.tier}/>
                 <div>
-                  <LabelDiv onClick={clickDropdown}>
-                    <b style={{paddingLeft: '8px'}}>MORE</b>
-                    <MoreImg src={`${process.env.PUBLIC_URL}` + '/assets/images/arrow-down-icon-original.svg'} />
-                  </LabelDiv>
-                  <MoreListUl isvisible={isDropdownVisible}>
-                    {tierList.map(element => {
-                      return (<OptionItemLi>
-                        <b>{element[0]} </b>
-                        <span>{element[1]}</span>
-                      </OptionItemLi>);
-                    })}
-                  </MoreListUl>
+                  <TierNameDiv>UNRANK</TierNameDiv>
+                  <div></div>
+                  <div>승률 집계 불가</div>
                 </div>
-              </li>
-            </TierListUl>
-          </TierDiv>
-          <GraphBox>
-            <LineTierChart data={ChartCrawlingData(FilterCrawlingData(crawlingData))}></LineTierChart>{console.log(ChartCrawlingData(FilterCrawlingData(crawlingData)))}
-          </GraphBox>
-        </SecondDiv>
+              </NowTierDiv>
+              <TierListUl>
+                <li>
+                  <div>
+                    <LabelDiv onClick={clickDropdown}>
+                      <b style={{ paddingLeft: '8px' }}>MORE</b>
+                      <MoreImg src={`${process.env.PUBLIC_URL}` + '/assets/images/arrow-down-icon-original.svg'} />
+                    </LabelDiv>
+                    <MoreListUl isvisible={isDropdownVisible}>
+                      {tierList.map(element => {
+                        return (<OptionItemLi>
+                          <b>{element[0]} </b>
+                          <span>{element[1]}</span>
+                        </OptionItemLi>);
+                      })}
+                    </MoreListUl>
+                  </div>
+                </li>
+              </TierListUl>
+            </TierDiv>
+            <GraphBox>
+              <LineTierChart data={ChartCrawlingData(FilterCrawlingData(crawlingData))}></LineTierChart>
+            </GraphBox>
+          </SecondDiv>
+          : <SecondDiv>
+            <TierDiv>
+              <NowTierDiv>
+                <TierImg src={`${process.env.PUBLIC_URL}/` + tierImgMapping.get(data.tier)} tier={data.tier}/>
+                <div>
+                  <TierNameDiv>{data.tier} {data.rank}</TierNameDiv>
+                  <div>{data.leaguePoints}LP</div>
+                  <div>승률 {Math.round(data.wins / (data.wins + data.losses) * 100)}% {'('}{data.wins}승 {data.losses}{'패)'}</div>
+                </div>
+              </NowTierDiv>
+              <TierListUl>
+                <NowTierLi>
+                  <b>S23  </b>
+                  <span>{data.tier} {data.rank}</span>
+                </NowTierLi>
+                <li>
+                  <div>
+                    <LabelDiv onClick={clickDropdown}>
+                      <b style={{ paddingLeft: '8px' }}>MORE</b>
+                      <MoreImg src={`${process.env.PUBLIC_URL}` + '/assets/images/arrow-down-icon-original.svg'} />
+                    </LabelDiv>
+                    <MoreListUl isvisible={isDropdownVisible}>
+                      {tierList.map(element => {
+                        return (<OptionItemLi>
+                          <b>{element[0]} </b>
+                          <span>{element[1]}</span>
+                        </OptionItemLi>);
+                      })}
+                    </MoreListUl>
+                  </div>
+                </li>
+              </TierListUl>
+            </TierDiv>
+            <GraphBox>
+              <LineTierChart data={ChartCrawlingData(FilterCrawlingData(crawlingData))}></LineTierChart>
+            </GraphBox>
+          </SecondDiv>}
       </UserDiv>}
     </div>
   );

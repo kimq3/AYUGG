@@ -9,7 +9,7 @@ import GetSearchData from "./dataHandling/api/getSearchData";
 import BottomBox from "./boxes/bottomBox";
 import { fetchDataRequest, fetchDataSuccess, fetchDataFailure } from "redux/dataSlice";
 
-function SearchPage(){
+function SearchPage() {
   const dispatch = useDispatch();
   const location = useLocation();
   let navigate = useNavigate();
@@ -17,20 +17,17 @@ function SearchPage(){
   useEffect(() => {
     const nickname = location.state.nickname;
     fetchDataRequest();
-    GetSearchData(nickname).then((res) => {
-      dispatch(fetchDataSuccess(res));
-    }).catch((err) => {
-      dispatch(fetchDataFailure(err));
-      navigate('/');
-      setTimeout(() => {
-        alert('정확한 소환사 이름을 입력해주세요');
-      }, 500);
-    });
+    GetSearchData(nickname)
+      .then((res) => {
+        dispatch(fetchDataSuccess(res));
+      }).catch((err) => {
+        dispatch(fetchDataFailure(err));
+        navigate('/');
+        setTimeout(() => {
+          alert('정확한 소환사 이름을 입력해주세요');
+        }, 500);
+      });
   }, [dispatch]);
-
-  // if (loading) {
-  //   return <p>Loading...</p>;
-  // }
 
   return (
     <div>
