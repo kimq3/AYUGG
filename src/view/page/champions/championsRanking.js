@@ -1,5 +1,7 @@
 import * as style from "./champsStyle";
-import { ChampionApi as Api } from "model/constantly/apiConstants";
+// import { ChampionLineStats as RankingApi } from "model/constantly/apiConstants";
+
+// const ranking = await RankingApi();
 
 function NavTitle() {
   return (
@@ -28,9 +30,9 @@ function NavTitle() {
   )
 }
 
-function RankingData() {
+// async function RankingData() {
   
-}
+// }
 
 export default function ChampionsRanking() {
     

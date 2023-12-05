@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import * as styled from "./champsStyle";
 import { useLocation } from 'react-router-dom';
-import { ChampionDetailApi as ChampDetailApi, ChampionApi } from "model/constantly/apiConstants";
+import { ChampionApi } from "model/api/champions";
 
-const detailData = await ChampDetailApi();
 const champImgData = await ChampionApi();
 
 export function Option() {

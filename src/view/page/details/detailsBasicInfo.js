@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as style from "./detailsStyle";
-import { ChampionDetailDataApi as DetailDataApi } from "model/constantly/apiConstants";
+import { ChampionDetailDataApi as DetailDataApi } from "model/api/champions";
 
 const detailData = await DetailDataApi();
 

@@ -1,4 +1,4 @@
-import { RuneApi, ChampionDetailDataApi as ChampDetailApi } from "model/constantly/apiConstants";
+import { RuneApi, ChampionDetailDataApi as ChampDetailApi } from "model/api/champions";
 import * as styled from "./detailsStyle";
 import { useEffect, useMemo, useState } from "react";
 

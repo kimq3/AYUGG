@@ -1,5 +1,5 @@
 import * as styled from "./detailsStyle";
-import { ChampionDetailDataApi as ChampDetailApi } from "model/constantly/apiConstants";
+import { ChampionDetailDataApi as ChampDetailApi } from "model/api/champions";
 import { useEffect, useState } from "react";
 
 const gggg = await ChampDetailApi()
