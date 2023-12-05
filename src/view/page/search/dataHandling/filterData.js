@@ -1,9 +1,8 @@
-const version = "https://ddragon.leagueoflegends.com/cdn/13.22.1/";
+const version = "https://ddragon.leagueoflegends.com/cdn/13.23.1/";
 const imgUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
 
 export function GetPlayerIconImg(profileIconId) {
-  const version = "https://ddragon.leagueoflegends.com/cdn/13.22.1/img/profileicon/"
-  const champUrl = version + profileIconId + ".png";
+  const champUrl = version + "img/profileicon/" + profileIconId + ".png";
   return champUrl;
 }
 export function GetQueueType(queueNum) {
@@ -37,7 +36,7 @@ export function GetMatchTime(gameDuration) {
 }
 export function GetChampImg(championName) {
   if(championName === "FiddleSticks"){
-    const champUrl = version + "img/champion/" + "Fiddlesticks" + ".png";
+    const champUrl = version + "img/champion/Fiddlesticks.png";
     return champUrl;
   }
   const champUrl = version + "img/champion/" + championName + ".png";
