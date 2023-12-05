@@ -1,37 +1,19 @@
 import * as style from "view/page/challenger/style/detailStyle";
-import Barchart from "./chart/barchart";
-import LogList from "./chart/logList";
+import ChartMain from "./chart/chartMain";
+import { useContext } from "react";
+import { ChallengerContext } from "../totalFrame";
+import { changeLeftChartData, changeRightChartData} from "./changeChartData";
 
 function Gold(){
+    const data = useContext(ChallengerContext);
 
-    const data = [
-        { name: 'Afasdf', value: 10 },
-        { name: 'B', value: 20 },
-        { name: 'C', value: 15 },
-        { name: 'C', value: 15 },
-        { name: 'C', value: 15 },
-    ];
+    const leftchartData=changeLeftChartData(data, 'gold');
+    const rightchartData=changeRightChartData(data, 'gold');
 
     return (
         <div>
-            <style.Titlediv>골드페이지 입니다.</style.Titlediv>
-            <style.MainGraph>
-                <style.LeftGraph>
-                    <Barchart color="skyblue"></Barchart>
-                </style.LeftGraph>
-
-                <style.Number>
-                    <LogList data={data}></LogList>
-                </style.Number>
-
-                <style.RightGraph>
-                    <Barchart color="red"></Barchart>
-                </style.RightGraph>
-
-                <style.Number>
-                    <LogList data={data}></LogList>
-                </style.Number>
-            </style.MainGraph>
+            <style.Titlediv>골드</style.Titlediv>
+            <ChartMain dataLeft={leftchartData} dataRight={rightchartData}></ChartMain>
         </div>
         
     );

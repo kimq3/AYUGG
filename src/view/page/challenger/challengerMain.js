@@ -1,26 +1,30 @@
 import { getMatch } from "model/api/challengerMatch";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import Nav from "view/nav";
 import TotalFrame from "./card/totalFrame";
 
 
+
 function ChallengerMain(){
 
-    //const [result, setResult]=useState([]);
-/*
+    const [result, setResult]=useState([]);
+
     useEffect(()=>{
         getMatch()
         .then((data)=>{
             setResult(data);
-            console.log('매치결과',data);
+            
         });
     },[]);
-*/
+
     
     return (
         <div>
             <Nav></Nav>
-            <TotalFrame></TotalFrame>
+            {result.map((data)=>{
+                return <TotalFrame data={data}></TotalFrame>
+            })}
+                        
         </div>
     );
 }

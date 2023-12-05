@@ -101,15 +101,16 @@ function StatisticsMain(){
                     return(
                         <style.Tr key={index}>
                             <style.Td>{info.rank}</style.Td>
-                            <style.Td>
-                                {info.champion}
-                            </style.Td>
+                            <style.TdName>
+                                <style.IconImage src={info.img}></style.IconImage>
+                                <style.NameSpan>{info.champion}</style.NameSpan>
+                            </style.TdName>
                             <style.Td>{info.gameplay}</style.Td>
                             <style.Td>{info.rate}</style.Td>
                             <style.Tds>
                                 <style.MainDiv>
                                     <div>
-                                        <ProgressBar1 bgcolor="blue" progress={iwin} height={15}/>
+                                        <ProgressBar1 bgcolor="#3490E5" progress={iwin} height={15}/>
                                     </div>
                                     <div>{info.win}</div>
                                 </style.MainDiv>                                
@@ -117,7 +118,7 @@ function StatisticsMain(){
                             <style.Tds>
                                 <style.MainDiv>
                                     <div>
-                                        <ProgressBar1 bgcolor="yellow" progress={ipicks} height={15} />
+                                        <ProgressBar1 bgcolor="#DBC926" progress={ipicks} height={15} />
                                     </div>
                                     <div>{info.picks}</div>
                                 </style.MainDiv>                                
@@ -125,7 +126,7 @@ function StatisticsMain(){
                             <style.Tds>
                                 <style.MainDiv>
                                     <div>
-                                        <ProgressBar1 bgcolor="red" progress={ibanned} height={15}/>
+                                        <ProgressBar1 bgcolor="#E64638" progress={ibanned} height={15}/>
                                     </div>
                                     <div>{info.banned}</div>
                                 </style.MainDiv>                                

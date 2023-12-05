@@ -1,18 +1,12 @@
-import { ResponsiveContainer, BarChart, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar, Rectangle } from "recharts";
+import { BarChart, XAxis, YAxis, Bar } from "recharts";
 
-const data = [
-    { name: 'Afasdf', value: 10 },
-    { name: 'B', value: 20 },
-    { name: 'C', value: 15 },
-    { name: 'C', value: 15 },
-    { name: 'C', value: 15 },
-  ];
+
 
 function Barchart(props){
     return(
-        <BarChart width={350} height={240} data={data} layout="vertical">
-            <XAxis type="number" />
-            <YAxis dataKey="name" type="category" />
+        <BarChart width={250} height={240} data={props.data} layout="vertical">
+            <XAxis type="number"/>
+            <YAxis type="category" width={0} height={5}></YAxis>
             <Bar dataKey="value" fill={props.color} background={{ fill: '#eee' }} />       
         </BarChart>
     );
