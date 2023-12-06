@@ -69,17 +69,18 @@ export function ChampionsImg(){
   );
 }
 
-export async function ChampionsImgFull(){
-
+async function ChampionsImgFull(){
   let fullData = [];
+
   for(let i = 0; i<champImgData[0].length; i++){
+    let id = champImgData[2][i].toLowerCase();
     let data = (
       <styled.ListBox key={i}>
         <li>
-          <styled.ChampionLink to="/details">
+          <styled.ChampionLink to={`/details/${id}`}>
             <styled.ChampionsImgStyle src={champImgData[0][i]} />
           </styled.ChampionLink>
-          <styled.ChampionLink to="/details">
+          <styled.ChampionLink to={`/details/${id}`}>
             <styled.ChampionsSpanStyle>{champImgData[1][i]}</styled.ChampionsSpanStyle>
           </styled.ChampionLink>
         </li>

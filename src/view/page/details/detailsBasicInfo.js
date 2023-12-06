@@ -4,7 +4,8 @@ import { ChampionDetailDataApi as DetailDataApi } from "model/api/champions";
 
 const detailData = await DetailDataApi();
 
-async function BasicInfo(){
+async function BasicInfo(props){
+  const detailData = props.data[0];
   let imgUrl = detailData.champImg;
   const name = detailData.champName;
   
@@ -17,12 +18,12 @@ async function BasicInfo(){
         <style.BasicDivStyle $width="70%" $margin="0 5px 0 5px">
           <style.BasicDivStyle $width="55%" $display="block">
             <style.NameSkillStyle>{name}</style.NameSkillStyle>
-            <SkillImgAwait />
+            <SkillImgAwait data={detailData} />
           </style.BasicDivStyle>
           <style.BasicDivStyle $width="auto">
-            <RateDivAwait type="winRate"></RateDivAwait>
-            <RateDivAwait type="pickRate"></RateDivAwait>
-            <RateDivAwait type="banRate"></RateDivAwait>
+            <RateDivAwait data={detailData} type="winRate"></RateDivAwait>
+            <RateDivAwait data={detailData} type="pickRate"></RateDivAwait>
+            <RateDivAwait data={detailData} type="banRate"></RateDivAwait>
           </style.BasicDivStyle>
         </style.BasicDivStyle>
         <style.BasicDivStyle $width="150px" /> {/* 빈 박스 */}
@@ -31,8 +32,8 @@ async function BasicInfo(){
   );
 }
 
-async function SkillImg() {
-  let skillData = JSON.parse(detailData.champSkill);
+async function SkillImg(props) {
+  let skillData = JSON.parse(props.data.champSkill);
   
   let i = 1;
   let skillImgList =  Object.values(skillData).map((index) => {
@@ -44,11 +45,11 @@ async function SkillImg() {
   </>);
 }
 
-function SkillImgAwait() {
+function SkillImgAwait(props) {
   const [skill, setSkill] = useState([]);
 
   useEffect(() => {
-    SkillImg().then((data) => {
+    SkillImg(props).then((data) => {
       setSkill(data);
     });
   }, [])
@@ -63,7 +64,7 @@ function SkillImgAwait() {
 }
 
 async function RateDiv(props) {
-  const rate = JSON.parse(detailData.rate)
+  const rate = JSON.parse(props.data.rate)
   let type;
   let typeResult;
 
@@ -108,8 +109,7 @@ function RateDivAwait(props) {
   return (
     <>
       {rate}
-    </>
-  );
+    </>);
 }
 
 function CounterDiv(props) {
@@ -167,11 +167,11 @@ function CounterOlTagAwait(props) {
   );
 }
 
-export default function FirstArticle() {
+export default function FirstArticle(props) {
   const [basicInfo, setBasicInfo] = useState([]);
 
   useEffect(() => {
-    BasicInfo().then((data) => {
+    BasicInfo(props).then((data) => {
       setBasicInfo(data);
     });
   }, [])
@@ -183,11 +183,11 @@ export default function FirstArticle() {
         <style.CounterBoxStyle>
           <style.CounterStyle $back="rgb(49, 49, 79)">
             <div>상대하기 쉬운 챔피언</div>
-            <CounterOlTagAwait win="true"></CounterOlTagAwait>
+            <CounterOlTagAwait data={props} win="true"></CounterOlTagAwait>
           </style.CounterStyle>
           <style.CounterStyle $back="rgb(108, 65, 65)">
             <div>상대하기 어려운 챔피언</div>
-            <CounterOlTagAwait win="false"></CounterOlTagAwait>
+            <CounterOlTagAwait data={props} win="false"></CounterOlTagAwait>
           </style.CounterStyle>
         </style.CounterBoxStyle>
       </style.OutBoxStyle>

@@ -7,7 +7,7 @@ const gggg = await ChampDetailApi()
 async function ItemBox(version) {
   const itemTreeData = JSON.parse(gggg.itemTree);
   const legendItemData = JSON.parse(gggg.legendItem);
-  const arrow = 'assets/images/arrow-icon-24.svg';
+  const arrow = '/assets/images/arrow-icon-24.svg';
   let itemTree;
   let legendItem;
   let treeList = [];
@@ -36,11 +36,6 @@ async function ItemBox(version) {
   function getImg(key, src, mythic) {
     return (<styled.ItemImgStyle key={key} src={src} $mythic={mythic} />)
   }
-
-  console.log("템트리")
-  console.log(itemTree);
-  console.log("전설")
-  console.log(legendItem);
 
   treeList.push(getImg(treeList.length, itemTree.mythic, "true"));
   treeList.push(<styled.SkillImgStyle key={treeList.length}  $size="32px" src={arrow}/>);

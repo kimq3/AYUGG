@@ -549,6 +549,7 @@ export const ItemImgStyle = styled.img`
   height: 32px;
   border: ${(props) => props.$mythic === "true" ? "1px solid yellow" :  "1px solid black"};
   border-radius: ${(props) => props.$mythic === "true" ? "50%" :  "4px"};
+  margin-right: 10px;
 `;
 
 export const ItemTreeRateBoxStyle = styled(divCenter)`

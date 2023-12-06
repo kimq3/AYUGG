@@ -275,7 +275,7 @@ async function DetailRuneSecondBox(props) {
 function PerkImg(id) {
   let data = {
     id: id,
-    icon: 'assets/images/perk/' + id + '.png'
+    icon: '/assets/images/perk/' + id + '.png'
   }
   return data;
 }
@@ -326,7 +326,7 @@ async function Skill() {
   const skillSeq = JSON.parse(detailData.skillSeq).skillSeqList;
   
   // 스킬 마스터리
-  const arrow = 'assets/images/arrow-icon-24.svg';
+  const arrow = '/assets/images/arrow-icon-24.svg';
   // const arrowImg = <styled.SkillImgStyle $size="32px" src={arrow} />
   let masterList = [];
 
@@ -403,7 +403,7 @@ async function Skill() {
 
 
 // 비동기 api를 담아낸 코드를 useState로 받아와서 react-child로 받아내는 함수
-function ArticleLeftBox() {
+function ArticleLeftBox(props) {
   const [detailRuneFirst, setDetailRuneFirst] = useState();
   const [detailRuneSecond, setDetailRuneSecond] = useState();
   const [detailRuneThird, setDetailRuneThird] = useState();
@@ -532,13 +532,13 @@ function ArticleLeftBox() {
   )
 }
 
-function ArticleRightBox() {
-
+function ArticleRightBox(props) {
+  const detailData = props.data;
   return (
     <styled.ArticleBoxStyle $width="30%">
-      <ItemDivTitle fav="spell" />
-      <ItemDivTitle fav="start" />
-      <ItemDivTitle fav="shoes" />
+      <ItemDivTitle data={detailData} fav="spell" />
+      <ItemDivTitle data={detailData} fav="start" />
+      <ItemDivTitle data={detailData} fav="shoes" />
       <ItemDivTitle />
     </styled.ArticleBoxStyle>
   )
@@ -546,7 +546,6 @@ function ArticleRightBox() {
 
 function ItemDivTitle(props) {
   const [favImg, setFavImg] = useState();
-
   useEffect(() => {
     ItemDivData(props).then((data) => {
       setFavImg(data);
@@ -584,6 +583,8 @@ function ItemDivTitle(props) {
 }
 
 async function ItemDivData(props) {
+  const detailData = props.data ? props.data[0] : null;
+  console.log(detailData);
   let fav;
   let ver1;
   let ver2;
@@ -659,12 +660,14 @@ async function ItemDivData(props) {
 }
 
 // detailsMain.js에 뱉어내는 
-export default function SecondArticle() {
+export default function SecondArticle(props) {
+  const detailData = props.data;
+
   return (
     <>
       <styled.OutBoxStyle $height="500px">
-        <ArticleLeftBox />
-        <ArticleRightBox />
+        <ArticleLeftBox data={detailData} />
+        <ArticleRightBox data={detailData} />
       </styled.OutBoxStyle>
     </>
   );

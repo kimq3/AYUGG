@@ -1,44 +1,61 @@
-import * as style from "./champsStyle";
-// import { ChampionLineStats as RankingApi } from "model/constantly/apiConstants";
+import { useEffect, useState } from "react";
+import * as styled from "./champsStyle";
+import { ChampionLineStats as RankingApi } from "model/api/champions";
 
-// const ranking = await RankingApi();
+const ranking = await RankingApi();
 
 function NavTitle() {
   return (
     <>
-      <style.RankingTitleBox>
-        <style.RankingTitle $seq="start" $width="10%">
+      <styled.RankingTitleBox>
+        <styled.RankingTitle $seq="start" $width="10%">
           순위
-        </style.RankingTitle>
-        <style.RankingTitle $width="30%">
+        </styled.RankingTitle>
+        <styled.RankingTitle $width="30%">
           챔피언
-        </style.RankingTitle>
-        <style.RankingTitle $width="10%">
+        </styled.RankingTitle>
+        <styled.RankingTitle $width="10%">
           승률
-        </style.RankingTitle>
-        <style.RankingTitle $width="10%">
+        </styled.RankingTitle>
+        <styled.RankingTitle $width="10%">
           픽률
-        </style.RankingTitle>
-        <style.RankingTitle $width="10%">
+        </styled.RankingTitle>
+        <styled.RankingTitle $width="10%">
           밴율
-        </style.RankingTitle>
-        <style.RankingTitle $seq="end" $width="30%">
+        </styled.RankingTitle>
+        <styled.RankingTitle $seq="end" $width="30%">
           카운터
-        </style.RankingTitle>
-      </style.RankingTitleBox>
+        </styled.RankingTitle>
+      </styled.RankingTitleBox>
     </>
   )
 }
 
-// async function RankingData() {
-  
-// }
+async function RankingData() {
+  console.log(ranking);
+  let rankingList = [];
+  for(let i = 0; i < ranking.length; i++) {
+
+  }
+
+
+  return (<></>);
+}
 
 export default function ChampionsRanking() {
-    
-    return(
-      <>
-        <NavTitle />
-      </>
-    );
+  const [ranking, setRanking] = useState();
+
+  useEffect(() => {
+    RankingData().then((data) => {
+      setRanking(data);
+    })
+  }, [])
+  return(
+    <>
+      <NavTitle />
+      <styled.RankingWrapperBox>
+        {ranking}
+      </styled.RankingWrapperBox>
+    </>
+  );
 }
