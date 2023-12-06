@@ -92,6 +92,10 @@ export const PartiName = styled.span`
   white-space: nowrap;
   width: 80px;
   display: block;
+  cursor: pointer;
+  &:hover {
+    color: #758592;
+  }
 `;
 export const OpenDiv = styled.div`
   display: flex;

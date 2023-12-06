@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { runeUrl, spellUrl } from "model/constantly/apiConstants";
 import DetailMatchBox from "../boxes/detailMatchBox";
 import GetTierList from "../dataHandling/api/getTier";
+import { useNavigate } from "react-router";
 
 function MatchesBox(props) {
   return (
@@ -21,8 +22,8 @@ function MatchBox(props) {
   const [spellInfo, setSpellInfo] = useState({});
   const [runeInfo, setRuneInfo] = useState({});
   const [isDropdownVisible, setDropdownVisible] = useState('false');
-
   const [tierList, setTierList] = useState([]);
+  let navigate = useNavigate();
 
   const clickDropdown = () => {
     if (isDropdownVisible === 'true') {
@@ -48,10 +49,15 @@ function MatchBox(props) {
       });
   }, []);
 
+  const NicknameClick = (_nickname) => {
+    navigate('/search', { state: { nickname: _nickname } });
+    window.location.reload();
+  };
+
   return (
     <div>
       <div style={{ position: 'relative' }}>
-        {data && <match.MatchDiv  time={data.matches[matchesIndex].gameDuration} win={data.matches[matchesIndex].participants[data.partinum[matchesIndex]].win}>
+        {data && <match.MatchDiv time={data.matches[matchesIndex].gameDuration} win={data.matches[matchesIndex].participants[data.partinum[matchesIndex]].win}>
           <match.MatchFirstDiv>
             <match.Font1Div>{fd.GetQueueType(data.matches[matchesIndex].queueId)}</match.Font1Div>
             <match.Font2Div>{fd.GetMatchDate(data.matches[matchesIndex].gameStartTimestamp)}</match.Font2Div>
@@ -98,9 +104,9 @@ function MatchBox(props) {
             <match.PartiListUl>
               {[0, 1, 2, 3, 4].map((num) => {
                 return (
-                  <li style={{display: 'flex'}} key={num}>
+                  <li style={{ display: 'flex' }} key={num}>
                     <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                    <match.PartiName>{data.matches[matchesIndex].participants[num].summonerName}</match.PartiName>
+                    <match.PartiName onClick={() => NicknameClick(data.matches[matchesIndex].participants[num].summonerName)}>{data.matches[matchesIndex].participants[num].summonerName}</match.PartiName>
                   </li>
                 )
               })}
@@ -108,9 +114,9 @@ function MatchBox(props) {
             <match.PartiListUl>
               {[5, 6, 7, 8, 9].map((num) => {
                 return (
-                  <li style={{display: 'flex'}} key={num}>
+                  <li style={{ display: 'flex' }} key={num}>
                     <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                    <match.PartiName>{data.matches[matchesIndex].participants[num].summonerName}</match.PartiName>
+                    <match.PartiName onClick={() => NicknameClick(data.matches[matchesIndex].participants[num].summonerName)}>{data.matches[matchesIndex].participants[num].summonerName}</match.PartiName>
                   </li>
                 )
               })}

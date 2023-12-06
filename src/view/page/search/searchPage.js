@@ -11,7 +11,7 @@ import { fetchDataRequest, fetchDataSuccess, fetchDataFailure } from "redux/data
 
 function SearchPage() {
   const dispatch = useDispatch();
-  const location = useLocation();
+  let location = useLocation();
   let navigate = useNavigate();
 
   useEffect(() => {

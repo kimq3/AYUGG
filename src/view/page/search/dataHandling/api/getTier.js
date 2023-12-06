@@ -10,7 +10,11 @@ export default async function GetTierList(data, matchesIndex) {
       await fetch(uidUrl)
         .then(response => response.json())
         .then((rawData) => {
-          res.push(rawData[0].tier+ " " + rawData[0].rank);
+          if (rawData.length === 0) {
+            res.push('UNRANK');
+          } else {
+            res.push(rawData[0].tier+ " " + rawData[0].rank);
+          }
         });
     }
     return res;
