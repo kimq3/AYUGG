@@ -77,10 +77,10 @@ async function ChampionsImgFull(){
     let data = (
       <styled.ListBox key={i}>
         <li>
-          <styled.ChampionLink to={`/details/${id}`}>
+          <styled.ChampionLink to={`/champions/${id}`}>
             <styled.ChampionsImgStyle src={champImgData[0][i]} />
           </styled.ChampionLink>
-          <styled.ChampionLink to={`/details/${id}`}>
+          <styled.ChampionLink to={`/champions/${id}`}>
             <styled.ChampionsSpanStyle>{champImgData[1][i]}</styled.ChampionsSpanStyle>
           </styled.ChampionLink>
         </li>

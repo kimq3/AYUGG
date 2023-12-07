@@ -1,10 +1,9 @@
-import { RuneApi, ChampionDetailDataApi as ChampDetailApi } from "model/api/champions";
+import { RuneApi } from "model/api/champions";
 import * as styled from "./detailsStyle";
 import { useEffect, useMemo, useState } from "react";
 
 const urlStart = "https://ddragon.leagueoflegends.com/cdn/";
 const basicRuneImgUrl = urlStart + "img/";
-const detailData = await ChampDetailApi();
 const runeApiData = await RuneApi();
 
 // ★ 룬 ★ -----------------------------------------
@@ -94,6 +93,7 @@ function RuneImgTag(props) {
 
 // 룬 왼쪽에 대표적인 룬 2개를 보여주는 NavBar
 async function NavRune(props) {
+  const detailData = props.data[0];
   let getRune = GetRuneData(JSON.parse(detailData.rune), runeApiData, props.ver);
   let selected = props.selected;
 
@@ -124,6 +124,7 @@ function RuneRateDiv(props){
 }
 
 async function DetailRuneFirstBox(props) {
+  const detailData = props.data[0];
   let getRune = GetRuneData(JSON.parse(detailData.rune), runeApiData, props.ver);
   let selected = "true"
   let runeIdList = [];
@@ -200,6 +201,7 @@ async function DetailRuneFirstBox(props) {
 }
 
 async function DetailRuneSecondBox(props) {
+  const detailData = props.data[0];
   let getRune = GetRuneData(JSON.parse(detailData.rune), runeApiData, props.ver);
   let selected = "true"
 
@@ -281,6 +283,7 @@ function PerkImg(id) {
 }
 
 async function DetailRuneThirdBox(props) {
+  const detailData = props.data[0];
   const statsData = props.ver === '1' ? JSON.parse(detailData.rune).version1.stats : JSON.parse(detailData.rune).version2.stats
 
   function Perk(img1, img2, img3, id) {
@@ -319,12 +322,11 @@ async function DetailRuneThirdBox(props) {
   )
 }
 
-
 // ♣ 스킬 ♣ -----------------------------------------
-async function Skill() {
+async function Skill(props) {
+  const detailData = props[0];
   const skillMaster = JSON.parse(detailData.master);
   const skillSeq = JSON.parse(detailData.skillSeq).skillSeqList;
-  
   // 스킬 마스터리
   const arrow = '/assets/images/arrow-icon-24.svg';
   // const arrowImg = <styled.SkillImgStyle $size="32px" src={arrow} />
@@ -410,24 +412,26 @@ function ArticleLeftBox(props) {
   const [navRuneV1, setNavRuneV1] = useState([]);
   const [navRuneV2, setNavRuneV2] = useState([]);
   const [skill, setSkill] = useState();
-
   let v1Props = useMemo(() => {
     return {
       ver: "1",
-      selected: "true"
+      selected: "true",
+      data: props.data,
     };
   }, []);
 
   let v2Props = useMemo(() => {
     return {
       ver: "2",
-      selected: "false"
+      selected: "false",
+      data: props.data,
     };
   }, []);
 
   let detailProps = useMemo(() => {
     return {
       ver: "1",
+      data: props.data,
     }
   }, [])
 
@@ -452,7 +456,7 @@ function ArticleLeftBox(props) {
       setDetailRuneThird(data);
     })
 
-    Skill().then((data) => {
+    Skill(props.data).then((data) => {
       setSkill(data);
     });
   }, [v1Props, v2Props, detailProps])
@@ -584,7 +588,6 @@ function ItemDivTitle(props) {
 
 async function ItemDivData(props) {
   const detailData = props.data ? props.data[0] : null;
-  console.log(detailData);
   let fav;
   let ver1;
   let ver2;
@@ -592,11 +595,15 @@ async function ItemDivData(props) {
   let dataVer2;
 
   function imgData(ver) {
+    let nullA = ver.img1 === "imgNull" ? 'true' : 'false'
+    let nullB = ver.img2 === "imgNull" ? 'true' : 'false'
+
     return (
       <>
         <styled.FavImgBoxStyle>
-          <styled.FavImgStyle src={ver.img1} />
-          <styled.FavImgStyle src={ver.img2} />
+          <styled.FavImgStyle src={ver.img1} $isNull={nullA} />
+          {nullB === 'false' ? <styled.FavImgStyle src={ver.img2} />
+           : <styled.FavImgStyle $isNull={nullB} />}
         </styled.FavImgBoxStyle>
       </>
     )
@@ -609,7 +616,7 @@ async function ItemDivData(props) {
           {data}
         </styled.FavVerDataStyle>
         <styled.FavVerDataStyle $size="25%">{ver.pickRate}</styled.FavVerDataStyle>
-        <styled.FavVerDataStyle $size="25%">{ver.pickRate}</styled.FavVerDataStyle>
+        <styled.FavVerDataStyle $size="25%">{ver.winRate}</styled.FavVerDataStyle>
       </styled.FavVerBoxStyle>
     )
   }

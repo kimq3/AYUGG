@@ -1,12 +1,10 @@
 import * as styled from "./detailsStyle";
-import { ChampionDetailDataApi as ChampDetailApi } from "model/api/champions";
 import { useEffect, useState } from "react";
 
-const gggg = await ChampDetailApi()
-
-async function ItemBox(version) {
-  const itemTreeData = JSON.parse(gggg.itemTree);
-  const legendItemData = JSON.parse(gggg.legendItem);
+async function ItemBox(version, data) {
+  const detailData = data;
+  const itemTreeData = JSON.parse(detailData.itemTree);
+  const legendItemData = JSON.parse(detailData.legendItem);
   const arrow = '/assets/images/arrow-icon-24.svg';
   let itemTree;
   let legendItem;
@@ -65,23 +63,24 @@ async function ItemBox(version) {
   )
 }
 
-function ItemWrappingBox() {
+function ItemWrappingBox(props) {
+  const detailData = props.data;
   const [ver1, setVer1] = useState();
   const [ver2, setVer2] = useState();
   const [ver3, setVer3] = useState();
   const [ver4, setVer4] = useState();
 
   useEffect(() => {
-    ItemBox("1").then((data) => {
+    ItemBox("1", detailData).then((data) => {
       setVer1(data);
     });
-    ItemBox("2").then((data) => {
+    ItemBox("2", detailData).then((data) => {
       setVer2(data);
     });
-    ItemBox("3").then((data) => {
+    ItemBox("3", detailData).then((data) => {
       setVer3(data);
     });
-    ItemBox("4").then((data) => {
+    ItemBox("4", detailData).then((data) => {
       setVer4(data);
     });
   }, [])
@@ -97,8 +96,8 @@ function ItemWrappingBox() {
 }
 
 // detailsMain.js에 뱉어내는
-export default function ThirdArticle() {
-  
+export default function ThirdArticle(props) {
+  const detailData = props.data[0];
 
 
   return (
@@ -119,7 +118,7 @@ export default function ThirdArticle() {
             </styled.MiddleTitleWrappingBox>
           </styled.MiddleTitleBoxStyle>
         <styled.ItemArticleBoxStyle>
-          <ItemWrappingBox />
+          <ItemWrappingBox data={detailData} />
         </styled.ItemArticleBoxStyle>
       </styled.OutBoxStyle>
     </>

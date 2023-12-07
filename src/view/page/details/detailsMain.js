@@ -16,8 +16,6 @@ function ChampionsDetails() {
     })
   },[id]);
 
-  // console.log(detailData);
-
   return (
     <>
       <Nav />

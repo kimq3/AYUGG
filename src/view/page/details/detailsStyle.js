@@ -60,7 +60,7 @@ export const NameSkillStyle = styled(FlexBox)`
   width: 100%;
   height: 50%;
   align-items: center;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   color: #fff;
 `;
@@ -73,9 +73,10 @@ export const SkillImgStyle = styled(Border4pxImg)`
 
 // - > Rate
 export const RateBoxStyle = styled.div`
-  width: auto;
+  width: 80px;
   height: 100%;
   margin-right: 10px;
+
 `;
 
 export const RateStyle = styled.div`
@@ -89,6 +90,8 @@ export const RateStyle = styled.div`
   text-align: center;
   display: flex;
   justify-content: center;
+  font-size: 20px;
+  margin: 0 auto;
 `;
 
 // - Counter 박스
@@ -110,6 +113,7 @@ export const CounterStyle = styled.div`
   border-radius: 4px;
   background-color: ${(props) => props.$back};
   text-align: center;
+  font-size: 16px;
 `;
 
 export const CounterOlStyle = styled.ol`
@@ -134,15 +138,15 @@ export const CounterDivStyle = styled.div`
 `;
 
 export const CounterImgStyle = styled(Border4pxImg)`
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: block;
   margin: 7px auto;
 `;
 
 export const CounterInfoStyle = styled.div`
   margin: ${(props) => props.$margin};
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   overflow: hidden;
 `;
@@ -354,7 +358,7 @@ export const SkillKeyStyle = styled.span`
 `;
 
 export const OrderBoxStyle = styled.div`
-  width: 24px;
+  width: 30px;
   height: 90%;
 `;
 
@@ -453,6 +457,7 @@ export const FavImgStyle = styled(Border4pxImg)`
   width: 28px;
   height: 28px;
   display: inline-block;
+  border-radius: ${(props) => props.$isNull === 'true' ? "0px" : "4px"};
 `;
 
 export const ImgNameStyle = styled.div`
@@ -555,7 +560,7 @@ export const ItemImgStyle = styled.img`
 export const ItemTreeRateBoxStyle = styled(divCenter)`
   width: 20%;
   height: 100%;
-  font-size: 12px;
+  font-size: 16px;
 `;
 
 export const LegendImgBoxStyle = styled(divCenter)`
@@ -566,5 +571,5 @@ export const LegendImgBoxStyle = styled(divCenter)`
 export const LegendRateBoxStyle = styled(divCenter)`
   width: 40%;
   height: 100%;
-  font-size: 12px;
+  font-size: 16px;
 `;

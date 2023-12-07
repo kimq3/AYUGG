@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       element: <App />,
     },
     {
-      path:"/champion",
+      path:"/champions",
       element: <ChampionsMain></ChampionsMain>
     },
     {
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
       element:<SearchPage></SearchPage>
     },
     {
-      path:"/details/:id",
+      path:"/champions/:id",
       element:<ChampionsDetails></ChampionsDetails>
     },
 ]);
