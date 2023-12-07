@@ -25,7 +25,7 @@ export default async function GetMultiData(nickname) {
             data.losses = 0;
           } else {
             data.tier = rawData[0].tier;
-            data.tierString = `${rawData[0].tier} ${rawData[0].rank} (${rawData[0].leaguePoints})`;
+            data.tierString = `${rawData[0].tier} ${rawData[0].rank} (${rawData[0].leaguePoints}LP)`;
             data.wins = rawData[0].wins;
             data.losses = rawData[0].losses;
           }
