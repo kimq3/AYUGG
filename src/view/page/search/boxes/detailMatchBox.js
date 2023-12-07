@@ -152,7 +152,7 @@ function MatchDetailBlueTableBox(props) {
                 </span>
               </dmb.IconDiv>
               <dmb.NickTierDiv>
-                <div>{data.matches[matchesIndex].participants[num].summonerName}</div>
+                <div>{data.matches[matchesIndex].participants[num].riotIdGameName}</div>
                 <dmb.Font3Div>{props.tierList[num]}</dmb.Font3Div>
               </dmb.NickTierDiv>
             </dmb.TableTd>
@@ -253,7 +253,7 @@ function MatchDetailRedTableBox(props) {
                 </span>
               </dmb.IconDiv>
               <dmb.NickTierDiv>
-                <div>{data.matches[matchesIndex].participants[num].summonerName}</div>
+                <div>{data.matches[matchesIndex].participants[num].riotIdGameName}</div>
                 <dmb.Font3Div>{props.tierList[num]}</dmb.Font3Div>
               </dmb.NickTierDiv>
             </dmb.TableTd>

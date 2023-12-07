@@ -104,9 +104,9 @@ function MatchBox(props) {
             <match.PartiListUl>
               {[0, 1, 2, 3, 4].map((num) => {
                 return (
-                  <li style={{ display: 'flex' }} key={num}>
+                  <li style={{ display: 'flex' }} key={num}>{console.log(data.matches[matchesIndex].participants[num])}
                     <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                    <match.PartiName onClick={() => NicknameClick(data.matches[matchesIndex].participants[num].summonerName)}>{data.matches[matchesIndex].participants[num].summonerName}</match.PartiName>
+                    <match.PartiName onClick={() => NicknameClick(data.matches[matchesIndex].participants[num].riotIdGameName)}>{data.matches[matchesIndex].participants[num].riotIdGameName}</match.PartiName>
                   </li>
                 )
               })}
@@ -116,7 +116,7 @@ function MatchBox(props) {
                 return (
                   <li style={{ display: 'flex' }} key={num}>
                     <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                    <match.PartiName onClick={() => NicknameClick(data.matches[matchesIndex].participants[num].summonerName)}>{data.matches[matchesIndex].participants[num].summonerName}</match.PartiName>
+                    <match.PartiName onClick={() => NicknameClick(data.matches[matchesIndex].participants[num].riotIdGameName)}>{data.matches[matchesIndex].participants[num].riotIdGameName}</match.PartiName>
                   </li>
                 )
               })}

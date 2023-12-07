@@ -1,4 +1,4 @@
-const version = "https://ddragon.leagueoflegends.com/cdn/13.23.1/";
+const version = "https://ddragon.leagueoflegends.com/cdn/13.24.1/";
 const imgUrl = "https://ddragon.leagueoflegends.com/cdn/img/";
 
 export function GetPlayerIconImg(profileIconId) {
