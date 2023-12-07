@@ -1,38 +1,21 @@
 import * as style from "view/page/challenger/style/detailStyle";
-import Barchart from "./chart/barchart";
-import LogList from "./chart/logList";
+import ChartMain from "./chart/chartMain";
+import { useContext } from "react";
+import { ChallengerContext } from "../totalFrame";
+import { changeLeftChartData, changeRightChartData } from "./changeChartData";
 
 function Kill(){
 
-    const data = [
-        { name: 'Afasdf', value: 10 },
-        { name: 'B', value: 20 },
-        { name: 'C', value: 15 },
-        { name: 'C', value: 15 },
-        { name: 'C', value: 15 },
-    ];
+    const data = useContext(ChallengerContext);
+
+    const leftchartData=changeLeftChartData(data, 'kills');
+    const rightchartData=changeRightChartData(data, 'kills');
+
 
     return (
         <div>
-            <style.Titlediv>킬페이지 입니다.</style.Titlediv>
-            <style.MainGraph>
-                <style.LeftGraph>
-                    <Barchart color="skyblue"></Barchart>
-                </style.LeftGraph>
-
-                <style.Number>
-                    <LogList data={data}></LogList>
-                </style.Number>
-
-                <style.RightGraph>
-                    <Barchart color="red"></Barchart>
-                </style.RightGraph>
-
-                <style.Number>
-                    <LogList data={data}></LogList>
-                </style.Number>
-            </style.MainGraph>
-            
+            <style.Titlediv>킬</style.Titlediv>
+            <ChartMain dataLeft={leftchartData} dataRight={rightchartData}></ChartMain>   
         </div>
         
     );

@@ -108,5 +108,5 @@ export const tierImgMapping = new Map([
 
 export const soloRankUrl = "https://kr.api.riotgames.com/lol/league-exp/v4/entries/RANKED_SOLO_5x5/CHALLENGER/I"; //랭킹, 랭킹 상세페이지에서 사용(현재 챌린저 1~200위 까지 표출 가능)
 export const flexRankUrl = "https://kr.api.riotgames.com/lol/league-exp/v4/entries/RANKED_FLEX_SR/CHALLENGER/I";
-export const matchIdUrl2 = "/ids?start=0&count=10";// match id 추출 api 뒷부분
+export const matchIdUrl2 = "/ids?queue=420&start=0&count=10";// match id 추출 api 뒷부분
 

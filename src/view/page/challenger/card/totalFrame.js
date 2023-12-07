@@ -3,20 +3,24 @@ import MiddleScreen from "./middle";
 import LeftScreen from "./left";
 import RightScreen from "./right";
 import DetailScreen from "./detail";
-import { useState } from "react";
+import { useState, createContext } from "react";
 
-function TotalFrame(){
+export const ChallengerContext = createContext();
+
+function TotalFrame(props){
 
     const [show, setShow] = useState(false);
 
     return (
         <div>
-            <style.Maindiv>
-                <LeftScreen></LeftScreen>              
-                <MiddleScreen isShow={show} setShow={setShow}></MiddleScreen>    
-                <RightScreen></RightScreen>
-            </style.Maindiv>
-            {show === true ? <DetailScreen></DetailScreen> : null}
+            <ChallengerContext.Provider value={props.data.info}>
+                <style.Maindiv>
+                    <LeftScreen></LeftScreen>              
+                    <MiddleScreen isShow={show} setShow={setShow}></MiddleScreen>    
+                    <RightScreen></RightScreen>
+                </style.Maindiv>
+                {show === true ? <DetailScreen></DetailScreen> : null}
+            </ChallengerContext.Provider>  
         </div>
         
     );

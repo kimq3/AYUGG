@@ -1,8 +1,13 @@
+import { useContext, useEffect } from "react";
 import * as style from "view/page/challenger/style/middleSytle"
+import { ChallengerContext } from "./totalFrame";
 
 function MiddleScreen(props){
-    const win=true; //UI와 삼항연산자가 먹히는지 보려는 test 변수
-    const lose=false;  //UI와 삼항연산자가 먹히는지 보려는 test 변수
+
+    const data = useContext(ChallengerContext);
+
+    const minute=Math.round(data.gameDuration/60);
+    const second=Math.round(data.gameDuration%60);
 
     function changeShow(){
         if(props.isShow === true){
@@ -16,9 +21,9 @@ function MiddleScreen(props){
     return (
         <style.Maindiv>
             <style.GameNamespan>소환사의 협곡 (솔로랭크)</style.GameNamespan>
-            {win ? <style.winspan>승</style.winspan> : <style.losespan>패</style.losespan>}
-            <style.Playspan>playTime 27:33</style.Playspan>
-            {lose ? <style.winspan>승</style.winspan> : <style.losespan>패</style.losespan>}
+            {data.teams[0].win ? <style.winspan>승</style.winspan> : <style.losespan>패</style.losespan>}
+            <style.Playspan>playTime {minute}:{second < 10 ? '0'+second: second}</style.Playspan>
+            {data.teams[1].win ? <style.winspan>승</style.winspan> : <style.losespan>패</style.losespan>}
             <style.Detaildiv onClick={changeShow}>자세히보기</style.Detaildiv>
         </style.Maindiv>    
     );

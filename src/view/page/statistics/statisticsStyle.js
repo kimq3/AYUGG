@@ -36,6 +36,16 @@ export const Tds=styled.td`
     color: white;
 `;
 
+export const TdName=styled.td`
+    font-weight: bold;
+    color: white;
+    display: flex;
+`;
+
+export const NameSpan=styled.span`
+    padding: 10px;
+`;
+
 export const MainDiv=styled.div`
     display: flex;
     flex-direction: rows;
@@ -72,5 +82,13 @@ export const FilTd=styled.td`
     text-align: center;
     padding: 10px;
     font-weight: bold;
+`;
+
+export const IconImage=styled.img`
+    padding: 10px;
+    width: 25px;
+    height: 25px;
+    resizeMode: contain;
+    margin-right: 5px;
 `;
 

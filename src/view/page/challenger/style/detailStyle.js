@@ -28,6 +28,11 @@ export const Button=styled.button`
         background-color : #3896D9;
         color : #fff;
     }
+
+    &:focus {
+        background-color: #2572DB; 
+        color: #fff;
+    }
 `;
 
 export const Titlediv=styled.div`
@@ -43,13 +48,13 @@ export const MainGraph=styled.div`
 `;
 
 export const LeftGraph=styled.div`
-    width : 350px;
+    width : 250px;
     height : 230px;
     padding : 10px;
 `;
 
 export const RightGraph=styled.div`
-    width : 350px;
+    width : 250px;
     height : 230px;
     padding : 10px;
 `;
@@ -63,8 +68,27 @@ export const Number = styled.div`
 export const UL = styled.ul`
     list-style-type : none;
     padding-inLine-start : 0px; 
+    margin-block-start : 15px;
 `;
 
 export const LI = styled.li`
     margin-bottom: 18px;
+`;
+
+export const Img=styled.img`
+    width:32px;
+    height:32px;
+    background-color:gray;
+    margin-left:3px;
+`;
+
+export const ImgLI = styled.li`
+    margin-bottom: 3px;
+    margin-left:50px;
+`;
+
+export const ImgUL = styled.ul`
+    list-style-type : none;
+    padding-inLine-start : 0px; 
+    margin-block-start : 8px;
 `;

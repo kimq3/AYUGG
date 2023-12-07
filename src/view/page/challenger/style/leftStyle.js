@@ -4,13 +4,14 @@ import styled from "styled-components";
 export const Maindiv = styled.div`
     width: 320px;
     height: 200px;
-    background-color:blue;
+    background-color:#3490E5;
     border-radius: 5px;
 `;
 
 export const UL=styled.ul`
     list-style-type: none;
-    padding-inLine-start:-20px;
+    padding-inLine-start:20px;
+    
 `;
 
 export const LI=styled.li`
@@ -23,7 +24,7 @@ export const ItemMain=styled.span`
     padding-top:5px;
 `;
 
-export const Itemdiv=styled.div`
+export const Itemimg=styled.img`
     width:15px;
     height:15px;
     background-color:gray;
@@ -32,9 +33,14 @@ export const Itemdiv=styled.div`
 
 export const Nickspan=styled.span`
     padding-left:5px;
+    width:120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align:right;
 `;
 
-export const Imgdiv=styled.div`
+export const Img=styled.img`
     width:25px;
     height:25px;
     background-color:gray;
