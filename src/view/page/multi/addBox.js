@@ -20,7 +20,7 @@ function AddBox(props) {
         </WinRateGraphDiv>
         {props.data.tier === 'NONE'
         ? <div>NONE</div>
-        : <div> Math.round(props.data.wins / (props.data.losses + props.data.wins) * 100)%</div>}
+        : <div> {Math.round(props.data.wins / (props.data.losses + props.data.wins) * 100)}%</div>}
       </WLRDiv>
       <AddMatchBox value={props.data.matches} />
     </ContainerDiv>
