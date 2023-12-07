@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import * as styled from "./champsStyle";
 import { useLocation } from 'react-router-dom';
-import { ChampionDetailApi as ChampDetailApi, ChampionApi } from "model/constantly/apiConstants";
+import { ChampionApi } from "model/api/champions";
 
-const detailData = await ChampDetailApi();
 const champImgData = await ChampionApi();
 
 export function Option() {
@@ -70,17 +69,18 @@ export function ChampionsImg(){
   );
 }
 
-export async function ChampionsImgFull(){
-
+async function ChampionsImgFull(){
   let fullData = [];
+
   for(let i = 0; i<champImgData[0].length; i++){
+    let id = champImgData[2][i].toLowerCase();
     let data = (
       <styled.ListBox key={i}>
         <li>
-          <styled.ChampionLink to="/details">
+          <styled.ChampionLink to={`/champions/${id}`}>
             <styled.ChampionsImgStyle src={champImgData[0][i]} />
           </styled.ChampionLink>
-          <styled.ChampionLink to="/details">
+          <styled.ChampionLink to={`/champions/${id}`}>
             <styled.ChampionsSpanStyle>{champImgData[1][i]}</styled.ChampionsSpanStyle>
           </styled.ChampionLink>
         </li>

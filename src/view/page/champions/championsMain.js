@@ -3,6 +3,7 @@ import * as style from "./champsStyle";
 import * as champImg from "./chamsImage";
 import MiddleLineButton from "./champsLine";
 import ChampionsRanking from "./championsRanking";
+import { useParams } from "react-router";
 
 function ChampionsMain() {
   return (

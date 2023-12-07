@@ -29,7 +29,6 @@ router.get('/getdata', function (req, res){
             res.json(rows);
         }
     });
-
 });
 
 router.get('/getdata2', function (req, res){
@@ -44,26 +43,22 @@ router.get('/getdata2', function (req, res){
 
 });
 
-router.post('/getdata/po', function (req, res){
-    console.log('라인: ',req.body.info.line);
-    console.log('티어: ',req.body.info.tier);
-    console.log('버전: ',req.body.info.ver);
-    db.all(`SELECT * FROM champions WHERE line='${req.body.info.line}' AND tier='${req.body.info.tier}' AND version='${req.body.info.ver}'`,(err, rows)=>{
-        if(err){
-            res.status(400).send(err.message);
-        }
-        else{
-            res.json(rows);
-        }
-    });
-
-});
+// router.post('/getdata/po', function (req, res){
+//     console.log('라인: ',req.body.info.line);
+//     console.log('티어: ',req.body.info.tier);
+//     console.log('버전: ',req.body.info.ver);
+//     db.all(`SELECT * FROM champions WHERE line='${req.body.info.line}' AND tier='${req.body.info.tier}' AND version='${req.body.info.ver}'`,(err, rows)=>{
+//         if(err){
+//             res.status(400).send(err.message);
+//         }
+//         else{
+//             res.json(rows);
+//         }
+//     });
+// });
 
 router.post('/getdata2/po', function (req, res){
-    console.log('라인: ',req.body.info.line);
-    console.log('티어: ',req.body.info.tier);
-    console.log('버전: ',req.body.info.ver);
-    db2.all(`SELECT * FROM '${req.body.info.champName}' WHERE line='${req.body.info.line}' AND tier='${req.body.info.tier}' AND version='${req.body.info.ver}'`,(err, rows)=>{
+    db2.all(`SELECT * FROM '${req.body.id}'`,(err, rows)=>{
         if(err){
             res.status(400).send(err.message);
         }
@@ -71,7 +66,6 @@ router.post('/getdata2/po', function (req, res){
             res.json(rows);
         }
     });
-
 });
 
 module.exports = router;

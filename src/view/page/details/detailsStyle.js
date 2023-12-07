@@ -13,7 +13,7 @@ export const Center = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15px 0;
+  margin: 20px 0;
   position: relative;
 `;
 
@@ -60,7 +60,7 @@ export const NameSkillStyle = styled(FlexBox)`
   width: 100%;
   height: 50%;
   align-items: center;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   color: #fff;
 `;
@@ -73,19 +73,25 @@ export const SkillImgStyle = styled(Border4pxImg)`
 
 // - > Rate
 export const RateBoxStyle = styled.div`
-  width: auto;
+  width: 80px;
   height: 100%;
   margin-right: 10px;
+
 `;
 
 export const RateStyle = styled.div`
-  width: auto;
+  width: 65px;
   height: 50%;
   display: flex;
   align-items: center;
   font-size: 16px;
   color: #fff;
   font-weight: ${(props) => props.$weight};
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  margin: 0 auto;
 `;
 
 // - Counter 박스
@@ -107,6 +113,7 @@ export const CounterStyle = styled.div`
   border-radius: 4px;
   background-color: ${(props) => props.$back};
   text-align: center;
+  font-size: 16px;
 `;
 
 export const CounterOlStyle = styled.ol`
@@ -131,15 +138,15 @@ export const CounterDivStyle = styled.div`
 `;
 
 export const CounterImgStyle = styled(Border4pxImg)`
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: block;
   margin: 7px auto;
 `;
 
 export const CounterInfoStyle = styled.div`
   margin: ${(props) => props.$margin};
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   overflow: hidden;
 `;
@@ -180,7 +187,7 @@ export const SubTitleBox = styled(FlexBox)`
 `;
 
 export const NavButtonStyle = styled.button`
-  width: 25%;
+  width: 23%;
   height: 100%;
   cursor: pointer;
   padding: 0px;
@@ -191,36 +198,6 @@ export const NavButtonStyle = styled.button`
 export const RuneLeftNavBoxStyle = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-export const RuneRightDetailBoxStyle = styled(Center)`
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  position: static;
-`;
-
-export const RuneDetailBoxStyle = styled.div`
-  width: 32%;
-  height: 100%;
-  padding-top: 5%;
-  box-sizing: border-box;
-`;
-
-export const RuneDetailMainTitleStyle = styled(Center)`
-  width: 100%;
-`;
-
-export const RuneDetailSubTitleStyle = styled(Center)`
-  width: 100%;
-  justify-content: space-evenly;
-  box-sizing: border-box;
-  padding: 10px 3px;
-`;
-
-export const RuneStatsStyle = styled(Center)`
-  width: 100%;
-  justify-content: space-evenly;
 `;
 
 export const NavRuneStyle = styled(RuneBox)`
@@ -238,11 +215,6 @@ export const NavRuneStyle = styled(RuneBox)`
 export const NavRuneWrappingDivStyle = styled.div`
   width: 100%;
   height: auto;
-`;
-
-export const RuneTypeStyle = styled(FlexBox)`
-  width: 100%;
-  background-color: #fff;
 `;
 
 // 이미지를 담은 박스
@@ -264,6 +236,9 @@ const RuneImgStyle = styled.img`
 `;
 
 export const NavRuneImgBoxStyle = styled(RuneImgBoxStyle)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: ${(props) => props.$size};
   height: ${(props) => props.$size};
   position: ${(props) => props.$main ? "static;" : "absolute;"}
@@ -280,6 +255,7 @@ export const NavRuneImgStyle = styled(RuneImgStyle)`
   height: ${(props) => props.$size};
   opacity: ${(props) => props.$selected === "true" ? "1" : "0.5"};
   filter: ${(props) => props.$selected === "true" ? "grayscale(0)" : "grayscale(1)"};
+  margin: 0;
 `;
 
 const RuneRateDiv = styled.div`
@@ -296,8 +272,54 @@ export const RuneRateBoxStyle = styled.div`
 
 export const RuneRateDivStyle = styled(RuneRateDiv)`
   width: ${(props) => props.$size};
-  margin: 0 auto;
-  color: black;
+  margin: 3px auto;
+  color: black;  
+  display:flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+// NavRune 박스 옆 detail 박스
+export const DetailRuneWrappingBoxStyle = styled.div`
+  width: 78%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+`;
+
+// detail 박스에 있는 3등분 div박스
+export const DetailRuneBoxStyle = styled.div`
+  width: 32%;
+  height: 100%;
+`;
+
+const divCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const RuneTitleBoxStyle = styled(divCenter)`
+  width: 100%;
+  height: 20%;
+`;
+
+export const RuneIdBoxStyle = styled(divCenter)`
+  width: 100%;
+  height: 20%;
+  justify-content: space-evenly;
+`;
+
+export const RuneLineBoxStyle = styled.div`
+  width: 100%;
+  height: 60%;
+  box-sizing: border-box;
+`;
+
+export const LineBox = styled(divCenter)`
+  width: 100%;
+  height: 30%;
+  justify-content: space-evenly;
 `;
 
 // 스킬 담은 박스
@@ -336,7 +358,7 @@ export const SkillKeyStyle = styled.span`
 `;
 
 export const OrderBoxStyle = styled.div`
-  width: 24px;
+  width: 30px;
   height: 90%;
 `;
 
@@ -352,16 +374,16 @@ const BasicOrderBox = styled.div`
 
 export const OrderSeqStyle = styled(BasicOrderBox)`
   height: auto;
-  background-color: ${(props) => props.$max === "max" ? "rgb(70, 185, 170)" : "#fff"};
-  color: ${(props) => props.$max === "max" ? "#fff" : "black"};
+  background-color: ${(props) => props.$max === "true" ? "rgb(70, 185, 170)" : "#fff"};
+  color: ${(props) => props.$max === "true" ? "#fff" : "black"};
   border-color: rgb(70, 185, 170);
 `;
 
 export const OrderSkillStyle = styled(BasicOrderBox)`
   height: auto;
-  background-color: ${(props) => props.$max === "max"
+  background-color: ${(props) => props.$max === "true"
    ? "rgb(70, 185, 170)" : (props.$master === "true" ? "rgb(138, 217, 232)" : "rgb(202, 215, 226)")};
-  color: ${(props) => props.$max === "max" ? "#fff" : "black"};
+  color: ${(props) => props.$max === "true" ? "#fff" : "black"};
   border-color: transparent;
 `;
 
@@ -435,6 +457,7 @@ export const FavImgStyle = styled(Border4pxImg)`
   width: 28px;
   height: 28px;
   display: inline-block;
+  border-radius: ${(props) => props.$isNull === 'true' ? "0px" : "4px"};
 `;
 
 export const ImgNameStyle = styled.div`
@@ -469,154 +492,84 @@ export const ItemTitleStyle = styled(Border4pxDiv)`
   font-weight: 700;
 `;
 
-export const ItemOutBoxStyle = styled.div`
+export const ItemArticleBoxStyle = styled(Border4pxDiv)`
   width: 100%;
-  height: 88%;
-  border-radius: 4px;
+  height: calc(88% - 16px);
   background-color: rgb(200, 200, 200);
 `;
 
-export const ItemNavBoxStyle = styled(Border4pxDiv)`
+export const MiddleTitleBoxStyle = styled.div`
   width: 100%;
-  height: 25%;
+  height: 16px;
+  text-align: center;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottoem: 1px solid grey;
+  font-size: 12px;
   display: flex;
-  flex-direction: row;
+  background-color: transparent;
 `;
 
-export const ItemNavStyle = styled(Border4pxDiv)`
-  width: 100%;
+export const MiddleTitleWrappingBox = styled.div`
+  width: ${(props) => props.$size};;
   height: 100%;
-  padding-left: 20px;
-  box-sizing: border-box;
-  border-radius: 2px;
-  border-top: 1px solid rgb(255, 255, 115);
-  background-color: ${(props) => props.$selected === "true" ? "rgb(200, 200, 200)" : "rgb(55, 55, 55);"};
-  border-top: ${(props) => props.$selected === "true" ? "2px solid rgb(255, 255, 115)" : "0px"};
-  opacity: ${(props) => props.$selected === "true" ? "1" : "0.5"};
-  filter: ${(props) => props.$selected === "true" ? "grayscale(0)" : "grayscale(1)"};
-  flex-direction: row;
-`;
-
-const BasicItemImg = styled.img`
-  width: 32px;
-  height: 32px;
-  border-radius: 4px;
-  margin: 0 auto;
-`;
-
-export const ItemNavButtonStyle = styled.button`
-  width: 100%;
-  height: 100%;
-  border: transparent;
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 0px;
-`;
-
-export const ItemNavImgBoxStyle = styled(Border4pxDiv)`
-  width: 10%;
-  height: 100%;
-`;
-
-export const ItemNavImgStyle = styled(BasicItemImg)`
-  border: 2px solid rgb(255, 255, 115);
-`;
-
-export const ItemNavNameBoxStyle = styled(Border4pxDiv)`
-  width: 90%;
-  padding-left: 10px;
-  box-sizing: border-box;
-`;
-
-export const ItemNavNameStyle = styled.div`
-  font-size: 16px;
-  font-weight: 700;
-  margin: auto 0px;
-`;
-
-export const MiddleWrappingBox = styled.div`
+  border-top-right-radius: ${(props) => props.$right ? "4px" : "0px"};
+  border-top-left-radius: ${(props) => props.$left ? "4px" : "0px"};
   display: flex;
-  width: 100%;
-  height: 10%;
-`;
-
-export const MiddleTitleDivStyle = styled.div`
-  width: 50%;
-  height: 100%;
-  background-color: rgb(90, 90, 90);
-  display: flex;
-  border-right: ${(props) => props.$seq === "1" ? "1px solid rgb(200, 200, 200)" : "0px"};
 `;
 
 export const MiddleTitleStyle = styled.div`
   width: ${(props) => props.$size};
   height: 100%;
-  font-size: 12px;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const DetailItemBoxStyle = styled.div`
-  width: 100%;
-  height: 65%;
-  background-color: white;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  display: ${(props) => (props.$display === "true" ? "flex" : "none")};
-`;
-
-const BasicItemDivBox = styled.div`
-  width: 50%;
-  height: 100%;
-`;
-
-const BasicItem = styled.div`
-  width: 100%;
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ItemArticleBoxStyle = styled(BasicItemDivBox)`
-  border-right: ${(props) => props.$position === "left" ? "1px solid rgb(200, 200, 200)" : "0px"};
-`;
-
-export const ItemBoxStyle = styled(BasicItem)`
-  width: 100%;
-  border-bottom: ${(props) => props.$seq === 1 ? "1px solid rgb(200, 200, 200)" : "0px"};
+  border-right: ${(props) => props.$last ? "0px" :  "1px solid grey"};
+  color: white;
 `;
 
 export const ItemWrappingBoxStyle = styled.div`
-  width: 60%;
-  height: 100%;
-  text-align: center;
-  padding-top: 5%;
-  box-sizing: border-box;
-  display: ${(props) => props.$state === "legend" ? "flex" : "block"};
+  width: 100%;
+  height: 25%;
+  background-color: transparent;
+  display: flex;
 `;
 
-export const ItemImgStyle = styled(BasicItemImg)`
-  border: ${(props) => props.$state === "m"  ? "2px solid rgb(255, 255, 115)" : "0px"};
-  border-radius: 50%;
+export const ItemTreeBoxStyle = styled.div`
+  width: 60%;
+  height: 100%;
+  display: flex;
+`;
+
+export const LegendItemBoxStyle = styled.div`
+  width: 40%;
+  height: 100%;
+  display:flex;
+`;
+
+export const ItemTreeImgBoxStyle = styled(divCenter)`
+  width: 60%;
+  height: 100%;
+`;
+
+export const ItemImgStyle = styled.img`
+  width: 32px;
+  height: 32px;
+  border: ${(props) => props.$mythic === "true" ? "1px solid yellow" :  "1px solid black"};
+  border-radius: ${(props) => props.$mythic === "true" ? "50%" :  "4px"};
   margin-right: 10px;
 `;
 
-export const ItemRateBoxStyle = styled.div`
+export const ItemTreeRateBoxStyle = styled(divCenter)`
   width: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  font-size: 16px;
 `;
 
-export const ItemNameStyle = styled.div`
-  width: 70%;
+export const LegendImgBoxStyle = styled(divCenter)`
+  width: 60%;
   height: 100%;
-  text-align: left;
+`;
+
+export const LegendRateBoxStyle = styled(divCenter)`
+  width: 40%;
+  height: 100%;
   font-size: 16px;
-  padding-top: 5px;
-  padding-left: 10px;
-  box-sizing: border-box;
 `;

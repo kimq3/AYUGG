@@ -143,6 +143,7 @@ export const RankingTitleBox = styled.div`
   height: 2794px;
   border-radius: 4px;
 `;
+// height: 2794px;
 
 export const RankingTitle = styled.div`
   width: ${(props) => props.$width};
@@ -156,4 +157,10 @@ export const RankingTitle = styled.div`
   border-top-left-radius: ${(props) => props.$seq === 'start' ? "4px" : "0px"};
   border-top-right-radius: ${(props) => props.$seq === 'end' ? "4px" : "0px"};
   border-bottom: 1px solid grey;
+`;
+
+export const RankingWrapperBox = styled.div`
+  width: 100%;
+  height: 80%;
+  background-color: grey;
 `;

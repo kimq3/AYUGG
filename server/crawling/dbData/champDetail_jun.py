@@ -10,7 +10,7 @@ import time
 chromeOptions = Options()
 chromeOptions.add_experimental_option("detach", True)  # 자동꺼짐 방지
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chromeOptions)
-championId = "graves"
+championId = "garen"
 
 url = "https://www.op.gg/champions/" + championId + "/build"
 url2 = "https://www.deeplol.gg/champions/" + championId + "/build"
@@ -146,7 +146,7 @@ def detailstatCrawl(champId):
     # 카운터
     def getCounterImg(basic):
         list = []
-        for i in range(1, 4):
+        for i in range(1, 5):
             xpath = basic.format(i)
             src = getSrc(xpath)
             list.append(src)
@@ -154,7 +154,7 @@ def detailstatCrawl(champId):
 
     def getCounterRate(basic):
         list = []
-        for i in range(1, 4):
+        for i in range(1, 5):
             xpath = basic.format(i)
             text = getText(xpath)
             list.append(text)
@@ -162,7 +162,7 @@ def detailstatCrawl(champId):
 
     def counterData(imgList, rateList, win):
         list = []
-        for i in range(3):
+        for i in range(4):
             data = {"win": win, "championImg": imgList[i], "winRate": rateList[i]}
             list.append(data)
         return list
@@ -297,19 +297,27 @@ def detailstatCrawl(champId):
     # 스펠 1
     spellA1Src = getSrc('//*[@id="content-container"]/aside/div[1]/div[2]/div/div[1]/div[1]/ul/li[1]/div/img')
     spellA2Src = getSrc('//*[@id="content-container"]/aside/div[1]/div[2]/div/div[1]/div[1]/ul/li[2]/div/img')
+    spellApickRate = getText('//*[@id="content-container"]/aside/div[1]/div[2]/div/div[1]/div[2]/div[1]/strong')
+    spellAwinRate = getText('//*[@id="content-container"]/aside/div[1]/div[2]/div/div[1]/div[2]/div[2]')
 
     # 스펠 2
     spellB1Src = getSrc('//*[@id="content-container"]/aside/div[1]/div[2]/div/div[2]/div[1]/ul/li[1]/div/img')
     spellB2Src = getSrc('//*[@id="content-container"]/aside/div[1]/div[2]/div/div[2]/div[1]/ul/li[2]/div/img')
+    spellBPickRate = getText('//*[@id="content-container"]/aside/div[1]/div[2]/div/div[2]/div[2]/div[1]/strong')
+    spellBWinRate = getText('//*[@id="content-container"]/aside/div[1]/div[2]/div/div[2]/div[2]/div[2]')
     
     spellData = {
         "version1": {
-            "spellA1": spellA1Src,
-            "spellA2": spellA2Src,
+            "img1": spellA1Src,
+            "img2": spellA2Src,
+            "winRate": spellAwinRate,
+            "pickRate": spellApickRate,
         },
         "version2": {
-            "spellB1": spellB1Src,
-            "spellB2": spellB2Src,
+            "img1": spellB1Src,
+            "img2": spellB2Src,
+            "winRate": spellBWinRate,
+            "pickRate": spellBPickRate,
         },
     }
     spell = json.dumps(spellData)
@@ -319,21 +327,34 @@ def detailstatCrawl(champId):
     startItemA1Src = getSrc(itemA1srcXpath.format(etc))
     itemA2srcXpath = '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[1]/div/div/div[2]/div/img'
     startItemA2Src = getSrc(itemA2srcXpath.format(etc))
+    itemAwinRateXpath= '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[3]/strong'
+    itemAwinRate = getSrc(itemAwinRateXpath.format(etc))
+    itemApickRateXpath = '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[2]/strong'
+    itemApickRate = getSrc(itemApickRateXpath.format(etc))
 
+    
     # 시작 아이템 2
     itemB1srcXpath = '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[1]/table/tbody/tr[2]/td[1]/div/div/div[1]/div/img'
     startItemB1Src = getSrc(itemB1srcXpath.format(etc))
     itemB2srcXpath = '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[1]/table/tbody/tr[2]/td[1]/div/div/div[2]/div/img'
     startItemB2Src = getSrc(itemB2srcXpath.format(etc))
-
+    itemBWinRateXpath = '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[1]/table/tbody/tr[2]/td[3]/strong'
+    itemBWinRate = getText(itemBWinRateXpath.format(etc))
+    itemBPickRateXpath = '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[1]/table/tbody/tr[2]/td[2]/strong'
+    itemBPickRate = getText(itemBPickRateXpath.format(etc))
+    
     startItemData = {
         "version1": {
-            "itemA1": startItemA1Src,
-            "itemA2": startItemA2Src,
+            "img1": startItemA1Src,
+            "img2": startItemA2Src,
+            "winRate": itemAwinRate,
+            "pickRate": itemApickRate,
         },
         "version2": {
-            "itemB1": startItemB1Src,
-            "itemB2": startItemB2Src,
+            "img1": startItemB1Src,
+            "img2": startItemB2Src,
+            "winRate": itemBWinRate,
+            "pickRate": itemBPickRate,
         },
     }
     startItem = json.dumps(startItemData)
@@ -341,12 +362,30 @@ def detailstatCrawl(champId):
     # 신발 1
     shoesASrcXpath = '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[1]/div/div/div[1]/div/img'
     shoesASrc = getSrc(shoesASrcXpath.format(etc))
-
+    shoesAWinRateXpath = '//*[@id="content-container"]/main/div[3]/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[3]/strong'
+    shoesAWinRate = getSrc(shoesAWinRateXpath.format(etc))
+    shoesAPickRateXpath = '//*[@id="content-container"]/main/div[3]/div[2]/div[1]/div[2]/table/tbody/tr[1]/td[2]/strong'
+    shoesAPickRate = getSrc(shoesAPickRateXpath.format(etc))
+    
     # 신발 2
     shoesBSrcXpath = '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[1]/div/div/div[2]/div/img'
     shoesBSrc = getSrc(shoesBSrcXpath.format(etc))
+    shoesBWinRateXpath = '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[3]/strong'
+    shoesBWinRate = getSrc(shoesBWinRateXpath.format(etc))
+    shoesBPickRateXpath = '//*[@id="content-container"]/main/div[{}]/div[2]/div[1]/div[2]/table/tbody/tr[2]/td[2]/strong'
+    shoesBPickRate = getSrc(shoesBPickRateXpath.format(etc))
 
-    shoesData = {"version1": shoesASrc, "version2": shoesBSrc}
+    shoesData = {
+        "version1": {
+            "img": shoesASrc,
+            "winRate": shoesAWinRate,
+            "pickRate": shoesAPickRate,
+        }, 
+        "version2": {
+            "img": shoesBSrc,
+            "winRate": shoesBWinRate,
+            "pickRate": shoesBPickRate,
+        }}
     shoes = json.dumps(shoesData)
 
     # 스킬 마스터 순서

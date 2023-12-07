@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import * as style from "view/navStyle";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
@@ -25,7 +25,7 @@ function Nav() {
           <style.Logo src={`${process.env.PUBLIC_URL}` + '/assets/images/logo/navbar-logo.png'} />
         </Link>
         <LinkList url="/" name="홈" />
-        <LinkList url="/champion" name="챔피언분석" />
+        <LinkList url="/champions" name="챔피언분석" />
         <LinkList url="/statistics" name="통계" />
         <LinkList url="/ranking" name="랭킹" />
         <LinkList url="/multi" name="멀티서치" />
@@ -51,6 +51,8 @@ function Nav() {
 function LinkList(props) {
   const { pathname } = useLocation();
   let width;
+  const pathName = pathname.split('/')[1]
+  const url = props.url.split('/')[1]
 
   switch (props.name) {
     case '홈':
@@ -78,8 +80,8 @@ function LinkList(props) {
 
   return (
     <>
-      <style.ListBox $width={width} $pathname={pathname} $url={props.url}>
-        <style.ListStyle to={props.url} $pathname={pathname} $url={props.url}>{props.name}</style.ListStyle>
+      <style.ListBox $width={width} $pathname={pathName} $url={url}>
+        <style.ListStyle to={props.url} $pathname={pathName} $url={url}>{props.name}</style.ListStyle>
       </style.ListBox>
     </>
   );
