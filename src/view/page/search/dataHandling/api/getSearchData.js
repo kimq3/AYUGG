@@ -24,12 +24,19 @@ export default async function GetSearchData(nickname) {
         await fetch(uidUrl)
           .then(response => response.json())
           .then((rawData) => {
-            data.tier = rawData[0].tier;
-            data.rank = rawData[0].rank;
-            data.leaguePoints = rawData[0].leaguePoints;
-            data.wins = rawData[0].wins;
-            data.losses = rawData[0].losses;
-
+            if (rawData.length === 0) {
+              data.tier = 'NONE';
+              data.rank = '';
+              data.leaguePoints = 0;
+              data.wins = 0;
+              data.losses = 0;
+            } else {
+              data.tier = rawData[0].tier;
+              data.rank = rawData[0].rank;
+              data.leaguePoints = rawData[0].leaguePoints;
+              data.wins = rawData[0].wins;
+              data.losses = rawData[0].losses;
+            }
           });
 
         await fetch(matchUrl)
@@ -51,7 +58,6 @@ export default async function GetSearchData(nickname) {
             }
           });
       })
-    console.log(data);
     return data;
   } catch (error) {
     throw new Error(error);

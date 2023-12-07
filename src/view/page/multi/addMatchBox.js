@@ -4,7 +4,6 @@ import { MatchDiv, MatchChampImg, KdaDiv, TimeDiv } from './multiStyle/resultBox
 // 1개의 결과창 안의 5개의 match결괄 나타낸다
 function AddMatchBox(props) {
   const currentTime = new Date();
-  {console.log(props.value)}
   return (
     <div>
       {props.value.map((data, index) => (

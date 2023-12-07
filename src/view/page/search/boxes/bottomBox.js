@@ -72,7 +72,6 @@ function BottomBox() {
         return;
       });
     }
-
   };
 
   const handleMoreButtonClick = () => {

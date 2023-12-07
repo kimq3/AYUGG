@@ -49,10 +49,12 @@ export const TierImg = styled.img`
   margin-right: 10px;
   width: 46px;
   height: 46px;
-  transform: ${props => (
+  ${props => (
     (props.tier === "EMERALD")
-    ? 'scale(1.5);'
-    : 'scale(3);'
+    ? 'transform: scale(1.5);'
+    : props.tier === "NONE"
+      ? 'transform: scale(1.8); margin-top: -10px;'
+      : 'transform: scale(3);'
   )}
 `;
 export const TierListUl = styled.ul`
@@ -75,7 +77,7 @@ export const LabelDiv = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  width: 45.513px;
+  width: 90px;
   justify-content: space-between;
   background: #626367;
   margin-right: 10px;
@@ -89,8 +91,9 @@ export const MoreListUl = styled.ul`
   display: ${(props) => (props.isvisible === 'true' ? 'initial' : 'none')};
 `;
 export const OptionItemLi = styled.li`
+  width: 90px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background: #626367;
   margin-right: 10px;
   border-radius: 4px;

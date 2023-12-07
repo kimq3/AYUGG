@@ -13,10 +13,14 @@ function AddBox(props) {
       <WLRDiv>
         <WinRateGraphDiv>{props.data.wins}
           <div />
-          {/* width = 패/(승+패)*130-7 px */}
-          <LossRateGraphDiv data={(props.data.losses / (props.data.losses + props.data.wins) * 130 - 7)}>{props.data.losses}</LossRateGraphDiv>
+          {props.data.tier === 'NONE'
+          ? <LossRateGraphDiv data={58}>{props.data.losses}</LossRateGraphDiv>
+          : <LossRateGraphDiv data={(props.data.losses / (props.data.losses + props.data.wins) * 130 - 7)}>{props.data.losses}</LossRateGraphDiv>
+          }
         </WinRateGraphDiv>
-        <div>{Math.round(props.data.wins / (props.data.losses + props.data.wins) * 100)}%</div>
+        {props.data.tier === 'NONE'
+        ? <div>NONE</div>
+        : <div> Math.round(props.data.wins / (props.data.losses + props.data.wins) * 100)%</div>}
       </WLRDiv>
       <AddMatchBox value={props.data.matches} />
     </ContainerDiv>
