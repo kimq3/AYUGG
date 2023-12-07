@@ -100,7 +100,7 @@ function MiddleStatisticTable(props) {
             <td>
               <sb.OrangeSpan>{props.data.secondTotal.deaths === 0
               ? "Perfect"
-              : "KDA " + ((element.kills + element.deaths) / element.assists).toFixed(2)}</sb.OrangeSpan>
+              : "KDA " + ((element.kills + element.assists) / element.deaths).toFixed(2)}</sb.OrangeSpan>
               <sb.DetailSpan>{(element.kills / element.count).toFixed(1)}/{(element.deaths / element.count).toFixed(1)}/{(element.assists / element.count).toFixed(1)}</sb.DetailSpan>
             </td>
             <td>

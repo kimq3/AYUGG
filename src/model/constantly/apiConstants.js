@@ -96,7 +96,7 @@ export const tierImgMapping = new Map([
   ["NONE", "assets/images/tier-icons/provisional.png"],
   ["IRON", "assets/images/tier-icons/emblem-iron.png"],
   ["BRONZE", "assets/images/tier-icons/emblem-bronze.png"],
-  ["SILVER", "assetsimages/tier-icons/emblem-silver.png"],
+  ["SILVER", "assets/images/tier-icons/emblem-silver.png"],
   ["GOLD", "assets/images/tier-icons/emblem-gold.png"],
   ["PLATINUM", "assets/images/tier-icons/emblem-platinum.png"],
   ["EMERALD", "assets/images/tier-icons/emblem-emerald.png"],
