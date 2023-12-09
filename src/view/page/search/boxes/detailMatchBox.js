@@ -8,9 +8,9 @@ import { BaronPath, dragonPath, towerPath } from "model/imagePath";
 function DetailMatchBox(props) {
   return (
     <dmb.CoverDetailMatchBox isvisible={props.isvisible}>
-      <MatchLabel index={props.index}/>
-      <MatchDetailBlueTableBox index={props.index} tierList={props.tierList}/>
-      <MatchDetailRedTableBox index={props.index} tierList={props.tierList}/>
+      <MatchLabel index={props.index} />
+      <MatchDetailBlueTableBox index={props.index} tierList={props.tierList} />
+      <MatchDetailRedTableBox index={props.index} tierList={props.tierList} />
     </dmb.CoverDetailMatchBox>
   );
 }
@@ -45,12 +45,12 @@ function MatchLabel(props) {
         <dmb.MatchLabelSpan>
           <dmb.GoldImg src={`${process.env.PUBLIC_URL}` + `assets/images/yellow-coin-icon-original.svg`} />
           <dmb.Font1Span>{(() => {
-            let goldRed = 0;
+            let goldBlue = 0;
 
             [0, 1, 2, 3, 4].forEach((num) => {
-              goldRed += Number(data.matches[matchesIndex].participants[num].goldEarned);
+              goldBlue += Number(data.matches[matchesIndex].participants[num].goldEarned);
             });
-            const formattedGold = Math.floor(goldRed / 100) / 10;
+            const formattedGold = Math.floor(goldBlue / 100) / 10;
             return formattedGold + "K";
           })()}</dmb.Font1Span>
         </dmb.MatchLabelSpan>
@@ -152,7 +152,11 @@ function MatchDetailBlueTableBox(props) {
                 </span>
               </dmb.IconDiv>
               <dmb.NickTierDiv>
-                <div>{data.matches[matchesIndex].participants[num].riotIdGameName}</div>
+                <dmb.PartiName>{
+                  data.matches[matchesIndex].participants[num].summonerName === ""
+                    ? data.matches[matchesIndex].participants[num].riotIdGameName
+                    : data.matches[matchesIndex].participants[num].summonerName
+                }</dmb.PartiName>
                 <dmb.Font3Div>{props.tierList[num]}</dmb.Font3Div>
               </dmb.NickTierDiv>
             </dmb.TableTd>
@@ -177,7 +181,7 @@ function MatchDetailBlueTableBox(props) {
             </td>
             <td>
               <div>{data.matches[matchesIndex].participants[num].wardsPlaced}</div>
-              <dmb.Font3Div>{`(${data.matches[matchesIndex].participants[num].wardsPlaced - data.matches[matchesIndex].participants[num].visionWardsBoughtInGame}/${data.matches[matchesIndex].participants[num].visionWardsBoughtInGame})`}</dmb.Font3Div>
+              <dmb.Font3Div>{`(${data.matches[matchesIndex].participants[num].wardsPlaced - data.matches[matchesIndex].participants[num].detectorWardsPlaced}/${data.matches[matchesIndex].participants[num].detectorWardsPlaced})`}</dmb.Font3Div>
             </td>
             <td>
               <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item0)} />
@@ -253,7 +257,11 @@ function MatchDetailRedTableBox(props) {
                 </span>
               </dmb.IconDiv>
               <dmb.NickTierDiv>
-                <div>{data.matches[matchesIndex].participants[num].riotIdGameName}</div>
+                <dmb.PartiName>{
+                      data.matches[matchesIndex].participants[num].summonerName === ""
+                        ? data.matches[matchesIndex].participants[num].riotIdGameName
+                        : data.matches[matchesIndex].participants[num].summonerName
+                    }</dmb.PartiName>
                 <dmb.Font3Div>{props.tierList[num]}</dmb.Font3Div>
               </dmb.NickTierDiv>
             </dmb.TableTd>
@@ -278,7 +286,7 @@ function MatchDetailRedTableBox(props) {
             </td>
             <td>
               <div>{data.matches[matchesIndex].participants[num].wardsPlaced}</div>
-              <dmb.Font3Div>{`(${data.matches[matchesIndex].participants[num].wardsPlaced - data.matches[matchesIndex].participants[num].visionWardsBoughtInGame}/${data.matches[matchesIndex].participants[num].visionWardsBoughtInGame})`}</dmb.Font3Div>
+              <dmb.Font3Div>{`(${data.matches[matchesIndex].participants[num].wardsPlaced - data.matches[matchesIndex].participants[num].detectorWardsPlaced}/${data.matches[matchesIndex].participants[num].detectorWardsPlaced})`}</dmb.Font3Div>
             </td>
             <td>
               <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item0)} />

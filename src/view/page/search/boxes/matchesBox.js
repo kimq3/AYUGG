@@ -50,8 +50,12 @@ function MatchBox(props) {
   }, []);
 
   const NicknameClick = (_nickname) => {
-    navigate('/search', { state: { nickname: _nickname } });
-    window.location.reload();
+    if (_nickname === "") {
+      alert("SummonerName 의 정보가 없습니다");
+    } else {
+      navigate('/search', { state: { nickname: _nickname } });
+      window.location.reload();
+    }
   };
 
   return (
@@ -104,9 +108,13 @@ function MatchBox(props) {
             <match.PartiListUl>
               {[0, 1, 2, 3, 4].map((num) => {
                 return (
-                  <li style={{ display: 'flex' }} key={num}>{console.log(data.matches[matchesIndex].participants[num])}
+                  <li style={{ display: 'flex' }} key={num}>
                     <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                    <match.PartiName onClick={() => NicknameClick(data.matches[matchesIndex].participants[num].riotIdGameName)}>{data.matches[matchesIndex].participants[num].riotIdGameName}</match.PartiName>
+                    <match.PartiName onClick={() => NicknameClick(data.matches[matchesIndex].participants[num].summonerName)}>{
+                      data.matches[matchesIndex].participants[num].summonerName === ""
+                        ? data.matches[matchesIndex].participants[num].riotIdGameName
+                        : data.matches[matchesIndex].participants[num].summonerName
+                    }</match.PartiName>
                   </li>
                 )
               })}
@@ -116,7 +124,11 @@ function MatchBox(props) {
                 return (
                   <li style={{ display: 'flex' }} key={num}>
                     <match.PartiImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                    <match.PartiName onClick={() => NicknameClick(data.matches[matchesIndex].participants[num].riotIdGameName)}>{data.matches[matchesIndex].participants[num].riotIdGameName}</match.PartiName>
+                    <match.PartiName onClick={() => NicknameClick(data.matches[matchesIndex].participants[num].summonerName)}>{
+                      data.matches[matchesIndex].participants[num].summonerName === ""
+                        ? data.matches[matchesIndex].participants[num].riotIdGameName
+                        : data.matches[matchesIndex].participants[num].summonerName
+                    }</match.PartiName>
                   </li>
                 )
               })}
