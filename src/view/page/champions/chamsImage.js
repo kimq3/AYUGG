@@ -1,97 +1,89 @@
 import { useEffect, useState } from "react";
 import * as styled from "./champsStyle";
-import { useLocation } from 'react-router-dom';
 import { ChampionApi } from "model/api/champions";
+// import { useNavigate } from "react-router";
 
 const champImgData = await ChampionApi();
 
-export function Option() {
-  const tierList = ["Challenger", "Grandmaster", "Master", "Diamond", "Emerald", "Platinum", "Gold", "Silver", "Bronze", "Iron"];
-  const [tierSelected, setTierSelected] = useState("Emerald");
-  const tierChangeHandle = (e) => {
-    setTierSelected(e.target.value);
-  };
-
-  return <>
-    <styled.ChampionsSelect onChange={tierChangeHandle} value={tierSelected}>
-      {tierList.map((item) => (
-        <option value={item} key={item}>
-          {item}
-        </option>
-      ))}
-    </styled.ChampionsSelect>
-  </>;
-}
-
-export  function Line(props) {
-  const { pathname } = useLocation();
-
-  return <styled.LineButton $pathname={pathname} $line={props.value}>
-    <styled.ChampionLink to={"/" + props.value}>{props.name}</styled.ChampionLink>
-  </styled.LineButton>
-}
-
-export function Input(){
-  const [inputText, setInputText] = useState();
-  const onChangeInput = e => {
-    setInputText(e.target.value);
-  };
-  const onReset = () => {
-    setInputText("");
-  };
+export function Input() {
+  const [data, setData] = useState();
+  
+  useEffect(() => {
+    setData(champImgData);
+  }, []);
 
   return (
-    <styled.ChampionsInputBox>
-      <styled.ChampionsInput
-        type="text"
-        value={inputText}
-        placeholder="챔피언 검색 (가렌, 갱플랭크 ...)"
-        onChange={onChangeInput}
-      />
-      <styled.ResetButton onClick={onReset}>X</styled.ResetButton>
-    </styled.ChampionsInputBox>
-  );
+    data && <InputData data={data} />
+  )
 }
 
-export function ChampionsImg(){
-  const [imgTag, setImgTag] = useState([]);
+function InputData(props){
+  const imgData = props.data;
+  const [userInputK, setUserInputK] = useState("");
+  const [userInputE, setUserInputE] = useState();
+  // let navigate = useNavigate();
 
-  useEffect(() => {
-    ChampionsImgFull().then((data) => {
-      setImgTag(data);
-    });
-  }, [])
+  const onChangeInput = e => {
+    setUserInputK(e.target.value.toLowerCase());
+    setUserInputE(e.target.value === "" ? null : e.target.value.toLowerCase());
+  };
+  const onReset = () => {
+    setUserInputK("");
+  };
+  const handleOnClick = () => {
+    // navigate('/');
+  };
+  const handleOnKeyPress = e => {
+    if (e.key === 'Enter') {
+      handleOnClick();
+    }
+  };
+
+  const searchedK = imgData.filter((item) =>
+    item.name.toLowerCase().includes(userInputK)
+  );
+
+  const searchedE = imgData.filter((item) =>
+    item.id.toLowerCase().includes(userInputE)
+  );
 
   return (
     <>
-      {imgTag}
+      <styled.ChampionsInputBox>
+        <styled.ChampionsInput
+          type="text"
+          value={userInputK}
+          placeholder="챔피언 검색 (가렌, 갱플랭크 ...)"
+          onChange={onChangeInput}
+          onKeyDown={handleOnKeyPress}
+        />
+        <styled.ResetButton onClick={onReset}>X</styled.ResetButton>
+      </styled.ChampionsInputBox>
+      <styled.ChampionsOlStyle>
+        {searchedK.map((item) => (
+          <ChampionsImgFull key={item.id} {...item} />
+        ))}
+        {searchedE.map((item) => (
+          <ChampionsImgFull key={item.id} {...item} />
+        ))}
+      </styled.ChampionsOlStyle>
     </>
   );
 }
 
-async function ChampionsImgFull(){
-  let fullData = [];
-
-  for(let i = 0; i<champImgData[0].length; i++){
-    let id = champImgData[2][i].toLowerCase();
-    let data = (
-      <styled.ListBox key={i}>
-        <li>
-          <styled.ChampionLink to={`/champions/${id}`}>
-            <styled.ChampionsImgStyle src={champImgData[0][i]} />
-          </styled.ChampionLink>
-          <styled.ChampionLink to={`/champions/${id}`}>
-            <styled.ChampionsSpanStyle>{champImgData[1][i]}</styled.ChampionsSpanStyle>
-          </styled.ChampionLink>
-        </li>
-      </styled.ListBox>
-    )
-    fullData.push(data);
-  }
-  
-  return (
-    <styled.ChampionsOlStyle>
-      {fullData}
-    </styled.ChampionsOlStyle>
+export function ChampionsImgFull({ id, name, src }){
+  let listData = (
+    <styled.ListBox key={id}>
+      <li>
+        <styled.ChampionLink to={`/champions/${id}`}>
+          <styled.ChampionsImgStyle $size="48px" src={src} />
+        </styled.ChampionLink>
+        <styled.ChampionLink to={`/champions/${id}`}>
+          <styled.ChampionsSpanStyle>{name}</styled.ChampionsSpanStyle>
+        </styled.ChampionLink>
+      </li>
+    </styled.ListBox>
   )
+  
+  return  <>{listData}</>
  }

@@ -23,46 +23,61 @@ export const ChampionsBox = styled(FlexBox)`
   background-color: rgb(160, 160, 160);
   justify-content: space-between;
   border-radius: 4px;
+  align-items: stretch;
 `;
 
 export const WrappingBox = styled(FlexBox)`
   width: auto;
-  hight: 100%;
+  height: 100%;
   padding-left: 15px;
   justify-content: space-evenly;
 `;
 
-export const ChampionsSelect = styled.select`
-  width: auto;
+export const SelectButtonStyle = styled.div`
+  width: 150px;
   height: 30px;
   margin-right: 10px;
   border-radius: 4px;
   border-color: #fff;
   font-size: 16px;
+  display: flex;
+  position: relative;
+  background-color: white;
+  align-items: center;
+  padding-left: 15px;
+  box-sizing: border-box;
 `;
 
-export const LineButton = styled(FlexBox)`
-  width: 90px;
-  height: 30px;
+export const LineButtonBox = styled(FlexBox)`
+  width: 500px;
+  margin-right: 15px;
+  border-radius: 4px;
+`;
+
+export const LineButtonStyle = styled.button`
+  width: 20%;
+  height: 100%;
+  font-size: 16px;
   cursor: pointer;
   border: 1px solid #fff;
-  border-radius: 4px;
-  margin-right: 15px;
-  font-size: 16px;
-  background-color: ${(props) => props.pathname === props.line ? "rgb(66, 66, 253)" : "#fff"}
-  color: ${(props) => props.pathname === props.line ? "#fff" : "black"}
+  border-top-left-radius: ${(props) => props.$line === "top" ? "4px;" : "0px;"}
+  border-bottom-left-radius: ${(props) => props.$line === "top" ? "4px;" : "0px;"}
+  border-top-right-radius: ${(props) => props.$line === "sup" ? "4px;" : "0px;"}
+  border-bottom-right-radius: ${(props) => props.$line === "sup" ? "4px;" : "0px;"}
+  background-color: ${(props) => props.$path === props.$line ? " rgb(120, 120, 120);" : "white;"}
+  color: ${(props) => props.$path === props.$line ? "white;" : "black;"}
   &:hover {
-    background-color: rgb(66, 66, 253);
+    background-color: rgb(200, 200, 200);
     color: #fff;
   }
 `;
-
+  // background-color: rgb(240, 240, 240);
 export const ArticleBox = styled.div`
   width: ${(props) => props.$width};
   height: auto;
   box-sizing: border-box;
-  margin: ${(props) => props.$seq === "1" ? " 10px 10px" : "10px 10px 10px 0px"};
-  background-color: rgb(240, 240, 240);
+  margin: ${(props) => props.$seq === "1" ? "10px 10px" : "10px 10px 10px 0px"};
+  background-color: ${(props) => props.$seq === "1" ? "white" : "transparent"};
   border-radius: 4px;
 `;
 
@@ -81,7 +96,7 @@ export const ChampionsInput = styled.input`
   border: none;
   margin: 15px 5px;
   padding: 0 5px;
-  background-color: rgb(240, 240, 240);
+  background-color: transparent;
   &:active {
     border: none;
   }
@@ -95,6 +110,7 @@ export const ResetButton = styled.button`
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
+  background-color: transparent;
 `;
 
 export const ChampionsOlStyle = styled.ol`
@@ -116,12 +132,11 @@ export const ListBox = styled(FlexBox)`
 `;
 
 export const ChampionLink = styled(LinkStyle)`
-
 `;
 
 export const ChampionsImgStyle = styled.img`
-  width: 48px;
-  height: 48px;
+  width: ${(props) => props.$size};
+  height: ${(props) => props.$size};
   border-radius: 4px;
   cursor: pointer;
 `;
@@ -140,10 +155,45 @@ export const ChampionsSpanStyle = styled.div`
 export const RankingTitleBox = styled.div`
   display: flex;
   width: 100%;
-  height: 2794px;
+  height: auto;
   border-radius: 4px;
+  font-size: 12px;
 `;
-// height: 2794px;
+
+export const RankingDataWrapBox = styled.div`
+  display: flex;
+  width: 100%;
+  height: auto;
+`;
+
+const RankingPageImgStyle = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+export const RankingChampionImgStyle = styled(RankingPageImgStyle)`
+  border-radius: 4px;
+  margin-right: 5px;
+`;
+
+export const RankingChampionLink = styled(LinkStyle)`
+  width:  ${(props) => props.$size};
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CounterImgStyle = styled(RankingPageImgStyle)`
+  border-radius: 50%;
+`;
+
+export const RankingChampionNameBox = styled.div`
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
 
 export const RankingTitle = styled.div`
   width: ${(props) => props.$width};
@@ -153,14 +203,70 @@ export const RankingTitle = styled.div`
   align-items: center;
   background-color: rgb(220, 220, 220);
   color: rgb(100, 100, 100);
-  font-size: 16px;
+  font-size: 12px;
   border-top-left-radius: ${(props) => props.$seq === 'start' ? "4px" : "0px"};
   border-top-right-radius: ${(props) => props.$seq === 'end' ? "4px" : "0px"};
   border-bottom: 1px solid grey;
 `;
 
-export const RankingWrapperBox = styled.div`
-  width: 100%;
-  height: 80%;
-  background-color: grey;
+export const RankingDataBox = styled.div`
+  width: ${(props) => props.$width};
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: rgb(100, 100, 100);
+  font-size: 16px;
+  border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 12px;
+`;
+
+export const ArrowDown = styled.div`
+  width: 0;
+  height: 0;
+  border-bottom: 8px solid transparent;
+  border-top: 8px solid black;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+`;
+
+export const TierImgBox = styled.div`
+  width: 24px;
+  height: 24px;
+  border: none;
+  margin: 0px 10px;
+`;
+
+export const OptionListTierImg = styled.img`
+  width: ${(props) => props.$sizes};
+  height: ${(props) => props.$sizes};
+  border: none;
+`;
+
+export const OptionListBox = styled.div`
+  width: 150px;
+  height: auto;
+  position: absolute;
+  top: 32px;
+  left: 0px;
+  border-radius: 4px;
+  background-color: white;
+  display: ${(props) => props.$state === "open" ? "block" : "none"};
+`;
+
+export const OptionButtonStyle = styled.button`
+  width: 150px;
+  height: 30px;
+  border: none;
+  border-bottom: 0.5px solid grey;
+  border-radius: 4px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
 `;

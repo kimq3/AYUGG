@@ -17,6 +17,13 @@ export const Center = styled.div`
   position: relative;
 `;
 
+export const LogoImg = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  opacity: 0.5;
+`;
+
 // 틀
 export const OutBoxStyle = styled(FlexBox)`
   width: 900px;

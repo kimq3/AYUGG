@@ -1,11 +1,7 @@
-import { useEffect, useState } from "react";
 import * as style from "./detailsStyle";
-import { ChampionDetailDataApi as DetailDataApi } from "model/api/champions";
 
-const detailData = await DetailDataApi();
-
-async function BasicInfo(props){
-  const detailData = props.data[0];
+function BasicInfo(props){
+  const detailData = props.data.data[0];
   let imgUrl = detailData.champImg;
   const name = detailData.champName;
   
@@ -18,12 +14,12 @@ async function BasicInfo(props){
         <style.BasicDivStyle $width="70%" $margin="0 5px 0 5px">
           <style.BasicDivStyle $width="55%" $display="block">
             <style.NameSkillStyle>{name}</style.NameSkillStyle>
-            <SkillImgAwait data={detailData} />
+            <SkillImg data={detailData} />
           </style.BasicDivStyle>
           <style.BasicDivStyle $width="auto">
-            <RateDivAwait data={detailData} type="winRate"></RateDivAwait>
-            <RateDivAwait data={detailData} type="pickRate"></RateDivAwait>
-            <RateDivAwait data={detailData} type="banRate"></RateDivAwait>
+            <RateDiv data={detailData} type="winRate"></RateDiv>
+            <RateDiv data={detailData} type="pickRate"></RateDiv>
+            <RateDiv data={detailData} type="banRate"></RateDiv>
           </style.BasicDivStyle>
         </style.BasicDivStyle>
         <style.BasicDivStyle $width="150px" /> {/* 빈 박스 */}
@@ -32,7 +28,7 @@ async function BasicInfo(props){
   );
 }
 
-async function SkillImg(props) {
+function SkillImg(props) {
   let skillData = JSON.parse(props.data.champSkill);
   
   let i = 1;
@@ -40,30 +36,12 @@ async function SkillImg(props) {
     return <style.SkillImgStyle key={i++} $size="32px" src={index} />
   })
   
-  return (<>
+  return (<style.NameSkillStyle>
     {skillImgList}
-  </>);
+  </style.NameSkillStyle>);
 }
 
-function SkillImgAwait(props) {
-  const [skill, setSkill] = useState([]);
-
-  useEffect(() => {
-    SkillImg(props).then((data) => {
-      setSkill(data);
-    });
-  }, [])
-
-  return (
-    <>
-      <style.NameSkillStyle>
-        {skill}
-      </style.NameSkillStyle>
-    </>
-  );
-}
-
-async function RateDiv(props) {
+function RateDiv(props) {
   const rate = JSON.parse(props.data.rate)
   let type;
   let typeResult;
@@ -97,21 +75,6 @@ async function RateDiv(props) {
   )
 }
 
-function RateDivAwait(props) {
-  const [rate, setRate] = useState([]);
-
-  useEffect(() => {
-    RateDiv(props).then((data) => {
-      setRate(data);
-    });
-  }, [props])
-
-  return (
-    <>
-      {rate}
-    </>);
-}
-
 function CounterDiv(props) {
   return (
     <>
@@ -124,7 +87,9 @@ function CounterDiv(props) {
   );
 }
 
-async function CounterLiTag(props) {
+function CounterLiTag(props) {
+  const detailData = props.data.data[0];
+
   let counterList = [];
   const win = JSON.parse(detailData.counter).winCounter;
   const lose = JSON.parse(detailData.counter).loseCounter;
@@ -141,53 +106,27 @@ async function CounterLiTag(props) {
   }
 
   return (
-    <>
+    <style.CounterOlStyle>
       <style.CounterLiStyle>
         { counterList }
       </style.CounterLiStyle>
-    </>
-  );
-}
-
-function CounterOlTagAwait(props) {
-  const [li, setLi] = useState([]);
-
-  useEffect(() => {
-    CounterLiTag(props).then((data) => {
-      setLi(data);
-    });
-  }, [props])
-
-  return (
-    <>
-      <style.CounterOlStyle>
-        {li}
-      </style.CounterOlStyle>
-    </>
+    </style.CounterOlStyle>
   );
 }
 
 export default function FirstArticle(props) {
-  const [basicInfo, setBasicInfo] = useState([]);
-
-  useEffect(() => {
-    BasicInfo(props).then((data) => {
-      setBasicInfo(data);
-    });
-  }, [])
-
   return (
     <>
       <style.OutBoxStyle $height="300px">
-        {basicInfo}
+        <BasicInfo data={props} />
         <style.CounterBoxStyle>
           <style.CounterStyle $back="rgb(49, 49, 79)">
             <div>상대하기 쉬운 챔피언</div>
-            <CounterOlTagAwait data={props} win="true"></CounterOlTagAwait>
+            <CounterLiTag data={props} win="true"></CounterLiTag>
           </style.CounterStyle>
           <style.CounterStyle $back="rgb(108, 65, 65)">
             <div>상대하기 어려운 챔피언</div>
-            <CounterOlTagAwait data={props} win="false"></CounterOlTagAwait>
+            <CounterLiTag data={props} win="false"></CounterLiTag>
           </style.CounterStyle>
         </style.CounterBoxStyle>
       </style.OutBoxStyle>

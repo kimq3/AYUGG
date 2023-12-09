@@ -22,7 +22,7 @@ function Nav() {
     <style.NavBox>
       <style.NavBoxButton>
         <Link to="/">
-          <style.Logo src={`${process.env.PUBLIC_URL}` + '/assets/images/logo/navbar-logo.png'} />
+          <style.Logo src={'/assets/images/logo/navbar-logo.png'} />
         </Link>
         <LinkList url="/" name="홈" />
         <LinkList url="/champions" name="챔피언분석" />

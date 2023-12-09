@@ -1,14 +1,14 @@
 import * as styled from "./detailsStyle";
-import { useEffect, useState } from "react";
 
-async function ItemBox(version, data) {
-  const detailData = data;
+function ItemBox(props) {
+  const detailData = props.data;
   const itemTreeData = JSON.parse(detailData.itemTree);
   const legendItemData = JSON.parse(detailData.legendItem);
   const arrow = '/assets/images/arrow-icon-24.svg';
   let itemTree;
   let legendItem;
   let treeList = [];
+  let version = props.version;
 
   switch (version){
     case '1' :
@@ -65,32 +65,13 @@ async function ItemBox(version, data) {
 
 function ItemWrappingBox(props) {
   const detailData = props.data;
-  const [ver1, setVer1] = useState();
-  const [ver2, setVer2] = useState();
-  const [ver3, setVer3] = useState();
-  const [ver4, setVer4] = useState();
-
-  useEffect(() => {
-    ItemBox("1", detailData).then((data) => {
-      setVer1(data);
-    });
-    ItemBox("2", detailData).then((data) => {
-      setVer2(data);
-    });
-    ItemBox("3", detailData).then((data) => {
-      setVer3(data);
-    });
-    ItemBox("4", detailData).then((data) => {
-      setVer4(data);
-    });
-  }, [])
 
   return (
     <>
-      {ver1}
-      {ver2}
-      {ver3}
-      {ver4}
+      <ItemBox data={detailData} version="1" />
+      <ItemBox data={detailData} version="2" />
+      <ItemBox data={detailData} version="3" />
+      <ItemBox data={detailData} version="4" />
     </>
   )
 }
