@@ -92,7 +92,7 @@ function RuneImgTag(props) {
 }
 
 // 룬 왼쪽에 대표적인 룬 2개를 보여주는 NavBar
-async function NavRune(props) {
+function NavRune(props) {
   const detailData = props.data[0];
   let getRune = GetRuneData(JSON.parse(detailData.rune), runeApiData, props.ver);
   let selected = props.selected;
@@ -123,7 +123,7 @@ function RuneRateDiv(props){
   )
 }
 
-async function DetailRuneFirstBox(props) {
+function DetailRuneFirstBox(props) {
   const detailData = props.data[0];
   let getRune = GetRuneData(JSON.parse(detailData.rune), runeApiData, props.ver);
   let selected = "true"
@@ -200,7 +200,7 @@ async function DetailRuneFirstBox(props) {
   )
 }
 
-async function DetailRuneSecondBox(props) {
+function DetailRuneSecondBox(props) {
   const detailData = props.data[0];
   let getRune = GetRuneData(JSON.parse(detailData.rune), runeApiData, props.ver);
   let selected = "true"
@@ -282,7 +282,7 @@ function PerkImg(id) {
   return data;
 }
 
-async function DetailRuneThirdBox(props) {
+function DetailRuneThirdBox(props) {
   const detailData = props.data[0];
   const statsData = props.ver === '1' ? JSON.parse(detailData.rune).version1.stats : JSON.parse(detailData.rune).version2.stats
 
@@ -323,7 +323,7 @@ async function DetailRuneThirdBox(props) {
 }
 
 // ♣ 스킬 ♣ -----------------------------------------
-async function Skill(props) {
+function Skill(props) {
   const detailData = props[0];
   const skillMaster = JSON.parse(detailData.master);
   const skillSeq = JSON.parse(detailData.skillSeq).skillSeqList;
@@ -412,13 +412,14 @@ function ArticleLeftBox(props) {
   const [navRuneV1, setNavRuneV1] = useState([]);
   const [navRuneV2, setNavRuneV2] = useState([]);
   const [skill, setSkill] = useState();
+
   let v1Props = useMemo(() => {
     return {
       ver: "1",
       selected: "true",
       data: props.data,
     };
-  }, []);
+  }, [props.data]);
 
   let v2Props = useMemo(() => {
     return {
@@ -426,80 +427,47 @@ function ArticleLeftBox(props) {
       selected: "false",
       data: props.data,
     };
-  }, []);
+  }, [props.data]);
 
   let detailProps = useMemo(() => {
     return {
       ver: "1",
       data: props.data,
     }
-  }, [])
+  }, [props.data])
 
   useEffect(() => {
-    NavRune(v1Props).then((data) => {
-      setNavRuneV1(data);
-    });
-
-    NavRune(v2Props).then((data) => {
-      setNavRuneV2(data);
-    });
+    setNavRuneV1(NavRune(v1Props));
+    setNavRuneV2(NavRune(v2Props));
     
-    DetailRuneFirstBox(detailProps).then((data) => {
-      setDetailRuneFirst(data);
-    })
+    setDetailRuneFirst(DetailRuneFirstBox(detailProps));
+    setDetailRuneSecond(DetailRuneSecondBox(detailProps));
+    setDetailRuneThird(DetailRuneThirdBox(detailProps));
 
-    DetailRuneSecondBox(detailProps).then((data) => {
-      setDetailRuneSecond(data);
-    })
-
-    DetailRuneThirdBox(detailProps).then((data) => {
-      setDetailRuneThird(data);
-    })
-
-    Skill(props.data).then((data) => {
-      setSkill(data);
-    });
-  }, [v1Props, v2Props, detailProps])
+    setSkill(Skill(props.data));
+  }, [v1Props, v2Props, detailProps, props.data])
 
   function ClickEvent() {
     if(detailProps.ver === "1") {
       v1Props.selected = "false";
       v2Props.selected = "true";
       detailProps.ver = "2"
-      DetailRuneFirstBox(detailProps).then((data) => {
-        setDetailRuneFirst(data);
-      })
-  
-      DetailRuneSecondBox(detailProps).then((data) => {
-        setDetailRuneSecond(data);
-      })
-  
-      DetailRuneThirdBox(detailProps).then((data) => {
-        setDetailRuneThird(data);
-      })
+      
+      setDetailRuneFirst(DetailRuneFirstBox(detailProps));
+      setDetailRuneSecond(DetailRuneSecondBox(detailProps));
+      setDetailRuneThird(DetailRuneThirdBox(detailProps));
     } else {
       v1Props.selected = "true";
       v2Props.selected = "false";
       detailProps.ver = "1"
-      DetailRuneFirstBox(detailProps).then((data) => {
-        setDetailRuneFirst(data);
-      })
-  
-      DetailRuneSecondBox(detailProps).then((data) => {
-        setDetailRuneSecond(data);
-      })
-  
-      DetailRuneThirdBox(detailProps).then((data) => {
-        setDetailRuneThird(data);
-      })
+
+      setDetailRuneFirst(DetailRuneFirstBox(detailProps));
+      setDetailRuneSecond(DetailRuneSecondBox(detailProps));
+      setDetailRuneThird(DetailRuneThirdBox(detailProps));
     }
 
-    NavRune(v1Props).then((data) => {
-      setNavRuneV1(data);
-    });
-    NavRune(v2Props).then((data) => {
-      setNavRuneV2(data);
-    });
+    setNavRuneV1(NavRune(v1Props));
+    setNavRuneV2(NavRune(v2Props));
   }
 
   return (
@@ -551,9 +519,7 @@ function ArticleRightBox(props) {
 function ItemDivTitle(props) {
   const [favImg, setFavImg] = useState();
   useEffect(() => {
-    ItemDivData(props).then((data) => {
-      setFavImg(data);
-    });
+    setFavImg(ItemDivData(props));
   }, [props])
 
   let fav;
@@ -581,12 +547,15 @@ function ItemDivTitle(props) {
       </styled.FavTitleDivStyle>
       {favImg}
     </styled.FavDivStyle>
-  ) : <styled.FavDivStyle /> // 박스는 4개가 깔끔한데 정보값은 3개라 일단 비워둠
+  ) : (
+    <styled.FavDivStyle>
+      <styled.LogoImg src={'/assets/images/logo/navbar-logo.png'}></styled.LogoImg>
+    </styled.FavDivStyle>) // 박스는 4개가 깔끔한데 정보값은 3개라 일단 비워둠
 
   return data;
 }
 
-async function ItemDivData(props) {
+function ItemDivData(props) {
   const detailData = props.data ? props.data[0] : null;
   let fav;
   let ver1;

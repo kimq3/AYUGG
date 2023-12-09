@@ -15,10 +15,6 @@ export async function ChampionApi() {
   const response = await fetch(championDataUrl);
   const resJson = await response.json();
 
-  let imgList = [];
-  let nameList = [];
-  let idList = [];
-
   let champDataList = Object.values(resJson.data);
   
   champDataList.sort(function (a, b) {
@@ -27,16 +23,15 @@ export async function ChampionApi() {
     return nameA.localeCompare(nameB);
   });
 
-  for(let i = 0; i < champDataList.length; i++) {
-    imgList.push(verUrl + "/img/champion/" + champDataList[i].image.full);
-    nameList.push(champDataList[i].name);
-    idList.push(champDataList[i].id);
-  }
-
   let dataList = [];
-  dataList.push(imgList);
-  dataList.push(nameList);
-  dataList.push(idList);
+  for(let i = 0; i < champDataList.length; i++) {
+    let data = {
+      "id": champDataList[i].id,
+      "name": champDataList[i].name,
+      "src": verUrl + "/img/champion/" + champDataList[i].image.full,
+    }
+    dataList.push(data);
+  }
 
   return dataList;
 }
@@ -51,13 +46,32 @@ export async function RuneApi() {
   return resJson;
 }
 
-export async function ChampionLineStats() {
+export async function getRanking() {
   const dataUrl = "http://localhost:8100/park/getData";
 
   const response = await fetch(dataUrl);
   const resJson = await response.json();
 
   return resJson;
+}
+
+export async function postRanking(tier, line, ver){
+  const response = await fetch('http://localhost:8100/park/getdata/po',{
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+          info: {
+              tier: tier,
+              line: line,
+              ver: ver,
+          }
+      }),
+  }).catch(error=>console.log('fetch에러사항:',error));
+  const data = await response.json();
+  return await data;
 }
 
 export async function ChampionDetailDataApi() {
