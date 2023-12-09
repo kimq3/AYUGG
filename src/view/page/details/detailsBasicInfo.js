@@ -1,4 +1,4 @@
-import * as style from "./detailsStyle";
+import * as styled from "./detailsStyle";
 
 function BasicInfo(props){
   const detailData = props.data.data[0];
@@ -7,23 +7,23 @@ function BasicInfo(props){
   
   return (
     <>
-      <style.BasicInfoStyle>
-        <style.BasicDivStyle $width="100px">
-          <style.BasicImgStyle src={imgUrl} />
-        </style.BasicDivStyle>
-        <style.BasicDivStyle $width="70%" $margin="0 5px 0 5px">
-          <style.BasicDivStyle $width="55%" $display="block">
-            <style.NameSkillStyle>{name}</style.NameSkillStyle>
+      <styled.BasicInfoStyle>
+        <styled.BasicDivStyle $width="100px">
+          <styled.BasicImgStyle src={imgUrl} />
+        </styled.BasicDivStyle>
+        <styled.BasicDivStyle $width="70%" $margin="0 5px 0 5px">
+          <styled.BasicDivStyle $width="55%" $display="block">
+            <styled.NameSkillStyle>{name}</styled.NameSkillStyle>
             <SkillImg data={detailData} />
-          </style.BasicDivStyle>
-          <style.BasicDivStyle $width="auto">
+          </styled.BasicDivStyle>
+          <styled.BasicDivStyle $width="auto">
             <RateDiv data={detailData} type="winRate"></RateDiv>
             <RateDiv data={detailData} type="pickRate"></RateDiv>
             <RateDiv data={detailData} type="banRate"></RateDiv>
-          </style.BasicDivStyle>
-        </style.BasicDivStyle>
-        <style.BasicDivStyle $width="150px" /> {/* 빈 박스 */}
-      </style.BasicInfoStyle>
+          </styled.BasicDivStyle>
+        </styled.BasicDivStyle>
+        <styled.BasicDivStyle $width="150px" /> {/* 빈 박스 */}
+      </styled.BasicInfoStyle>
     </>
   );
 }
@@ -33,12 +33,12 @@ function SkillImg(props) {
   
   let i = 1;
   let skillImgList =  Object.values(skillData).map((index) => {
-    return <style.SkillImgStyle key={i++} $size="32px" src={index} />
+    return <styled.SkillImgStyle key={i++} $size="32px" src={index} />
   })
   
-  return (<style.NameSkillStyle>
+  return (<styled.NameSkillStyle>
     {skillImgList}
-  </style.NameSkillStyle>);
+  </styled.NameSkillStyle>);
 }
 
 function RateDiv(props) {
@@ -67,22 +67,28 @@ function RateDiv(props) {
 
   return (
     <>
-      <style.RateBoxStyle>
-        <style.RateStyle>{type}</style.RateStyle>
-        <style.RateStyle $weight="700">{typeResult}</style.RateStyle>
-      </style.RateBoxStyle>
+      <styled.RateBoxStyle>
+        <styled.RateStyle>{type}</styled.RateStyle>
+        <styled.RateStyle $weight="700">{typeResult}</styled.RateStyle>
+      </styled.RateBoxStyle>
     </>
+  )
+}
+
+function NotFoundData() {
+  return (
+    <styled.NotFoundDivStyle> 수집중 </styled.NotFoundDivStyle>
   )
 }
 
 function CounterDiv(props) {
   return (
     <>
-      <style.CounterDivStyle>
-        <style.CounterImgStyle src={props.src}></style.CounterImgStyle>
-        <style.CounterInfoStyle $margin="5px 0px;"></style.CounterInfoStyle>
-        <style.CounterInfoStyle $margin="0;">{props.rate}</style.CounterInfoStyle>
-      </style.CounterDivStyle>
+      <styled.CounterDivStyle>
+        <styled.CounterImgStyle src={props.src}></styled.CounterImgStyle>
+        <styled.CounterInfoStyle $margin="5px 0px;"></styled.CounterInfoStyle>
+        <styled.CounterInfoStyle $margin="0;">{props.rate}</styled.CounterInfoStyle>
+      </styled.CounterDivStyle>
     </>
   );
 }
@@ -97,39 +103,39 @@ function CounterLiTag(props) {
 
   for(let i = 0; i < length; i++){
     if (props.win === "true") {
-      let divBox = (<CounterDiv key={i} src={win[i].championImg} rate={win[i].winRate} />);
+      let divBox = win[i].championImg !== "imgNull" ? <CounterDiv key={i} src={win[i].championImg} rate={win[i].winRate} /> : <NotFoundData />;
       counterList.push(divBox)
     } else {
-      let divBox = (<CounterDiv key={i} src={lose[i].championImg} rate={lose[i].winRate} />);
+      let divBox = lose[i].championImg !== "imgNull" ? <CounterDiv key={i} src={lose[i].championImg} rate={lose[i].winRate} /> : <NotFoundData />;
       counterList.push(divBox)
     }
   }
 
   return (
-    <style.CounterOlStyle>
-      <style.CounterLiStyle>
+    <styled.CounterOlStyle>
+      <styled.CounterLiStyle>
         { counterList }
-      </style.CounterLiStyle>
-    </style.CounterOlStyle>
+      </styled.CounterLiStyle>
+    </styled.CounterOlStyle>
   );
 }
 
 export default function FirstArticle(props) {
   return (
     <>
-      <style.OutBoxStyle $height="300px">
+      <styled.OutBoxStyle $height="300px">
         <BasicInfo data={props} />
-        <style.CounterBoxStyle>
-          <style.CounterStyle $back="rgb(49, 49, 79)">
+        <styled.CounterBoxStyle>
+          <styled.CounterStyle $back="rgb(49, 49, 79)">
             <div>상대하기 쉬운 챔피언</div>
             <CounterLiTag data={props} win="true"></CounterLiTag>
-          </style.CounterStyle>
-          <style.CounterStyle $back="rgb(108, 65, 65)">
+          </styled.CounterStyle>
+          <styled.CounterStyle $back="rgb(108, 65, 65)">
             <div>상대하기 어려운 챔피언</div>
             <CounterLiTag data={props} win="false"></CounterLiTag>
-          </style.CounterStyle>
-        </style.CounterBoxStyle>
-      </style.OutBoxStyle>
+          </styled.CounterStyle>
+        </styled.CounterBoxStyle>
+      </styled.OutBoxStyle>
     </>
   );
 }

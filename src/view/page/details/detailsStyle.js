@@ -580,3 +580,7 @@ export const LegendRateBoxStyle = styled(divCenter)`
   height: 100%;
   font-size: 16px;
 `;
+
+export const NotFoundDivStyle = styled.div`
+
+`;
