@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const MainDiv = styled.div`
@@ -15,8 +16,7 @@ export const Container = styled.main`
 export const StatusTable = styled.div`
   width: 100%;
   max-width: 600px;
-  margin-top: 50px;
-  background: gray;
+  margin-top: 20px;
 `;
 
 export const StatusTableHeader = styled.div`
@@ -41,6 +41,9 @@ export const RankStatusTableRow = styled.div`
 export const NickStatusTableRow = styled.div`
   width: 30%;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const TableBody = styled.div`
@@ -79,4 +82,16 @@ export const RateContainer = styled.div`
   height: 100%;
   height: 14px;
   margin-right: 10px;
+`;
+
+export const BottomDiv = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+`;
+
+export const StyleLink = styled(Link)`
+    float: right;
+    padding: 10px;
+    text-decoration: underline dotted 3px ;
+    color: #fff;
 `;
