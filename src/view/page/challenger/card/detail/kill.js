@@ -1,4 +1,4 @@
-import * as style from "view/page/challenger/style/detailStyle";
+import * as styled from "view/page/challenger/style/detailStyle";
 import ChartMain from "./chart/chartMain";
 import { useContext } from "react";
 import { ChallengerContext } from "../totalFrame";
@@ -14,7 +14,7 @@ function Kill(){
 
     return (
         <div>
-            <style.Titlediv>킬</style.Titlediv>
+            <styled.Titlediv>킬</styled.Titlediv>
             <ChartMain dataLeft={leftchartData} dataRight={rightchartData}></ChartMain>   
         </div>
         

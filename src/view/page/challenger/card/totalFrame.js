@@ -1,4 +1,4 @@
-import * as style from "view/page/challenger/style/totalFameStyle";
+import * as styled from "view/page/challenger/style/totalFameStyle";
 import MiddleScreen from "./middle";
 import LeftScreen from "./left";
 import RightScreen from "./right";
@@ -14,11 +14,11 @@ function TotalFrame(props){
     return (
         <div>
             <ChallengerContext.Provider value={props.data.info}>
-                <style.Maindiv>
+                <styled.Maindiv>
                     <LeftScreen></LeftScreen>              
                     <MiddleScreen isShow={show} setShow={setShow}></MiddleScreen>    
                     <RightScreen></RightScreen>
-                </style.Maindiv>
+                </styled.Maindiv>
                 {show === true ? <DetailScreen></DetailScreen> : null}
             </ChallengerContext.Provider>  
         </div>

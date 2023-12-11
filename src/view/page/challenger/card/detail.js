@@ -1,4 +1,4 @@
-import * as style from "view/page/challenger/style/detailStyle";
+import * as styled from "view/page/challenger/style/detailStyle";
 import { buttonData, selectComponent } from "./detail/detaildata";
 import { useState } from "react";
 
@@ -12,17 +12,17 @@ function DetailScreen(){
     }
 
     return (
-        <style.Maindiv>
-            <style.FilDiv>
+        <styled.Maindiv>
+            <styled.FilDiv>
                 {buttonData.map((data)=>{
                     return(
-                        <style.Button onClick={buttonClick} value={data.value} key={data.id}>{data.name}</style.Button>
+                        <styled.Button onClick={buttonClick} value={data.value} key={data.id}>{data.name}</styled.Button>
                     );
                 })
                 }
-            </style.FilDiv>
+            </styled.FilDiv>
             {compo && <div>{selectComponent[compo]}</div>}
-        </style.Maindiv>
+        </styled.Maindiv>
         
     );
 }

@@ -1,4 +1,4 @@
-import * as style from "view/page/challenger/style/detailStyle";
+import * as styled from "view/page/challenger/style/detailStyle";
 import ChartMain from "./chart/chartMain";
 import { useContext } from "react";
 import { ChallengerContext } from "../totalFrame";
@@ -12,7 +12,7 @@ function Gold(){
 
     return (
         <div>
-            <style.Titlediv>골드</style.Titlediv>
+            <styled.Titlediv>골드</styled.Titlediv>
             <ChartMain dataLeft={leftchartData} dataRight={rightchartData}></ChartMain>
         </div>
         

@@ -1,4 +1,4 @@
-import * as style from "view/page/challenger/style/detailStyle";
+import * as styled from "view/page/challenger/style/detailStyle";
 import Barchart from "./barchart";
 import LogList from "./logList";
 import ImgList from "./imgList";
@@ -7,30 +7,30 @@ function ChartMain(props){
 
     
     return(
-        <style.MainGraph>
-        <style.Number>
+        <styled.MainGraph>
+        <styled.Number>
             <ImgList data={props.dataLeft}></ImgList>
-        </style.Number>
-        <style.LeftGraph>
+        </styled.Number>
+        <styled.LeftGraph>
             <Barchart color="#3490E5" data={props.dataLeft}></Barchart>
-        </style.LeftGraph>
+        </styled.LeftGraph>
 
-        <style.Number>
+        <styled.Number>
             <LogList data={props.dataLeft}></LogList>
-        </style.Number>
+        </styled.Number>
 
-        <style.Number>
+        <styled.Number>
             <ImgList data={props.dataRight}></ImgList>
-        </style.Number>
+        </styled.Number>
 
-        <style.RightGraph>
+        <styled.RightGraph>
             <Barchart color="#E64638" data={props.dataRight}></Barchart>
-        </style.RightGraph>
+        </styled.RightGraph>
 
-        <style.Number>
+        <styled.Number>
             <LogList data={props.dataRight}></LogList>
-        </style.Number>
-    </style.MainGraph>
+        </styled.Number>
+    </styled.MainGraph>
     );
 }
 

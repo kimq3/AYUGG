@@ -92,3 +92,18 @@ export const IconImage=styled.img`
     margin-right: 5px;
 `;
 
+/* --------------------------------------------- */
+// custom gauge chart styled component 영역
+
+export const Parentdiv = styled.div`
+    height: ${(props)=> props.$height}px;
+    width: 100px;
+    background-color: whitesmoke;
+    margin: 5px;
+`;
+
+export const Childdiv = styled.div`
+    height: 100%;
+    width: ${(props)=> props.$width}%;
+    background-color: ${(props)=> props.$bgcolor};
+`;

@@ -1,25 +1,13 @@
-import React from 'react'
+import React from 'react';
+import * as styled from './statisticsStyle';
  
 const ProgressBar1 = ({bgcolor,progress,height}) => {
     
-    const Parentdiv = {
-        height: height,
-        width: '100px',
-        backgroundColor: 'whitesmoke',
-        margin: '5px',
-      }
-     
-      const Childdiv = {
-        height: '100%',
-        width: `${progress}%`,
-        backgroundColor: bgcolor,
-      }
-       
     return (
-    <div style={Parentdiv}>
-      <div style={Childdiv}>
-      </div>
-    </div>
+    <styled.Parentdiv $height={height}>
+      <styled.Childdiv $width={progress} $bgcolor={bgcolor}>
+      </styled.Childdiv>
+    </styled.Parentdiv>
     )
 }
  
