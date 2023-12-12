@@ -10,6 +10,12 @@ function Search() {
         navigate('/search', { state: { nickname: inputText } });
     };
 
+    const activeEnter = (e) => {
+        if (e.key === "Enter") {
+            searchButtonClick();
+        }
+    }
+
     return (
         <BodySearchBox>
             <SearchBox>
@@ -18,7 +24,7 @@ function Search() {
                         <option value="KR">KR</option>
                         <option value="NA">NA</option>
                     </Select>
-                    <Input value={inputText} onChange={(e) => { setInputText(e.target.value); }} />
+                    <Input value={inputText} onChange={(e) => { setInputText(e.target.value); }} onKeyDown={activeEnter} />
                     <Button onClick={searchButtonClick} >
                         <Img src={`${process.env.PUBLIC_URL}` + 'assets/images/search-icon/search-icon-24.svg'} />
                     </Button>

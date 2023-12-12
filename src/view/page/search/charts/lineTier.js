@@ -50,7 +50,7 @@ export default class LineTierChart extends PureComponent {
       if (prevProps.data !== this.props.data) {
         this.setState({ data: this.props.data });
       }
-    }, 500);
+    }, 1000);
 
   }
 

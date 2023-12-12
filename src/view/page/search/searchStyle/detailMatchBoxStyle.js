@@ -124,6 +124,12 @@ export const NickTierDiv = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
+export const PartiName = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 144px;
+`;
 export const Font3Div = styled.div`
   color: rgb(200, 200, 200);
   font-size: 12px;
