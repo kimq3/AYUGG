@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import * as styled from "view/navStyle";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
@@ -43,7 +43,7 @@ function Nav() {
           <styled.SearchSelect>
             <option value="KR">KR</option>
           </styled.SearchSelect>
-          <styled.SearchInput value={inputText} onChange={(e) => { setInputText(e.target.value); }} />
+          <styled.SearchInput value={inputText} onChange={(e) => { setInputText(e.target.value); }} onKeyDown={activeEnter}/>
           <styled.SearchButton onClick={searchButtonClick} >
             <styled.SearchIcon src={`${process.env.PUBLIC_URL}` + '/assets/images/search-icon/search-icon-24.svg'} />
           </styled.SearchButton>
