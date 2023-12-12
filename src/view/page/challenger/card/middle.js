@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import * as style from "view/page/challenger/style/middleSytle"
+import { useContext } from "react";
+import * as styled from "view/page/challenger/style/middleSytle"
 import { ChallengerContext } from "./totalFrame";
 
 function MiddleScreen(props){
@@ -19,13 +19,13 @@ function MiddleScreen(props){
     }
 
     return (
-        <style.Maindiv>
-            <style.GameNamespan>소환사의 협곡 (솔로랭크)</style.GameNamespan>
-            {data.teams[0].win ? <style.winspan>승</style.winspan> : <style.losespan>패</style.losespan>}
-            <style.Playspan>playTime {minute}:{second < 10 ? '0'+second: second}</style.Playspan>
-            {data.teams[1].win ? <style.winspan>승</style.winspan> : <style.losespan>패</style.losespan>}
-            <style.Detaildiv onClick={changeShow}>자세히보기</style.Detaildiv>
-        </style.Maindiv>    
+        <styled.Maindiv>
+            <styled.GameNamespan>소환사의 협곡 (솔로랭크)</styled.GameNamespan>
+            {data.teams[0].win ? <styled.winspan>승</styled.winspan> : <styled.losespan>패</styled.losespan>}
+            <styled.Playspan>playTime {minute}:{second < 10 ? '0'+second: second}</styled.Playspan>
+            {data.teams[1].win ? <styled.winspan>승</styled.winspan> : <styled.losespan>패</styled.losespan>}
+            <styled.Detaildiv onClick={changeShow}>자세히보기</styled.Detaildiv>
+        </styled.Maindiv>    
     );
 }
 

@@ -1,4 +1,4 @@
-import * as style from "view/page/challenger/style/detailStyle";
+import * as styled from "view/page/challenger/style/detailStyle";
 import ChartMain from "./chart/chartMain";
 import { useContext } from "react";
 import { ChallengerContext } from "../totalFrame";
@@ -13,7 +13,7 @@ function Cs(){
 
     return (
         <div>
-            <style.Titlediv>CS</style.Titlediv>
+            <styled.Titlediv>CS</styled.Titlediv>
             <ChartMain dataLeft={leftchartData} dataRight={rightchartData}></ChartMain>
         </div>
         

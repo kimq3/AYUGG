@@ -1,7 +1,7 @@
 import { getRanker } from "model/api/ranking";
 import { useEffect, useState } from "react";
 import Nav from "view/nav";
-import * as style from "view/page/ranking/rankingstyle";
+import * as styled from "view/page/ranking/rankingstyle";
 import ProgressBar from "view/page/ranking/progressBar";
 
 function RankingDetail(){
@@ -19,36 +19,36 @@ function RankingDetail(){
         <div>
             <Nav></Nav>
             
-            <style.Table>
-                <style.MainTr>
-                    <style.Th>순위</style.Th>
-                    <style.NameTh>닉네임</style.NameTh>
-                    <style.Th>티어</style.Th>
-                    <style.Th>레벨</style.Th>
-                    <style.Th>리그포인트</style.Th>
-                    <style.Th>승률</style.Th>
-                    <style.Th></style.Th>
-                </style.MainTr>
+            <styled.Table>
+                <styled.MainTr>
+                    <styled.Th>순위</styled.Th>
+                    <styled.NameTh>닉네임</styled.NameTh>
+                    <styled.Th>티어</styled.Th>
+                    <styled.Th>레벨</styled.Th>
+                    <styled.Th>리그포인트</styled.Th>
+                    <styled.Th>승률</styled.Th>
+                    <styled.Th></styled.Th>
+                </styled.MainTr>
                 {user.map((info,index)=>{
                     return(
-                        <style.MainTr key={index}>
-                            <style.Td>{index+1}</style.Td>
-                            <style.TdName>
-                                <style.IconImage src={`http://ddragon.leagueoflegends.com/cdn/13.23.1/img/profileicon/${info.icon}.png`}></style.IconImage>
-                                <style.NameSpan>{info.summonerName}</style.NameSpan>
-                            </style.TdName>
-                            <style.Td>{info.tier}</style.Td>
-                            <style.Td>{info.level}</style.Td>
-                            <style.Td>{info.leaguePoints} LP</style.Td>                                                   
-                            <style.TdWins>
+                        <styled.MainTr key={index}>
+                            <styled.Td>{index+1}</styled.Td>
+                            <styled.TdName>
+                                <styled.IconImage src={`http://ddragon.leagueoflegends.com/cdn/13.23.1/img/profileicon/${info.icon}.png`}></styled.IconImage>
+                                <styled.NameSpan>{info.summonerName}</styled.NameSpan>
+                            </styled.TdName>
+                            <styled.Td>{info.tier}</styled.Td>
+                            <styled.Td>{info.level}</styled.Td>
+                            <styled.Td>{info.leaguePoints} LP</styled.Td>                                                   
+                            <styled.TdWins>
                                 <ProgressBar progress={info.percent} win={info.wins} lose={info.losses}/> 
-                            </style.TdWins> 
-                            <style.TdPercent>{info.percent}%</style.TdPercent>                           
+                            </styled.TdWins> 
+                            <styled.TdPercent>{info.percent}%</styled.TdPercent>                           
                             
-                        </style.MainTr>
+                        </styled.MainTr>
                     );
                 })}
-            </style.Table>
+            </styled.Table>
         </div>
     );
 }

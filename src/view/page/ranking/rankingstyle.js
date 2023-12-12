@@ -59,3 +59,28 @@ export const IconImage=styled.img`
     margin-right: 5px;
 `;
 
+/* --------------------------------------------- */
+// custom gauge chart styled component 영역
+
+export const Parentdiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    height: 25px;
+    width: 100%;
+    background-color: #E64638;
+    text-align: right;
+    border: 2px solid #dddddd;
+`;
+
+export const Childdiv = styled.div`
+    width: ${(props)=> props.$width}% ;
+    height: 100%;
+    background-color: #3490E5;
+    text-align: left;
+`;
+
+export const ProgressText = styled.span`
+    padding: 5px;
+    color: white;
+`;
+
