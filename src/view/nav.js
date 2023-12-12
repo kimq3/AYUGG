@@ -1,5 +1,5 @@
 import { Link, useLocation, useParams } from "react-router-dom";
-import * as style from "view/navStyle";
+import * as styled from "view/navStyle";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 
@@ -25,10 +25,10 @@ function Nav() {
   }
 
   return (
-    <style.NavBox>
-      <style.NavBoxButton>
+    <styled.NavBox>
+      <styled.NavBoxButton>
         <Link to="/">
-          <style.Logo src={'/assets/images/logo/navbar-logo.png'} />
+          <styled.Logo src={'/assets/images/logo/navbar-logo.png'} />
         </Link>
         <LinkList url="/" name="홈" />
         <LinkList url="/champions" name="챔피언분석" />
@@ -37,20 +37,19 @@ function Nav() {
         <LinkList url="/multi" name="멀티서치" />
         <LinkList url="/challenger" name="챌린저매치" />
         <LinkList url="/event" name="대회일정" />
-      </style.NavBoxButton>
-      <style.NavBoxSearch>
-        <style.Search>
-          <style.SearchSelect>
+      </styled.NavBoxButton>
+      <styled.NavBoxSearch>
+        <styled.Search>
+          <styled.SearchSelect>
             <option value="KR">KR</option>
-            <option value="NA">NA</option>
-          </style.SearchSelect>
-          <style.SearchInput value={inputText} onChange={(e) => { setInputText(e.target.value); }} onKeyDown={activeEnter} />
-          <style.SearchButton onClick={searchButtonClick} >
-            <style.SearchIcon src={`${process.env.PUBLIC_URL}` + '/assets/images/search-icon/search-icon-24.svg'} />
-          </style.SearchButton>
-        </style.Search>
-      </style.NavBoxSearch>
-    </style.NavBox>
+          </styled.SearchSelect>
+          <styled.SearchInput value={inputText} onChange={(e) => { setInputText(e.target.value); }} />
+          <styled.SearchButton onClick={searchButtonClick} >
+            <styled.SearchIcon src={`${process.env.PUBLIC_URL}` + '/assets/images/search-icon/search-icon-24.svg'} />
+          </styled.SearchButton>
+        </styled.Search>
+      </styled.NavBoxSearch>
+    </styled.NavBox>
   );
 }
 
@@ -86,9 +85,9 @@ function LinkList(props) {
 
   return (
     <>
-      <style.ListBox $width={width} $pathname={pathName} $url={url}>
-        <style.ListStyle to={props.url} $pathname={pathName} $url={url}>{props.name}</style.ListStyle>
-      </style.ListBox>
+      <styled.ListBox $width={width} $pathname={pathName} $url={url}>
+        <styled.ListStyle to={props.url} $pathname={pathName} $url={url}>{props.name}</styled.ListStyle>
+      </styled.ListBox>
     </>
   );
 }

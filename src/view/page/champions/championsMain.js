@@ -1,5 +1,5 @@
 import Nav from "view/nav";
-import * as style from "./champsStyle";
+import * as styled from "./champsStyle";
 import * as champImg from "./chamsImage";
 import { MiddleLineButton, Ranking } from "./champsLine";
 
@@ -9,14 +9,14 @@ function ChampionsMain() {
     <div>
       <Nav />
       <MiddleLineButton/>
-      <style.ChampionsBox $height="auto">
-        <style.ArticleBox $seq="1" $width="40%">
+      <styled.ChampionsBox $height="auto">
+        <styled.ArticleBox $seq="1" $width="40%">
           <champImg.Input />
-        </style.ArticleBox>
-        <style.ArticleBox $seq="2" $width="58%">
+        </styled.ArticleBox>
+        <styled.ArticleBox $seq="2" $width="58%">
           <Ranking />
-        </style.ArticleBox>
-      </style.ChampionsBox>
+        </styled.ArticleBox>
+      </styled.ChampionsBox>
     </div>
   );
 }

@@ -1,12 +1,12 @@
 import React from 'react';
-import * as Style from 'view/loadingStyle';
+import * as styled from 'view/loadingStyle';
 
 export const Loading = () => {
   return (
-    <Style.Background>
-        <Style.LoadingText>로딩중</Style.LoadingText>
+    <styled.Background>
+        <styled.LoadingText>로딩중</styled.LoadingText>
          <img src='/assets/images/spinner.gif' alt="로딩중" width="5%" />
-    </Style.Background>
+    </styled.Background>
     );
 };
 export default Loading;
