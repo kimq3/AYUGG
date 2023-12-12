@@ -1,4 +1,4 @@
-import * as dmb from "../searchStyle/detailMatchBoxStyle";
+import * as styled from "../searchStyle/detailMatchBoxStyle";
 import * as fd from "../dataHandling/filterData";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -7,11 +7,11 @@ import { BaronPath, dragonPath, towerPath } from "model/imagePath";
 
 function DetailMatchBox(props) {
   return (
-    <dmb.CoverDetailMatchBox isvisible={props.isvisible}>
-      <MatchLabel index={props.index}/>
-      <MatchDetailBlueTableBox index={props.index} tierList={props.tierList}/>
-      <MatchDetailRedTableBox index={props.index} tierList={props.tierList}/>
-    </dmb.CoverDetailMatchBox>
+    <styled.CoverDetailMatchBox isvisible={props.isvisible}>
+      <MatchLabel index={props.index} />
+      <MatchDetailBlueTableBox index={props.index} tierList={props.tierList} />
+      <MatchDetailRedTableBox index={props.index} tierList={props.tierList} />
+    </styled.CoverDetailMatchBox>
   );
 }
 
@@ -21,45 +21,45 @@ function MatchLabel(props) {
 
   return (
     <div>
-      {data && <dmb.MatchLabel>
-        <dmb.MatchLabelSpan>
-          <dmb.WinBlueLabelSpan time={data.matches[matchesIndex].gameDuration} win={data.matches[matchesIndex].teams[0].win} >{
+      {data && <styled.MatchLabel>
+        <styled.MatchLabelSpan>
+          <styled.WinBlueLabelSpan time={data.matches[matchesIndex].gameDuration} win={data.matches[matchesIndex].teams[0].win} >{
             data.matches[matchesIndex].gameDuration < 180 ? "다시하기" : (data.matches[matchesIndex].teams[0].win ? "승리" : "패배")
-          }</dmb.WinBlueLabelSpan>
-          <dmb.Font1Span>블루팀</dmb.Font1Span>
-        </dmb.MatchLabelSpan>
-        <dmb.MatchLabelSpan>
-          <dmb.svgImg>
-            <dmb.svgPath d={towerPath} win={data.matches[matchesIndex].teams[0].win} />
-          </dmb.svgImg>
-          <dmb.Font1Span>{data.matches[matchesIndex].teams[0].objectives.tower.kills}</dmb.Font1Span>
-          <dmb.svgImg>
-            <dmb.svgPath d={dragonPath} win={data.matches[matchesIndex].teams[0].win} />
-          </dmb.svgImg>
-          <dmb.Font1Span>{data.matches[matchesIndex].teams[0].objectives.dragon.kills}</dmb.Font1Span>
-          <dmb.svgImg>
-            <dmb.svgPath d={BaronPath} win={data.matches[matchesIndex].teams[0].win} />
-          </dmb.svgImg>
-          <dmb.Font1Span>{data.matches[matchesIndex].teams[0].objectives.baron.kills}</dmb.Font1Span>
-        </dmb.MatchLabelSpan>
-        <dmb.MatchLabelSpan>
-          <dmb.GoldImg src={`${process.env.PUBLIC_URL}` + `assets/images/yellow-coin-icon-original.svg`} />
-          <dmb.Font1Span>{(() => {
-            let goldRed = 0;
+          }</styled.WinBlueLabelSpan>
+          <styled.Font1Span>블루팀</styled.Font1Span>
+        </styled.MatchLabelSpan>
+        <styled.MatchLabelSpan>
+          <styled.svgImg>
+            <styled.svgPath d={towerPath} win={data.matches[matchesIndex].teams[0].win} />
+          </styled.svgImg>
+          <styled.Font1Span>{data.matches[matchesIndex].teams[0].objectives.tower.kills}</styled.Font1Span>
+          <styled.svgImg>
+            <styled.svgPath d={dragonPath} win={data.matches[matchesIndex].teams[0].win} />
+          </styled.svgImg>
+          <styled.Font1Span>{data.matches[matchesIndex].teams[0].objectives.dragon.kills}</styled.Font1Span>
+          <styled.svgImg>
+            <styled.svgPath d={BaronPath} win={data.matches[matchesIndex].teams[0].win} />
+          </styled.svgImg>
+          <styled.Font1Span>{data.matches[matchesIndex].teams[0].objectives.baron.kills}</styled.Font1Span>
+        </styled.MatchLabelSpan>
+        <styled.MatchLabelSpan>
+          <styled.GoldImg src={`${process.env.PUBLIC_URL}` + `assets/images/yellow-coin-icon-original.svg`} />
+          <styled.Font1Span>{(() => {
+            let goldBlue = 0;
 
             [0, 1, 2, 3, 4].forEach((num) => {
-              goldRed += Number(data.matches[matchesIndex].participants[num].goldEarned);
+              goldBlue += Number(data.matches[matchesIndex].participants[num].goldEarned);
             });
-            const formattedGold = Math.floor(goldRed / 100) / 10;
+            const formattedGold = Math.floor(goldBlue / 100) / 10;
             return formattedGold + "K";
-          })()}</dmb.Font1Span>
-        </dmb.MatchLabelSpan>
-        <dmb.MatchLabelB>{data.matches[matchesIndex].teams[0].objectives.champion.kills}</dmb.MatchLabelB>
+          })()}</styled.Font1Span>
+        </styled.MatchLabelSpan>
+        <styled.MatchLabelB>{data.matches[matchesIndex].teams[0].objectives.champion.kills}</styled.MatchLabelB>
         <b>VS</b>
-        <dmb.MatchLabelB>{data.matches[matchesIndex].teams[1].objectives.champion.kills}</dmb.MatchLabelB>
-        <dmb.MatchLabelSpan>
-          <dmb.GoldImg src={`${process.env.PUBLIC_URL}` + `assets/images/yellow-coin-icon-original.svg`} />
-          <dmb.Font1Span>{(() => {
+        <styled.MatchLabelB>{data.matches[matchesIndex].teams[1].objectives.champion.kills}</styled.MatchLabelB>
+        <styled.MatchLabelSpan>
+          <styled.GoldImg src={`${process.env.PUBLIC_URL}` + `assets/images/yellow-coin-icon-original.svg`} />
+          <styled.Font1Span>{(() => {
             let goldRed = 0;
 
             [5, 6, 7, 8, 9].forEach((num) => {
@@ -67,29 +67,29 @@ function MatchLabel(props) {
             });
             const formattedGold = Math.floor(goldRed / 100) / 10;
             return formattedGold + "K";
-          })()}</dmb.Font1Span>
-        </dmb.MatchLabelSpan>
-        <dmb.MatchLabelSpan>
-          <dmb.svgImg>
-            <dmb.svgPath d={towerPath} win={data.matches[matchesIndex].teams[1].win} />
-          </dmb.svgImg>
-          <dmb.Font1Span>{data.matches[matchesIndex].teams[1].objectives.tower.kills}</dmb.Font1Span>
-          <dmb.svgImg>
-            <dmb.svgPath d={dragonPath} win={data.matches[matchesIndex].teams[1].win} />
-          </dmb.svgImg>
-          <dmb.Font1Span>{data.matches[matchesIndex].teams[1].objectives.dragon.kills}</dmb.Font1Span>
-          <dmb.svgImg>
-            <dmb.svgPath d={BaronPath} win={data.matches[matchesIndex].teams[1].win} />
-          </dmb.svgImg>
-          <dmb.Font1Span>{data.matches[matchesIndex].teams[1].objectives.baron.kills}</dmb.Font1Span>
-        </dmb.MatchLabelSpan>
-        <dmb.MatchLabelSpan>
-          <dmb.Font1Span>레드팀</dmb.Font1Span>
-          <dmb.WinRedLabelSpan time={data.matches[matchesIndex].gameDuration} win={data.matches[matchesIndex].teams[1].win} >{
+          })()}</styled.Font1Span>
+        </styled.MatchLabelSpan>
+        <styled.MatchLabelSpan>
+          <styled.svgImg>
+            <styled.svgPath d={towerPath} win={data.matches[matchesIndex].teams[1].win} />
+          </styled.svgImg>
+          <styled.Font1Span>{data.matches[matchesIndex].teams[1].objectives.tower.kills}</styled.Font1Span>
+          <styled.svgImg>
+            <styled.svgPath d={dragonPath} win={data.matches[matchesIndex].teams[1].win} />
+          </styled.svgImg>
+          <styled.Font1Span>{data.matches[matchesIndex].teams[1].objectives.dragon.kills}</styled.Font1Span>
+          <styled.svgImg>
+            <styled.svgPath d={BaronPath} win={data.matches[matchesIndex].teams[1].win} />
+          </styled.svgImg>
+          <styled.Font1Span>{data.matches[matchesIndex].teams[1].objectives.baron.kills}</styled.Font1Span>
+        </styled.MatchLabelSpan>
+        <styled.MatchLabelSpan>
+          <styled.Font1Span>레드팀</styled.Font1Span>
+          <styled.WinRedLabelSpan time={data.matches[matchesIndex].gameDuration} win={data.matches[matchesIndex].teams[1].win} >{
             data.matches[matchesIndex].gameDuration < 180 ? "다시하기" : (data.matches[matchesIndex].teams[1].win ? "승리" : "패배")
-          }</dmb.WinRedLabelSpan>
-        </dmb.MatchLabelSpan>
-      </dmb.MatchLabel>}
+          }</styled.WinRedLabelSpan>
+        </styled.MatchLabelSpan>
+      </styled.MatchLabel>}
     </div>
   );
 }
@@ -114,7 +114,7 @@ function MatchDetailBlueTableBox(props) {
   }, []);
 
   return (
-    <dmb.MatchDetailTable>
+    <styled.MatchDetailTable>
       <colgroup>
         <col width={"30%"} />
         <col width={"12%"} />
@@ -123,75 +123,79 @@ function MatchDetailBlueTableBox(props) {
         <col width={"8%"} />
         <col width={"30%"} />
       </colgroup>
-      <dmb.MatchDetailTableLabel>
+      <styled.MatchDetailTableLabel>
         <th>블루팀</th>
         <th>딜량</th>
         <th>KDA</th>
         <th>CS</th>
         <th>와드</th>
         <th>아이템</th>
-      </dmb.MatchDetailTableLabel>
+      </styled.MatchDetailTableLabel>
       {
         [0, 1, 2, 3, 4].map((num) => {
-          return (data && <dmb.TableTr $backgroundColor={'#2f436e'} key={num}>
-            <dmb.TableTd>
-              <dmb.IconDiv>
-                <dmb.ChampIconSpan>
-                  <dmb.ChampImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                  <dmb.LevelDiv>{data.matches[matchesIndex].participants[num].champLevel}</dmb.LevelDiv>
-                </dmb.ChampIconSpan>
+          return (data && <styled.TableTr $backgroundColor={'#2f436e'} key={num}>
+            <styled.TableTd>
+              <styled.IconDiv>
+                <styled.ChampIconSpan>
+                  <styled.ChampImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
+                  <styled.LevelDiv>{data.matches[matchesIndex].participants[num].champLevel}</styled.LevelDiv>
+                </styled.ChampIconSpan>
                 <span>
                   {spellInfo && <div>
-                    <dmb.Spell1Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[num].summoner1Id))} />
-                    <dmb.Spell2Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[num].summoner2Id))} />
+                    <styled.Spell1Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[num].summoner1Id))} />
+                    <styled.Spell2Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[num].summoner2Id))} />
                   </div>}
                   {runeInfo && <div>
-                    <dmb.Perk1Img src={fd.GetMainRuneImg(runeInfo, data.matches[matchesIndex].participants[num].perks.styles[0].style, data.matches[matchesIndex].participants[num].perks.styles[0].selections[0].perk)} />
-                    <dmb.Perk2Img src={fd.GetSubRuneImg(runeInfo, data.matches[matchesIndex].participants[num].perks.styles[1].style)} />
+                    <styled.Perk1Img src={fd.GetMainRuneImg(runeInfo, data.matches[matchesIndex].participants[num].perks.styles[0].style, data.matches[matchesIndex].participants[num].perks.styles[0].selections[0].perk)} />
+                    <styled.Perk2Img src={fd.GetSubRuneImg(runeInfo, data.matches[matchesIndex].participants[num].perks.styles[1].style)} />
                   </div>}
                 </span>
-              </dmb.IconDiv>
-              <dmb.NickTierDiv>
-                <div>{data.matches[matchesIndex].participants[num].riotIdGameName}</div>
-                <dmb.Font3Div>{props.tierList[num]}</dmb.Font3Div>
-              </dmb.NickTierDiv>
-            </dmb.TableTd>
+              </styled.IconDiv>
+              <styled.NickTierDiv>
+                <styled.PartiName>{
+                  data.matches[matchesIndex].participants[num].summonerName === ""
+                    ? data.matches[matchesIndex].participants[num].riotIdGameName
+                    : data.matches[matchesIndex].participants[num].summonerName
+                }</styled.PartiName>
+                <styled.Font3Div>{props.tierList[num]}</styled.Font3Div>
+              </styled.NickTierDiv>
+            </styled.TableTd>
             <td>
               <div>{data.matches[matchesIndex].participants[num].totalDamageDealtToChampions}</div>
               <div>
-                <dmb.DamageGraphDiv>
-                  <dmb.RedBarDiv style={{ width: `${data.matches[matchesIndex].participants[num].totalDamageDealtToChampions / fd.GetMostDamage(data, matchesIndex) * 60}px` }} />
-                </dmb.DamageGraphDiv>
+                <styled.DamageGraphDiv>
+                  <styled.RedBarDiv style={{ width: `${data.matches[matchesIndex].participants[num].totalDamageDealtToChampions / fd.GetMostDamage(data, matchesIndex) * 60}px` }} />
+                </styled.DamageGraphDiv>
               </div>
             </td>
             <td>
               <div>{data.matches[matchesIndex].participants[num].kills}/{data.matches[matchesIndex].participants[num].deaths}/{data.matches[matchesIndex].participants[num].assists}</div>
-              <dmb.Font3Div>{`(${data.matches[matchesIndex].participants[num].deaths === 0
+              <styled.Font3Div>{`(${data.matches[matchesIndex].participants[num].deaths === 0
                 ? "Perfect"
                 : ((data.matches[matchesIndex].participants[num].kills + data.matches[matchesIndex].participants[num].assists) / data.matches[matchesIndex].participants[num].deaths).toFixed(2)
-                })`}</dmb.Font3Div>
+                })`}</styled.Font3Div>
             </td>
             <td>
               <div>{data.matches[matchesIndex].participants[num].totalMinionsKilled + data.matches[matchesIndex].participants[num].neutralMinionsKilled}</div>
-              <dmb.Font3Div>{`(${((data.matches[matchesIndex].participants[num].totalMinionsKilled + data.matches[matchesIndex].participants[num].neutralMinionsKilled) / data.matches[matchesIndex].gameDuration * 60).toFixed(1)})`}</dmb.Font3Div>
+              <styled.Font3Div>{`(${((data.matches[matchesIndex].participants[num].totalMinionsKilled + data.matches[matchesIndex].participants[num].neutralMinionsKilled) / data.matches[matchesIndex].gameDuration * 60).toFixed(1)})`}</styled.Font3Div>
             </td>
             <td>
               <div>{data.matches[matchesIndex].participants[num].wardsPlaced}</div>
-              <dmb.Font3Div>{`(${data.matches[matchesIndex].participants[num].wardsPlaced - data.matches[matchesIndex].participants[num].visionWardsBoughtInGame}/${data.matches[matchesIndex].participants[num].visionWardsBoughtInGame})`}</dmb.Font3Div>
+              <styled.Font3Div>{`(${data.matches[matchesIndex].participants[num].wardsPlaced - data.matches[matchesIndex].participants[num].detectorWardsPlaced}/${data.matches[matchesIndex].participants[num].detectorWardsPlaced})`}</styled.Font3Div>
             </td>
             <td>
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item0)} />
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item1)} />
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item2)} />
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item3)} />
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item4)} />
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item5)} />
-              <dmb.WardImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item6)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item0)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item1)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item2)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item3)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item4)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item5)} />
+              <styled.WardImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item6)} />
             </td>
-          </dmb.TableTr>);
+          </styled.TableTr>);
         })
       }
-    </dmb.MatchDetailTable>
+    </styled.MatchDetailTable>
   );
 }
 
@@ -215,7 +219,7 @@ function MatchDetailRedTableBox(props) {
   }, []);
 
   return (
-    <dmb.MatchDetailTable>
+    <styled.MatchDetailTable>
       <colgroup>
         <col width={"30%"} />
         <col width={"12%"} />
@@ -224,75 +228,79 @@ function MatchDetailRedTableBox(props) {
         <col width={"8%"} />
         <col width={"30%"} />
       </colgroup>
-      <dmb.MatchDetailTableLabel>
+      <styled.MatchDetailTableLabel>
         <th>레드팀</th>
         <th>딜량</th>
         <th>KDA</th>
         <th>CS</th>
         <th>와드</th>
         <th>아이템</th>
-      </dmb.MatchDetailTableLabel>
+      </styled.MatchDetailTableLabel>
       {
         [5, 6, 7, 8, 9].map((num) => {
-          return (data && <dmb.TableTr $backgroundColor={'#703c47'} key={num}>
-            <dmb.TableTd>
-              <dmb.IconDiv>
-                <dmb.ChampIconSpan>
-                  <dmb.ChampImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
-                  <dmb.LevelDiv>{data.matches[matchesIndex].participants[num].champLevel}</dmb.LevelDiv>
-                </dmb.ChampIconSpan>
+          return (data && <styled.TableTr $backgroundColor={'#703c47'} key={num}>
+            <styled.TableTd>
+              <styled.IconDiv>
+                <styled.ChampIconSpan>
+                  <styled.ChampImg src={fd.GetChampImg(data.matches[matchesIndex].participants[num].championName)} />
+                  <styled.LevelDiv>{data.matches[matchesIndex].participants[num].champLevel}</styled.LevelDiv>
+                </styled.ChampIconSpan>
                 <span>
                   {spellInfo && <div>
-                    <dmb.Spell1Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[num].summoner1Id))} />
-                    <dmb.Spell2Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[num].summoner2Id))} />
+                    <styled.Spell1Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[num].summoner1Id))} />
+                    <styled.Spell2Img src={fd.GetSpellImg(spellInfo, JSON.stringify(data.matches[matchesIndex].participants[num].summoner2Id))} />
                   </div>}
                   {runeInfo && <div>
-                    <dmb.Perk1Img src={fd.GetMainRuneImg(runeInfo, data.matches[matchesIndex].participants[num].perks.styles[0].style, data.matches[matchesIndex].participants[num].perks.styles[0].selections[0].perk)} />
-                    <dmb.Perk2Img src={fd.GetSubRuneImg(runeInfo, data.matches[matchesIndex].participants[num].perks.styles[1].style)} />
+                    <styled.Perk1Img src={fd.GetMainRuneImg(runeInfo, data.matches[matchesIndex].participants[num].perks.styles[0].style, data.matches[matchesIndex].participants[num].perks.styles[0].selections[0].perk)} />
+                    <styled.Perk2Img src={fd.GetSubRuneImg(runeInfo, data.matches[matchesIndex].participants[num].perks.styles[1].style)} />
                   </div>}
                 </span>
-              </dmb.IconDiv>
-              <dmb.NickTierDiv>
-                <div>{data.matches[matchesIndex].participants[num].riotIdGameName}</div>
-                <dmb.Font3Div>{props.tierList[num]}</dmb.Font3Div>
-              </dmb.NickTierDiv>
-            </dmb.TableTd>
+              </styled.IconDiv>
+              <styled.NickTierDiv>
+                <styled.PartiName>{
+                      data.matches[matchesIndex].participants[num].summonerName === ""
+                        ? data.matches[matchesIndex].participants[num].riotIdGameName
+                        : data.matches[matchesIndex].participants[num].summonerName
+                    }</styled.PartiName>
+                <styled.Font3Div>{props.tierList[num]}</styled.Font3Div>
+              </styled.NickTierDiv>
+            </styled.TableTd>
             <td>
               <div>{data.matches[matchesIndex].participants[num].totalDamageDealtToChampions}</div>
               <div>
-                <dmb.DamageGraphDiv>
-                  <dmb.RedBarDiv style={{ width: `${data.matches[matchesIndex].participants[num].totalDamageDealtToChampions / fd.GetMostDamage(data, matchesIndex) * 60}px` }} />
-                </dmb.DamageGraphDiv>
+                <styled.DamageGraphDiv>
+                  <styled.RedBarDiv style={{ width: `${data.matches[matchesIndex].participants[num].totalDamageDealtToChampions / fd.GetMostDamage(data, matchesIndex) * 60}px` }} />
+                </styled.DamageGraphDiv>
               </div>
             </td>
             <td>
               <div>{data.matches[matchesIndex].participants[num].kills}/{data.matches[matchesIndex].participants[num].deaths}/{data.matches[matchesIndex].participants[num].assists}</div>
-              <dmb.Font3Div>{`(${data.matches[matchesIndex].participants[num].deaths === 0
+              <styled.Font3Div>{`(${data.matches[matchesIndex].participants[num].deaths === 0
                 ? "Perfect"
                 : ((data.matches[matchesIndex].participants[num].kills + data.matches[matchesIndex].participants[num].assists) / data.matches[matchesIndex].participants[num].deaths).toFixed(2)
-                })`}</dmb.Font3Div>
+                })`}</styled.Font3Div>
             </td>
             <td>
               <div>{data.matches[matchesIndex].participants[num].totalMinionsKilled + data.matches[matchesIndex].participants[num].neutralMinionsKilled}</div>
-              <dmb.Font3Div>{`(${((data.matches[matchesIndex].participants[num].totalMinionsKilled + data.matches[matchesIndex].participants[num].neutralMinionsKilled) / data.matches[matchesIndex].gameDuration * 60).toFixed(1)})`}</dmb.Font3Div>
+              <styled.Font3Div>{`(${((data.matches[matchesIndex].participants[num].totalMinionsKilled + data.matches[matchesIndex].participants[num].neutralMinionsKilled) / data.matches[matchesIndex].gameDuration * 60).toFixed(1)})`}</styled.Font3Div>
             </td>
             <td>
               <div>{data.matches[matchesIndex].participants[num].wardsPlaced}</div>
-              <dmb.Font3Div>{`(${data.matches[matchesIndex].participants[num].wardsPlaced - data.matches[matchesIndex].participants[num].visionWardsBoughtInGame}/${data.matches[matchesIndex].participants[num].visionWardsBoughtInGame})`}</dmb.Font3Div>
+              <styled.Font3Div>{`(${data.matches[matchesIndex].participants[num].wardsPlaced - data.matches[matchesIndex].participants[num].detectorWardsPlaced}/${data.matches[matchesIndex].participants[num].detectorWardsPlaced})`}</styled.Font3Div>
             </td>
             <td>
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item0)} />
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item1)} />
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item2)} />
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item3)} />
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item4)} />
-              <dmb.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item5)} />
-              <dmb.WardImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item6)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item0)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item1)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item2)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item3)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item4)} />
+              <styled.ItemImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item5)} />
+              <styled.WardImg src={fd.GetItemImg(data.matches[matchesIndex].participants[num].item6)} />
             </td>
-          </dmb.TableTr>);
+          </styled.TableTr>);
         })
       }
-    </dmb.MatchDetailTable>
+    </styled.MatchDetailTable>
   );
 }
 

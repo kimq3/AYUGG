@@ -18,6 +18,12 @@ function Nav() {
     }
   };
 
+  const activeEnter = (e) => {
+    if(e.key === "Enter") {
+      searchButtonClick();
+    }
+  }
+
   return (
     <style.NavBox>
       <style.NavBoxButton>
@@ -38,7 +44,7 @@ function Nav() {
             <option value="KR">KR</option>
             <option value="NA">NA</option>
           </style.SearchSelect>
-          <style.SearchInput value={inputText} onChange={(e) => { setInputText(e.target.value); }} />
+          <style.SearchInput value={inputText} onChange={(e) => { setInputText(e.target.value); }} onKeyDown={activeEnter} />
           <style.SearchButton onClick={searchButtonClick} >
             <style.SearchIcon src={`${process.env.PUBLIC_URL}` + '/assets/images/search-icon/search-icon-24.svg'} />
           </style.SearchButton>
