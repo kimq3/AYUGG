@@ -4,16 +4,17 @@ export const Table=styled.table`
     border-collapse: collapse;
     width: 60%;
     margin: 25px auto;
-    
+    background-color: #fff;
+    padding: 10px;
 `;
 
 export const Th=styled.th`
-    border-bottom: 3px solid #dddddd;
+    border-bottom: 3px solid #000;
     text-align: center;
     padding: 8px;
 `;
 export const NameTh=styled.th`
-    border-bottom: 3px solid #dddddd;
+    border-bottom: 3px solid #000;
     text-align: center;
     padding: 8px;
 `;
@@ -21,12 +22,12 @@ export const NameTh=styled.th`
 export const Td=styled.td`
     text-align: center;
     padding: 10px;
-    color: white;
+    color: #000;
 `;
 
 export const TdName=styled.td`
     font-weight: bold;
-    color: white;
+    color: #000;
     display: flex;
 `;
 
@@ -45,8 +46,8 @@ export const TdPercent=styled(Td)`
 
 
 export const MainTr=styled.tr`
-    border-bottom: 1px solid #dddddd;
-    color: white;
+    border-bottom: 1px solid #B3B3B3;
+    color: #000;
 `;
 
 

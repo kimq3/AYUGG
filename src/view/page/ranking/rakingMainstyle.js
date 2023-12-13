@@ -9,7 +9,7 @@ export const MainDiv = styled.div`
 export const Container = styled.main`
   height: 800px;
   width: 600px;
-  color: #fff;
+  color: #000;
   margin: 0 40px;
 `;
 
@@ -17,6 +17,8 @@ export const StatusTable = styled.div`
   width: 100%;
   max-width: 600px;
   margin-top: 20px;
+  background-color: #fff;
+  padding: 10px;
 `;
 
 export const StatusTableHeader = styled.div`
@@ -24,7 +26,7 @@ export const StatusTableHeader = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #000;
   padding: 10px;
 `;
 
@@ -67,7 +69,7 @@ export const StatusTableData = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #B3B3B3;
   padding: 0 10px 9px 10px;
   font-size: 10pt;
   font-weight: bold;
@@ -94,4 +96,9 @@ export const StyleLink = styled(Link)`
     padding: 10px;
     text-decoration: underline dotted 3px ;
     color: #fff;
+`;
+
+export const StyleSpan = styled.span`
+  padding:10px;
+
 `;

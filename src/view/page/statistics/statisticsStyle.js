@@ -4,6 +4,7 @@ export const Table=styled.table`
     border-collapse: collapse;
     width: 80%;
     margin: 25px auto;
+    background-color: #fff;
     
 `;
 
@@ -11,34 +12,34 @@ export const FilTable=styled.table`
     border-collapse: collapse;
     width: 80%;
     margin: 25px auto;
-    background-color: gray;
+    background-color: #fff;
 `;
 
 export const Th=styled.th`
-    border-bottom: 3px solid #dddddd;
+    border-bottom: 3px solid #000;
     text-align: center;
     padding: 8px;
 `;
 
 export const Tr=styled.tr`
-    border-bottom: 1px solid #dddddd;
-    color: white;
+    border-bottom: 1px solid #B3B3B3;
+    color: black;
 `;
 
 export const Td=styled.td`
     text-align: center;
     padding: 10px;
-    color: white;
+    color: black;
 `;
 
 export const Tds=styled.td`
     font-weight: bold;
-    color: white;
+    color: black;
 `;
 
 export const TdName=styled.td`
     font-weight: bold;
-    color: white;
+    color: black;
     display: flex;
 `;
 
@@ -69,7 +70,7 @@ export const Button1=styled.button`
     height: 30px;
     border: none;
     border-radius:10px;
-    background-color:#fff;
+    background-color:#C2C2C2;
 
     &:hover {
         cursor: pointer;
@@ -98,7 +99,7 @@ export const IconImage=styled.img`
 export const Parentdiv = styled.div`
     height: ${(props)=> props.$height}px;
     width: 100px;
-    background-color: whitesmoke;
+    background-color: gray;
     margin: 5px;
 `;
 

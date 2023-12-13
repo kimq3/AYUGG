@@ -25,7 +25,7 @@ function Status(props){
     return(
         <styled.Container >
             <styled.StatusTable>
-                {props.value ==='solo' ? <span>솔로랭크</span> : <span>자유랭크</span>}
+                {props.value ==='solo' ? <styled.StyleSpan>솔로랭크</styled.StyleSpan> : <styled.StyleSpan>자유랭크</styled.StyleSpan>}
                 <styled.StatusTableHeader>
                     <styled.RankStatusTableRow>순위</styled.RankStatusTableRow>
                     <styled.NickStatusTableRow>닉네임</styled.NickStatusTableRow>
