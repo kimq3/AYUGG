@@ -11,7 +11,6 @@ const Timeline = ({ timeline , setMonth }) => {
 
   function handleMonth(e){
       setMonth(e.target.value);
-      console.log('찍힘? ', e.target.value);
   }
 
   

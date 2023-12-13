@@ -27,7 +27,6 @@ router.post('/getdata/event', function(req, res){
     eventDb.all(`SELECT * FROM event WHERE month='${req.body.info.month}'`,(err, rows)=>{
         if(err){
             res.status(400).send(err.message);
-            console.log('ㅈ됐노');
         }
         else{
             res.json(rows);
